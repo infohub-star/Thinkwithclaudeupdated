@@ -19,12 +19,13 @@ function limited(ip) {
 }
 
 async function notifyAdmin(body) {
-  if (!RESEND_KEY || !body.contact) return;
+  if (!RESEND_KEY) return { error: 'no RESEND key found' };
+  if (!body.contact) return;
   const to = process.env.ADMIN_EMAIL || 'infohub@connectwithshantanu.com';
   const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
   const where = body.source === 'exit_offer' ? 'Exit popup' : 'AI job X-ray';
   try {
-    await fetch('https://api.resend.com/emails', {
+    const er = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -39,11 +40,15 @@ async function notifyAdmin(body) {
           <p><b>Time (IST):</b> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>`
       })
     });
-  } catch (_) {}
+    const txt = await er.text();
+    if (!er.ok) console.error('Resend error', er.status, txt);
+    return { status: er.status, body: txt.slice(0, 300) };
+  } catch (e) { console.error('Resend fetch failed', e); return { error: String(e) }; }
 }
 
 async function saveLead(body, ip) {
-  await notifyAdmin(body);
+  const mail = await notifyAdmin(body);
+  body._mail = mail;
   if (!process.env.LEAD_WEBHOOK_URL || !body.contact) return;
   try {
     await fetch(process.env.LEAD_WEBHOOK_URL, {
@@ -71,7 +76,7 @@ export default async function handler(req, res) {
   const job = String(body.job || '').slice(0, 300).trim();
 
   await saveLead(body, ip);
-  if (body.leadOnly) return res.status(200).json({ ok: true });
+  if (body.leadOnly) return res.status(200).json(body.source === 'debug' ? { ok: true, mail: body._mail } : { ok: true });
   if (job.length < 3) return res.status(400).json({ error: 'Describe your job' });
   if (limited(ip)) return res.status(429).json({ error: 'Daily limit reached' });
 
