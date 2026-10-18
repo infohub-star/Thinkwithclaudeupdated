@@ -1576,6 +1576,7 @@ details[open] summary::after{transform:rotate(45deg)}
     <p class="hero-sub">Hands-on AI training that teaches you and your team to use ChatGPT, Claude and Gemini for everyday reports, emails, research, documents and follow-ups, so routine work takes minutes, not hours</p>
     <a href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener" class="btn-p">Book a free 20-min call</a>
     <a href="#xray" class="hero-xray-link" style="display:block;margin-top:14px;font:500 15px 'Inter',sans-serif;color:#004AAD;text-decoration:none">Or try the free AI job X-ray ↓</a>
+    <a href="#callback" style="display:block;margin-top:6px;font:500 14px 'Inter',sans-serif;color:#4A4A4A;text-decoration:underline">Prefer a call back? Leave your number</a>
   </div>
   <div class="hero-photo-col">
   <a href="https://www.linkedin.com/in/claudewithshantanu/" target="_blank" rel="noopener" style="display:block;text-decoration:none"><div class="photo-frame" style="cursor:pointer">
@@ -2151,7 +2152,7 @@ document.getElementById('eoForm').onsubmit=function(e){
 <div class="cta-sec" id="final">
   <div class="cta-inner">
     <div class="cta-label">Next step</div>
-    <div class="cta-title">Ask your <em>queries</em></div>
+    <div class="cta-title">Let's plan your <em>AI workflows</em></div>
     <div class="cta-sub">Start with a free 20-minute call. We will understand your work, answer your questions and plan your six sessions</div>
 
     <div class="cta-primary-wrap">
@@ -2164,6 +2165,107 @@ document.getElementById('eoForm').onsubmit=function(e){
       <span>or</span>
       <div class="cta-divider-line"></div>
     </div>
+
+<div class="cb-card" id="callback">
+  <div class="cb-head">Prefer a call back? Leave your details</div>
+  <form id="cbForm" novalidate>
+    <div class="cb-step" id="cbStep1">
+      <input class="cb-in" id="cbName" maxlength="80" placeholder="Full name" autocomplete="name" aria-label="Full name">
+      <input class="cb-in" id="cbPhone" maxlength="20" placeholder="WhatsApp number, e.g. +91 98765 43210" inputmode="tel" autocomplete="tel" aria-label="WhatsApp number">
+      <input class="cb-in" id="cbEmail" maxlength="120" placeholder="Email" inputmode="email" autocomplete="email" aria-label="Email">
+      <button type="button" class="cb-btn" id="cbNext">Next →</button>
+    </div>
+    <div class="cb-step" id="cbStep2" hidden>
+      <label class="cb-lbl" for="cbRole">What best describes you?</label>
+      <select class="cb-in" id="cbRole">
+        <option value="">Choose one</option>
+        <option>Working professional</option>
+        <option>Team lead / manager</option>
+        <option>Founder / business owner</option>
+        <option>Between roles / career restart</option>
+        <option>HR / L&amp;D (training for a team)</option>
+      </select>
+      <div id="cbTeam" hidden>
+        <label class="cb-lbl" for="cbSize">How many people would you like to train?</label>
+        <select class="cb-in" id="cbSize"><option value="">Choose one</option><option>1-10</option><option>11-25</option><option>26-50</option><option>51-100</option><option>100+</option></select>
+        <input class="cb-in" id="cbCompany" maxlength="100" placeholder="Company name" aria-label="Company name">
+      </div>
+      <label class="cb-lbl" for="cbGoal">What do you want AI to help with most?</label>
+      <select class="cb-in" id="cbGoal">
+        <option value="">Choose one</option>
+        <option>Reports and spreadsheets</option>
+        <option>Emails, documents and decks</option>
+        <option>Research and analysis</option>
+        <option>Automating repetitive work</option>
+        <option>Job search and interviews</option>
+        <option>Training my team</option>
+      </select>
+      <label class="cb-lbl" for="cbStart">When would you like to start?</label>
+      <select class="cb-in" id="cbStart"><option value="">Choose one</option><option>This week</option><option>Within 2 weeks</option><option>This month</option><option>Just exploring</option></select>
+      <button type="submit" class="cb-btn" id="cbGo">Get a call back</button>
+    </div>
+    <p class="cb-err" id="cbErr" role="alert"></p>
+    <p class="cb-note">No spam. We'll WhatsApp you within 24 hours.</p>
+  </form>
+</div>
+<style>
+.cb-card{max-width:440px;margin:6px auto 22px;background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:18px;padding:22px;text-align:left;box-shadow:0 8px 24px rgba(11,27,51,.06)}
+.cb-head{font:700 18px/1.3 'DM Sans',sans-serif;color:#0B1B33 !important;margin-bottom:14px;text-align:center}
+.cb-in{display:block;width:100%;box-sizing:border-box;height:48px;border:1px solid rgba(15,23,42,.18);border-radius:12px;padding:0 14px;margin-bottom:10px;font:400 15px 'Inter',sans-serif;color:#1A1A1A !important;background:#fff}
+.cb-in:focus{outline:2px solid #004AAD;outline-offset:1px}
+.cb-lbl{display:block;font:500 13px 'Inter',sans-serif;color:#4A4A4A !important;margin:4px 0 6px}
+.cb-btn{width:100%;height:50px;border:0;border-radius:12px;background:#004AAD;color:#fff !important;font:600 15px 'Inter',sans-serif;cursor:pointer;margin-top:4px}
+.cb-btn:disabled{opacity:.6}
+.cb-err{color:#B43C3C !important;font-size:13px;min-height:16px;margin:8px 0 0}
+.cb-note{color:#6B6B6B !important;font-size:12px;margin:2px 0 0;text-align:center}
+.cb-step[hidden],#cbTeam[hidden]{display:none}
+</style>
+<script>
+(function(){
+var FORM='https://docs.google.com/forms/d/e/1FAIpQLSegGgiWMOe-W34n0HLmNIHQxEv57QQuDzGOmbP9Is85PF_74Q/formResponse';
+var $=function(id){return document.getElementById(id)};
+function err(t){$('cbErr').textContent=t||''}
+function okPhone(v){return /^\+?[0-9\s-]{10,15}$/.test(v)}
+function okEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
+['cbName','cbPhone','cbEmail','cbRole','cbSize','cbGoal','cbStart'].forEach(function(id){$(id).addEventListener('input',function(){err()})});
+$('cbRole').addEventListener('change',function(){$('cbTeam').hidden=this.value.indexOf('HR')!==0});
+$('cbNext').onclick=function(){
+  var n=$('cbName').value.trim(),p=$('cbPhone').value.trim(),e=$('cbEmail').value.trim();
+  if(n.length<2)return err('Enter your name.');
+  if(!okPhone(p))return err('Enter a valid WhatsApp number.');
+  if(!okEmail(e))return err('Enter a valid email.');
+  err();$('cbStep1').hidden=true;$('cbStep2').hidden=false;$('cbRole').focus();
+};
+$('cbForm').onsubmit=function(ev){
+  ev.preventDefault();
+  if($('cbStep2').hidden){$('cbNext').click();return}
+  var role=$('cbRole').value,hr=role.indexOf('HR')===0;
+  if(!role)return err('Choose what best describes you.');
+  if(hr&&!$('cbSize').value)return err('Choose how many people to train.');
+  if(!$('cbGoal').value)return err('Choose what you want AI to help with.');
+  if(!$('cbStart').value)return err('Choose when you would like to start.');
+  var b=$('cbGo');b.disabled=true;b.textContent='Sending…';
+  var f=new URLSearchParams();
+  f.append('entry.879909661',$('cbName').value.trim());
+  f.append('entry.855097790',$('cbPhone').value.trim());
+  f.append('entry.858876116',$('cbEmail').value.trim());
+  f.append('entry.193636902',role);
+  if(hr){f.append('entry.683863051',$('cbSize').value);f.append('entry.226769371',$('cbCompany').value.trim());}
+  f.append('entry.1160389069',$('cbGoal').value);
+  f.append('entry.1911397929',$('cbStart').value);
+  f.append('pageHistory',hr?'0,1,2':'0,2');
+  var lead={job:role+' | wants: '+$('cbGoal').value+' | start: '+$('cbStart').value+(hr?' | team: '+$('cbSize').value+' '+$('cbCompany').value:''),
+    contact:$('cbName').value.trim()+' | '+$('cbPhone').value.trim()+' | '+$('cbEmail').value.trim(),source:'callback_form',leadOnly:true,page:location.href};
+  try{localStorage.setItem('tw_lead','1')}catch(_){}
+  try{window.clarity&&window.clarity('event','callback_lead')}catch(_){}
+  try{sessionStorage.removeItem('tw_result')}catch(_){}
+  var p1=fetch(FORM,{method:'POST',mode:'no-cors',body:f}).catch(function(){});
+  var p2=fetch('/api/xray',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)}).catch(function(){});
+  var go=function(){location.href='/thank-you.html?src=callback'};
+  Promise.race([Promise.all([p1,p2]),new Promise(function(r){setTimeout(r,3000)})]).then(go,go);
+};
+})();
+</script>
 
     <div class="cta-secondary-label">Prefer to chat first? Message me directly on WhatsApp</div>
     <a href="https://wa.me/917042633107?text=Hi%20Shantanu%2C%20I%20saw%20your%20AI%20training%20page%20and%20have%20a%20question." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#25D366;color:#fff !important;font-weight:600;font-size:14px;padding:12px 22px;border-radius:999px;text-decoration:none">Chat on WhatsApp</a>

@@ -23,7 +23,7 @@ async function notifyAdmin(body) {
   if (!body.contact) return;
   const to = process.env.ADMIN_EMAIL || 'infohub@connectwithshantanu.com';
   const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
-  const where = body.source === 'exit_offer' ? 'Exit popup' : 'AI job X-ray';
+  const where = { exit_offer: 'Exit popup', callback_form: 'Call-back form' }[body.source] || 'AI job X-ray';
   try {
     const er = await fetch('https://api.resend.com/emails', {
       method: 'POST',
