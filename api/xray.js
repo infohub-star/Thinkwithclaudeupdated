@@ -6,6 +6,8 @@
 //   FROM_EMAIL         (optional)  e.g. 'Leads <leads@thinkwithclaude.com>' once your domain is verified in Resend
 //   LEAD_WEBHOOK_URL   (optional)  Google Apps Script / Make.com webhook that saves leads to your Sheet
 
+const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || process.env.Antrhopic || process.env.Anthropic;
+const RESEND_KEY = process.env.RESEND_API_KEY || process.env.resend_api_key;
 const hits = new Map(); // simple per-IP limit (resets when the function cold-starts)
 const LIMIT = 5, WINDOW = 24 * 60 * 60 * 1000;
 
@@ -17,14 +19,14 @@ function limited(ip) {
 }
 
 async function notifyAdmin(body) {
-  if (!process.env.RESEND_API_KEY || !body.contact) return;
+  if (!RESEND_KEY || !body.contact) return;
   const to = process.env.ADMIN_EMAIL || 'infohub@connectwithshantanu.com';
   const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
   const where = body.source === 'exit_offer' ? 'Exit popup' : 'AI job X-ray';
   try {
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: process.env.FROM_EMAIL || 'Website Leads <onboarding@resend.dev>',
         to: [to],
@@ -77,7 +79,7 @@ export default async function handler(req, res) {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'x-api-key': ANTHROPIC_KEY,
         'anthropic-version': '2023-06-01',
         'content-type': 'application/json'
       },
