@@ -48,6 +48,7 @@ var ADS_CONVERSION='';
 try{if(ADS_CONVERSION&&window.gtag)gtag('event','conversion',{send_to:ADS_CONVERSION})}catch(_){}
 try{window.va&&window.va('event',{name:'thank_you_view'})}catch(_){}
 function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+if(/src=inquiry/.test(location.search)){document.getElementById('tysub').textContent="Got it. We'll WhatsApp you the training details within 24 hours."}
 if(/src=callback/.test(location.search)){document.getElementById('tysub').textContent="Got it. We'll WhatsApp you within 24 hours to set up your free call."}
 var d=null;try{d=JSON.parse(sessionStorage.getItem('tw_result'))}catch(_){}
 if(d&&d.r&&d.r.workflows){var r=d.r;

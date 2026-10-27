@@ -1577,6 +1577,20 @@ details[open] summary::after{transform:rotate(45deg)}
     <a href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener" class="btn-p">Book a free 20-min call</a>
     <a href="#xray" class="hero-xray-link" style="display:block;margin-top:14px;font:500 15px 'Inter',sans-serif;color:#004AAD;text-decoration:none">Or try the free AI job X-ray ↓</a>
     <a href="#callback" style="display:block;margin-top:6px;font:500 14px 'Inter',sans-serif;color:#4A4A4A;text-decoration:underline">Prefer a call back? Leave your number</a>
+    <!-- HERO INQUIRY FORM (Google Ads) -> Google Form "Contact Information Form" -->
+    <div class="hq-card" id="inquiry">
+      <div class="hq-head">Get training details on WhatsApp</div>
+      <div class="hq-sub">Sessions, schedule and next steps, sent within 24 hours</div>
+      <form id="hqForm" novalidate>
+        <input class="hq-in" id="hqName" maxlength="80" placeholder="Full name" autocomplete="name" aria-label="Full name">
+        <input class="hq-in" id="hqPhone" maxlength="20" placeholder="Contact number, e.g. +91 98765 43210" inputmode="tel" autocomplete="tel" aria-label="Contact number">
+        <input class="hq-in" id="hqEmail" maxlength="120" placeholder="Email" inputmode="email" autocomplete="email" aria-label="Email">
+        <label class="hq-chk"><input type="checkbox" id="hqSame" checked> My WhatsApp number is the same</label>
+        <input class="hq-in" id="hqWa" maxlength="20" placeholder="WhatsApp number" inputmode="tel" autocomplete="tel" aria-label="WhatsApp number" hidden>
+        <button type="submit" class="hq-btn" id="hqGo">Send me the details</button>
+        <p class="hq-err" id="hqErr" role="alert"></p>
+      </form>
+    </div>
   </div>
   <div class="hero-photo-col">
   <a href="https://www.linkedin.com/in/claudewithshantanu/" target="_blank" rel="noopener" style="display:block;text-decoration:none"><div class="photo-frame" style="cursor:pointer">
@@ -1602,6 +1616,55 @@ details[open] summary::after{transform:rotate(45deg)}
   </div>
   </div>
 </div>
+
+<style>
+.hq-card{max-width:440px;margin:22px 0 0;background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:18px;padding:20px;text-align:left;box-shadow:0 8px 24px rgba(11,27,51,.06)}
+.hq-head{font:700 18px/1.3 'DM Sans',sans-serif;color:#0B1B33 !important}
+.hq-sub{font:400 13px/1.5 'Inter',sans-serif;color:#5B6472 !important;margin:4px 0 14px}
+.hq-in{display:block;width:100%;box-sizing:border-box;height:46px;border:1px solid rgba(15,23,42,.18);border-radius:12px;padding:0 14px;margin-bottom:10px;font:400 15px 'Inter',sans-serif;color:#1A1A1A !important;background:#fff}
+.hq-in[hidden]{display:none}
+.hq-in:focus{outline:2px solid #004AAD;outline-offset:1px}
+.hq-chk{display:flex;align-items:center;gap:8px;font:400 13px 'Inter',sans-serif;color:#4A4A4A !important;margin:0 0 10px;cursor:pointer}
+.hq-chk input{width:16px;height:16px;accent-color:#004AAD}
+.hq-btn{width:100%;height:48px;border:0;border-radius:12px;background:#004AAD;color:#fff !important;font:600 15px 'Inter',sans-serif;cursor:pointer}
+.hq-btn:disabled{opacity:.6}
+.hq-err{color:#B43C3C !important;font-size:13px;min-height:16px;margin:8px 0 0}
+@media(max-width:860px){.hq-card{margin:22px auto 0}}
+</style>
+<script>
+(function(){
+var FORM='https://docs.google.com/forms/d/e/1FAIpQLSf3r7Zsaaht63eL_hc5WCipy5i1hXeLzONce1Ajq-DeE8_qPw/formResponse';
+var $=function(id){return document.getElementById(id)};
+function err(t){$('hqErr').textContent=t||''}
+function okPhone(v){return /^\+?[0-9][0-9\s-]{7,19}$/.test(v)}
+function okEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
+['hqName','hqPhone','hqEmail','hqWa'].forEach(function(id){$(id).addEventListener('input',function(){err()})});
+$('hqSame').addEventListener('change',function(){$('hqWa').hidden=this.checked;if(!this.checked)$('hqWa').focus()});
+$('hqForm').onsubmit=function(ev){
+  ev.preventDefault();
+  var n=$('hqName').value.trim(),p=$('hqPhone').value.trim(),e=$('hqEmail').value.trim();
+  var w=$('hqSame').checked?p:$('hqWa').value.trim();
+  if(n.length<2)return err('Enter your name.');
+  if(!okPhone(p))return err('Enter a valid contact number.');
+  if(!okEmail(e))return err('Enter a valid email.');
+  if(!okPhone(w))return err('Enter a valid WhatsApp number.');
+  var b=$('hqGo');b.disabled=true;b.textContent='Sending…';
+  var f=new URLSearchParams();
+  f.append('entry.2025378109',n);
+  f.append('entry.1648948578',p);
+  f.append('entry.2048755516',e);
+  f.append('entry.1977878699',w);
+  f.append('pageHistory','0');
+  var lead={job:'Hero inquiry form',contact:n+' | '+p+' | '+e+' | WA '+w,source:'hero_inquiry',leadOnly:true,page:location.href};
+  try{localStorage.setItem('tw_lead','1')}catch(_){}
+  try{window.clarity&&window.clarity('event','hero_inquiry_lead')}catch(_){}
+  var p1=fetch(FORM,{method:'POST',mode:'no-cors',body:f}).catch(function(){});
+  var p2=fetch('/api/xray',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)}).catch(function(){});
+  var go=function(){location.href='/thank-you.html?src=inquiry'};
+  Promise.race([Promise.all([p1,p2]),new Promise(function(r){setTimeout(r,3000)})]).then(go,go);
+};
+})();
+</script>
 
 <!-- TRUST STRIP -->
 <div class="ts-strip"><div class="ts-in"><span class="ts-lbl">Trusted by teams at</span><div class="ts-logos"><img src="/img/a2cb765eb6.png" alt="Flipkart"><img src="/img/9c4ae179cc.png" alt="DRA Homes"><img loading="lazy" decoding="async" src="/img/d6c9885e76.jpg" alt="goSTOPS"><img loading="lazy" decoding="async" src="/img/39444496b9.png" alt="Alkem"><img loading="lazy" decoding="async" src="/img/33ae6fd3cd.png" alt="Madpackers"></div></div></div>
