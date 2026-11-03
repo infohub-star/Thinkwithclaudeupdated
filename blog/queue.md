@@ -1,6 +1,6 @@
 # Article queue
 
-The daily 6 PM IST publishing task takes the FIRST item under "## Up next",
+The daily 7 PM IST publishing task takes the FIRST item under "## Up next",
 publishes it, and moves it to "## Published" with the date and link.
 If "Up next" is empty, nothing is published that day.
 
