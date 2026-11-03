@@ -13,4 +13,29 @@ Add items in either form:
 
 ## Up next
 
+- Topic: ChatGPT, Claude or Gemini: Which AI to Use for Which Task
+  Notes: Simple guide matching everyday work tasks to the right tool. Be fair to each tool.
+- Topic: How to Test Any New AI Tool at Work in 30 Minutes
+  Notes: A repeatable test using the reader's own work, not hype or benchmarks.
+- Topic: Do You Really Need the Most Powerful AI Model?
+  Notes: When a faster, lighter model is enough and when the strongest model earns its place.
+- Topic: AI Agents Explained for Non-Technical Managers
+  Notes: Key ideas in plain English, with examples from work.
+- Topic: Will AI Take Your Job? A Practical Plan for Professionals
+  Notes: Practical steps without panic. Use only sourced facts; no invented job-loss figures.
+- Topic: How to Test a Business Idea with AI Before Spending Money
+  Notes: A reusable assistant for checking competitors, risks and demand. AI informs the decision; it doesn't replace talking to customers.
+- Topic: Can One AI Agent Handle Your Team's Marketing Work?
+  Notes: An honest view of what it can do and what still needs a person.
+- Topic: What to Delegate to an AI Assistant, and What Not To
+  Notes: A safe way to think about giving access to calendars and messages. Keep a person in control of important decisions.
+- Topic: Turn Your Research into Slides and a Podcast with NotebookLM
+  Notes: A quick workflow for repurposing reports and notes. Check current features before writing.
+- Topic: Get Key Insights from Long Videos Without Watching Them All
+  Notes: A way to review podcasts and industry talks faster, and to check summaries against the source.
+- Topic: How to Keep AI Output On-Brand
+  Notes: How to give AI your logo, colours, tone and examples.
+- Topic: How Non-Editors Can Make Short Videos with AI
+  Notes: A beginner's workflow for captions and simple graphics. Check current features before writing.
+
 ## Published
