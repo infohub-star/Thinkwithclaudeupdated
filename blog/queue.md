@@ -13,8 +13,6 @@ Add items in either form:
 
 ## Up next
 
-- Topic: ChatGPT, Claude or Gemini: Which AI to Use for Which Task
-  Notes: Simple guide matching everyday work tasks to the right tool. Be fair to each tool.
 - Topic: How to Test Any New AI Tool at Work in 30 Minutes
   Notes: A repeatable test using the reader's own work, not hype or benchmarks.
 - Topic: Do You Really Need the Most Powerful AI Model?
@@ -39,3 +37,5 @@ Add items in either form:
   Notes: A beginner's workflow for captions and simple graphics. Check current features before writing.
 
 ## Published
+
+- 2026-11-03: ChatGPT, Claude or Gemini: Which AI to Use for Which Task - https://www.thinkwithclaude.com/blog/chatgpt-claude-gemini-which-ai-to-use/
