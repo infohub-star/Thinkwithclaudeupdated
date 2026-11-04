@@ -1,5 +1,8 @@
 # Writing guide for FDE Essentials articles
 
+On the site this section is called "FDE Essentials for Coders". It is separate from the daily
+"Articles" list on /blog/ and has its own page at /fde-essentials/.
+
 Used by the daily 10 AM IST FDE Essentials task. Also follow the brand rules in
 blog/WRITING_GUIDE.md (author, tool-neutral, clients, never prices, never ConnectWithShantanu,
 never Taj Hotels, no hype words).
@@ -15,7 +18,7 @@ Intermediate: assume the Basics parts; link back to them by name. Advanced: assu
 go deeper on design trade-offs. Where useful, mention which earlier part covers a prerequisite.
 
 ## Audience
-Professionals curious about Forward Deployed Engineering: aspiring FDEs, engineers moving into
+Coders and other professionals curious about Forward Deployed Engineering: aspiring FDEs, engineers moving into
 client-facing AI work, consultants, product and delivery leads, and tech-aware managers in India.
 Explain every technical term in one line the first time it appears.
 
@@ -35,7 +38,7 @@ Explain every technical term in one line the first time it appears.
   apply the idea (e.g. plan a similar project, write a design doc, prepare discovery questions).
 - "## FAQs" with 3 short Q&As (AEO).
 - End with "## Try this today" (2-3 concrete steps) and one line pointing to the next part
-  ("Next in FDE Essentials: Part N+1, <title>"), using the next part number in the learning order, not the next item that happens to remain in the queue.
+  ("Next in FDE Essentials for Coders: Part N+1, <title>"), using the next part number in the learning order, not the next item that happens to remain in the queue.
 
 ## Front matter
 ```

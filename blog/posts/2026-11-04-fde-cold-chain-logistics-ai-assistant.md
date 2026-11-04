@@ -10,7 +10,7 @@ level: Advanced
 ---
 A logistics client walks in and says one sentence: "We want to talk to our data." That's the whole brief. No spec, no API, just a username and password to an old database full of truck telemetry.
 
-This is where a Forward Deployed Engineer (FDE) earns their title. An FDE sits with the client, turns a vague wish into a working system and stays until it runs safely in production. This capstone part of FDE Essentials walks through one complete project: a cold-chain logistics AI assistant, from the first conversation to deployment.
+This is where a Forward Deployed Engineer (FDE) earns their title. An FDE sits with the client, turns a vague wish into a working system and stays until it runs safely in production. This capstone part of FDE Essentials for Coders walks through one complete project: a cold-chain logistics AI assistant, from the first conversation to deployment.
 
 ## In one minute
 
@@ -124,4 +124,4 @@ Give the agent its own database user with read-only access to a limited view. Th
 2. Sort the information they use into structured (tables) and unstructured (documents).
 3. Run the prompt above on that process and compare the plan with how the work happens today.
 
-New to FDE work? Start with Part 1 of FDE Essentials, which explains what a Forward Deployed Engineer does, then work through the parts in order.
+New to FDE work? Start with Part 1 of FDE Essentials for Coders, which explains what a Forward Deployed Engineer does, then work through the parts in order.

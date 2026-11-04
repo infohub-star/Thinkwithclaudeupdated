@@ -23,6 +23,7 @@ POSTS = os.path.join(BLOG, "posts")
 SITE = "https://www.thinkwithclaude.com"
 AUTHOR = "Shantanu Anand"
 CALENDLY = "https://calendly.com/infohub-connectwithshantanu/claude-session"
+FDE_NAME = "FDE Essentials for Coders"
 
 CSS = """
 *{box-sizing:border-box}
@@ -76,7 +77,7 @@ HEAD = """<!doctype html>
 {schema}</head><body>
 <header class="top"><div class="top-in">
   <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
-  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a class="cta" href="{cal}" target="_blank" rel="noopener">Book free call</a></nav>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/fde-essentials/">FDE for Coders</a><a class="cta" href="{cal}" target="_blank" rel="noopener">Book free call</a></nav>
 </div></header>
 """
 
@@ -148,23 +149,24 @@ def build():
             schema='<script type="application/ld+json">' + json.dumps(schema) + "</script>\n",
         )
         page += f"""<main class="w">
-<div class="kick">{'<a href="/fde-essentials/" style="text-decoration:none">FDE Essentials · Part ' + p['part'] + '</a>' if p.get('series') == 'fde-essentials' else 'Article'}</div>
+<div class="kick">{'<a href="/fde-essentials/" style="text-decoration:none">' + FDE_NAME + ' · Part ' + p['part'] + '</a>' if p.get('series') == 'fde-essentials' else 'Article'}</div>
 <h1>{esc(p['title'])}</h1>
 <div class="meta">By {AUTHOR} · {nice_date(p['date'])}</div>
 <article>
 {p['html']}
 </article>
 {CTA.format(cal=CALENDLY)}
-<p style="margin-top:26px">{'<a href="/fde-essentials/">← All FDE Essentials</a> · ' if p.get('series') == 'fde-essentials' else ''}<a href="/blog/">← All articles</a></p>
+<p style="margin-top:26px">{'<a href="/fde-essentials/">← All of ' + FDE_NAME + '</a>' if p.get('series') == 'fde-essentials' else '<a href="/blog/">← All articles</a>'}</p>
 </main>
 """ + FOOT.format(year=year)
         out = os.path.join(BLOG, p["slug"])
         os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
 
+    daily = [p for p in posts if not p.get("series")]  # series have their own section
     cards = "\n".join(
         f'<a class="card" href="/blog/{p["slug"]}/"><b>{esc(p["title"])}</b><span>{esc(p["description"])}</span><small>{nice_date(p["date"])}</small></a>'
-        for p in posts
+        for p in daily
     ) or '<p>The first article is on its way. Check back soon.</p>'
     idx = HEAD.format(
         title="AI at Work Articles | ThinkwithClaude",
@@ -178,13 +180,14 @@ def build():
 <div class="list">
 {cards}
 </div>
+<p style="margin-top:28px;font-size:15px">Write code? See our separate series, <a href="/fde-essentials/">{FDE_NAME}</a>.</p>
 </main>
 """ + FOOT.format(year=year)
     open(os.path.join(BLOG, "index.html"), "w", encoding="utf-8").write(idx)
 
     fde = build_fde(posts, year)
 
-    urls = [(f"{SITE}/", today), (f"{SITE}/blog/", posts[0]["date"] if posts else today)]
+    urls = [(f"{SITE}/", today), (f"{SITE}/blog/", daily[0]["date"] if daily else today)]
     urls.append((f"{SITE}/fde-essentials/", fde[0]["date"] if fde else today))
     urls.append((f"{SITE}/ai-questions/", today))
     urls += [(f"{SITE}/blog/{p['slug']}/", p["date"]) for p in posts]
@@ -196,7 +199,7 @@ def build():
 
 
 FDE_INTRO = """<p>Forward Deployed Engineers (FDEs) sit between an AI product and the business that uses it. They learn the client's problem, design the solution, build it and stay until it works in production.</p>
-<p>This series turns real end-to-end FDE projects and courses into plain-English articles: logistics, healthcare, HR, cloud operations, sales forecasting and e-commerce. One new part is published every day.</p>
+<p>This series is for coders and engineers who want to learn the role. It turns real end-to-end FDE projects and courses into clear, practical articles: logistics, healthcare, HR, cloud operations, sales forecasting and e-commerce. One new part is published every day.</p>
 <p>It follows a learning path from <b>Basics</b> (what an FDE does, how LLMs work) to <b>Intermediate</b> (discovery, requirements, RAG and agents) to <b>Advanced</b> (security, ML pipelines, deployment and full end-to-end projects). Read the parts in order.</p>"""
 
 HOME_START, HOME_END = "<!-- FDE-ESSENTIALS:START -->", "<!-- FDE-ESSENTIALS:END -->"
@@ -210,13 +213,13 @@ def build_fde(posts, year):
         for p in fde
     ) or "<p>Part 1 is on its way. Check back soon.</p>"
     hub = HEAD.format(
-        title="FDE Essentials: Learn Forward Deployed Engineering | ThinkwithClaude",
-        desc="A daily plain-English series on Forward Deployed Engineering: real AI projects from discovery to production, by AI trainer Shantanu Anand.",
-        url=f"{SITE}/fde-essentials/", ogtype="website", ogtitle="FDE Essentials | ThinkwithClaude", extra="", css=CSS, cal=CALENDLY, schema="",
+        title=f"{FDE_NAME}: Forward Deployed Engineering | ThinkwithClaude",
+        desc="A daily series for coders on Forward Deployed Engineering: real AI projects from discovery to production, by AI trainer Shantanu Anand.",
+        url=f"{SITE}/fde-essentials/", ogtype="website", ogtitle=f"{FDE_NAME} | ThinkwithClaude", extra="", css=CSS, cal=CALENDLY, schema="",
     )
     hub += f"""<main class="w">
 <div class="kick">Series</div>
-<h1>FDE Essentials</h1>
+<h1>{FDE_NAME}</h1>
 <p class="meta">Forward Deployed Engineering, one real project at a time · by {AUTHOR}</p>
 <article>{FDE_INTRO}</article>
 <h2 style="font:700 24px 'DM Sans',sans-serif;color:#0B1B33;margin:36px 0 14px">All parts ({len(fde)})</h2>
@@ -241,9 +244,9 @@ def build_fde(posts, year):
         block = f"""{HOME_START}
 <div class="sec" id="fde-essentials">
   <div class="si">
-    <div class="sec-label">FDE Essentials</div>
+    <div class="sec-label">{FDE_NAME}</div>
     <div class="sec-title">Learn Forward Deployed Engineering, one project a day</div>
-    <p class="fde-lead">Real AI projects, from the client's first question to production, explained in plain English. A new part every day.</p>
+    <p class="fde-lead">Real AI projects, from the client's first question to production, explained for coders. A new part every day.</p>
     <div class="fde-grid">{items}</div>
     <a class="fde-all" href="/fde-essentials/">See all {len(fde)} part{'s' if len(fde) != 1 else ''} →</a>
   </div>
