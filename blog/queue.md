@@ -13,8 +13,6 @@ Add items in either form:
 
 ## Up next
 
-- Topic: How to Test Any New AI Tool at Work in 30 Minutes
-  Notes: A repeatable test using the reader's own work, not hype or benchmarks.
 - Topic: Do You Really Need the Most Powerful AI Model?
   Notes: When a faster, lighter model is enough and when the strongest model earns its place.
 - Topic: AI Agents Explained for Non-Technical Managers
@@ -38,4 +36,5 @@ Add items in either form:
 
 ## Published
 
+- 2026-11-04: How to Test Any New AI Tool at Work in 30 Minutes - https://www.thinkwithclaude.com/blog/test-new-ai-tool-at-work/
 - 2026-11-03: ChatGPT, Claude or Gemini: Which AI to Use for Which Task - https://www.thinkwithclaude.com/blog/chatgpt-claude-gemini-which-ai-to-use/
