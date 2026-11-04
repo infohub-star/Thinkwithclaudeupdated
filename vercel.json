@@ -1,0 +1,4 @@
+{
+  "crons": [{ "path": "/api/reddit-qa-cron", "schedule": "30 1 * * *" }],
+  "functions": { "api/reddit-qa-cron.js": { "maxDuration": 60 } }
+}

@@ -186,6 +186,7 @@ def build():
 
     urls = [(f"{SITE}/", today), (f"{SITE}/blog/", posts[0]["date"] if posts else today)]
     urls.append((f"{SITE}/fde-essentials/", fde[0]["date"] if fde else today))
+    urls.append((f"{SITE}/ai-questions/", today))
     urls += [(f"{SITE}/blog/{p['slug']}/", p["date"]) for p in posts]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sm += "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls)
