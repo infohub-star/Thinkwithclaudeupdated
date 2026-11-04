@@ -9,6 +9,11 @@ A landing-page article that turns ONE source Google Doc (a technical FDE project
 into a clear, practical read. It is not a copy of the doc: rewrite fully in your own words,
 reorganise around what the reader should understand and take away.
 
+## Learning level
+Match depth to the item's level. Basics: no assumed knowledge, more analogies, define everything.
+Intermediate: assume the Basics parts; link back to them by name. Advanced: assume earlier parts,
+go deeper on design trade-offs. Where useful, mention which earlier part covers a prerequisite.
+
 ## Audience
 Professionals curious about Forward Deployed Engineering: aspiring FDEs, engineers moving into
 client-facing AI work, consultants, product and delivery leads, and tech-aware managers in India.
@@ -30,7 +35,7 @@ Explain every technical term in one line the first time it appears.
   apply the idea (e.g. plan a similar project, write a design doc, prepare discovery questions).
 - "## FAQs" with 3 short Q&As (AEO).
 - End with "## Try this today" (2-3 concrete steps) and one line pointing to the next part
-  ("Next in FDE Essentials: <next item's title from the queue>") when there is a next item.
+  ("Next in FDE Essentials: Part N+1, <title>"), using the next part number in the learning order, not the next item that happens to remain in the queue.
 
 ## Front matter
 ```
@@ -42,5 +47,6 @@ slug: fde-<3-6 lowercase words>
 keywords: <5-7, include "forward deployed engineer">
 series: fde-essentials
 part: <N from the queue>
+level: <Basics | Intermediate | Advanced, from the queue>
 ---
 ```

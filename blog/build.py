@@ -196,7 +196,7 @@ def build():
 
 FDE_INTRO = """<p>Forward Deployed Engineers (FDEs) sit between an AI product and the business that uses it. They learn the client's problem, design the solution, build it and stay until it works in production.</p>
 <p>This series turns real end-to-end FDE projects and courses into plain-English articles: logistics, healthcare, HR, cloud operations, sales forecasting and e-commerce. One new part is published every day.</p>
-<p>The series follows a 10-day learning path: what an FDE does, how LLMs work, discovery and requirements, RAG and agents, security, evaluation, ML pipelines and deployment.</p>"""
+<p>It follows a learning path from <b>Basics</b> (what an FDE does, how LLMs work) to <b>Intermediate</b> (discovery, requirements, RAG and agents) to <b>Advanced</b> (security, ML pipelines, deployment and full end-to-end projects). Read the parts in order.</p>"""
 
 HOME_START, HOME_END = "<!-- FDE-ESSENTIALS:START -->", "<!-- FDE-ESSENTIALS:END -->"
 
@@ -205,7 +205,7 @@ def build_fde(posts, year):
     """FDE Essentials hub page + the auto-updating homepage section."""
     fde = sorted([p for p in posts if p.get("series") == "fde-essentials"], key=lambda p: int(p.get("part", "0")))
     cards = "\n".join(
-        f'<a class="card" href="/blog/{p["slug"]}/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part {p["part"]}</small><b>{esc(p["title"])}</b><span>{esc(p["description"])}</span><small>{nice_date(p["date"])}</small></a>'
+        f'<a class="card" href="/blog/{p["slug"]}/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part {p["part"]}{(" · " + p["level"]) if p.get("level") else ""}</small><b>{esc(p["title"])}</b><span>{esc(p["description"])}</span><small>{nice_date(p["date"])}</small></a>'
         for p in fde
     ) or "<p>Part 1 is on its way. Check back soon.</p>"
     hub = HEAD.format(
@@ -232,9 +232,9 @@ def build_fde(posts, year):
     home = os.path.join(ROOT, "index.html")
     page = open(home, encoding="utf-8").read()
     if HOME_START in page and HOME_END in page:
-        latest = list(reversed(fde))[:3]
+        latest = sorted(fde, key=lambda p: (p['date'], int(p.get('part', '0'))), reverse=True)[:3]
         items = "".join(
-            f'<a class="fde-card" href="/blog/{p["slug"]}/"><span class="fde-part">Part {p["part"]}</span><b>{esc(p["title"])}</b><span class="fde-desc">{esc(p["description"])}</span><span class="fde-more">Read →</span></a>'
+            f'<a class="fde-card" href="/blog/{p["slug"]}/"><span class="fde-part">Part {p["part"]}{(" · " + p["level"]) if p.get("level") else ""}</span><b>{esc(p["title"])}</b><span class="fde-desc">{esc(p["description"])}</span><span class="fde-more">Read →</span></a>'
             for p in latest
         ) or '<p class="fde-desc">Part 1 is coming soon.</p>'
         block = f"""{HOME_START}
