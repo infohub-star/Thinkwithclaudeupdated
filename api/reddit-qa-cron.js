@@ -36,118 +36,67 @@ function istDate() {
   return new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10);
 }
 
-async function redditToken() {
-  const id = process.env.REDDIT_CLIENT_ID, secret = process.env.REDDIT_CLIENT_SECRET;
-  if (!id || !secret) return null;
-  const r = await fetch('https://www.reddit.com/api/v1/access_token', {
-    method: 'POST',
-    headers: { Authorization: 'Basic ' + Buffer.from(`${id}:${secret}`).toString('base64'), 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': UA },
-    body: 'grant_type=client_credentials'
-  });
-  if (!r.ok) throw new Error('Reddit auth failed: ' + r.status);
-  return (await r.json()).access_token;
+async function getJson(url) {
+  const r = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'application/json' } });
+  if (!r.ok) throw new Error(`${new URL(url).host}: HTTP ${r.status}`);
+  return r.json();
 }
 
-async function topPosts(sub, token) {
-  const url = token
-    ? `https://oauth.reddit.com/r/${sub}/top?t=day&limit=100&raw_json=1`
-    : `https://www.reddit.com/r/${sub}/top.json?t=day&limit=100&raw_json=1`;
-  const r = await fetch(url, { headers: { 'User-Agent': UA, ...(token ? { Authorization: `Bearer ${token}` } : {}) } });
-  if (!r.ok) throw new Error(`r/${sub}: HTTP ${r.status}`);
-  return ((await r.json()).data?.children || []).map(c => c.data);
-}
-
-function parseRss(xml, sub) {
+// Hacker News: most-commented AI threads from the last 48h
+async function hackerNews() {
+  const since = Math.floor(Date.now() / 1000) - 48 * 3600;
   const out = [];
-  for (const m of xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)) {
-    const e = m[1];
-    const title = (e.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
-    const link = (e.match(/<link href="([^"]+)"/) || [])[1];
-    const id = ((e.match(/<id>t3_(\w+)<\/id>/) || [])[1]);
-    if (!title || !link || !id) continue;
-    const dec = t => t.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-    out.push({ id, subreddit: sub, title: dec(title), selftext: '', num_comments: null, permalink: link.replace('https://www.reddit.com', ''), link_flair_text: '' });
+  for (const q of ['AI', 'ChatGPT', 'Claude', 'LLM', 'OpenAI', 'Gemini', 'AI agents']) {
+    const p = new URLSearchParams({ query: q, tags: 'story', numericFilters: `created_at_i>${since},num_comments>15`, hitsPerPage: '20' });
+    const d = await getJson('https://hn.algolia.com/api/v1/search?' + p);
+    for (const h of d.hits || []) {
+      if (!h.title || !AI_WORDS.test(h.title)) continue;
+      out.push({ id: 'hn' + h.objectID, sub: 'Hacker News', title: h.title.replace(/^Ask HN:\s*/i, ''), body: (h.story_text || '').replace(/<[^>]+>/g, ' ').slice(0, 800), comments: h.num_comments, url: `https://news.ycombinator.com/item?id=${h.objectID}` });
+    }
   }
   return out;
 }
 
-async function rssPosts(sub) {
-  for (const host of ['https://www.reddit.com', 'https://old.reddit.com']) {
-    const r = await fetch(`${host}/r/${sub}/top/.rss?t=day&limit=100`, { headers: { 'User-Agent': UA } });
-    if (r.ok) return parseRss(await r.text(), sub);
-  }
-  throw new Error(`r/${sub}: RSS blocked`);
+// OpenAI Developer Forum: today's most active topics
+async function openaiForum() {
+  const d = await getJson('https://community.openai.com/top.json?period=daily');
+  return (d.topic_list?.topics || []).filter(t => !t.pinned && !t.closed).map(t => ({
+    id: 'oai' + t.id, sub: 'OpenAI Community', title: t.title, body: (t.excerpt || '').slice(0, 800),
+    comments: Math.max(0, (t.posts_count || 1) - 1), url: `https://community.openai.com/t/${t.slug}/${t.id}`
+  }));
 }
 
-// Last resort: Claude searches the web for today's most-discussed Reddit questions.
-let _searchDebug = null;
-async function searchPosts(seen) {
-  const prompt = `Use web search to find question posts from the last 48 hours on these subreddits: r/ClaudeAI, r/ChatGPT, r/OpenAI, r/PromptEngineering, plus any trending AI question on Reddit. Prefer posts with many comments. Only include real posts you found, with their exact reddit.com URL. Return ONLY a JSON array of up to 14 items: [{"url":"https://www.reddit.com/r/.../comments/<id>/...","sub":"ClaudeAI","title":"exact post title","comments":123 or null if unknown}]`;
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: claudeHeaders(),
-    body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 3000, tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }], messages: [{ role: 'user', content: prompt }] })
-  });
-  if (!r.ok) throw new Error('web search ' + r.status + ': ' + (await r.text()).slice(0, 200));
-  const body = await r.json();
-  const found = new Map();
-  // Every reddit link the search actually returned (real URLs, no guessing)
-  for (const b of body.content || []) {
-    if (b.type !== 'web_search_tool_result' || !Array.isArray(b.content)) continue;
-    for (const res of b.content) {
-      const m = String(res.url || '').match(/reddit\.com\/r\/(\w+)\/comments\/(\w+)/);
-      if (m && res.title) found.set(m[2], { id: m[2], sub: m[1], title: String(res.title).replace(/\s*:\s*r\/\w+\s*$/i, '').replace(/\s*-\s*Reddit\s*$/i, '').trim(), body: '', comments: null, url: res.url.split('?')[0] });
-    }
-  }
-  // Claude's own list adds comment counts where it saw them
-  try {
-    const text = (body.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-    for (const x of JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1))) {
-      const id = (String(x.url).match(/comments\/(\w+)/) || [])[1];
-      if (!id) continue;
-      const prev = found.get(id);
-      if (prev) prev.comments = Number(x.comments) || null;
-    }
-  } catch (e) {}
-  _searchDebug = { results: found.size, stop: body.stop_reason };
-  return [...found.values()].filter(p => !seen.has(p.id));
+// Stack Exchange GenAI site: newest well-discussed questions
+async function stackExchange() {
+  const since = Math.floor(Date.now() / 1000) - 72 * 3600;
+  const d = await getJson(`https://api.stackexchange.com/2.3/questions?site=genai&sort=activity&order=desc&fromdate=${since}&pagesize=30`);
+  const dec = t => String(t).replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  return (d.items || []).map(q => ({ id: 'se' + q.question_id, sub: 'GenAI Stack Exchange', title: dec(q.title), body: '', comments: (q.answer_count || 0), url: q.link }));
 }
 
 async function candidates(seen) {
-  let token = null;
-  const all = [], errors = [];
-  try { token = await redditToken(); } catch (e) { errors.push(String(e.message || e)); }
-  for (const sub of [...AI_SUBS, TRENDING]) {
-    let posts = null;
-    try { posts = await topPosts(sub, token); } catch (e) { errors.push(String(e.message || e)); }
-    if (!posts) { try { posts = await rssPosts(sub); } catch (e) { errors.push(String(e.message || e)); } }
-    for (const p of posts || []) {
-      const text = `${p.title} ${p.selftext || ''}`;
-      const flairQ = /question|help/i.test(p.link_flair_text || '');
-      if (p.over_18 || p.stickied || p.removed_by_category) continue;
-      if (!(QUESTION.test(p.title.trim()) || flairQ)) continue;
-      if (sub === TRENDING && !AI_WORDS.test(text)) continue;
-      if (seen.has(p.id)) continue;
-      all.push({ id: p.id, sub: p.subreddit, title: p.title, body: (p.selftext || '').slice(0, 1200), comments: p.num_comments, url: 'https://www.reddit.com' + p.permalink });
-    }
+  const errors = [], pools = [];
+  for (const [name, fn, take] of [['Hacker News', hackerNews, 7], ['OpenAI Community', openaiForum, 6], ['GenAI Stack Exchange', stackExchange, 4]]) {
+    try {
+      const list = (await fn()).filter(p => !seen.has(p.id));
+      const uniq = [...new Map(list.map(p => [p.id, p])).values()];
+      // questions first, then the most discussed
+      uniq.sort((a, b) => (QUESTION.test(b.title) - QUESTION.test(a.title)) || (b.comments - a.comments));
+      pools.push(...uniq.slice(0, take));
+    } catch (e) { errors.push(`${name}: ${e.message || e}`); }
   }
-  let source = 'reddit';
-  if (all.length < 3) {
-    try { all.push(...await searchPosts(seen)); source = 'web-search'; } catch (e) { errors.push(String(e.message || e)); }
-  }
-  const uniq = [...new Map(all.map(p => [p.id, p])).values()].sort((a, b) => (b.comments || 0) - (a.comments || 0));
-  if (_searchDebug) errors.push('web search: ' + JSON.stringify(_searchDebug));
-  return { list: uniq.slice(0, 14), errors, source };
+  const list = pools.sort((a, b) => b.comments - a.comments);
+  return { list, errors, source: 'communities' };
 }
 
 async function writeAnswers(posts) {
   const prompt = `You write the daily "AI questions, answered" section for ThinkwithClaude, the site of Shantanu Anand, a practical AI trainer in India who teaches professionals to use ChatGPT, Claude, Gemini and Copilot at work.
 
-Below are today's most-discussed question posts from Reddit (sorted by comment count). Pick the ${PER_DAY} best ones for a professional audience, preferring higher comment counts. Skip anything that is drama, a rant, a meme, politics, a pure news reaction, a bug report only the vendor can answer, or that needs real-time facts you can't verify.
+Below are today's most-discussed AI threads from Hacker News, the OpenAI Developer Forum and GenAI Stack Exchange (sorted by comment count). Pick the ${PER_DAY} best for a busy professional audience, preferring higher comment counts and mixing sources when quality allows. Prefer threads that are, or can honestly be framed as, a practical question someone would ask. Skip anything that is drama, a rant, a meme, politics, a pure news reaction, a bug report only the vendor can answer, or that needs real-time facts you can't verify.
 
 For each pick:
 - "q": the question rewritten in your own plain words, max 110 characters, ends with "?". Never copy the post wording.
-- "a": an original, genuinely useful answer, 80 to 140 words, plain text, up to 2 short paragraphs separated by a blank line. Concrete and practical, written for a busy professional. Do not quote or summarise the Reddit thread. Avoid specific prices, usage limits, release dates or version numbers that may change; if those matter, say to check the tool's current docs. No hype, no em dashes, no mention of Reddit.
+- "a": an original, genuinely useful answer, 80 to 140 words, plain text, up to 2 short paragraphs separated by a blank line. Concrete and practical, written for a busy professional. Do not quote or summarise the original thread. Avoid specific prices, usage limits, release dates or version numbers that may change; if those matter, say to check the tool's current docs. No hype, no em dashes, no mention of the source site.
 - "id": the post id, unchanged.
 
 Return ONLY a JSON array like [{"id":"...","q":"...","a":"..."}] in rank order.

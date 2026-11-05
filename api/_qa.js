@@ -24,8 +24,8 @@ function faqSchema(items) {
 
 function item(i, n, open) {
   return `<details class="rq-item"${open ? ' open' : ''}>
-<summary><span class="rq-n">${n}</span><span class="rq-qw"><span class="rq-q">${esc(i.q)}</span><span class="rq-meta">r/${esc(i.sub)}${i.comments ? ' · ' + fmtNum(i.comments) + ' comments' : ' · trending'}</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
-<div class="rq-a">${paras(i.a)}<a class="rq-src" href="${esc(i.url)}" target="_blank" rel="noopener nofollow">See the Reddit discussion →</a></div>
+<summary><span class="rq-n">${n}</span><span class="rq-qw"><span class="rq-q">${esc(i.q)}</span><span class="rq-meta">${esc(i.sub)}${i.comments ? ' · ' + fmtNum(i.comments) + (i.sub === 'GenAI Stack Exchange' ? ' answers' : ' comments') : ' · trending'}</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
+<div class="rq-a">${paras(i.a)}<a class="rq-src" href="${esc(i.url)}" target="_blank" rel="noopener nofollow">See the original discussion →</a></div>
 </details>`;
 }
 
@@ -66,7 +66,7 @@ ${SECTION_CSS}
       <div>
         <div class="sec-label">Asked today</div>
         <div class="sec-title">Today's top AI questions, answered</div>
-        <p class="rq-lead">The most-discussed AI questions on Reddit in the last 24 hours, with a straight, practical answer. Updated every morning.</p>
+        <p class="rq-lead">The most-discussed AI questions across AI communities in the last 24 hours, with a straight, practical answer. Updated every morning.</p>
       </div>
       <span class="rq-date">${esc(niceDate(latest))}</span>
     </div>
@@ -146,7 +146,7 @@ function renderArchive(data) {
     d.items.push(i);
   }
   const url = `${SITE}/ai-questions/`;
-  const desc = 'The most-discussed AI questions on Reddit each day, with clear, practical answers on ChatGPT, Claude, prompting and AI at work. Updated daily.';
+  const desc = 'The most-discussed AI questions across AI communities each day, with clear, practical answers on ChatGPT, Claude, prompting and AI at work. Updated daily.';
   const body = days.map(d => `<h2 class="rq-day">${esc(niceDate(d.date))}</h2>\n${d.items.map((i, k) => item(i, k + 1, false)).join('\n')}`).join('\n')
     || '<p>The first questions arrive tomorrow morning.</p>';
   return `<!doctype html>
@@ -168,7 +168,7 @@ ${data.length ? faqSchema(data.slice(0, 150)) : ''}
 <main class="w">
 <div class="kick">Answered daily</div>
 <h1>AI questions people are asking today</h1>
-<p class="meta">Every morning we pick the most-discussed AI questions on Reddit and answer them in plain English · by Shantanu Anand</p>
+<p class="meta">Every morning we pick the most-discussed AI questions from Hacker News, the OpenAI Developer Forum and Stack Exchange and answer them in plain English · by Shantanu Anand</p>
 ${body}
 <div class="box">
   <h2>Want your team to use AI like this?</h2>
