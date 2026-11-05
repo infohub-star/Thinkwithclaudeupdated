@@ -170,7 +170,8 @@ module.exports = async (req, res) => {
 
     const next = [...picks, ...data.filter(i => i.date !== today)].slice(0, 1500);
     const sitemap = await readFile('sitemap.xml');
-    const sha = await commit(renderAll(next, sitemap), `Daily AI questions: ${today} (${picks.length} answered)`);
+    const index = await readFile('index.html');
+    const sha = await commit(renderAll(next, sitemap, index), `Daily AI questions: ${today} (${picks.length} answered)`);
 
     return res.json({ ok: true, date: today, source, published: picks.map(p => p.q), commit: sha, errors });
   } catch (e) {

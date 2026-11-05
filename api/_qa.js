@@ -4,9 +4,9 @@
 
 const SITE = 'https://www.thinkwithclaude.com';
 const CAL = 'https://calendly.com/infohub-connectwithshantanu/claude-session';
-const START = '<!-- REDDIT-QA:START -->';
-const END = '<!-- REDDIT-QA:END -->';
-const ANCHOR = '<!-- GALLERY -->'; // section is placed just before the gallery, after "For Teams"
+const START = '<!-- QA-STRIP:START -->';
+const END = '<!-- QA-STRIP:END -->';
+const ANCHOR = '<!-- WHO THIS IS FOR -->'; // slim strip sits right under the client-logo strip
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const paras = t => String(t || '').split(/\n{2,}/).map(p => `<p>${esc(p.trim()).replace(/\n/g, '<br>')}</p>`).join('');
@@ -107,8 +107,29 @@ ${faqSchema(today)}
 ${END}`;
 }
 
+function renderStrip(data) {
+  withSlugs(data);
+  const latest = data.length ? data[0].date : null;
+  const today = data.filter(i => i.date === latest).slice(0, 3);
+  if (!today.length) return `${START}\n${END}`;
+  return `${START}
+<div class="qs-strip"><div class="qs-in"><span class="qs-lbl">🔥 Today's top AI questions</span><span class="qs-links">${today.map(i => `<a href="/ai-questions/${i.slug}/">${esc(i.q)}</a>`).join('<span class="qs-dot" aria-hidden="true">·</span>')}</span><a class="qs-all" href="/ai-questions/">See all →</a></div></div>
+<style>
+.qs-strip{background:#F2F6FF;border-bottom:1px solid rgba(0,74,173,.12);padding:12px 20px}
+.qs-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:14px;font-size:14px;line-height:1.45}
+.qs-lbl{flex:none;font-weight:700;color:#0B1B33 !important;white-space:nowrap}
+.qs-links{flex:1;min-width:0;display:flex;align-items:center;gap:10px;overflow:hidden}
+.qs-links a{color:#004AAD !important;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34%}
+.qs-links a:hover{text-decoration:underline}
+.qs-dot{color:#8A94A6}
+.qs-all{flex:none;font-weight:700;color:#004AAD !important;text-decoration:none;white-space:nowrap}
+@media(max-width:760px){.qs-in{flex-wrap:wrap;gap:6px 12px}.qs-lbl{width:100%}.qs-links{flex-direction:column;align-items:flex-start;gap:4px;width:100%}.qs-links a{max-width:100%}.qs-dot{display:none}}
+</style>
+${END}`;
+}
+
 function injectSection(indexHtml, data) {
-  const block = renderSection(data);
+  const block = renderStrip(data);
   if (indexHtml.includes(START) && indexHtml.includes(END)) {
     return indexHtml.replace(new RegExp(START + '[\\s\\S]*?' + END), () => block);
   }
@@ -290,7 +311,7 @@ function updateSitemap(xml, data) {
 }
 
 // Every file the Q&A feature owns, ready to commit
-function renderAll(data, sitemapXml) {
+function renderAll(data, sitemapXml, indexHtml) {
   withSlugs(data);
   const files = {
     'qa/data.json': JSON.stringify(data, null, 1) + '\n',
@@ -299,7 +320,8 @@ function renderAll(data, sitemapXml) {
     'sitemap.xml': updateSitemap(sitemapXml, data)
   };
   for (const i of data) files[`ai-questions/${i.slug}/index.html`] = renderQuestion(i, data);
+  if (indexHtml) files['index.html'] = injectSection(indexHtml, data);
   return files;
 }
 
-module.exports = { injectSection, renderArchive, renderSection, renderAll, withSlugs, START, END };
+module.exports = { renderStrip, injectSection, renderArchive, renderSection, renderAll, withSlugs, START, END };
