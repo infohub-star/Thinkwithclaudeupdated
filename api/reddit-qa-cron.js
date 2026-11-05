@@ -104,14 +104,20 @@ Return ONLY a JSON array like [{"id":"...","q":"...","a":"..."}] in rank order.
 Posts:
 ${JSON.stringify(posts.map(p => ({ id: p.id, sub: p.sub, comments: p.comments, title: p.title, body: p.body.slice(0, 600) })))}`;
 
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: claudeHeaders(),
-    body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 3000, messages: [{ role: 'user', content: prompt }] })
-  });
-  if (!r.ok) throw new Error('Claude API ' + r.status + ': ' + (await r.text()).slice(0, 200));
-  const text = (await r.json()).content.map(c => c.text || '').join('');
-  const arr = JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1));
+  let arr = null, last = '';
+  for (let attempt = 0; attempt < 3 && !arr; attempt++) {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: claudeHeaders(),
+      body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 8000, messages: [{ role: 'user', content: prompt }] })
+    });
+    if (!r.ok) { last = 'Claude API ' + r.status + ': ' + (await r.text()).slice(0, 200); continue; }
+    const body = await r.json();
+    const text = (body.content || []).map(c => c.text || '').join('');
+    try { arr = JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1)); }
+    catch (e) { last = `Could not read Claude's answer (stop: ${body.stop_reason}): ${text.slice(0, 160)}`; }
+  }
+  if (!arr) throw new Error(last);
   const byId = new Map(posts.map(p => [p.id, p]));
   return arr.filter(x => byId.has(x.id) && x.q && x.a).slice(0, PER_DAY)
     .map(x => { const p = byId.get(x.id); return { id: p.id, q: x.q.trim(), a: x.a.trim(), sub: p.sub, comments: p.comments || null, url: p.url }; });
