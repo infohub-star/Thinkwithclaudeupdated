@@ -189,7 +189,10 @@ def build():
 
     urls = [(f"{SITE}/", today), (f"{SITE}/blog/", daily[0]["date"] if daily else today)]
     urls.append((f"{SITE}/fde-essentials/", fde[0]["date"] if fde else today))
-    urls.append((f"{SITE}/ai-questions/", today))
+    qa_path = os.path.join(ROOT, "qa", "data.json")
+    qa = json.load(open(qa_path, encoding="utf-8")) if os.path.exists(qa_path) else []
+    urls.append((f"{SITE}/ai-questions/", qa[0]["date"] if qa else today))
+    urls += [(f"{SITE}/ai-questions/{q['slug']}/", q["date"]) for q in qa if q.get("slug")]
     urls += [(f"{SITE}/blog/{p['slug']}/", p["date"]) for p in posts]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sm += "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls)

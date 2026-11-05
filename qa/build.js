@@ -1,9 +1,12 @@
-// Rebuild /ai-questions/ from qa/data.json.
+// Rebuild /ai-questions/, one page per question, sitemap.xml and llms.txt from qa/data.json.
 // Run: node qa/build.js   (the daily cron does this automatically)
 const fs = require('fs'), path = require('path');
-const { renderArchive } = require('../api/_qa.js');
+const { renderAll } = require('../api/_qa.js');
 const root = path.join(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'qa/data.json'), 'utf8'));
-fs.mkdirSync(path.join(root, 'ai-questions'), { recursive: true });
-fs.writeFileSync(path.join(root, 'ai-questions/index.html'), renderArchive(data));
-console.log(`Built Q&A section: ${data.length} question(s)`);
+const files = renderAll(data, fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8'));
+for (const [rel, content] of Object.entries(files)) {
+  fs.mkdirSync(path.dirname(path.join(root, rel)), { recursive: true });
+  fs.writeFileSync(path.join(root, rel), content);
+}
+console.log(`Built ${Object.keys(files).length} file(s) for ${data.length} question(s)`);

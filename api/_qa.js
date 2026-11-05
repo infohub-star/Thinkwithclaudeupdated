@@ -22,10 +22,37 @@ function faqSchema(items) {
   return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 }
 
+const AUTHOR = 'Shantanu Anand';
+const AUTHOR_ROLE = 'AI Trainer & Consultant';
+const LINKEDIN = 'https://www.linkedin.com/in/claudewithshantanu/';
+const PERSON = { '@type': 'Person', name: AUTHOR, jobTitle: AUTHOR_ROLE, url: SITE + '/', sameAs: [LINKEDIN] };
+const TRAIN = `<p class="rq-train">Want your team doing this hands-on? <a href="/#inquiry">See Shantanu's AI training →</a></p>`;
+const byline = d => `<p class="rq-by">Answered by <a href="${LINKEDIN}" target="_blank" rel="noopener">${AUTHOR}</a>, ${esc(AUTHOR_ROLE)}${d ? ' · ' + esc(niceDate(d)) : ''}</p>`;
+
+const STOP = new Set('a an the i my me we our you your is are am be do does did can could should would will to of for in on at by with and or but it its this that these those so if about from into than then how what why which when where who'.split(' '));
+function slugify(q) {
+  const words = String(q).toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/);
+  const lead = ['how', 'what', 'why', 'which', 'when', 'should', 'can', 'is'].includes(words[0]) ? [words[0]] : [];
+  const core = words.slice(lead.length).filter(w => !STOP.has(w));
+  return [...lead, ...core].slice(0, 8).join('-').slice(0, 70).replace(/-+$/, '') || 'question';
+}
+// Give every item a stable, unique slug (kept in data.json once assigned)
+function withSlugs(data) {
+  const used = new Set(data.filter(i => i.slug).map(i => i.slug));
+  for (const i of [...data].reverse()) {
+    if (i.slug) continue;
+    let s = slugify(i.q), k = 2;
+    while (used.has(s)) s = slugify(i.q) + '-' + k++;
+    used.add(s); i.slug = s;
+  }
+  return data;
+}
+const qUrl = i => `/ai-questions/${i.slug}/`;
+
 function item(i, n, open) {
   return `<details class="rq-item"${open ? ' open' : ''}>
 <summary><span class="rq-n">${n}</span><span class="rq-qw"><span class="rq-q">${esc(i.q)}</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
-<div class="rq-a">${paras(i.a)}<a class="rq-src" href="${esc(i.url)}" target="_blank" rel="noopener nofollow">See the original discussion →</a></div>
+<div class="rq-a">${paras(i.a)}${byline()}<p class="rq-links"><a href="${qUrl(i)}">Open this answer →</a></p>${TRAIN}</div>
 </details>`;
 }
 
@@ -134,6 +161,11 @@ details.rq-item summary::-webkit-details-marker{display:none}
 .rq-meta{display:block;font-size:13px;color:#6B6B6B;margin-top:3px}.rq-chev{display:none}
 .rq-a{padding:0 18px 16px 58px;font-size:15.5px;line-height:1.7;color:#2A2F38}.rq-a p{margin:0 0 10px}
 .rq-src{font-size:14px;font-weight:600;text-decoration:none}
+.rq-by{font-size:13.5px;color:#5B6472;margin:4px 0 8px}.rq-by a{color:#004AAD;text-decoration:none;font-weight:600}
+.rq-links{margin:0 0 6px}.rq-links a{font-size:14px;font-weight:600;color:#004AAD;text-decoration:none}
+.rq-train{font-size:14px;color:#2A2F38;background:#F2F6FF;border-radius:10px;padding:10px 12px;margin:10px 0 0}.rq-train a{font-weight:600;text-decoration:none}
+.rq-one p{font-size:17px;line-height:1.75;color:#2A2F38}
+.rq-rel{padding-left:18px}.rq-rel li{margin:8px 0}.rq-rel a{text-decoration:none;font-weight:500}
 .rq-day{font:700 18px 'DM Sans',sans-serif;color:#0B1B33;margin:26px 0 10px}
 .rq-past{font:700 24px 'DM Sans',sans-serif;color:#0B1B33;margin:44px 0 6px}
 .rq-today{margin-top:8px}
@@ -141,7 +173,7 @@ details.rq-item summary::-webkit-details-marker{display:none}
 @media(max-width:640px){.rq-a{padding:0 16px 16px}}`;
 
 function renderArchive(data) {
-  const year = new Date().getFullYear();
+  withSlugs(data);
   const days = [];
   for (const i of data) {
     let d = days.find(x => x.date === i.date);
@@ -155,36 +187,119 @@ function renderArchive(data) {
 ${today.items.map((i, k) => item(i, k + 1, k === 0)).join('\n')}</section>
 ${past.length ? '<h2 class="rq-past">Earlier questions</h2>' + past.map(d => `<h3 class="rq-day">${esc(niceDate(d.date))}</h3>\n${d.items.map((i, k) => item(i, k + 1, false)).join('\n')}`).join('\n') : ''}`
     : '<p>The first questions arrive tomorrow morning.</p>';
+  const schema = data.length ? ld({ '@context': 'https://schema.org', '@type': 'FAQPage', author: PERSON,
+    mainEntity: data.slice(0, 100).map(i => ({ '@type': 'Question', name: plain(i.q), url: SITE + qUrl(i), acceptedAnswer: { '@type': 'Answer', text: plain(i.a), url: SITE + qUrl(i), author: PERSON } })) }) : '';
+  return pageHead({ title: "Today's Top AI Questions, Answered | ThinkwithClaude", desc, url, schema }) + `<main class="w">
+<div class="kick">Answered daily</div>
+<h1>Today's top AI questions, answered</h1>
+<p class="meta">Every morning Shantanu Anand, AI trainer and consultant, picks the most-discussed AI questions and answers them in plain English.</p>
+${body}
+${CTA_BOX}
+</main>
+` + foot();
+}
+
+function pageHead({ title, desc, url, ogtype = 'website', schema = '' }) {
   return `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Today's Top AI Questions, Answered | ThinkwithClaude</title>
+<title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
+<meta name="author" content="${AUTHOR}">
 <link rel="canonical" href="${url}">
-<meta property="og:type" content="website"><meta property="og:title" content="AI Questions, Answered Daily | ThinkwithClaude"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
+<meta property="og:type" content="${ogtype}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyn121dz14");</script>
 <style>${PAGE_CSS}</style>
-${data.length ? faqSchema(data.slice(0, 150)) : ''}
+${schema}
 </head><body>
 <header class="top"><div class="top-in">
   <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
   <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/ai-questions/">AI Q&amp;A</a><a class="cta" href="${CAL}" target="_blank" rel="noopener">Book free call</a></nav>
 </div></header>
-<main class="w">
-<div class="kick">Answered daily</div>
-<h1>Today's top AI questions, answered</h1>
-<p class="meta">Every morning we pick the most-discussed AI questions from Hacker News, the OpenAI Developer Forum and Stack Exchange and answer them in plain English · by Shantanu Anand</p>
-${body}
-<div class="box">
+`;
+}
+const ld = o => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
+const CTA_BOX = `<div class="box">
   <h2>Want your team to use AI like this?</h2>
   <p>Hands-on AI training for professionals and teams, online or in person anywhere in India. Get the training details on WhatsApp, or book a free 20-minute call.</p>
   <a class="btn" href="/#inquiry">Get training details</a><a class="btn alt" href="${CAL}" target="_blank" rel="noopener">Book a free call</a>
-</div>
-</main>
-<div class="foot">© ${year} ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
+</div>`;
+const foot = () => `<div class="foot">© ${new Date().getFullYear()} ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
 </body></html>
+`;
+
+function renderQuestion(i, data) {
+  const url = SITE + qUrl(i);
+  const desc = plain(i.a).slice(0, 155).replace(/\s+\S*$/, '') + '…';
+  const iso = i.date + 'T07:00:00+05:30';
+  const schema = ld({
+    '@context': 'https://schema.org', '@type': 'QAPage',
+    mainEntity: {
+      '@type': 'Question', name: plain(i.q), text: plain(i.q), answerCount: 1, datePublished: iso, author: PERSON,
+      acceptedAnswer: { '@type': 'Answer', text: plain(i.a), datePublished: iso, url, author: PERSON }
+    }
+  }) + '\n' + ld({
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' },
+      { '@type': 'ListItem', position: 2, name: 'AI Q&A', item: SITE + '/ai-questions/' },
+      { '@type': 'ListItem', position: 3, name: plain(i.q), item: url }]
+  });
+  const related = data.filter(x => x.slug !== i.slug).slice(0, 6);
+  return pageHead({ title: `${plain(i.q)} | ThinkwithClaude`, desc, url, ogtype: 'article', schema }) + `<main class="w">
+<div class="kick"><a href="/ai-questions/" style="text-decoration:none">AI Q&amp;A</a></div>
+<h1>${esc(i.q)}</h1>
+${byline(i.date)}
+<article class="rq-one">${paras(i.a)}</article>
+${TRAIN}
+${related.length ? `<h2 class="rq-past">More AI questions, answered</h2><ul class="rq-rel">${related.map(x => `<li><a href="${qUrl(x)}">${esc(x.q)}</a></li>`).join('')}</ul>` : ''}
+<p style="margin-top:22px"><a href="/ai-questions/">← All AI questions</a></p>
+${CTA_BOX}
+</main>
+` + foot();
+}
+
+function renderLlms(data) {
+  const recent = data.slice(0, 60);
+  return `# ThinkwithClaude
+
+> ThinkwithClaude is the site of Shantanu Anand, an AI trainer and consultant based in Bengaluru, India. He runs hands-on AI training (ChatGPT, Claude, Gemini, Microsoft Copilot) for professionals, teams and founders, online or in person anywhere in India.
+
+## Key pages
+- [Home: AI training for professionals and teams](${SITE}/): sessions, results and how to book
+- [AI Q&A](${SITE}/ai-questions/): the most-discussed AI questions each day, answered in plain English
+- [Articles](${SITE}/blog/): practical guides on using AI at work
+- [FDE for Coders](${SITE}/fde-essentials/): a series on Forward Deployed Engineering
+
+## Recent AI questions answered by Shantanu Anand
+${recent.map(i => `- [${plain(i.q)}](${SITE}${qUrl(i)})`).join('\n')}
+
+## Contact
+- Training enquiries: ${SITE}/#inquiry
+- Email: partnerships@thinkwithclaude.com
 `;
 }
 
-module.exports = { injectSection, renderArchive, renderSection, START, END };
+function updateSitemap(xml, data) {
+  const today = data.length ? data[0].date : new Date().toISOString().slice(0, 10);
+  let s = String(xml || '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n</urlset>\n');
+  s = s.replace(/\s*<url><loc>https:\/\/www\.thinkwithclaude\.com\/ai-questions\/[^<]*<\/loc><lastmod>[^<]*<\/lastmod><\/url>/g, '');
+  const rows = [`  <url><loc>${SITE}/ai-questions/</loc><lastmod>${today}</lastmod></url>`]
+    .concat(data.map(i => `  <url><loc>${SITE}${qUrl(i)}</loc><lastmod>${i.date}</lastmod></url>`));
+  return s.replace('</urlset>', rows.join('\n') + '\n</urlset>');
+}
+
+// Every file the Q&A feature owns, ready to commit
+function renderAll(data, sitemapXml) {
+  withSlugs(data);
+  const files = {
+    'qa/data.json': JSON.stringify(data, null, 1) + '\n',
+    'ai-questions/index.html': renderArchive(data),
+    'llms.txt': renderLlms(data),
+    'sitemap.xml': updateSitemap(sitemapXml, data)
+  };
+  for (const i of data) files[`ai-questions/${i.slug}/index.html`] = renderQuestion(i, data);
+  return files;
+}
+
+module.exports = { injectSection, renderArchive, renderSection, renderAll, withSlugs, START, END };

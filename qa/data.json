@@ -6,7 +6,8 @@
   "a": "Start with understanding, not rewriting. Ask the AI to explain a module, map what depends on it and list the behaviours it seems to have. Then have it write tests that pin down what the code does today, before you change anything. Those tests are your safety net.\n\nWork in small slices, such as one function or file per change, with a human review and a test run each time. AI is good at dull jobs like documenting, renaming, upgrading libraries and removing dead code. Keep architecture and risk decisions with your team. Also write a short guide to your conventions for the AI to read. Well-documented code gives better AI output too.",
   "sub": "Hacker News",
   "comments": 656,
-  "url": "https://news.ycombinator.com/item?id=50364336"
+  "url": "https://news.ycombinator.com/item?id=50364336",
+  "slug": "how-use-ai-start-clearing-years-messy-legacy"
  },
  {
   "date": "2026-11-05",
@@ -15,7 +16,8 @@
   "a": "Treat every update as a possible change. After updating a work tool, open its settings and search for words like AI, assistant, plugin, telemetry and sharing. Turn off anything you have not approved.\n\nThen read the vendor's data processing or privacy page to see what is sent, where it goes and whether it is stored. If you have an IT or security team, ask them to review it and set admin-level controls. For tools that handle API keys, customer records or internal endpoints, use test data instead of production data, and keep secrets out of shared collections and workspaces. Prefer tools that let admins disable AI features by default.",
   "sub": "Hacker News",
   "comments": 485,
-  "url": "https://news.ycombinator.com/item?id=50354960"
+  "url": "https://news.ycombinator.com/item?id=50354960",
+  "slug": "how-check-whether-ai-features-work-tools-sending"
  },
  {
   "date": "2026-11-05",
@@ -24,7 +26,8 @@
   "a": "For one week, jot down the tasks you repeat. Then pick the ones that are text-heavy, repetitive and low-risk if slightly wrong, such as first drafts, meeting summaries, reformatting, email replies and early research.\n\nKeep judgement calls, final facts, sensitive decisions and anything client-facing under your own review. Calibrate first by testing the AI on a task you know well, so you can see where it slips. Treat its output like work from a quick but careless intern: useful, but always checked. When a prompt works, save it as a template so the gain repeats. Review the list monthly and add one new task at a time.",
   "sub": "Hacker News",
   "comments": 300,
-  "url": "https://news.ycombinator.com/item?id=50355767"
+  "url": "https://news.ycombinator.com/item?id=50355767",
+  "slug": "how-decide-parts-daily-work-hand-over-ai"
  },
  {
   "date": "2026-11-05",
@@ -33,7 +36,8 @@
   "a": "Start with one general assistant and use it daily until you know its strengths. Move to a paid plan only when you regularly hit limits or need features that matter to your work. Check each vendor's current plans, since they change often.\n\nAdd a second tool only to fill a clear gap, such as a different model for a second opinion, or a coding assistant if you write software. Pay-as-you-go APIs make sense once you automate repeated tasks. Local models are worth a look when data must stay in-house. Before adding anything, track for a month which tools you actually open. Most people need fewer tools than they think.",
   "sub": "Hacker News",
   "comments": 215,
-  "url": "https://news.ycombinator.com/item?id=50366117"
+  "url": "https://news.ycombinator.com/item?id=50366117",
+  "slug": "what-sensible-starting-ai-toolkit-professional-need-more"
  },
  {
   "date": "2026-11-05",
@@ -42,6 +46,7 @@
   "a": "Check the privacy and activity settings in each tool. Look for options on chat history, activity and model improvement. Some tools only let you opt out by turning history off or by using temporary chats, so confirm what your plan allows.\n\nWork or enterprise accounts often have different data terms from personal ones, so use the approved tool for company material. In a personal account, never paste client data, passwords, unreleased financials or personal identifiers. Replace names and numbers with placeholders before asking for help. Policies change, so reread the provider's current privacy page now and then, and ask your IT team if you are unsure.",
   "sub": "Hacker News",
   "comments": 168,
-  "url": "https://news.ycombinator.com/item?id=50363461"
+  "url": "https://news.ycombinator.com/item?id=50363461",
+  "slug": "how-stop-chatbot-conversations-being-used-training-read"
  }
 ]

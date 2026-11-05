@@ -1,0 +1,20 @@
+# ThinkwithClaude
+
+> ThinkwithClaude is the site of Shantanu Anand, an AI trainer and consultant based in Bengaluru, India. He runs hands-on AI training (ChatGPT, Claude, Gemini, Microsoft Copilot) for professionals, teams and founders, online or in person anywhere in India.
+
+## Key pages
+- [Home: AI training for professionals and teams](https://www.thinkwithclaude.com/): sessions, results and how to book
+- [AI Q&A](https://www.thinkwithclaude.com/ai-questions/): the most-discussed AI questions each day, answered in plain English
+- [Articles](https://www.thinkwithclaude.com/blog/): practical guides on using AI at work
+- [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
+
+## Recent AI questions answered by Shantanu Anand
+- [How can I use AI to start clearing years of messy legacy code without breaking things?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-start-clearing-years-messy-legacy/)
+- [How do I check whether the AI features in my work tools are sending company data elsewhere?](https://www.thinkwithclaude.com/ai-questions/how-check-whether-ai-features-work-tools-sending/)
+- [How do I decide which parts of my daily work to hand over to AI?](https://www.thinkwithclaude.com/ai-questions/how-decide-parts-daily-work-hand-over-ai/)
+- [What is a sensible starting AI toolkit for a professional, and when do I need more than one tool?](https://www.thinkwithclaude.com/ai-questions/what-sensible-starting-ai-toolkit-professional-need-more/)
+- [How do I stop my chatbot conversations from being used for training or read by human reviewers?](https://www.thinkwithclaude.com/ai-questions/how-stop-chatbot-conversations-being-used-training-read/)
+
+## Contact
+- Training enquiries: https://www.thinkwithclaude.com/#inquiry
+- Email: partnerships@thinkwithclaude.com
