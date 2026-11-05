@@ -55,24 +55,69 @@ async function topPosts(sub, token) {
   return ((await r.json()).data?.children || []).map(c => c.data);
 }
 
-async function candidates(seen) {
-  const token = await redditToken();
-  const all = [], errors = [];
-  for (const sub of [...AI_SUBS, TRENDING]) {
-    try {
-      for (const p of await topPosts(sub, token)) {
-        const text = `${p.title} ${p.selftext || ''}`;
-        const flairQ = /question|help/i.test(p.link_flair_text || '');
-        if (p.over_18 || p.stickied || p.removed_by_category) continue;
-        if (!(QUESTION.test(p.title.trim()) || flairQ)) continue;
-        if (sub === TRENDING && !AI_WORDS.test(text)) continue;
-        if (seen.has(p.id)) continue;
-        all.push({ id: p.id, sub: p.subreddit, title: p.title, body: (p.selftext || '').slice(0, 1200), comments: p.num_comments, url: 'https://www.reddit.com' + p.permalink });
-      }
-    } catch (e) { errors.push(String(e.message || e)); }
+function parseRss(xml, sub) {
+  const out = [];
+  for (const m of xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)) {
+    const e = m[1];
+    const title = (e.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
+    const link = (e.match(/<link href="([^"]+)"/) || [])[1];
+    const id = ((e.match(/<id>t3_(\w+)<\/id>/) || [])[1]);
+    if (!title || !link || !id) continue;
+    const dec = t => t.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    out.push({ id, subreddit: sub, title: dec(title), selftext: '', num_comments: null, permalink: link.replace('https://www.reddit.com', ''), link_flair_text: '' });
   }
-  const uniq = [...new Map(all.map(p => [p.id, p])).values()].sort((a, b) => b.comments - a.comments);
-  return { list: uniq.slice(0, 14), errors };
+  return out;
+}
+
+async function rssPosts(sub) {
+  for (const host of ['https://www.reddit.com', 'https://old.reddit.com']) {
+    const r = await fetch(`${host}/r/${sub}/top/.rss?t=day&limit=100`, { headers: { 'User-Agent': UA } });
+    if (r.ok) return parseRss(await r.text(), sub);
+  }
+  throw new Error(`r/${sub}: RSS blocked`);
+}
+
+// Last resort: Claude searches the web for today's most-discussed Reddit questions.
+async function searchPosts(seen) {
+  const prompt = `Use web search to find question posts from the last 48 hours on these subreddits: r/ClaudeAI, r/ChatGPT, r/OpenAI, r/PromptEngineering, plus any trending AI question on Reddit. Prefer posts with many comments. Only include real posts you found, with their exact reddit.com URL. Return ONLY a JSON array of up to 14 items: [{"url":"https://www.reddit.com/r/.../comments/<id>/...","sub":"ClaudeAI","title":"exact post title","comments":123 or null if unknown}]`;
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+    body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 3000, tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }], messages: [{ role: 'user', content: prompt }] })
+  });
+  if (!r.ok) throw new Error('web search ' + r.status + ': ' + (await r.text()).slice(0, 200));
+  const text = (await r.json()).content.filter(c => c.type === 'text').map(c => c.text).join('');
+  const arr = JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1));
+  return arr.map(x => {
+    const id = (String(x.url).match(/comments\/(\w+)/) || [])[1];
+    return id && x.title ? { id, sub: String(x.sub || '').replace(/^r\//, ''), title: x.title, body: '', comments: Number(x.comments) || null, url: x.url } : null;
+  }).filter(p => p && !seen.has(p.id));
+}
+
+async function candidates(seen) {
+  let token = null;
+  const all = [], errors = [];
+  try { token = await redditToken(); } catch (e) { errors.push(String(e.message || e)); }
+  for (const sub of [...AI_SUBS, TRENDING]) {
+    let posts = null;
+    try { posts = await topPosts(sub, token); } catch (e) { errors.push(String(e.message || e)); }
+    if (!posts) { try { posts = await rssPosts(sub); } catch (e) { errors.push(String(e.message || e)); } }
+    for (const p of posts || []) {
+      const text = `${p.title} ${p.selftext || ''}`;
+      const flairQ = /question|help/i.test(p.link_flair_text || '');
+      if (p.over_18 || p.stickied || p.removed_by_category) continue;
+      if (!(QUESTION.test(p.title.trim()) || flairQ)) continue;
+      if (sub === TRENDING && !AI_WORDS.test(text)) continue;
+      if (seen.has(p.id)) continue;
+      all.push({ id: p.id, sub: p.subreddit, title: p.title, body: (p.selftext || '').slice(0, 1200), comments: p.num_comments, url: 'https://www.reddit.com' + p.permalink });
+    }
+  }
+  let source = 'reddit';
+  if (all.length < 3) {
+    try { all.push(...await searchPosts(seen)); source = 'web-search'; } catch (e) { errors.push(String(e.message || e)); }
+  }
+  const uniq = [...new Map(all.map(p => [p.id, p])).values()].sort((a, b) => (b.comments || 0) - (a.comments || 0));
+  return { list: uniq.slice(0, 14), errors, source };
 }
 
 async function writeAnswers(posts) {
@@ -100,7 +145,7 @@ ${JSON.stringify(posts.map(p => ({ id: p.id, sub: p.sub, comments: p.comments, t
   const arr = JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1));
   const byId = new Map(posts.map(p => [p.id, p]));
   return arr.filter(x => byId.has(x.id) && x.q && x.a).slice(0, PER_DAY)
-    .map(x => { const p = byId.get(x.id); return { id: p.id, q: x.q.trim(), a: x.a.trim(), sub: p.sub, comments: p.comments, url: p.url }; });
+    .map(x => { const p = byId.get(x.id); return { id: p.id, q: x.q.trim(), a: x.a.trim(), sub: p.sub, comments: p.comments || null, url: p.url }; });
 }
 
 async function gh(path, opts = {}) {
@@ -141,12 +186,12 @@ module.exports = async (req, res) => {
     if (data.some(i => i.date === today) && !q.force) return res.json({ ok: true, skipped: 'already published today' });
 
     const seen = new Set(data.map(i => i.id));
-    const { list, errors } = await candidates(seen);
+    const { list, errors, source } = await candidates(seen);
     if (list.length < 3) return res.status(502).json({ error: 'Not enough questions found', found: list.length, errors });
 
     const picks = (await writeAnswers(list)).map(i => ({ date: today, ...i }));
     if (!picks.length) return res.status(502).json({ error: 'Claude returned no usable answers' });
-    if (q.dry) return res.json({ ok: true, dry: true, picks, errors });
+    if (q.dry) return res.json({ ok: true, dry: true, source, picks, errors });
 
     const next = [...picks, ...data.filter(i => i.date !== today)].slice(0, 1500);
     const index = await readFile('index.html');
@@ -156,7 +201,7 @@ module.exports = async (req, res) => {
       'ai-questions/index.html': renderArchive(next)
     }, `Daily AI questions: ${today} (${picks.length} answered)`);
 
-    return res.json({ ok: true, date: today, published: picks.map(p => p.q), commit: sha, errors });
+    return res.json({ ok: true, date: today, source, published: picks.map(p => p.q), commit: sha, errors });
   } catch (e) {
     console.error(e);
     return res.status(500).json({ error: String(e.message || e) });

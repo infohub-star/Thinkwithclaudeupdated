@@ -24,7 +24,7 @@ function faqSchema(items) {
 
 function item(i, n, open) {
   return `<details class="rq-item"${open ? ' open' : ''}>
-<summary><span class="rq-n">${n}</span><span class="rq-qw"><span class="rq-q">${esc(i.q)}</span><span class="rq-meta">r/${esc(i.sub)} · ${fmtNum(i.comments)} comments</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
+<summary><span class="rq-n">${n}</span><span class="rq-qw"><span class="rq-q">${esc(i.q)}</span><span class="rq-meta">r/${esc(i.sub)}${i.comments ? ' · ' + fmtNum(i.comments) + ' comments' : ' · trending'}</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
 <div class="rq-a">${paras(i.a)}<a class="rq-src" href="${esc(i.url)}" target="_blank" rel="noopener nofollow">See the Reddit discussion →</a></div>
 </details>`;
 }
