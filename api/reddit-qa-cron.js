@@ -11,6 +11,7 @@
 //   GITHUB_TOKEN          (required) fine-grained token, repo Thinkwithclaudeupdated, "Contents: Read and write"
 //   CRON_SECRET           (required) any long random string; Vercel sends it to this endpoint on every cron run
 //   REDDIT_CLIENT_ID      (recommended) from reddit.com/prefs/apps -> "script" app
+//   ANTHROPIC_WORKSPACE_ID (needed for the web-search fallback if your key isn't scoped to a workspace)
 //   REDDIT_CLIENT_SECRET  (recommended) same app. Without these Reddit often blocks server requests.
 //
 // Manual run:  https://www.thinkwithclaude.com/api/reddit-qa-cron?key=<CRON_SECRET>
@@ -29,6 +30,7 @@ const QUESTION = /\?\s*$|^(how|what|why|which|when|where|who|is|are|can|could|sh
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || process.env.Antrhopic || process.env.Anthropic;
 const GH = process.env.GITHUB_TOKEN;
+const claudeHeaders = () => ({ 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json', ...(process.env.ANTHROPIC_WORKSPACE_ID ? { 'anthropic-workspace-id': process.env.ANTHROPIC_WORKSPACE_ID.trim() } : {}) });
 
 function istDate() {
   return new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10);
@@ -82,7 +84,7 @@ async function searchPosts(seen) {
   const prompt = `Use web search to find question posts from the last 48 hours on these subreddits: r/ClaudeAI, r/ChatGPT, r/OpenAI, r/PromptEngineering, plus any trending AI question on Reddit. Prefer posts with many comments. Only include real posts you found, with their exact reddit.com URL. Return ONLY a JSON array of up to 14 items: [{"url":"https://www.reddit.com/r/.../comments/<id>/...","sub":"ClaudeAI","title":"exact post title","comments":123 or null if unknown}]`;
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: { 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+    headers: claudeHeaders(),
     body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 3000, tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }], messages: [{ role: 'user', content: prompt }] })
   });
   if (!r.ok) throw new Error('web search ' + r.status + ': ' + (await r.text()).slice(0, 200));
@@ -137,7 +139,7 @@ ${JSON.stringify(posts.map(p => ({ id: p.id, sub: p.sub, comments: p.comments, t
 
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: { 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+    headers: claudeHeaders(),
     body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 3000, messages: [{ role: 'user', content: prompt }] })
   });
   if (!r.ok) throw new Error('Claude API ' + r.status + ': ' + (await r.text()).slice(0, 200));
