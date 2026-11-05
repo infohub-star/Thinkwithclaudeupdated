@@ -80,6 +80,7 @@ async function rssPosts(sub) {
 }
 
 // Last resort: Claude searches the web for today's most-discussed Reddit questions.
+let _searchDebug = null;
 async function searchPosts(seen) {
   const prompt = `Use web search to find question posts from the last 48 hours on these subreddits: r/ClaudeAI, r/ChatGPT, r/OpenAI, r/PromptEngineering, plus any trending AI question on Reddit. Prefer posts with many comments. Only include real posts you found, with their exact reddit.com URL. Return ONLY a JSON array of up to 14 items: [{"url":"https://www.reddit.com/r/.../comments/<id>/...","sub":"ClaudeAI","title":"exact post title","comments":123 or null if unknown}]`;
   const r = await fetch('https://api.anthropic.com/v1/messages', {
@@ -88,12 +89,28 @@ async function searchPosts(seen) {
     body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 3000, tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }], messages: [{ role: 'user', content: prompt }] })
   });
   if (!r.ok) throw new Error('web search ' + r.status + ': ' + (await r.text()).slice(0, 200));
-  const text = (await r.json()).content.filter(c => c.type === 'text').map(c => c.text).join('');
-  const arr = JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1));
-  return arr.map(x => {
-    const id = (String(x.url).match(/comments\/(\w+)/) || [])[1];
-    return id && x.title ? { id, sub: String(x.sub || '').replace(/^r\//, ''), title: x.title, body: '', comments: Number(x.comments) || null, url: x.url } : null;
-  }).filter(p => p && !seen.has(p.id));
+  const body = await r.json();
+  const found = new Map();
+  // Every reddit link the search actually returned (real URLs, no guessing)
+  for (const b of body.content || []) {
+    if (b.type !== 'web_search_tool_result' || !Array.isArray(b.content)) continue;
+    for (const res of b.content) {
+      const m = String(res.url || '').match(/reddit\.com\/r\/(\w+)\/comments\/(\w+)/);
+      if (m && res.title) found.set(m[2], { id: m[2], sub: m[1], title: String(res.title).replace(/\s*:\s*r\/\w+\s*$/i, '').replace(/\s*-\s*Reddit\s*$/i, '').trim(), body: '', comments: null, url: res.url.split('?')[0] });
+    }
+  }
+  // Claude's own list adds comment counts where it saw them
+  try {
+    const text = (body.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
+    for (const x of JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1))) {
+      const id = (String(x.url).match(/comments\/(\w+)/) || [])[1];
+      if (!id) continue;
+      const prev = found.get(id);
+      if (prev) prev.comments = Number(x.comments) || null;
+    }
+  } catch (e) {}
+  _searchDebug = { results: found.size, stop: body.stop_reason };
+  return [...found.values()].filter(p => !seen.has(p.id));
 }
 
 async function candidates(seen) {
@@ -119,6 +136,7 @@ async function candidates(seen) {
     try { all.push(...await searchPosts(seen)); source = 'web-search'; } catch (e) { errors.push(String(e.message || e)); }
   }
   const uniq = [...new Map(all.map(p => [p.id, p])).values()].sort((a, b) => (b.comments || 0) - (a.comments || 0));
+  if (_searchDebug) errors.push('web search: ' + JSON.stringify(_searchDebug));
   return { list: uniq.slice(0, 14), errors, source };
 }
 
