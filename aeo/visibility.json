@@ -1,0 +1,289 @@
+[
+ {
+  "date": "2026-11-05",
+  "engine": "claude",
+  "score": 0,
+  "results": [
+   {
+    "question": "Who is the best corporate AI trainer in Bengaluru?",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Hitesh Motwani",
+     "Parikshit Khanna",
+     "Kunaal Naik",
+     "NobleProg India",
+     "CloudThat",
+     "Simplilearn for Business",
+     "NextAgile",
+     "Technovids"
+    ],
+    "sources": [
+     "en.wikipedia.org",
+     "nextagile.ai",
+     "hiteshmotwani.com",
+     "networkershome.com",
+     "coursecorner.in",
+     "trainingbangalore.in",
+     "bodhih.com",
+     "parikshitkhanna.com",
+     "urbanpro.com",
+     "sevenmentor.com"
+    ]
+   },
+   {
+    "question": "Recommend an AI trainer in India for a corporate team workshop",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Hitesh Motwani",
+     "Skillopedia",
+     "AI Guru",
+     "Ai-learnX",
+     "Parikshit Khanna",
+     "AI India Innovations",
+     "Edstellar",
+     "Great Learning for Business"
+    ],
+    "sources": [
+     "edstellar.com",
+     "skillopediagroup.com",
+     "aiindia.ai",
+     "hiteshmotwani.com",
+     "ai-learnx.com",
+     "blog.buildfastwithai.com",
+     "analyticsindiamag.com",
+     "en.wikipedia.org",
+     "networkershome.com",
+     "aiguru.in"
+    ]
+   },
+   {
+    "question": "Who offers ChatGPT and Claude training for teams in India?",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Hitesh Motwani / Skillopedia",
+     "Ai-LearnX Innovations",
+     "Claude AI Trainer",
+     "Digital Saravanan",
+     "Parikshit Khanna",
+     "Vinsys",
+     "Tech & Training Corporate Solutions",
+     "AI Guru"
+    ],
+    "sources": [
+     "hiteshmotwani.com",
+     "claudeaitrainer.com",
+     "ai-learnx.com",
+     "digitalsaravanan.com",
+     "skillopediagroup.com",
+     "techandtraining.in",
+     "parikshitkhanna.com",
+     "vinsys.com",
+     "claudetraining.in",
+     "aiguru.in"
+    ]
+   },
+   {
+    "question": "Best AI training for HR and L&D teams in India",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Ai-LearnX Innovations",
+     "Skillopedia",
+     "Growcial",
+     "AI Workflow India",
+     "AIHR",
+     "XLRI Jamshedpur",
+     "ISB + Emeritus",
+     "IIT Delhi"
+    ],
+    "sources": [
+     "lattice.com",
+     "jaroeducation.com",
+     "logicmojo.com",
+     "guvi.in",
+     "scaler.com",
+     "growcial.org",
+     "onrol.in",
+     "buildfastwithai.com",
+     "coursera.org",
+     "skillopediagroup.com"
+    ]
+   },
+   {
+    "question": "Generative AI workshop for leadership teams in India, who should I hire?",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "GreenPepper + AI",
+     "AI Guru",
+     "AI India Innovations",
+     "Skillopedia",
+     "Hitesh Motwani",
+     "IIM Bangalore",
+     "IIM Calcutta",
+     "ISB Online"
+    ],
+    "sources": [
+     "simpliaxis.com",
+     "skillopediagroup.com",
+     "hiteshmotwani.com",
+     "rrishijain.com",
+     "greenpepper.in",
+     "aiindia.ai",
+     "aiguru.in",
+     "emeritus.org",
+     "scribd.com",
+     "iimv.ac.in"
+    ]
+   },
+   {
+    "question": "Hands-on AI training for doctors and clinics in India",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "IIHMR Bangalore Gen-AI for Doctors",
+     "MedXchange AI",
+     "IIT Delhi Executive Programme for AI in Healthcare",
+     "NBEMS AI course for doctors",
+     "AI Workflow India",
+     "Parikshit Khanna",
+     "AIMER Consortium",
+     "Global Digital Health Summit 2026"
+    ],
+    "sources": [
+     "admire.iihmrbangalore.edu.in",
+     "amrita.edu",
+     "blogs.educationmitra.in",
+     "cep.digivarsity.com",
+     "kenthospitals.com",
+     "ihub-data.ai",
+     "medxchange.in",
+     "aiworkflowindia.com",
+     "medicaldialogues.in",
+     "aimerconsortium.in"
+    ]
+   },
+   {
+    "question": "AI training for coaches and consultants in India",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Gladwell Academy AI for Agile Coaches",
+     "AI Coaching Mastery AI Coaching Intensive",
+     "Colin Scotland AI for Coaches Mentorship",
+     "Udemy Coaching and Consulting with AI",
+     "ICF India Coaching Conclave",
+     "The Coaching Collective",
+     "Dhruv Rathee AI Masterclass",
+     "Bharat AI Innovation 2026"
+    ],
+    "sources": [
+     "udemy.com",
+     "ventum-consulting.com",
+     "gladwellacademy.in",
+     "pages.coaching.com",
+     "course-coach.replit.app",
+     "logicmojo.com",
+     "aicoachingmastery.com",
+     "iiai.global",
+     "aitrainingindia.com",
+     "deccanherald.com"
+    ]
+   },
+   {
+    "question": "Who can train my sales team to use AI tools in India?",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Skillopedia",
+     "Brand Vibe Consulting",
+     "Koyal Tech Solutions",
+     "AI India Innovations",
+     "Ai-LearnX",
+     "Hitesh Motwani",
+     "Parikshit Khanna",
+     "Paras Arora"
+    ],
+    "sources": [
+     "chaiandai.in",
+     "aiindia.ai",
+     "koyaltechsolutions.com",
+     "parasarora.in",
+     "sarajsystems.com",
+     "skillopediagroup.com",
+     "ai-learnx.com",
+     "brandvibe.co.in",
+     "blog.buildfastwithai.com",
+     "fueler.io"
+    ]
+   },
+   {
+    "question": "Best Claude AI trainer in India",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Hitesh Motwani (Skillopedia)",
+     "Claude AI Trainer",
+     "Digital Saravanan",
+     "The Knowledge Academy",
+     "PreTutorials (Ravee Verma)",
+     "ClaudeTraining.in",
+     "MarketInc",
+     "Anthropic Claude 101 (DataCamp)"
+    ],
+    "sources": [
+     "theknowledgeacademy.com",
+     "hiteshmotwani.com",
+     "skillopediagroup.com",
+     "claudeaitrainer.com",
+     "digitalsaravanan.com",
+     "udemy.com",
+     "datacamp.com",
+     "coursera.org",
+     "mygreatlearning.com",
+     "marketinc.io"
+    ]
+   },
+   {
+    "question": "One-on-one AI coaching for professionals in India",
+    "named": false,
+    "rank": null,
+    "citedYourSite": false,
+    "recommended": [
+     "Pavan Coaching",
+     "Savvy Indians",
+     "Kini AI",
+     "Learning Library",
+     "MentorCruise",
+     "Sundeep Teki",
+     "VoiceCoach AI",
+     "BetterUp"
+    ],
+    "sources": [
+     "sundeepteki.org",
+     "selar.com",
+     "en.wikipedia.org",
+     "myvoicecoach.in",
+     "learninglibrary.in",
+     "pavancoaching.org",
+     "savvyindians.com",
+     "1o1.co.in",
+     "mentorcruise.com",
+     "fueler.io"
+    ]
+   }
+  ]
+ }
+]
