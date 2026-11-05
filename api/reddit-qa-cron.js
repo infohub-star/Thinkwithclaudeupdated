@@ -3,7 +3,7 @@
 // 1. Reads the last 24h of top posts from AI subreddits + r/popular (AI topics only)
 // 2. Keeps posts that are questions, ranks them by comment count
 // 3. Claude rewrites each question in plain words and writes an original answer
-// 4. Commits qa/data.json, index.html (homepage section) and ai-questions/index.html
+// 4. Commits qa/data.json and ai-questions/index.html (the standalone page)
 //    to GitHub in ONE commit -> Vercel redeploys the site automatically
 //
 // Env vars (Vercel -> Settings -> Environment Variables):
@@ -17,7 +17,7 @@
 // Manual run:  https://www.thinkwithclaude.com/api/reddit-qa-cron?key=<CRON_SECRET>
 //              add &dry=1 to preview the picks without publishing
 
-const { injectSection, renderArchive } = require('./_qa.js');
+const { renderArchive } = require('./_qa.js');
 
 const REPO = 'infohub-star/Thinkwithclaudeupdated';
 const BRANCH = 'main';
@@ -169,10 +169,8 @@ module.exports = async (req, res) => {
     if (q.dry) return res.json({ ok: true, dry: true, source, picks, errors });
 
     const next = [...picks, ...data.filter(i => i.date !== today)].slice(0, 1500);
-    const index = await readFile('index.html');
     const sha = await commit({
       'qa/data.json': JSON.stringify(next, null, 1) + '\n',
-      'index.html': injectSection(index, next),
       'ai-questions/index.html': renderArchive(next)
     }, `Daily AI questions: ${today} (${picks.length} answered)`);
 

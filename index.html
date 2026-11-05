@@ -1538,6 +1538,7 @@ details[open] summary::after{transform:rotate(45deg)}
     <a href="#trainer">About</a>
     <a href="/blog/">Articles</a>
     <a href="/fde-essentials/">FDE for Coders</a>
+    <a href="/ai-questions/">AI Q&amp;A</a>
     <a href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener" class="nav-cta">Book free call</a>
   </div>
   <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
@@ -1551,6 +1552,7 @@ details[open] summary::after{transform:rotate(45deg)}
   <a href="#trainer">About</a>
   <a href="/blog/">Articles</a>
     <a href="/fde-essentials/">FDE for Coders</a>
+    <a href="/ai-questions/">AI Q&amp;A</a>
   <a href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book a free 20-min call</a>
 </div>
 
@@ -2077,68 +2079,6 @@ document.getElementById('eoForm').onsubmit=function(e){
 .co-note{font-size:12px;color:#C9D3E3 !important}
 @media(max-width:860px){.co-card{grid-template-columns:1fr;padding:26px 22px;gap:22px}.co-pts{grid-template-columns:1fr}.co-title{font-size:28px}.co-side{align-items:flex-start}}
 </style>
-
-<!-- REDDIT-QA:START -->
-<style>
-#reddit-qa{padding-top:56px;padding-bottom:56px}
-#reddit-qa .rq-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
-#reddit-qa .rq-lead{max-width:600px;color:#4A4A4A;font-size:16px;line-height:1.65;margin:10px 0 0}
-#reddit-qa .rq-date{font-size:13px;font-weight:600;color:#004AAD;background:#EEF4FF;border-radius:999px;padding:6px 12px;white-space:nowrap}
-#reddit-qa .rq-list{display:grid;gap:12px;max-width:860px}
-#reddit-qa .rq-item{background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:16px;transition:border-color .2s,box-shadow .2s}
-#reddit-qa .rq-item[open]{border-color:#004AAD;box-shadow:0 10px 28px rgba(0,74,173,.10)}
-#reddit-qa summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;gap:14px;padding:18px 20px;min-height:56px}
-#reddit-qa summary::-webkit-details-marker{display:none}
-#reddit-qa summary::after{content:none !important;display:none !important}
-#reddit-qa .rq-n{flex:none;width:30px;height:30px;border-radius:50%;background:#004AAD;color:#fff;font:700 14px/30px 'DM Sans',sans-serif;text-align:center}
-#reddit-qa .rq-qw{flex:1;min-width:0}
-#reddit-qa .rq-q{display:block;font:700 17px/1.4 'DM Sans',sans-serif;color:#0B1B33}
-#reddit-qa .rq-meta{display:block;margin-top:4px;font-size:13px;color:#6B6B6B}
-#reddit-qa .rq-chev{flex:none;width:10px;height:10px;margin-top:9px;border-right:2px solid #004AAD;border-bottom:2px solid #004AAD;transform:rotate(45deg);transition:transform .2s}
-#reddit-qa .rq-item[open] .rq-chev{transform:rotate(-135deg);margin-top:13px}
-#reddit-qa .rq-a{padding:0 20px 20px 64px;color:#2A2F38;font-size:15.5px;line-height:1.7}
-#reddit-qa .rq-a p{margin:0 0 12px}
-#reddit-qa .rq-src{font-size:14px;font-weight:600;color:#004AAD;text-decoration:none}
-#reddit-qa .rq-all{display:inline-block;margin-top:22px;font-weight:600;color:#004AAD;text-decoration:none}
-@media(max-width:640px){#reddit-qa summary{padding:16px;gap:12px}#reddit-qa .rq-a{padding:0 16px 18px}#reddit-qa .rq-q{font-size:16px}}
-</style>
-<div class="sec" id="reddit-qa">
-  <div class="si">
-    <div class="rq-head">
-      <div>
-        <div class="sec-label">Asked today</div>
-        <div class="sec-title">Today's top AI questions, answered</div>
-        <p class="rq-lead">The most-discussed AI questions across AI communities in the last 24 hours, with a straight, practical answer. Updated every morning.</p>
-      </div>
-      <span class="rq-date">5 November 2026</span>
-    </div>
-    <div class="rq-list">
-<details class="rq-item" open>
-<summary><span class="rq-n">1</span><span class="rq-qw"><span class="rq-q">How can I use AI to start clearing years of messy legacy code without breaking things?</span><span class="rq-meta">Hacker News · 656 comments</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
-<div class="rq-a"><p>Start with understanding, not rewriting. Ask the AI to explain a module, map what depends on it and list the behaviours it seems to have. Then have it write tests that pin down what the code does today, before you change anything. Those tests are your safety net.</p><p>Work in small slices, such as one function or file per change, with a human review and a test run each time. AI is good at dull jobs like documenting, renaming, upgrading libraries and removing dead code. Keep architecture and risk decisions with your team. Also write a short guide to your conventions for the AI to read. Well-documented code gives better AI output too.</p><a class="rq-src" href="https://news.ycombinator.com/item?id=50364336" target="_blank" rel="noopener nofollow">See the original discussion →</a></div>
-</details>
-<details class="rq-item">
-<summary><span class="rq-n">2</span><span class="rq-qw"><span class="rq-q">How do I check whether the AI features in my work tools are sending company data elsewhere?</span><span class="rq-meta">Hacker News · 485 comments</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
-<div class="rq-a"><p>Treat every update as a possible change. After updating a work tool, open its settings and search for words like AI, assistant, plugin, telemetry and sharing. Turn off anything you have not approved.</p><p>Then read the vendor&#39;s data processing or privacy page to see what is sent, where it goes and whether it is stored. If you have an IT or security team, ask them to review it and set admin-level controls. For tools that handle API keys, customer records or internal endpoints, use test data instead of production data, and keep secrets out of shared collections and workspaces. Prefer tools that let admins disable AI features by default.</p><a class="rq-src" href="https://news.ycombinator.com/item?id=50354960" target="_blank" rel="noopener nofollow">See the original discussion →</a></div>
-</details>
-<details class="rq-item">
-<summary><span class="rq-n">3</span><span class="rq-qw"><span class="rq-q">How do I decide which parts of my daily work to hand over to AI?</span><span class="rq-meta">Hacker News · 300 comments</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
-<div class="rq-a"><p>For one week, jot down the tasks you repeat. Then pick the ones that are text-heavy, repetitive and low-risk if slightly wrong, such as first drafts, meeting summaries, reformatting, email replies and early research.</p><p>Keep judgement calls, final facts, sensitive decisions and anything client-facing under your own review. Calibrate first by testing the AI on a task you know well, so you can see where it slips. Treat its output like work from a quick but careless intern: useful, but always checked. When a prompt works, save it as a template so the gain repeats. Review the list monthly and add one new task at a time.</p><a class="rq-src" href="https://news.ycombinator.com/item?id=50355767" target="_blank" rel="noopener nofollow">See the original discussion →</a></div>
-</details>
-<details class="rq-item">
-<summary><span class="rq-n">4</span><span class="rq-qw"><span class="rq-q">What is a sensible starting AI toolkit for a professional, and when do I need more than one tool?</span><span class="rq-meta">Hacker News · 215 comments</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
-<div class="rq-a"><p>Start with one general assistant and use it daily until you know its strengths. Move to a paid plan only when you regularly hit limits or need features that matter to your work. Check each vendor&#39;s current plans, since they change often.</p><p>Add a second tool only to fill a clear gap, such as a different model for a second opinion, or a coding assistant if you write software. Pay-as-you-go APIs make sense once you automate repeated tasks. Local models are worth a look when data must stay in-house. Before adding anything, track for a month which tools you actually open. Most people need fewer tools than they think.</p><a class="rq-src" href="https://news.ycombinator.com/item?id=50366117" target="_blank" rel="noopener nofollow">See the original discussion →</a></div>
-</details>
-<details class="rq-item">
-<summary><span class="rq-n">5</span><span class="rq-qw"><span class="rq-q">How do I stop my chatbot conversations from being used for training or read by human reviewers?</span><span class="rq-meta">Hacker News · 168 comments</span></span><span class="rq-chev" aria-hidden="true"></span></summary>
-<div class="rq-a"><p>Check the privacy and activity settings in each tool. Look for options on chat history, activity and model improvement. Some tools only let you opt out by turning history off or by using temporary chats, so confirm what your plan allows.</p><p>Work or enterprise accounts often have different data terms from personal ones, so use the approved tool for company material. In a personal account, never paste client data, passwords, unreleased financials or personal identifiers. Replace names and numbers with placeholders before asking for help. Policies change, so reread the provider&#39;s current privacy page now and then, and ask your IT team if you are unsure.</p><a class="rq-src" href="https://news.ycombinator.com/item?id=50363461" target="_blank" rel="noopener nofollow">See the original discussion →</a></div>
-</details>
-    </div>
-    <a class="rq-all" href="/ai-questions/">Browse all past questions (5) →</a>
-  </div>
-</div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How can I use AI to start clearing years of messy legacy code without breaking things?","acceptedAnswer":{"@type":"Answer","text":"Start with understanding, not rewriting. Ask the AI to explain a module, map what depends on it and list the behaviours it seems to have. Then have it write tests that pin down what the code does today, before you change anything. Those tests are your safety net. Work in small slices, such as one function or file per change, with a human review and a test run each time. AI is good at dull jobs like documenting, renaming, upgrading libraries and removing dead code. Keep architecture and risk decisions with your team. Also write a short guide to your conventions for the AI to read. Well-documented code gives better AI output too."}},{"@type":"Question","name":"How do I check whether the AI features in my work tools are sending company data elsewhere?","acceptedAnswer":{"@type":"Answer","text":"Treat every update as a possible change. After updating a work tool, open its settings and search for words like AI, assistant, plugin, telemetry and sharing. Turn off anything you have not approved. Then read the vendor's data processing or privacy page to see what is sent, where it goes and whether it is stored. If you have an IT or security team, ask them to review it and set admin-level controls. For tools that handle API keys, customer records or internal endpoints, use test data instead of production data, and keep secrets out of shared collections and workspaces. Prefer tools that let admins disable AI features by default."}},{"@type":"Question","name":"How do I decide which parts of my daily work to hand over to AI?","acceptedAnswer":{"@type":"Answer","text":"For one week, jot down the tasks you repeat. Then pick the ones that are text-heavy, repetitive and low-risk if slightly wrong, such as first drafts, meeting summaries, reformatting, email replies and early research. Keep judgement calls, final facts, sensitive decisions and anything client-facing under your own review. Calibrate first by testing the AI on a task you know well, so you can see where it slips. Treat its output like work from a quick but careless intern: useful, but always checked. When a prompt works, save it as a template so the gain repeats. Review the list monthly and add one new task at a time."}},{"@type":"Question","name":"What is a sensible starting AI toolkit for a professional, and when do I need more than one tool?","acceptedAnswer":{"@type":"Answer","text":"Start with one general assistant and use it daily until you know its strengths. Move to a paid plan only when you regularly hit limits or need features that matter to your work. Check each vendor's current plans, since they change often. Add a second tool only to fill a clear gap, such as a different model for a second opinion, or a coding assistant if you write software. Pay-as-you-go APIs make sense once you automate repeated tasks. Local models are worth a look when data must stay in-house. Before adding anything, track for a month which tools you actually open. Most people need fewer tools than they think."}},{"@type":"Question","name":"How do I stop my chatbot conversations from being used for training or read by human reviewers?","acceptedAnswer":{"@type":"Answer","text":"Check the privacy and activity settings in each tool. Look for options on chat history, activity and model improvement. Some tools only let you opt out by turning history off or by using temporary chats, so confirm what your plan allows. Work or enterprise accounts often have different data terms from personal ones, so use the approved tool for company material. In a personal account, never paste client data, passwords, unreleased financials or personal identifiers. Replace names and numbers with placeholders before asking for help. Policies change, so reread the provider's current privacy page now and then, and ask your IT team if you are unsure."}}]}</script>
-<!-- REDDIT-QA:END -->
 
 <!-- GALLERY -->
 <div class="sec" id="gallery" style="padding-top:0">

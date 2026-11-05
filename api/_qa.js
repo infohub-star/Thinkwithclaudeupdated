@@ -134,7 +134,10 @@ details.rq-item summary::-webkit-details-marker{display:none}
 .rq-meta{display:block;font-size:13px;color:#6B6B6B;margin-top:3px}.rq-chev{display:none}
 .rq-a{padding:0 18px 16px 58px;font-size:15.5px;line-height:1.7;color:#2A2F38}.rq-a p{margin:0 0 10px}
 .rq-src{font-size:14px;font-weight:600;text-decoration:none}
-.rq-day{font:700 20px 'DM Sans',sans-serif;color:#0B1B33;margin:34px 0 12px}
+.rq-day{font:700 18px 'DM Sans',sans-serif;color:#0B1B33;margin:26px 0 10px}
+.rq-past{font:700 24px 'DM Sans',sans-serif;color:#0B1B33;margin:44px 0 6px}
+.rq-today{margin-top:8px}
+.rq-badge{display:inline-block;font-size:13px;font-weight:600;color:#004AAD;background:#EEF4FF;border-radius:999px;padding:6px 12px;margin:0 0 14px}
 @media(max-width:640px){.rq-a{padding:0 16px 16px}}`;
 
 function renderArchive(data) {
@@ -147,12 +150,15 @@ function renderArchive(data) {
   }
   const url = `${SITE}/ai-questions/`;
   const desc = 'The most-discussed AI questions across AI communities each day, with clear, practical answers on ChatGPT, Claude, prompting and AI at work. Updated daily.';
-  const body = days.map(d => `<h2 class="rq-day">${esc(niceDate(d.date))}</h2>\n${d.items.map((i, k) => item(i, k + 1, false)).join('\n')}`).join('\n')
-    || '<p>The first questions arrive tomorrow morning.</p>';
+  const [today, ...past] = days;
+  const body = today ? `<section class="rq-today"><div class="rq-badge">Today · ${esc(niceDate(today.date))}</div>
+${today.items.map((i, k) => item(i, k + 1, k === 0)).join('\n')}</section>
+${past.length ? '<h2 class="rq-past">Earlier questions</h2>' + past.map(d => `<h3 class="rq-day">${esc(niceDate(d.date))}</h3>\n${d.items.map((i, k) => item(i, k + 1, false)).join('\n')}`).join('\n') : ''}`
+    : '<p>The first questions arrive tomorrow morning.</p>';
   return `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Questions, Answered Daily | ThinkwithClaude</title>
+<title>Today's Top AI Questions, Answered | ThinkwithClaude</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="website"><meta property="og:title" content="AI Questions, Answered Daily | ThinkwithClaude"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
@@ -163,11 +169,11 @@ ${data.length ? faqSchema(data.slice(0, 150)) : ''}
 </head><body>
 <header class="top"><div class="top-in">
   <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
-  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a class="cta" href="${CAL}" target="_blank" rel="noopener">Book free call</a></nav>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/ai-questions/">AI Q&amp;A</a><a class="cta" href="${CAL}" target="_blank" rel="noopener">Book free call</a></nav>
 </div></header>
 <main class="w">
 <div class="kick">Answered daily</div>
-<h1>AI questions people are asking today</h1>
+<h1>Today's top AI questions, answered</h1>
 <p class="meta">Every morning we pick the most-discussed AI questions from Hacker News, the OpenAI Developer Forum and Stack Exchange and answer them in plain English · by Shantanu Anand</p>
 ${body}
 <div class="box">
