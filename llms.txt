@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [How do I keep AI agent costs under control as my team uses them more?](https://www.thinkwithclaude.com/ai-questions/how-keep-ai-agent-costs-under-control-as/)
+- [How can I stop personal details leaking when I use AI coding tools?](https://www.thinkwithclaude.com/ai-questions/how-stop-personal-details-leaking-use-ai-coding/)
+- [How do I let AI agents do real work without risking costly mistakes?](https://www.thinkwithclaude.com/ai-questions/how-let-ai-agents-real-work-without-risking/)
+- [How do I get an AI coding assistant to reuse shared code instead of duplicating it?](https://www.thinkwithclaude.com/ai-questions/how-get-ai-coding-assistant-reuse-shared-code/)
+- [Why does ChatGPT forget details I already gave it, and how can I fix that?](https://www.thinkwithclaude.com/ai-questions/why-chatgpt-forget-details-already-gave-fix/)
 - [How can I use AI to start clearing years of messy legacy code without breaking things?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-start-clearing-years-messy-legacy/)
 - [How do I check whether the AI features in my work tools are sending company data elsewhere?](https://www.thinkwithclaude.com/ai-questions/how-check-whether-ai-features-work-tools-sending/)
 - [How do I decide which parts of my daily work to hand over to AI?](https://www.thinkwithclaude.com/ai-questions/how-decide-parts-daily-work-hand-over-ai/)

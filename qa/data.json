@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-06",
+  "id": "hn50366971",
+  "q": "How do I keep AI agent costs under control as my team uses them more?",
+  "a": "Agents cost more than chatbots because they loop: they read files, call tools, retry and re-read. Spend grows with every step, not every prompt.\n\nSet a hard spending cap and usage alerts in your provider dashboard before anything else. Use a cheaper, smaller model for routine steps and keep the strongest model for planning and hard problems. Keep context lean by giving narrow tasks, naming the exact files or documents, and starting a fresh session instead of letting one thread grow endlessly. Limit retries and step counts. Then track cost per finished task rather than per month. If an agent costs more than the human time it saves, redesign the workflow. Check your tool's current pricing and limits pages for details.",
+  "sub": "Hacker News",
+  "comments": 167,
+  "url": "https://news.ycombinator.com/item?id=50366971",
+  "slug": "how-keep-ai-agent-costs-under-control-as"
+ },
+ {
+  "date": "2026-11-06",
+  "id": "hn50385272",
+  "q": "How can I stop personal details leaking when I use AI coding tools?",
+  "a": "Assume an AI tool can see anything in the folder it works in, plus things like git settings, environment variables and any web access you allow. Treat that as a data-sharing decision.\n\nPractical steps: read the tool's privacy and data-handling settings and switch off anything optional. Review its permission prompts instead of approving everything. Keep secrets, customer data and personal files out of project folders, and exclude .env files. Use a no-reply or work-only email in your git config. For sensitive work, run the tool inside a container or separate user account. Finally, check the vendor's current documentation on what is sent and stored, and ask your IT team to confirm the policy before rolling it out.",
+  "sub": "Hacker News",
+  "comments": 162,
+  "url": "https://news.ycombinator.com/item?id=50385272",
+  "slug": "how-stop-personal-details-leaking-use-ai-coding"
+ },
+ {
+  "date": "2026-11-06",
+  "id": "hn50373149",
+  "q": "How do I let AI agents do real work without risking costly mistakes?",
+  "a": "Start by limiting what an agent can touch. Give it read-only access first, and add write or send permissions only for specific, low-stakes tasks. Work in a copy, a draft folder or a test environment, not in live files.\n\nKeep a human approval step before anything irreversible: sending email, deleting data, spending money, publishing. Ask the agent to explain its plan before it acts, and keep a log of what it did. Check results on a small batch before running the full job. Make sure you can undo changes, with backups or version history. Expect occasional confident errors, and build your process so one error cannot do serious damage.",
+  "sub": "Hacker News",
+  "comments": 81,
+  "url": "https://news.ycombinator.com/item?id=50373149",
+  "slug": "how-let-ai-agents-real-work-without-risking"
+ },
+ {
+  "date": "2026-11-06",
+  "id": "oai1413064",
+  "q": "How do I get an AI coding assistant to reuse shared code instead of duplicating it?",
+  "a": "AI assistants tend to write fresh code for each task because they only see what is in their context. Fix that by making the shared code visible and by stating your rules.\n\nCreate a short project instructions file (many tools read one automatically) saying where shared utilities live, how they are named, and that new logic should reuse them. Point the assistant at the specific shared files in your prompt. Ask it to search the codebase for an existing function before writing a new one. For larger changes, ask for a plan first and check it for reuse. Afterwards, request a review pass that looks only for duplicated logic and proposes moving it into a shared module.",
+  "sub": "OpenAI Community",
+  "comments": 3,
+  "url": "https://community.openai.com/t/how-does-codex-usually-generate-shared-functions-modules/1413064",
+  "slug": "how-get-ai-coding-assistant-reuse-shared-code"
+ },
+ {
+  "date": "2026-11-06",
+  "id": "oai1413095",
+  "q": "Why does ChatGPT forget details I already gave it, and how can I fix that?",
+  "a": "Chat models only work within a limited context window. In long conversations, early details get dropped or deprioritised. New chats also start blank unless a memory feature carries things over, and that feature saves only selected facts.\n\nTo reduce forgetting, keep one chat per task and restate key facts when a thread gets long. Keep a short reusable brief with your role, audience, format and constraints, and paste it at the start. Use the custom instructions or project features for things that never change, and check the memory settings to see what is saved. For long documents, ask for a summary of the decisions so far and begin a new chat with that summary. Check the tool's current help pages for how memory works.",
+  "sub": "OpenAI Community",
+  "comments": null,
+  "url": "https://community.openai.com/t/why-does-chatgpt-keep-forgetting-things-i-already-told-it/1413095",
+  "slug": "why-chatgpt-forget-details-already-gave-fix"
+ },
+ {
   "date": "2026-11-05",
   "id": "hn50364336",
   "q": "How can I use AI to start clearing years of messy legacy code without breaking things?",
