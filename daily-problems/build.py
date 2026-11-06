@@ -147,8 +147,6 @@ def brief_page(b, others):
 <p><b>Assumption:</b> {md(b['risk'])}</p>
 <p><b>Test first:</b> {md(b['test'])}</p>
 {f'<p class="warn">{md(b["caution"])}</p>' if b.get('caution') else ''}
-<h2>Sources</h2>
-<ul class="src">{''.join(f'<li><a href="{e(u)}" target="_blank" rel="noopener nofollow">{e(t)}</a></li>' for t, u in b['sources'])}</ul>
 </article>"""
     if others:
         body += '<h2 style="font:700 24px DM Sans,sans-serif;color:#0B1B33;margin:44px 0 10px">More daily problems</h2><ul>' + "".join(
