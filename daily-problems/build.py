@@ -109,7 +109,7 @@ def page(title, desc, url, body, ld, og_type="article"):
   <a class="btn" href="/#inquiry">Get training details</a><a class="btn alt" href="{CAL}" target="_blank" rel="noopener">Book a free call</a>
 </div>
 </main>
-<div class="foot">© {datetime.date.today().year} ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant · Problems sourced from <a href="https://razorpay.com/m/fix-my-itch/" target="_blank" rel="noopener nofollow">Razorpay Fix My Itch</a></div>
+<div class="foot">© {datetime.date.today().year} ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
 <script>document.querySelectorAll('.copy').forEach(b=>b.onclick=()=>{{navigator.clipboard.writeText(b.nextElementSibling.innerText).then(()=>{{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)}})}})</script>
 </body></html>
 """
