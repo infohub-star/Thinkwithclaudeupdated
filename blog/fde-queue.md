@@ -18,7 +18,6 @@ Format: `- Part N | Level | Doc NN · <title> | <Drive file ID>`
 
 ## Up next
 
-- Part 1 | Basics | Doc 07 · FDE Course 1: What an FDE Does and How AI Got Here | 1wqhmWqLyI2zOYX399TP-CmW4IvfvSgAT7A_OgKqmiac
 - Part 2 | Basics | Doc 15 · Complete FDE Training Course for Beginners | 1PZ1KIdEvjOo0PSC8_W40e-dUMN75t1UjNZMK-dBeY6U
 - Part 3 | Basics | Doc 14 · FDE-100 Class 1: Getting Paid in the AI Era | 1QgyfSDMvxn9xj5RJaJx7M2c6wYk1d14__mfg_1HSiDI
 - Part 4 | Basics | Doc 08 · FDE Course 2: How LLMs Actually Work | 1uN1dlDmzM3t16N93Z1revDgjeWV9E-uHo5rExx87zoI
@@ -37,4 +36,5 @@ Format: `- Part N | Level | Doc NN · <title> | <Drive file ID>`
 
 ## Published
 
+- 2026-11-06 | Part 1 | Basics | Doc 07 · FDE Course 1: What an FDE Does and How AI Got Here | 1wqhmWqLyI2zOYX399TP-CmW4IvfvSgAT7A_OgKqmiac | https://www.thinkwithclaude.com/blog/fde-what-forward-deployed-engineer-does/
 - 2026-11-04 | Part 17 | Advanced | Doc 01 · Cold-Chain Logistics AI Assistant (capstone) | 19zsGKcezz3NnbHDY0kBKRa0p2vdW-4cCYt96wv89eHQ | https://www.thinkwithclaude.com/blog/fde-cold-chain-logistics-ai-assistant/
