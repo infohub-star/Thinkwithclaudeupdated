@@ -173,7 +173,6 @@ def hub_page(briefs):
     body = f"""<div class="kick">{SECTION}</div>
 <h1>{SECTION}: build the fix with Claude</h1>
 <p class="lead">{TAGLINE}</p>
-<p class="by">Every morning we pick a real problem from <a href="https://razorpay.com/m/fix-my-itch/" target="_blank" rel="noopener nofollow">Razorpay's Fix My Itch</a> list, research who has it in India, and lay out a product idea, a weekend build plan and a starter prompt you can paste into Claude Code.</p>
 <div class="list">{cards or '<p>The first problem is on its way.</p>'}</div>"""
     ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": SECTION, "description": TAGLINE, "url": url,
            "hasPart": [{"@type": "Article", "headline": b["title"][:110], "url": f"{BASE}/daily-problems/{b['slug']}/",
