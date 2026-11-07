@@ -1,0 +1,59 @@
+{
+  "slug": "2026-11-07-outbound-pickup-reliability",
+  "date": "2026-11-07",
+  "short": "Outbound pickup reliability",
+  "title": "Why can't manufacturers rely on guaranteed, accountable pickup logistics for outbound deliveries?",
+  "industry": "B2B Services",
+  "score": 79,
+  "summary": "Finished goods sit at the factory gate because the truck didn't show and nobody is accountable. Here's \"Gate Pass\", a dispatch desk that one person could build with Claude in a weekend.",
+  "who": "Small and mid-sized manufacturers who ship finished goods every day through a mix of local transporters, brokers and booking apps. The dispatch clerk chases drivers on the phone, a missed pickup means a missed customer delivery date, and there is rarely a written record of which transporter failed and how often.",
+  "facts": [
+    "**Logistics is a big line item for the country.** A DPIIT report prepared by NCAER puts India's logistics cost at about 7.97% of GDP in 2023-24, with road transport at Rs 11.03 per tonne-km against Rs 1.96 for rail ([KNN India](https://knnindia.co.in/news/newsdetails/economy/indias-logistics-cost-estimated-at-797-of-gdp-dpiit-report)).",
+    "**Structure helps.** In an IIT Delhi C-DEP study, 95% of surveyed MSMEs reported more on-time transport of goods and 73% reported lower transport costs after using tech-enabled goods transport services ([Tribune](https://www.tribuneindia.com/news/business/tech-enabled-goods-transportation-services-reduce-logistics-costs-for-msmes-c-dep-iit-delhi-study/)).",
+    "**Businesses are the main users.** The same study says business users are about 71% of users and about 97% of intra-city goods orders on these services ([Tribune](https://www.tribuneindia.com/news/business/tech-enabled-goods-transportation-services-reduce-logistics-costs-for-msmes-c-dep-iit-delhi-study/)).",
+    "**The aggregate hides the last mile.** An ISB professor writing on the study notes that the national figure masks persistent inefficiencies in intra-city movement, and that MSMEs account for nearly 45% of manufacturing output ([Daily Pioneer](https://dailypioneer.com/news/for-msmes-growth-often-depends-on-the-last-few-kilometres))."
+  ],
+  "players": "Booking platforms supply the truck: BlackBuck for intercity trucking, Porter and similar apps for intra-city moves, and comparison guides such as [Tata Nexarc's](https://blog.tatanexarc.com/logistics/top-truck-booking-apps-for-indian-msmes-compare-choose-book) for MSMEs. Large shippers use transport management systems. We didn't find a simple tool that sits on the shipper's side across all transporters and keeps score on who actually turned up.",
+  "pitch": "\"Gate Pass\" is a dispatch desk for small factories that books each pickup with a confirmed slot, chases the transporter automatically, escalates to a backup before the delay costs a delivery, and keeps a reliability scorecard for every carrier.",
+  "features": [
+    ["Slot booking", "Create a pickup from a sales order with weight, vehicle type, dock and time window, and send it to a preferred transporter for a written WhatsApp or email confirmation."],
+    ["Auto-chase and escalation", "Asks the driver for vehicle number and ETA at set times; if the truck has not reported by the slot, offers the load to the next transporter on the list or a booking app."],
+    ["Reliability scorecard", "Records on-time arrival, no-shows, rate changes and damage per carrier, so allocation and rate talks rely on data."],
+    ["Accountability clause pack", "Drafts a simple service-level agreement with pickup windows, no-show charges and escalation contacts that a small factory can actually send."],
+    ["Daily dispatch summary", "One message to the owner each evening: what left, what is stuck, and which customer needs a heads-up."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, the WhatsApp and email integration, the database and the tests."],
+    ["Claude API in the product", "Reads free-text replies from drivers and transporters, extracts vehicle number, ETA and issues, and drafts customer delay notices."],
+    ["Skills", "A \"dispatch-playbook\" skill with escalation rules, message templates in English and Hindi, and the SLA clause library."],
+    ["Artifacts", "A clickable dispatch board and scorecard mock-up to show factory owners before the build."],
+    ["Connectors (MCP)", "Gmail and Google Sheets for pilots that already run dispatch in a sheet; Vercel to deploy."],
+    ["Scheduled tasks", "Slot-time checks that trigger chasing and escalation, plus the evening summary and a weekly carrier report."]
+  ],
+  "plan": [
+    ["Saturday morning — interviews and data", "Talk to three dispatch clerks. Collect a month of pickups from one factory's register or sheet, including no-shows."],
+    ["Saturday midday — prototype", "Ask Claude for an artifact with the dispatch board and scorecard. Show it to the clerks."],
+    ["Saturday afternoon — core app", "Use the starter prompt below in Claude Code to build pickups, transporters, slots and the status timeline."],
+    ["Saturday evening — messaging", "Connect WhatsApp Business or email, and have the Claude API parse replies into structured status updates. Test on real message samples."],
+    ["Sunday morning — escalation", "Add the scheduled slot checks, the backup-transporter ladder and customer delay drafts."],
+    ["Sunday afternoon — scorecard", "Compute on-time and no-show rates per carrier with plain code and unit tests. Add the SLA clause pack."],
+    ["Sunday evening — ship and pilot", "Deploy to Vercel and onboard two factories. Ask the clerk to log every pickup for two weeks."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"Gate Pass\" for small Indian manufacturers.\n\nEntities: Factory, Transporter (priority order, contacts, vehicle types), Pickup (order ref, weight, vehicle type, dock,\nslot_start, slot_end, status), StatusEvent.\n\nFlow: clerk creates a pickup -> app sends a confirmation request to the first transporter (WhatsApp Business API or email)\n-> Claude API parses each free-text reply into JSON (confirmed, vehicle_number, driver_phone, eta, issue)\n-> scheduled job checks 60 and 15 minutes before slot_start; if not confirmed or no vehicle number,\noffer the load to the next transporter and alert the clerk\n-> on arrival or no-show, record the event.\n\nRules:\n- Scorecard maths (on-time %, no-show count, average delay) is deterministic code with unit tests, never model output.\n- Never auto-cancel a confirmed truck; escalation only offers the load and asks the clerk to approve.\n- Store every message with a timestamp so disputes have a record.\n- Templates in English and Hindi live in /skills/dispatch-playbook.md.\n\nStart by proposing the schema and file structure, then build pickup creation and the status timeline first.\nAdd fixtures of 20 real-style transporter replies and a test that checks the parser output.",
+  "pricing": [
+    "Free: up to 30 pickups a month with the scorecard.",
+    "Rs 1,499 a month per dispatch point: unlimited pickups, auto-chase, escalation and summaries.",
+    "Rs 4,999 a month for multi-plant factories with carrier reports.",
+    "Channel: referral fees from booking platforms when a backup load is placed with them."
+  ],
+  "risk": "The idea assumes that a written slot, automatic chasing and a visible scorecard change transporter behaviour. Small transporters may ignore a small shipper anyway when a better load appears.",
+  "test": "Before building, run it manually for one factory for two weeks: a shared sheet, slot confirmations sent by message and a call at the 60-minute mark. Compare no-shows and average delay with the previous month's register. A reasonable bar: a clear drop in no-shows and a clerk who wants to keep the process.",
+  "caution": "Messaging drivers at scale needs WhatsApp Business API approval and consent. No-show charges only work if they are in a signed agreement, so check the clause pack with a lawyer.",
+  "sources": [
+    ["Razorpay Fix My Itch", "https://razorpay.com/m/fix-my-itch/"],
+    ["KNN India: Logistics cost at 7.97% of GDP (DPIIT report)", "https://knnindia.co.in/news/newsdetails/economy/indias-logistics-cost-estimated-at-797-of-gdp-dpiit-report"],
+    ["Tribune: C-DEP and IIT Delhi study on tech-enabled goods transport", "https://www.tribuneindia.com/news/business/tech-enabled-goods-transportation-services-reduce-logistics-costs-for-msmes-c-dep-iit-delhi-study/"],
+    ["Daily Pioneer: For MSMEs, growth often depends on the last few kilometres", "https://dailypioneer.com/news/for-msmes-growth-often-depends-on-the-last-few-kilometres"],
+    ["Tata Nexarc: Truck booking apps for Indian MSMEs", "https://blog.tatanexarc.com/logistics/top-truck-booking-apps-for-indian-msmes-compare-choose-book"]
+  ]
+}
