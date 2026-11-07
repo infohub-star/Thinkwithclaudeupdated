@@ -13,8 +13,6 @@ Add items in either form:
 
 ## Up next
 
-- Topic: Will AI Take Your Job? A Practical Plan for Professionals
-  Notes: Practical steps without panic. Use only sourced facts; no invented job-loss figures.
 - Topic: How to Test a Business Idea with AI Before Spending Money
   Notes: A reusable assistant for checking competitors, risks and demand. AI informs the decision; it doesn't replace talking to customers.
 - Topic: Can One AI Agent Handle Your Team's Marketing Work?
@@ -32,6 +30,7 @@ Add items in either form:
 
 ## Published
 
+- 2026-11-07: Will AI Take Your Job? A Practical Plan for Professionals - https://www.thinkwithclaude.com/blog/will-ai-take-your-job/
 - 2026-11-06: AI Agents Explained for Non-Technical Managers - https://www.thinkwithclaude.com/blog/ai-agents-explained-for-managers/
 - 2026-11-05: Do You Really Need the Most Powerful AI Model? - https://www.thinkwithclaude.com/blog/do-you-need-powerful-ai-model/
 - 2026-11-04: How to Test Any New AI Tool at Work in 30 Minutes - https://www.thinkwithclaude.com/blog/test-new-ai-tool-at-work/
