@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [How can I spot AI deepfake scam ads and protect myself and my team?](https://www.thinkwithclaude.com/ai-questions/how-spot-ai-deepfake-scam-ads-protect-myself/)
+- [When is a small, fast AI model good enough, and when should I use a bigger one?](https://www.thinkwithclaude.com/ai-questions/when-small-fast-ai-model-good-enough-use/)
+- [How do I get an AI model to follow my writing style instructions every time?](https://www.thinkwithclaude.com/ai-questions/how-get-ai-model-follow-writing-style-instructions/)
+- [What should I do when an AI chat says its memory or context window is full?](https://www.thinkwithclaude.com/ai-questions/what-ai-chat-says-memory-context-window-full/)
+- [How can I tell if heavy AI use is really making me more productive?](https://www.thinkwithclaude.com/ai-questions/how-tell-heavy-ai-use-really-making-more/)
 - [How do I keep AI agent costs under control as my team uses them more?](https://www.thinkwithclaude.com/ai-questions/how-keep-ai-agent-costs-under-control-as/)
 - [How can I stop personal details leaking when I use AI coding tools?](https://www.thinkwithclaude.com/ai-questions/how-stop-personal-details-leaking-use-ai-coding/)
 - [How do I let AI agents do real work without risking costly mistakes?](https://www.thinkwithclaude.com/ai-questions/how-let-ai-agents-real-work-without-risking/)

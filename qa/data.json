@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-07",
+  "id": "hn50385870",
+  "q": "How can I spot AI deepfake scam ads and protect myself and my team?",
+  "a": "Treat any ad with a famous face, an urgent deadline or a promise of guaranteed returns as suspect. Look for tells such as lips slightly out of sync, odd blinking, a flat voice, or blurry edges around the face and hands. Do not rely on these alone, because good fakes are hard to catch.\n\nVerify instead of judging by looks. Search for the claim on the person's official website or verified channels, inspect the web address before clicking, and never move an investment conversation to WhatsApp or Telegram. For teams, set a rule that any payment or password request needs a second confirmation through a phone number you already know. Report the ad on the platform and warn colleagues, since scammers reuse the same creative. If money has been sent, contact your bank and the national cybercrime reporting portal immediately.",
+  "sub": "Hacker News",
+  "comments": 222,
+  "url": "https://news.ycombinator.com/item?id=50385870",
+  "slug": "how-spot-ai-deepfake-scam-ads-protect-myself"
+ },
+ {
+  "date": "2026-11-07",
+  "id": "hn50392118",
+  "q": "When is a small, fast AI model good enough, and when should I use a bigger one?",
+  "a": "Fast, lightweight models suit clear, low-risk tasks: summarising a meeting, sorting emails, reformatting data, drafting first versions, or pulling fields out of documents. They respond quickly and usually cost less, which matters when you repeat a task hundreds of times.\n\nMove to a larger model when the task needs multi-step reasoning, careful reading of long or messy documents, nuanced writing, or when a wrong answer is expensive, such as legal, financial or production code work. A simple test: run ten real examples of your task through both models and compare the results side by side. If the small one passes nine, use it and keep the bigger one for the exceptions. Model lineups change often, so check the vendor's current documentation.",
+  "sub": "Hacker News",
+  "comments": 220,
+  "url": "https://news.ycombinator.com/item?id=50392118",
+  "slug": "when-small-fast-ai-model-good-enough-use"
+ },
+ {
+  "date": "2026-11-07",
+  "id": "oai1413572",
+  "q": "How do I get an AI model to follow my writing style instructions every time?",
+  "a": "Models drift from style rules when instructions are long, vague or buried. Put them in a short, separate block at the top, in the system prompt or custom instructions, and write concrete rules. \"Sentences under 20 words, no bullet points, British spelling\" works far better than \"be friendly and professional\".\n\nAdd one or two short sample paragraphs in the style you want, because examples beat descriptions. Also state what to avoid. In long chats the style fades, so repeat a one-line reminder or start a fresh chat with the same instruction block. For recurring work, save the block as a template, project or custom assistant. If output still drifts, ask the model to restate the rules before it drafts.",
+  "sub": "OpenAI Community",
+  "comments": 21,
+  "url": "https://community.openai.com/t/how-to-get-gpt-6-to-follow-style-instructions-consistently/1413572",
+  "slug": "how-get-ai-model-follow-writing-style-instructions"
+ },
+ {
+  "date": "2026-11-07",
+  "id": "oai1413372",
+  "q": "What should I do when an AI chat says its memory or context window is full?",
+  "a": "Two different limits are involved. The context window is how much text the model can consider in one conversation, including your messages, its replies and pasted documents. Saved memory is a separate store of facts about you that carries across chats. When either fills up, quality drops or you see errors.\n\nFor a full context, ask the AI to summarise decisions, open questions and key facts, then paste that summary into a new chat. Avoid pasting whole documents repeatedly; share only the relevant sections. For full memory, open the settings, delete outdated items and merge duplicates. Keep one project per topic so each chat stays focused. Exact limits vary by tool and plan, so check the current docs.",
+  "sub": "OpenAI Community",
+  "comments": 9,
+  "url": "https://community.openai.com/t/chat-memory-full-and-context-window-full-error-answer/1413372",
+  "slug": "what-ai-chat-says-memory-context-window-full"
+ },
+ {
+  "date": "2026-11-07",
+  "id": "oai1413331",
+  "q": "How can I tell if heavy AI use is really making me more productive?",
+  "a": "More prompts do not equal more output. The real measure is time to a finished, usable result, including your own checking and fixing. Pick three recurring tasks, such as a weekly report, a client email and a research summary. Time them for a week without AI, then for a week with AI, counting the full effort including corrections. Note how many fixes each draft needed and whether quality improved.\n\nTypically AI helps most with first drafts, summaries and structuring, and least with tasks that need precise facts. If you keep correcting the same mistakes, improve the prompt with context, examples and a format, or stop using AI for that task. Review the log monthly and keep only the uses that pay off.",
+  "sub": "OpenAI Community",
+  "comments": null,
+  "url": "https://community.openai.com/t/twice-the-quota-five-times-the-corrections-is-more-ai-usage-really-more-productivity/1413331",
+  "slug": "how-tell-heavy-ai-use-really-making-more"
+ },
+ {
   "date": "2026-11-06",
   "id": "hn50366971",
   "q": "How do I keep AI agent costs under control as my team uses them more?",
