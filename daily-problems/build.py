@@ -99,7 +99,7 @@ def page(title, desc, url, body, ld, og_type="article"):
 </head><body>
 <header class="top"><div class="top-in">
   <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
-  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/ai-questions/">AI Q&amp;A</a><a href="/daily-problems/">{SECTION}</a><a class="cta" href="{CAL}" target="_blank" rel="noopener">Book free call</a></nav>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/ai-questions/">AI Q&amp;A</a><a href="/trending-ai-tools/">AI Tools Today</a><a href="/daily-problems/">{SECTION}</a><a class="cta" href="{CAL}" target="_blank" rel="noopener">Book free call</a></nav>
 </div></header>
 <main class="w">
 {body}

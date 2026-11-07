@@ -77,7 +77,7 @@ HEAD = """<!doctype html>
 {schema}</head><body>
 <header class="top"><div class="top-in">
   <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
-  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/fde-essentials/">FDE for Coders</a><a href="/ai-questions/">AI Q&amp;A</a><a class="cta" href="{cal}" target="_blank" rel="noopener">Book free call</a></nav>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/fde-essentials/">FDE for Coders</a><a href="/ai-questions/">AI Q&amp;A</a><a href="/trending-ai-tools/">AI Tools Today</a><a class="cta" href="{cal}" target="_blank" rel="noopener">Book free call</a></nav>
 </div></header>
 """
 
