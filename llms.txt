@@ -7,9 +7,13 @@
 - [AI Q&A](https://www.thinkwithclaude.com/ai-questions/): the most-discussed AI questions each day, answered in plain English
 - [Articles](https://www.thinkwithclaude.com/blog/): practical guides on using AI at work
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
-- [AI Tools Today](https://www.thinkwithclaude.com/trending-ai-tools/): the 2-3 new AI tools worth a professional's time each day, updated daily
 
 ## Recent AI questions answered by Shantanu Anand
+- [How do I stop an AI coding assistant from leaking passwords into my code or public repos?](https://www.thinkwithclaude.com/ai-questions/how-stop-ai-coding-assistant-leaking-passwords-code/)
+- [How do I choose between closed and open AI models when both cost and quality matter?](https://www.thinkwithclaude.com/ai-questions/how-choose-between-closed-open-ai-models-both/)
+- [Is it healthy to use ChatGPT as a companion, or should it stay a work tool?](https://www.thinkwithclaude.com/ai-questions/is-healthy-use-chatgpt-as-companion-stay-work/)
+- [How do I write a prompt that makes an AI work like a careful researcher?](https://www.thinkwithclaude.com/ai-questions/how-write-prompt-makes-ai-work-like-careful/)
+- [How do I stop a voice AI agent on a phone call from hearing and answering its own voice?](https://www.thinkwithclaude.com/ai-questions/how-stop-voice-ai-agent-phone-call-hearing/)
 - [How can I spot AI deepfake scam ads and protect myself and my team?](https://www.thinkwithclaude.com/ai-questions/how-spot-ai-deepfake-scam-ads-protect-myself/)
 - [When is a small, fast AI model good enough, and when should I use a bigger one?](https://www.thinkwithclaude.com/ai-questions/when-small-fast-ai-model-good-enough-use/)
 - [How do I get an AI model to follow my writing style instructions every time?](https://www.thinkwithclaude.com/ai-questions/how-get-ai-model-follow-writing-style-instructions/)

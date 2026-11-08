@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-08",
+  "id": "hn50407882",
+  "q": "How do I stop an AI coding assistant from leaking passwords into my code or public repos?",
+  "a": "Assume the AI should never see a secret. Keep credentials in environment variables or a secrets manager, never in source files, and add .env files to .gitignore.\n\nBe careful with \"always allow\" or \"don't ask again\" options. Saved permission rules can end up containing pasted keys or full commands, and they are often stored in project files that get committed. Prefer narrow, specific approvals over blanket ones, and review any settings files before you commit them. Add a secret scanner as a pre-commit hook and in your CI pipeline. If a key does leak, rotate it immediately. Deleting the file or commit is not enough, because copies may already exist. Check your tool's current docs for where permissions are stored.",
+  "sub": "Hacker News",
+  "comments": 123,
+  "url": "https://news.ycombinator.com/item?id=50407882",
+  "slug": "how-stop-ai-coding-assistant-leaking-passwords-code"
+ },
+ {
+  "date": "2026-11-08",
+  "id": "hn50387546",
+  "q": "How do I choose between closed and open AI models when both cost and quality matter?",
+  "a": "Start from your task, not a leaderboard. Collect 20 to 50 real examples from your work, run them through two or three models, and score the outputs yourself.\n\nOften a smaller, cheaper model handles routine jobs like summaries, tagging and first drafts. Save the strongest model for hard reasoning or high-stakes output. Open models make sense when data must stay inside your environment, when you have high volume and want predictable costs, or when you need to customise. Count the hosting and maintenance effort too. Closed models are easier to start with and usually need no setup. Prices and rankings change often, so recheck current pricing pages and rerun your test set every few months.",
+  "sub": "Hacker News",
+  "comments": 73,
+  "url": "https://news.ycombinator.com/item?id=50387546",
+  "slug": "how-choose-between-closed-open-ai-models-both"
+ },
+ {
+  "date": "2026-11-08",
+  "id": "oai1413835",
+  "q": "Is it healthy to use ChatGPT as a companion, or should it stay a work tool?",
+  "a": "It can be both, as long as you stay clear about what it is. As a thinking partner it is useful. You can talk through a decision, rehearse a hard conversation, or ask it to challenge your plan.\n\nIt does not know you the way a colleague or friend does, it tends to agree with you, and it can sound confident while being wrong. A few guardrails help. Ask it directly to disagree or list the weak points in your thinking. Avoid sharing confidential or sensitive personal details. Keep real people involved in decisions about health, money and relationships. If you notice you are using it to avoid human conversations, step back. Review the privacy and memory settings in your account.",
+  "sub": "OpenAI Community",
+  "comments": 22,
+  "url": "https://community.openai.com/t/is-chatgpt-just-a-tool-or-can-it-be-a-companion/1413835",
+  "slug": "is-healthy-use-chatgpt-as-companion-stay-work"
+ },
+ {
+  "date": "2026-11-08",
+  "id": "oai1413658",
+  "q": "How do I write a prompt that makes an AI work like a careful researcher?",
+  "a": "A process works better than a job title. State the question, why it matters, who the audience is, the scope, and which kinds of sources are acceptable. Then specify the output format, such as a one-page brief with a short summary first.\n\nAsk it to plan first by listing sub-questions, then gather evidence, then synthesise. Tell it to separate facts, inferences and unknowns, and to say \"not found\" instead of guessing. Use a tool with web search, or paste in your own documents, so it works from real material. Ask for links or page references. Open the key sources and check them yourself, because AI can invent citations that look convincing.",
+  "sub": "OpenAI Community",
+  "comments": 5,
+  "url": "https://community.openai.com/t/i-am-trying-to-formulate-a-prompt-to-make-ai-to-be-a-researcher-here-is-my-prompt-schema/1413658",
+  "slug": "how-write-prompt-makes-ai-work-like-careful"
+ },
+ {
+  "date": "2026-11-08",
+  "id": "oai1413799",
+  "q": "How do I stop a voice AI agent on a phone call from hearing and answering its own voice?",
+  "a": "This is an echo problem. The agent's audio plays through the speaker, the microphone picks it up, and the model treats it as the caller speaking.\n\nTry these fixes in order. First, turn on echo cancellation and noise suppression in your audio capture or telephony layer. Second, lower the speaker volume or use a headset when testing. Third, mute or ignore the incoming audio while the agent is speaking. This is simple and reliable, but it stops callers from interrupting. Fourth, tune turn detection by raising the voice activity threshold and allowing slightly longer silence before a turn ends. Always test on a real speakerphone, since laptop tests hide the issue. Check the realtime API docs for current turn detection options.",
+  "sub": "OpenAI Community",
+  "comments": null,
+  "url": "https://community.openai.com/t/how-to-fix-a-realtime-agent-hearing-itself-on-the-phone-speaker/1413799",
+  "slug": "how-stop-voice-ai-agent-phone-call-hearing"
+ },
+ {
   "date": "2026-11-07",
   "id": "hn50385870",
   "q": "How can I spot AI deepfake scam ads and protect myself and my team?",
