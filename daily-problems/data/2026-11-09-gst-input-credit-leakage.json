@@ -1,0 +1,60 @@
+{
+  "slug": "2026-11-09-gst-input-credit-leakage",
+  "date": "2026-11-09",
+  "short": "GST input credit leakage",
+  "title": "Why do small businesses lose GST input tax credit when their suppliers don't file correctly?",
+  "industry": "Finance & Compliance",
+  "score": 78,
+  "summary": "A buyer pays GST to a supplier, the supplier files late or wrongly, and the buyer loses the credit. Here's \"Credit Guard\", a vendor-compliance watchdog one person could build with Claude in a weekend.",
+  "who": "GST-registered small manufacturers, traders and service firms who buy from many small vendors. Their input tax credit only shows up in GSTR-2B if each supplier uploads the invoice correctly and pays the tax, so one careless vendor can cost them real money.",
+  "facts": [
+    "**The law puts the supplier's default on the buyer.** Section 16(2)(c) of the CGST Act ties input credit to the supplier actually paying the tax. In Bhandari Scrap Traders, the Supreme Court endorsed the view that the buyer's good faith cannot replace that payment ([Grant Thornton Bharat](https://www.grantthornton.in/insights/articles/suppliers-tax-default-changing-contours-itc-entitlement/)).",
+    "**The leak is material.** A chartered accountant quoted by Business Today estimates that missed or blocked credit can burn through 2-5% of annual turnover when vendor compliance is not tracked. Treat this as an expert estimate, not a measured figure ([Business Today](https://www.businesstoday.in/personal-finance/tax/story/gst-compliance-is-killing-profits-taxes-arent-a-problem-execution-is-expert-warns-small-businesses-518113-2026-02-26)).",
+    "**Claiming unmatched credit triggers notices.** If a supplier fails to upload an invoice in GSTR-1, the credit is missing from the buyer's GSTR-2B, and claiming it anyway can lead to reversal, interest and reconciliation demands ([Wisebooks](https://wisebooks.in/blog/why-msmes-are-receiving-more-gst-notices-in-2026)).",
+    "**Market size signal.** The GST taxpayer base crossed 1.67 crore at the nine-year mark ([A2Z Taxcorp](https://a2ztaxcorp.net/nine-years-of-gst-taxpayer-base-crosses-1-67-crore-as-indias-digital-indirect-tax-ecosystem-scales-new-milestones-report-highlights-expansion-of-taxpayer-base-192-27-crore-returns-filed-an/))."
+  ],
+  "players": "Reconciliation tools exist. Clear (ClearTax), Tally and others match purchase registers with GSTR-2B, and GSTHero offers supplier filing-status checks ([GSTHero](https://gsthero.com/blog/gst-defaulter-identify-your-gst-defaulting-suppliers-with-easy-steps/)). Most are built for accountants at month-end. We found less aimed at the owner who needs to act before paying the next vendor bill: hold the payment, chase the vendor, or switch suppliers.",
+  "pitch": "\"Credit Guard\" watches every supplier's GST filing, tells the owner which unpaid bills carry credit at risk, and drafts the vendor follow-up before money leaves the account.",
+  "features": [
+    ["2B gap finder", "Upload the purchase register and GSTR-2B; it lists invoices missing or mismatched, with the rupee credit at risk for each vendor."],
+    ["Vendor scorecard", "Tracks each supplier's filing record month by month and flags repeat offenders."],
+    ["Pay-or-hold advice", "Before a payment run, it marks bills where withholding the GST portion until the invoice appears is reasonable under the contract."],
+    ["Follow-up drafter", "Writes a polite WhatsApp or email to the vendor, in English or Hindi, naming the exact invoices to upload."],
+    ["CA pack", "Exports a clean reconciliation summary for the accountant at month-end."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, the reconciliation engine, tests and deployment."],
+    ["Claude API in the product", "Reads messy purchase registers and vendor invoices into structured rows and drafts vendor follow-ups."],
+    ["Skills", "A \"gst-itc-rules\" skill holds Section 16 conditions, 2B timelines and the follow-up tone guide so outputs stay consistent."],
+    ["Artifacts", "A clickable demo of the credit-at-risk dashboard to show owners and CAs before the app exists."],
+    ["Connectors (MCP)", "Google Drive and Gmail during pilots to pull registers and send drafts for review."],
+    ["Scheduled tasks", "A monthly check after the GSTR-1 due date that re-runs the gap finder and nudges vendors."]
+  ],
+  "plan": [
+    ["Saturday morning — data", "Get three months of anonymised purchase registers and GSTR-2B exports from two businesses. Hand-mark the true mismatches as a test set."],
+    ["Saturday midday — prototype", "Ask Claude for an artifact showing the credit-at-risk dashboard. Show it to three owners and one CA."],
+    ["Saturday afternoon — matcher", "Use the starter prompt in Claude Code to build upload, parsing and deterministic matching on GSTIN, invoice number, date and value."],
+    ["Saturday evening — scorecard", "Add the vendor scorecard and rupee totals, with unit tests on every calculation."],
+    ["Sunday morning — drafts", "Add the follow-up drafter and pay-or-hold flags."],
+    ["Sunday afternoon — ship", "Deploy to Vercel with login, encrypted uploads and auto-delete. Add an \"information only, check with your CA\" notice."],
+    ["Sunday evening — pilot", "Onboard five businesses through one CA firm and schedule the monthly re-check."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"Credit Guard\" for Indian small businesses.\n\nFlow: user uploads a purchase register (Excel/CSV, any column layout) and a GSTR-2B export (JSON or Excel)\n-> Claude API maps the register columns to a fixed schema (supplier_gstin, invoice_no, invoice_date, taxable_value, igst, cgst, sgst)\n-> deterministic code matches rows to 2B on GSTIN + normalised invoice number, with value tolerance of Rs 1\n-> app shows missing, mismatched and matched invoices, credit at risk per vendor, and a vendor scorecard across months\n-> user selects a vendor and Claude drafts a follow-up message (English/Hindi, WhatsApp or email) listing the exact invoices.\n\nRules:\n- All matching and money totals are plain code with unit tests, never model output.\n- Keep GST rules in /rules/itc.md and load them into prompts; do not cite anything outside that file.\n- Never tell the user to claim credit that is not in 2B.\n- Show \"Information only, check with your CA\" on every screen. Delete uploads after 30 days.\n\nStart by proposing the schema and file structure, then build the upload and matching step first, with a test script over /fixtures.",
+  "pricing": [
+    "Free: one month's reconciliation for up to 50 invoices.",
+    "Rs 799 a month: unlimited invoices, vendor scorecard and follow-ups.",
+    "Rs 4,999 a month for CA firms managing up to 25 clients.",
+    "Pricing is a suggestion and has not been validated."
+  ],
+  "risk": "Owners may not act on the alerts. Many leave GST entirely to their CA and may not hold payments or chase vendors even when shown the rupees at risk.",
+  "test": "Run 10 businesses' last three months through a manual version using Claude. Show each owner their credit-at-risk number and count how many chase a vendor or hold a payment within two weeks. A reasonable bar: at least 4 of 10. If owners won't act, sell to CA firms instead.",
+  "caution": "Input tax credit rules and court positions are still evolving. Withholding payments must follow the contract. Every output should be reviewed by a chartered accountant.",
+  "sources": [
+    ["Grant Thornton Bharat: Supplier's tax default and ITC under Section 16(2)(c)", "https://www.grantthornton.in/insights/articles/suppliers-tax-default-changing-contours-itc-entitlement/"],
+    ["Business Today: GST compliance is killing profits", "https://www.businesstoday.in/personal-finance/tax/story/gst-compliance-is-killing-profits-taxes-arent-a-problem-execution-is-expert-warns-small-businesses-518113-2026-02-26"],
+    ["Wisebooks: Why MSMEs are receiving more GST notices in 2026", "https://wisebooks.in/blog/why-msmes-are-receiving-more-gst-notices-in-2026"],
+    ["A2Z Taxcorp: GST taxpayer base crosses 1.67 crore", "https://a2ztaxcorp.net/nine-years-of-gst-taxpayer-base-crosses-1-67-crore-as-indias-digital-indirect-tax-ecosystem-scales-new-milestones-report-highlights-expansion-of-taxpayer-base-192-27-crore-returns-filed-an/"],
+    ["GSTHero: Identify GST defaulting suppliers", "https://gsthero.com/blog/gst-defaulter-identify-your-gst-defaulting-suppliers-with-easy-steps/"],
+    ["efiletax: GST invoice matching woes for small businesses", "https://www.efiletax.in/blog/gst-invoice-matching-woes-why-small-businesses-are-struggling"]
+  ]
+}
