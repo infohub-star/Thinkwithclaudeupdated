@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-09",
+  "id": "hn50410107",
+  "q": "When is it worth switching to a different AI assistant or tool?",
+  "a": "Switch only for a concrete reason, not because a new tool is trending. List three to five tasks you really do every week, such as drafting emails, summarising reports or checking a spreadsheet. Run the same prompts in both tools and compare three things: time to a usable result, accuracy, and how much editing you had to do.\n\nAlso count the switching costs: saved prompts, team habits, shared workflows and what the company allows. Check how each tool handles your data and what it costs at your usage level in its current docs. Run both side by side for a week before committing, and keep a second tool as a backup in case one is down or changes.",
+  "sub": "Hacker News",
+  "comments": 431,
+  "url": "https://news.ycombinator.com/item?id=50410107",
+  "slug": "when-worth-switching-different-ai-assistant-tool"
+ },
+ {
+  "date": "2026-11-09",
+  "id": "hn50415628",
+  "q": "How should I use AI at work if my company limits which tools I can use?",
+  "a": "Start by reading the written AI policy, or ask IT or compliance for it. Restrictions usually come from data protection, audit needs and the risk of wrong output in regulated work, not from distrust of you.\n\nUse only approved tools for anything involving client, financial or personal data. For everything else, use placeholders and anonymised examples, and never paste confidential material into an unapproved tool. Keep a human check on every output that leaves your desk. If the rules block something useful, propose a low-risk use case to your manager, such as summarising public documents or drafting internal templates, and ask for a pilot.",
+  "sub": "Hacker News",
+  "comments": 356,
+  "url": "https://news.ycombinator.com/item?id=50415628",
+  "slug": "how-use-ai-work-company-limits-tools-use"
+ },
+ {
+  "date": "2026-11-09",
+  "id": "hn50416363",
+  "q": "How can I avoid mental fatigue from using AI tools all day?",
+  "a": "AI fatigue often comes from constantly reviewing output and switching context. Reduce it by changing how you work. Do your own thinking first: write a rough outline or decision before you prompt, so the AI supports your reasoning instead of replacing it.\n\nBatch AI work into focused blocks rather than checking it all day. Keep one task per conversation, ask for short answers, and stop when the result is good enough rather than polishing endlessly. Take real breaks away from screens, and do some tasks without AI so your own skills stay sharp. If you feel drained after a session, you are probably reviewing too much output at once.",
+  "sub": "Hacker News",
+  "comments": 126,
+  "url": "https://news.ycombinator.com/item?id=50416363",
+  "slug": "how-avoid-mental-fatigue-using-ai-tools-all"
+ },
+ {
+  "date": "2026-11-09",
+  "id": "oai1414208",
+  "q": "Why does my AI chat say its memory is full after only a few messages?",
+  "a": "A chat that looks short can still be large. The context window counts everything the model has to read: pasted documents, attached files, earlier replies, hidden system instructions and any tool output. One long PDF can use most of it.\n\nFixes: start a new chat for each task, and carry over only a short summary of decisions made so far. Paste only the relevant sections of a document instead of the whole file. Ask for concise replies, and avoid re-uploading the same files. Limits differ by tool and plan, so check the current docs for yours.",
+  "sub": "OpenAI Community",
+  "comments": 6,
+  "url": "https://community.openai.com/t/context-window-full-after-short-conversations/1414208",
+  "slug": "why-ai-chat-say-memory-full-after-only"
+ },
+ {
+  "date": "2026-11-09",
+  "id": "oai1414045",
+  "q": "How do I choose which AI model to use for a given task?",
+  "a": "Match the model to the job. Faster, lighter models are usually fine for routine work like rewriting, summarising, formatting and brainstorming. Stronger reasoning models are better for multi-step analysis, tricky code, planning and anything where a mistake is costly.\n\nDo not trust general rankings. Take two or three real examples from your own work, run them on different models, and compare quality and speed. Write down what works in a short note so you stop guessing. Available models and picker options change by plan and over time, so check the tool's current docs when something seems to be missing.",
+  "sub": "OpenAI Community",
+  "comments": 3,
+  "url": "https://community.openai.com/t/has-named-model-selection-been-removed-from-chatgpt-plus/1414045",
+  "slug": "how-choose-ai-model-use-given-task"
+ },
+ {
   "date": "2026-11-08",
   "id": "hn50407882",
   "q": "How do I stop an AI coding assistant from leaking passwords into my code or public repos?",

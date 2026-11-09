@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [When is it worth switching to a different AI assistant or tool?](https://www.thinkwithclaude.com/ai-questions/when-worth-switching-different-ai-assistant-tool/)
+- [How should I use AI at work if my company limits which tools I can use?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-work-company-limits-tools-use/)
+- [How can I avoid mental fatigue from using AI tools all day?](https://www.thinkwithclaude.com/ai-questions/how-avoid-mental-fatigue-using-ai-tools-all/)
+- [Why does my AI chat say its memory is full after only a few messages?](https://www.thinkwithclaude.com/ai-questions/why-ai-chat-say-memory-full-after-only/)
+- [How do I choose which AI model to use for a given task?](https://www.thinkwithclaude.com/ai-questions/how-choose-ai-model-use-given-task/)
 - [How do I stop an AI coding assistant from leaking passwords into my code or public repos?](https://www.thinkwithclaude.com/ai-questions/how-stop-ai-coding-assistant-leaking-passwords-code/)
 - [How do I choose between closed and open AI models when both cost and quality matter?](https://www.thinkwithclaude.com/ai-questions/how-choose-between-closed-open-ai-models-both/)
 - [Is it healthy to use ChatGPT as a companion, or should it stay a work tool?](https://www.thinkwithclaude.com/ai-questions/is-healthy-use-chatgpt-as-companion-stay-work/)
