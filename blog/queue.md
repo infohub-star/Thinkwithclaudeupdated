@@ -13,8 +13,6 @@ Add items in either form:
 
 ## Up next
 
-- Topic: What to Delegate to an AI Assistant, and What Not To
-  Notes: A safe way to think about giving access to calendars and messages. Keep a person in control of important decisions.
 - Topic: Turn Your Research into Slides and a Podcast with NotebookLM
   Notes: A quick workflow for repurposing reports and notes. Check current features before writing.
 - Topic: Get Key Insights from Long Videos Without Watching Them All
@@ -26,6 +24,7 @@ Add items in either form:
 
 ## Published
 
+- 2026-11-10: What to Delegate to an AI Assistant, and What Not To - https://www.thinkwithclaude.com/blog/what-to-delegate-to-ai-assistant/
 - 2026-11-09: Can One AI Agent Handle Your Team's Marketing Work? - https://www.thinkwithclaude.com/blog/one-ai-agent-for-marketing/
 - 2026-11-08: How to Test a Business Idea with AI Before Spending Money - https://www.thinkwithclaude.com/blog/test-business-idea-with-ai/
 - 2026-11-07: Will AI Take Your Job? A Practical Plan for Professionals - https://www.thinkwithclaude.com/blog/will-ai-take-your-job/
