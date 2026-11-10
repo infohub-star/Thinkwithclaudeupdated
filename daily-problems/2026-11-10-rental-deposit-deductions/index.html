@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why do tenants in Indian cities lose large parts of their security deposit when they move out? | ThinkwithClaude</title>
+<meta name="description" content="Tenants hand over months of rent as a deposit and often get a fraction back after vague repair charges. Here&#x27;s &quot;Fair Exit&quot;, a move-in and move-out evidence app one person could build with Claude in a weekend.">
+<meta name="author" content="Shantanu Anand">
+<link rel="canonical" href="https://www.thinkwithclaude.com/daily-problems/2026-11-10-rental-deposit-deductions/">
+<meta property="og:type" content="article"><meta property="og:title" content="Why do tenants in Indian cities lose large parts of their security deposit when they move out? | ThinkwithClaude"><meta property="og:description" content="Tenants hand over months of rent as a deposit and often get a fraction back after vague repair charges. Here&#x27;s &quot;Fair Exit&quot;, a move-in and move-out evidence app one person could build with Claude in a weekend."><meta property="og:url" content="https://www.thinkwithclaude.com/daily-problems/2026-11-10-rental-deposit-deductions/">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Why do tenants in Indian cities lose large parts of their security deposit when they move out? | ThinkwithClaude"><meta name="twitter:description" content="Tenants hand over months of rent as a deposit and often get a fraction back after vague repair charges. Here&#x27;s &quot;Fair Exit&quot;, a move-in and move-out evidence app one person could build with Claude in a weekend.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyn121dz14");</script>
+<style>*{box-sizing:border-box}
+body{margin:0;background:#F7F9FC;color:#1A1A1A;font:17px/1.75 'Inter',sans-serif}
+a{color:#004AAD}
+.top{background:#fff;border-bottom:1px solid rgba(15,23,42,.08)}
+.top-in{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0B1B33;font:700 16px 'DM Sans',sans-serif}
+.mark{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#004AAD,#F5B301);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+.navl{display:flex;gap:18px;align-items:center;font-size:14px}.navl a{text-decoration:none;color:#333}
+.cta{background:#004AAD;color:#fff !important;padding:9px 16px;border-radius:999px;font-weight:600}
+.w{max-width:780px;margin:0 auto;padding:48px 20px 64px}
+.kick{font:700 12px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#004AAD}.kick a{text-decoration:none}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'DM Sans',sans-serif;color:#0B1B33;margin:10px 0 14px}
+.lead{font-size:19px;color:#2A2F38;margin:0 0 18px}
+.by{font-size:13.5px;color:#5B6472;margin:0 0 22px}.by a{text-decoration:none;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.chip{font-size:13px;font-weight:600;color:#004AAD;background:#EEF4FF;border-radius:999px;padding:6px 12px}
+.chip.score{background:#FFF4D6;color:#8A5A00}
+article h2{font:700 26px/1.25 'DM Sans',sans-serif;color:#0B1B33;margin:44px 0 12px}
+article h3{font:700 19px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin:26px 0 8px}
+article p,article li{color:#2A2F38}article li{margin:8px 0}
+.pitch{margin:16px 0;padding:16px 20px;background:#EEF4FF;border-left:4px solid #004AAD;border-radius:10px;font-size:18px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:14px 0}
+.tile{background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:14px;padding:16px}
+.tile b{display:block;font:700 16px 'DM Sans',sans-serif;color:#0B1B33;margin-bottom:4px}.tile span{font-size:15px;line-height:1.6;color:#4A4A4A}
+ol.plan{padding-left:20px}ol.plan b{color:#0B1B33}
+.pwrap{position:relative}
+pre{background:#0B1B33;color:#E8EEF8;border-radius:12px;padding:18px;overflow:auto;font:14px/1.6 ui-monospace,Menlo,monospace;white-space:pre-wrap}
+.copy{position:absolute;top:10px;right:10px;background:#fff;color:#004AAD;border:0;border-radius:8px;padding:6px 12px;font:600 13px 'Inter',sans-serif;cursor:pointer}
+.warn{background:#FFF8E6;border:1px solid #F5D78A;border-radius:12px;padding:14px 16px;font-size:15px}
+.src{font-size:15px}.note{font-size:13.5px;color:#5B6472}
+.list{display:grid;gap:16px}
+.card{display:block;background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:16px;padding:20px;text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:#004AAD;box-shadow:0 8px 24px rgba(0,74,173,.10)}
+.card b{display:block;font:700 20px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin-bottom:6px}
+.card span{color:#4A4A4A;font-size:15px;line-height:1.6}
+.card small{display:block;color:#6B6B6B;font-size:13px;margin-top:10px}
+.box{margin-top:44px;background:#0B1B33;color:#fff;border-radius:18px;padding:26px}
+.box h2{color:#fff;font:700 22px 'DM Sans',sans-serif;margin:0 0 8px}.box p{color:#C9D3E3;margin:0 0 16px;font-size:16px}
+.btn{display:inline-block;background:#fff;color:#004AAD;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:10px;margin:0 8px 8px 0}
+.btn.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.foot{text-align:center;color:#6B6B6B;font-size:13px;padding:24px}
+@media(max-width:640px){.navl a:not(.cta){display:none}}</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Why do tenants in Indian cities lose large parts of their security deposit when they move out?", "description": "Tenants hand over months of rent as a deposit and often get a fraction back after vague repair charges. Here's \"Fair Exit\", a move-in and move-out evidence app one person could build with Claude in a weekend.", "datePublished": "2026-11-10T09:00:00+05:30", "author": {"@type": "Person", "name": "Shantanu Anand", "jobTitle": "AI Trainer & Consultant", "url": "https://www.thinkwithclaude.com/", "sameAs": ["https://www.linkedin.com/in/claudewithshantanu/"]}, "publisher": {"@type": "Organization", "name": "ThinkwithClaude", "url": "https://www.thinkwithclaude.com/"}, "mainEntityOfPage": "https://www.thinkwithclaude.com/daily-problems/2026-11-10-rental-deposit-deductions/", "about": "Real Estate & Housing"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thinkwithclaude.com/"}, {"@type": "ListItem", "position": 2, "name": "Daily Problems", "item": "https://www.thinkwithclaude.com/daily-problems/"}, {"@type": "ListItem", "position": 3, "name": "Why do tenants in Indian cities lose large parts of their security deposit when they move out?", "item": "https://www.thinkwithclaude.com/daily-problems/2026-11-10-rental-deposit-deductions/"}]}</script>
+</head><body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/ai-questions/">AI Q&amp;A</a><a href="/trending-ai-tools/">AI Tools Today</a><a href="/daily-problems/">Daily Problems</a><a class="cta" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book free call</a></nav>
+</div></header>
+<main class="w">
+<div class="kick"><a href="/daily-problems/">Daily Problems</a> · 10 November 2026</div>
+<h1>Why do tenants in Indian cities lose large parts of their security deposit when they move out?</h1>
+<p class="lead">Tenants hand over months of rent as a deposit and often get a fraction back after vague repair charges. Here&#x27;s &quot;Fair Exit&quot;, a move-in and move-out evidence app one person could build with Claude in a weekend.</p>
+<p class="by">Written by <a href="https://www.linkedin.com/in/claudewithshantanu/" target="_blank" rel="noopener">Shantanu Anand</a>, AI Trainer &amp; Consultant · 10 November 2026</p>
+<div class="chips"><span class="chip">Real Estate &amp; Housing</span><span class="chip score">Itch Score 76</span><span class="chip">Build time: a weekend</span></div>
+<article>
+<h2>The problem</h2>
+<p><b>Who feels it:</b> Salaried renters in Bengaluru, Mumbai, Pune and other metros who pay large deposits, and the small landlords who want a clean, defensible way to settle them. Disputes usually come down to the condition of the flat on the first day, which nobody recorded properly.</p>
+<ul><li><b>The money at stake is large.</b> About Rs 1.26 lakh crore sits in rental security deposits across six major metros, including Rs 31,628 crore in Bengaluru, according to a study cited by Business Today (<a href="https://www.businesstoday.in/personal-finance/story/rs1-26-lakh-crore-in-rental-deposits-how-verified-data-could-transform-indias-housing-market-553799-2026-09-08" target="_blank" rel="noopener nofollow">Business Today</a>).</li><li><b>The model law sets clear rules.</b> The Model Tenancy Act caps residential deposits at two months&#x27; rent and expects the deposit back on move-out, minus legitimate dues. Tamil Nadu, Uttar Pradesh, Andhra Pradesh and Assam adopted it early, and Maharashtra and Karnataka have aligned their rules (<a href="https://www.businesstoday.in/personal-finance/real-estate/story/model-tenancy-act-how-new-security-deposits-rent-agreement-entry-exit-rules-will-benefit-tenants-landlords-504839-2025-12-03" target="_blank" rel="noopener nofollow">Business Today</a>).</li><li><b>Deductions can swallow most of the deposit.</b> One Bengaluru tenant reported getting back Rs 19,604 of a Rs 1 lakh deposit after charges for painting, polishing, carpentry and cleaning. The account is the tenant&#x27;s own; the landlord&#x27;s side was not reported (<a href="https://www.businesstoday.in/latest/trends/story/rs1-lakh-deposit-rs19604-returned-bengaluru-tenant-alleges-massive-deduction-by-landlord-542774-2026-07-14" target="_blank" rel="noopener nofollow">Business Today</a>).</li><li><b>It is a repeated pattern, not one story.</b> Other reports describe Rs 52,000 kept from a Rs 70,000 deposit and Rs 51,000 cut for repainting (<a href="https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-deposit-scam-tenant-says-landlord-deducted-rs-52000-from-security-deposit-after-vacating-3938479" target="_blank" rel="noopener nofollow">Deccan Herald</a>, <a href="https://www.freepressjournal.in/viral/bengaluru-tenant-alleges-owner-cut-51000-security-deposit-to-repaint-flat-reddit-post-sparks-debate" target="_blank" rel="noopener nofollow">Free Press Journal</a>).</li><li><b>Where this came from:</b> Repeated renter discussions on Reddit city communities about deposit deductions, covered by <a href="https://www.businesstoday.in/latest/trends/story/birthday-buddy-to-un-level-auditor-bengaluru-tenants-exit-shock-over-rs20k-cuts-523343-2026-03-31" target="_blank" rel="noopener nofollow">Business Today</a>, <a href="https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-deposit-scam-tenant-says-landlord-deducted-rs-52000-from-security-deposit-after-vacating-3938479" target="_blank" rel="noopener nofollow">Deccan Herald</a> and <a href="https://www.freepressjournal.in/viral/bengaluru-tenant-alleges-owner-cut-51000-security-deposit-to-repaint-flat-reddit-post-sparks-debate" target="_blank" rel="noopener nofollow">Free Press Journal</a>, plus legal forums such as <a href="https://lawrato.com/landlordtenant-legal-advice/landlord-not-returning-security-deposit-and-ignoring-calls-29806" target="_blank" rel="noopener nofollow">LawRato</a>.</li></ul>
+<h3>Who's already working on it</h3>
+<p>Rental platforms and rent-agreement services handle listings and paperwork, and firms such as RentenPe work on verified rental data (<a href="https://www.businesstoday.in/personal-finance/story/rs1-26-lakh-crore-in-rental-deposits-how-verified-data-could-transform-indias-housing-market-553799-2026-09-08" target="_blank" rel="noopener nofollow">Business Today</a>). Legal forums answer disputes after they happen. The gap is a neutral, timestamped record of the flat&#x27;s condition plus an agreed deduction rule-book, created on day one and used to settle on the last day.</p>
+<h2>The solution idea</h2>
+<p class="pitch">&quot;Fair Exit&quot; records a flat&#x27;s condition room by room at move-in, compares it with move-out, and produces a fair, itemised deposit settlement both sides can sign.</p>
+<div class="grid"><div class="tile"><b>Guided move-in walkthrough</b><span>Room-by-room photo and video checklist with timestamps, signed by both tenant and landlord.</span></div><div class="tile"><b>Agreed deduction rules</b><span>Turns the rent agreement into plain rules: what counts as normal wear, who pays for painting, and fair rates.</span></div><div class="tile"><b>Move-out comparison</b><span>Matches move-out photos against move-in ones and flags genuine new damage.</span></div><div class="tile"><b>Settlement statement</b><span>Drafts an itemised refund with reasons and evidence, plus a polite notice if the refund is delayed.</span></div><div class="tile"><b>Deposit reminders</b><span>Reminds both sides of the notice period, inspection date and refund date.</span></div></div>
+<h2>How Claude builds it</h2>
+<h3>Which Claude capabilities do the work</h3>
+<div class="grid"><div class="tile"><b>Claude Code</b><span>Builds the mobile-friendly web app, storage, signing flow, tests and deployment.</span></div><div class="tile"><b>Claude API in the product</b><span>Reads the rent agreement, compares move-in and move-out photos, and drafts the settlement statement.</span></div><div class="tile"><b>Skills</b><span>A &quot;tenancy-deposit-rules&quot; skill holds Model Tenancy Act points and state differences, reviewed by a lawyer.</span></div><div class="tile"><b>Artifacts</b><span>Quick clickable prototypes of the walkthrough and settlement screens to show renters.</span></div><div class="tile"><b>Connectors / MCP</b><span>Email and WhatsApp-style messaging connectors to send signed reports to both parties.</span></div><div class="tile"><b>Scheduled tasks</b><span>Daily job that sends notice-period, inspection and refund-due reminders.</span></div></div>
+<h3>Weekend build plan</h3>
+<ol class="plan"><li><b>Saturday morning — evidence:</b> Collect 10 real deduction sheets and rent agreements (with consent, anonymised). List the most common disputed items.</li><li><b>Saturday midday — prototype:</b> Ask Claude for an artifact of the walkthrough and settlement screens. Show it to five renters and two landlords.</li><li><b>Saturday afternoon — scaffold:</b> Use Claude Code to set up the app, login by phone, photo upload and the room checklist.</li><li><b>Saturday evening — agreement reader:</b> Use the Claude API to turn an uploaded rent agreement into a list of deposit and deduction rules.</li><li><b>Sunday morning — comparison:</b> Build the move-in versus move-out photo comparison and a reviewer screen to confirm each flagged item.</li><li><b>Sunday midday — settlement:</b> Generate the itemised refund statement and two-party e-sign step.</li><li><b>Sunday afternoon — reminders:</b> Add scheduled reminders and the delayed-refund notice draft.</li><li><b>Sunday evening — launch:</b> Deploy, then offer free walkthroughs to 20 renters moving in this month.</li></ol>
+<h3>Starter prompt for Claude Code</h3>
+<div class="pwrap"><button class="copy" type="button">Copy</button><pre>Build a mobile-first Next.js + TypeScript + Postgres web app called &quot;Fair Exit&quot; for Indian renters and landlords.
+
+Flow: a tenancy is created with tenant, landlord, rent, deposit and dates -&gt; both parties log in by phone OTP -&gt; move-in walkthrough: for each room (living, bedroom 1..n, kitchen, bathrooms, balcony) capture photos with server timestamps and notes -&gt; both parties sign the move-in report.
+
+Upload the rent agreement (PDF) -&gt; call the Claude API to extract deposit amount, notice period, painting/cleaning clauses and any deduction rules into JSON; show it for both parties to confirm.
+
+At move-out, repeat the walkthrough -&gt; call the Claude API with paired move-in/move-out photos per room and return a list of possible new damage with confidence; a human reviewer confirms or rejects each item.
+
+Generate an itemised settlement PDF: deposit, confirmed deductions with photo evidence and agreed rate, refund due, and due date. Both parties e-sign.
+
+Add a daily scheduled job for notice-period, inspection and refund-due reminders. Include seed data, unit tests for the settlement calculation, and a README. Never present outputs as legal advice.</pre></div>
+<h2>Monetisation</h2>
+<p class="note">Suggested pricing, not yet validated.</p>
+<ul><li>Free: one move-in walkthrough report.</li><li>Rs 499 per tenancy: move-in, move-out comparison and signed settlement.</li><li>Rs 2,999 a month for property managers with up to 25 flats.</li><li>Pricing is a suggestion and has not been validated.</li></ul>
+<h2>Riskiest assumption, and how to test it</h2>
+<p><b>Assumption:</b> Landlords may refuse to sign a joint move-in report, because an open-ended deduction gives them leverage.</p>
+<p><b>Test first:</b> Offer 20 renters moving in this month a free walkthrough and count how many landlords sign it. A reasonable bar: at least 10 of 20. If landlords will not sign, pivot to selling to property managers and co-living operators, who want fewer disputes.</p>
+<p class="warn">Tenancy law differs by state, and the Model Tenancy Act applies only where adopted. The app should record evidence and draft statements, not give legal advice, and photos must be stored with both parties&#x27; consent.</p>
+</article><h2 style="font:700 24px DM Sans,sans-serif;color:#0B1B33;margin:44px 0 10px">More daily problems</h2><ul><li><a href="/daily-problems/2026-11-09-gst-input-credit-leakage/">Why do small businesses lose GST input tax credit when their suppliers don&#x27;t file correctly?</a></li><li><a href="/daily-problems/2026-11-08-factory-repair-technicians/">Why do factory owners wait days for industrial repair technicians?</a></li><li><a href="/daily-problems/2026-11-07-outbound-pickup-reliability/">Why can&#x27;t manufacturers rely on guaranteed, accountable pickup logistics for outbound deliveries?</a></li><li><a href="/daily-problems/2026-11-06-sme-payment-terms/">Why can&#x27;t SMEs negotiate favorable payment terms with large buyers?</a></li></ul><p style="margin-top:22px"><a href="/daily-problems/">← All daily problems</a></p>
+<div class="box">
+  <h2>Want to build things like this with Claude?</h2>
+  <p>Hands-on Claude training for founders, professionals and teams, online or in person anywhere in India. Get the training details, or book a free 20-minute call.</p>
+  <a class="btn" href="/#inquiry">Get training details</a><a class="btn alt" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book a free call</a>
+</div>
+</main>
+<div class="foot">© 2026 ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
+<script>document.querySelectorAll('.copy').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.nextElementSibling.innerText).then(()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)})})</script>
+</body></html>

@@ -1,0 +1,141 @@
+{
+  "slug": "2026-11-10-rental-deposit-deductions",
+  "date": "2026-11-10",
+  "short": "Rental deposit deductions",
+  "title": "Why do tenants in Indian cities lose large parts of their security deposit when they move out?",
+  "industry": "Real Estate & Housing",
+  "score": 76,
+  "summary": "Tenants hand over months of rent as a deposit and often get a fraction back after vague repair charges. Here's \"Fair Exit\", a move-in and move-out evidence app one person could build with Claude in a weekend.",
+  "who": "Salaried renters in Bengaluru, Mumbai, Pune and other metros who pay large deposits, and the small landlords who want a clean, defensible way to settle them. Disputes usually come down to the condition of the flat on the first day, which nobody recorded properly.",
+  "facts": [
+    "**The money at stake is large.** About Rs 1.26 lakh crore sits in rental security deposits across six major metros, including Rs 31,628 crore in Bengaluru, according to a study cited by Business Today ([Business Today](https://www.businesstoday.in/personal-finance/story/rs1-26-lakh-crore-in-rental-deposits-how-verified-data-could-transform-indias-housing-market-553799-2026-09-08)).",
+    "**The model law sets clear rules.** The Model Tenancy Act caps residential deposits at two months' rent and expects the deposit back on move-out, minus legitimate dues. Tamil Nadu, Uttar Pradesh, Andhra Pradesh and Assam adopted it early, and Maharashtra and Karnataka have aligned their rules ([Business Today](https://www.businesstoday.in/personal-finance/real-estate/story/model-tenancy-act-how-new-security-deposits-rent-agreement-entry-exit-rules-will-benefit-tenants-landlords-504839-2025-12-03)).",
+    "**Deductions can swallow most of the deposit.** One Bengaluru tenant reported getting back Rs 19,604 of a Rs 1 lakh deposit after charges for painting, polishing, carpentry and cleaning. The account is the tenant's own; the landlord's side was not reported ([Business Today](https://www.businesstoday.in/latest/trends/story/rs1-lakh-deposit-rs19604-returned-bengaluru-tenant-alleges-massive-deduction-by-landlord-542774-2026-07-14)).",
+    "**It is a repeated pattern, not one story.** Other reports describe Rs 52,000 kept from a Rs 70,000 deposit and Rs 51,000 cut for repainting ([Deccan Herald](https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-deposit-scam-tenant-says-landlord-deducted-rs-52000-from-security-deposit-after-vacating-3938479), [Free Press Journal](https://www.freepressjournal.in/viral/bengaluru-tenant-alleges-owner-cut-51000-security-deposit-to-repaint-flat-reddit-post-sparks-debate)).",
+    "**Where this came from:** Repeated renter discussions on Reddit city communities about deposit deductions, covered by [Business Today](https://www.businesstoday.in/latest/trends/story/birthday-buddy-to-un-level-auditor-bengaluru-tenants-exit-shock-over-rs20k-cuts-523343-2026-03-31), [Deccan Herald](https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-deposit-scam-tenant-says-landlord-deducted-rs-52000-from-security-deposit-after-vacating-3938479) and [Free Press Journal](https://www.freepressjournal.in/viral/bengaluru-tenant-alleges-owner-cut-51000-security-deposit-to-repaint-flat-reddit-post-sparks-debate), plus legal forums such as [LawRato](https://lawrato.com/landlordtenant-legal-advice/landlord-not-returning-security-deposit-and-ignoring-calls-29806)."
+  ],
+  "players": "Rental platforms and rent-agreement services handle listings and paperwork, and firms such as RentenPe work on verified rental data ([Business Today](https://www.businesstoday.in/personal-finance/story/rs1-26-lakh-crore-in-rental-deposits-how-verified-data-could-transform-indias-housing-market-553799-2026-09-08)). Legal forums answer disputes after they happen. The gap is a neutral, timestamped record of the flat's condition plus an agreed deduction rule-book, created on day one and used to settle on the last day.",
+  "pitch": "\"Fair Exit\" records a flat's condition room by room at move-in, compares it with move-out, and produces a fair, itemised deposit settlement both sides can sign.",
+  "features": [
+    [
+      "Guided move-in walkthrough",
+      "Room-by-room photo and video checklist with timestamps, signed by both tenant and landlord."
+    ],
+    [
+      "Agreed deduction rules",
+      "Turns the rent agreement into plain rules: what counts as normal wear, who pays for painting, and fair rates."
+    ],
+    [
+      "Move-out comparison",
+      "Matches move-out photos against move-in ones and flags genuine new damage."
+    ],
+    [
+      "Settlement statement",
+      "Drafts an itemised refund with reasons and evidence, plus a polite notice if the refund is delayed."
+    ],
+    [
+      "Deposit reminders",
+      "Reminds both sides of the notice period, inspection date and refund date."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the mobile-friendly web app, storage, signing flow, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Reads the rent agreement, compares move-in and move-out photos, and drafts the settlement statement."
+    ],
+    [
+      "Skills",
+      "A \"tenancy-deposit-rules\" skill holds Model Tenancy Act points and state differences, reviewed by a lawyer."
+    ],
+    [
+      "Artifacts",
+      "Quick clickable prototypes of the walkthrough and settlement screens to show renters."
+    ],
+    [
+      "Connectors / MCP",
+      "Email and WhatsApp-style messaging connectors to send signed reports to both parties."
+    ],
+    [
+      "Scheduled tasks",
+      "Daily job that sends notice-period, inspection and refund-due reminders."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning — evidence",
+      "Collect 10 real deduction sheets and rent agreements (with consent, anonymised). List the most common disputed items."
+    ],
+    [
+      "Saturday midday — prototype",
+      "Ask Claude for an artifact of the walkthrough and settlement screens. Show it to five renters and two landlords."
+    ],
+    [
+      "Saturday afternoon — scaffold",
+      "Use Claude Code to set up the app, login by phone, photo upload and the room checklist."
+    ],
+    [
+      "Saturday evening — agreement reader",
+      "Use the Claude API to turn an uploaded rent agreement into a list of deposit and deduction rules."
+    ],
+    [
+      "Sunday morning — comparison",
+      "Build the move-in versus move-out photo comparison and a reviewer screen to confirm each flagged item."
+    ],
+    [
+      "Sunday midday — settlement",
+      "Generate the itemised refund statement and two-party e-sign step."
+    ],
+    [
+      "Sunday afternoon — reminders",
+      "Add scheduled reminders and the delayed-refund notice draft."
+    ],
+    [
+      "Sunday evening — launch",
+      "Deploy, then offer free walkthroughs to 20 renters moving in this month."
+    ]
+  ],
+  "prompt": "Build a mobile-first Next.js + TypeScript + Postgres web app called \"Fair Exit\" for Indian renters and landlords.\n\nFlow: a tenancy is created with tenant, landlord, rent, deposit and dates -> both parties log in by phone OTP -> move-in walkthrough: for each room (living, bedroom 1..n, kitchen, bathrooms, balcony) capture photos with server timestamps and notes -> both parties sign the move-in report.\n\nUpload the rent agreement (PDF) -> call the Claude API to extract deposit amount, notice period, painting/cleaning clauses and any deduction rules into JSON; show it for both parties to confirm.\n\nAt move-out, repeat the walkthrough -> call the Claude API with paired move-in/move-out photos per room and return a list of possible new damage with confidence; a human reviewer confirms or rejects each item.\n\nGenerate an itemised settlement PDF: deposit, confirmed deductions with photo evidence and agreed rate, refund due, and due date. Both parties e-sign.\n\nAdd a daily scheduled job for notice-period, inspection and refund-due reminders. Include seed data, unit tests for the settlement calculation, and a README. Never present outputs as legal advice.",
+  "pricing": [
+    "Free: one move-in walkthrough report.",
+    "Rs 499 per tenancy: move-in, move-out comparison and signed settlement.",
+    "Rs 2,999 a month for property managers with up to 25 flats.",
+    "Pricing is a suggestion and has not been validated."
+  ],
+  "risk": "Landlords may refuse to sign a joint move-in report, because an open-ended deduction gives them leverage.",
+  "test": "Offer 20 renters moving in this month a free walkthrough and count how many landlords sign it. A reasonable bar: at least 10 of 20. If landlords will not sign, pivot to selling to property managers and co-living operators, who want fewer disputes.",
+  "caution": "Tenancy law differs by state, and the Model Tenancy Act applies only where adopted. The app should record evidence and draft statements, not give legal advice, and photos must be stored with both parties' consent.",
+  "sources": [
+    [
+      "Business Today: Rs 1.26 lakh crore in rental deposits",
+      "https://www.businesstoday.in/personal-finance/story/rs1-26-lakh-crore-in-rental-deposits-how-verified-data-could-transform-indias-housing-market-553799-2026-09-08"
+    ],
+    [
+      "Business Today: Model Tenancy Act deposit and exit rules",
+      "https://www.businesstoday.in/personal-finance/real-estate/story/model-tenancy-act-how-new-security-deposits-rent-agreement-entry-exit-rules-will-benefit-tenants-landlords-504839-2025-12-03"
+    ],
+    [
+      "Business Today: Rs 1 lakh deposit, Rs 19,604 returned",
+      "https://www.businesstoday.in/latest/trends/story/rs1-lakh-deposit-rs19604-returned-bengaluru-tenant-alleges-massive-deduction-by-landlord-542774-2026-07-14"
+    ],
+    [
+      "Deccan Herald: Rs 52,000 deducted from deposit",
+      "https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-deposit-scam-tenant-says-landlord-deducted-rs-52000-from-security-deposit-after-vacating-3938479"
+    ],
+    [
+      "Free Press Journal: Rs 51,000 cut to repaint flat",
+      "https://www.freepressjournal.in/viral/bengaluru-tenant-alleges-owner-cut-51000-security-deposit-to-repaint-flat-reddit-post-sparks-debate"
+    ],
+    [
+      "Business Today: Bengaluru tenants' exit shock",
+      "https://www.businesstoday.in/latest/trends/story/birthday-buddy-to-un-level-auditor-bengaluru-tenants-exit-shock-over-rs20k-cuts-523343-2026-03-31"
+    ],
+    [
+      "LawRato: Landlord not returning security deposit",
+      "https://lawrato.com/landlordtenant-legal-advice/landlord-not-returning-security-deposit-and-ignoring-calls-29806"
+    ]
+  ]
+}
