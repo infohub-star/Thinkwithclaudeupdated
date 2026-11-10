@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-10",
+  "id": "hn50431144",
+  "q": "Should a top leaderboard score decide which AI model my team uses for daily work?",
+  "a": "Treat a leaderboard score as a way to build a shortlist, not as a verdict. Benchmarks measure general tasks, while your work is specific: your documents, your tone, your tolerance for mistakes. The top-ranked model may be slower, costlier or weaker at your particular job.\n\nRun a small test of your own. Pick five to ten real tasks from last month, such as summarising a contract, drafting a client email or cleaning a messy spreadsheet. Run each on two or three models with the same prompt. Then score the outputs without looking at which model wrote them, judging accuracy, how much fixing they need and speed. Also check data privacy terms, current pricing and whether your company permits the tool. Repeat the test every few months, because rankings change often.",
+  "sub": "Hacker News",
+  "comments": 199,
+  "url": "https://news.ycombinator.com/item?id=50431144",
+  "slug": "should-top-leaderboard-score-decide-ai-model-team"
+ },
+ {
+  "date": "2026-11-10",
+  "id": "hn50433079",
+  "q": "How do we keep AI-written code understandable to the team that has to maintain it?",
+  "a": "Treat AI as a fast drafter, not as the owner of the code. Every change should have a human who can explain it in a review without re-reading the prompt. If nobody can, the change is not ready to merge.\n\nA few habits help. Keep AI changes small, so reviews stay meaningful. Ask the model to explain its design choices and write them into the pull request description. Require tests that a person has read and agrees with. Keep a short architecture note, written by humans, that the AI is told to follow. Finally, schedule regular time to refactor and delete code you do not understand. A blanket rule that everything must be AI-generated tends to cause the problem it was meant to avoid.",
+  "sub": "Hacker News",
+  "comments": 124,
+  "url": "https://news.ycombinator.com/item?id=50433079",
+  "slug": "how-keep-ai-written-code-understandable-team-has"
+ },
+ {
+  "date": "2026-11-10",
+  "id": "hn50421426",
+  "q": "How should a team set sensible limits on AI usage costs without slowing people down?",
+  "a": "Start by measuring before you cap. For a month, track usage by team and by task type, and look at what the spend actually bought. Often a small number of heavy workflows, such as long agent runs or huge documents pasted repeatedly, drive most of the cost.\n\nThen set soft limits with alerts rather than hard stops, so people can ask for more when a task justifies it. Route simple work like summaries and formatting to cheaper models, and keep the strongest model for hard problems. Teach people to keep prompts short, reuse context and start fresh chats when a thread gets long. Review the numbers monthly and compare them with time saved. Check your vendor's current billing and admin controls, since these options change.",
+  "sub": "Hacker News",
+  "comments": 120,
+  "url": "https://news.ycombinator.com/item?id=50421426",
+  "slug": "how-team-set-sensible-limits-ai-usage-costs"
+ },
+ {
+  "date": "2026-11-10",
+  "id": "oai1414400",
+  "q": "Why does ChatGPT seem to behave differently from one week to the next, and how do I get consistency?",
+  "a": "Several things can change the output. The vendor may update the model or its default settings. Memory and custom instructions may shift what the assistant knows about you. Even with identical prompts, responses vary because they are generated with some randomness.\n\nTo get steadier results, stop relying on the tool's mood and write down what you want. Keep a saved prompt template covering role, task, format, tone and an example of a good answer. Put stable preferences in custom instructions or a project, and review them now and then, along with stored memories. Start a new chat for each distinct task so old context does not skew things. For recurring work, paste the same template each time and note which model you picked.",
+  "sub": "OpenAI Community",
+  "comments": 3,
+  "url": "https://community.openai.com/t/why-is-my-chat-attitude-and-workflow-different-almost-after-every-weekend/1414400",
+  "slug": "why-chatgpt-seem-behave-differently-one-week-next"
+ },
+ {
+  "date": "2026-11-10",
+  "id": "se2991",
+  "q": "How can I check what a downloadable AI model can actually do before I install it?",
+  "a": "Start with the model card on the page where it is hosted. It should state the model's size, intended uses, languages, context length, training notes and licence. If the card is thin or missing, treat that as a warning.\n\nNext, look for independent evaluations of that model, and prefer ones that test tasks close to yours. Check the community discussion tab for reports of real problems. Make sure your hardware can run it, since memory is usually the limit and smaller compressed versions trade quality for size. Finally, test it yourself with ten prompts from your actual work before you commit. Confirm the licence allows commercial use, and download only from sources you trust.",
+  "sub": "GenAI Stack Exchange",
+  "comments": 1,
+  "url": "https://genai.stackexchange.com/questions/2991/how-can-i-determine-the-capabilities-of-an-model-before-i-download-it",
+  "slug": "how-check-downloadable-ai-model-actually-before-install"
+ },
+ {
   "date": "2026-11-09",
   "id": "hn50410107",
   "q": "When is it worth switching to a different AI assistant or tool?",

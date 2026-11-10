@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [Should a top leaderboard score decide which AI model my team uses for daily work?](https://www.thinkwithclaude.com/ai-questions/should-top-leaderboard-score-decide-ai-model-team/)
+- [How do we keep AI-written code understandable to the team that has to maintain it?](https://www.thinkwithclaude.com/ai-questions/how-keep-ai-written-code-understandable-team-has/)
+- [How should a team set sensible limits on AI usage costs without slowing people down?](https://www.thinkwithclaude.com/ai-questions/how-team-set-sensible-limits-ai-usage-costs/)
+- [Why does ChatGPT seem to behave differently from one week to the next, and how do I get consistency?](https://www.thinkwithclaude.com/ai-questions/why-chatgpt-seem-behave-differently-one-week-next/)
+- [How can I check what a downloadable AI model can actually do before I install it?](https://www.thinkwithclaude.com/ai-questions/how-check-downloadable-ai-model-actually-before-install/)
 - [When is it worth switching to a different AI assistant or tool?](https://www.thinkwithclaude.com/ai-questions/when-worth-switching-different-ai-assistant-tool/)
 - [How should I use AI at work if my company limits which tools I can use?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-work-company-limits-tools-use/)
 - [How can I avoid mental fatigue from using AI tools all day?](https://www.thinkwithclaude.com/ai-questions/how-avoid-mental-fatigue-using-ai-tools-all/)
