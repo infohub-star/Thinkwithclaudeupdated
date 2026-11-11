@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head>
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLT2NLZCZM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZLT2NLZCZM');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Training That Gives You Time Back — Shantanu Anand</title>
@@ -1907,7 +1910,7 @@ var CAL='https://calendly.com/infohub-connectwithshantanu/claude-session';
 var ADS_CONVERSION='';
 function track(n){try{window.clarity&&window.clarity('event',n)}catch(_){}try{window.va&&window.va('event',{name:n})}catch(_){}
   try{if(ADS_CONVERSION&&window.gtag)gtag('event','conversion',{send_to:ADS_CONVERSION})}catch(_){}
-  try{window.gtag&&gtag('event',n)}catch(_){}}
+  try{window.gtag&&gtag('event',n);if(window.gtag&&/_lead$/.test(n))gtag('event','generate_lead',{lead_source:n})}catch(_){}}
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(_){return null}}
 function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function validContact(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)||/^\+?[0-9\s-]{10,15}$/.test(v)}
