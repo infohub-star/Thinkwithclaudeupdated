@@ -186,4 +186,25 @@ Tone: Plain and specific. Use a table. No hype.
 <p style="margin-top:26px"><a href="/blog/">← All articles</a></p>
 </main>
 <div class="foot">© 2026 ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
+<!-- Calendly popup + GA4 booking tracking -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+(function(){
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href*="calendly.com/"]');
+  if(!a||!window.Calendly||e.metaKey||e.ctrlKey)return;
+  e.preventDefault();
+  var u=a.href+(a.href.indexOf('?')>-1?'&':'?')+'utm_source=thinkwithclaude&utm_medium=website&utm_content='+encodeURIComponent(location.pathname);
+  Calendly.initPopupWidget({url:u});
+  try{window.gtag&&gtag('event','booking_started',{page_path:location.pathname})}catch(_){}
+});
+window.addEventListener('message',function(e){
+  if(e.origin!=='https://calendly.com'||!e.data||e.data.event!=='calendly.event_scheduled')return;
+  try{window.gtag&&gtag('event','generate_lead',{lead_source:'calendly_booking',page_path:location.pathname})}catch(_){}
+  try{window.va&&window.va('event',{name:'calendly_booked'})}catch(_){}
+  try{window.clarity&&window.clarity('event','calendly_booked')}catch(_){}
+});
+})();
+</script>
 </body></html>
