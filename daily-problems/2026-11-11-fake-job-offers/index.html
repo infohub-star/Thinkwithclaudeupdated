@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why can&#x27;t Indian job seekers tell a real job offer from a scam? | ThinkwithClaude</title>
+<meta name="description" content="Almost every Indian job seeker now sees fake offers, and half can&#x27;t tell a real recruiter from a scammer. Here&#x27;s &quot;OfferCheck&quot;, a job-offer verifier one person could build with Claude in a weekend.">
+<meta name="author" content="Shantanu Anand">
+<link rel="canonical" href="https://www.thinkwithclaude.com/daily-problems/2026-11-11-fake-job-offers/">
+<meta property="og:type" content="article"><meta property="og:title" content="Why can&#x27;t Indian job seekers tell a real job offer from a scam? | ThinkwithClaude"><meta property="og:description" content="Almost every Indian job seeker now sees fake offers, and half can&#x27;t tell a real recruiter from a scammer. Here&#x27;s &quot;OfferCheck&quot;, a job-offer verifier one person could build with Claude in a weekend."><meta property="og:url" content="https://www.thinkwithclaude.com/daily-problems/2026-11-11-fake-job-offers/">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Why can&#x27;t Indian job seekers tell a real job offer from a scam? | ThinkwithClaude"><meta name="twitter:description" content="Almost every Indian job seeker now sees fake offers, and half can&#x27;t tell a real recruiter from a scammer. Here&#x27;s &quot;OfferCheck&quot;, a job-offer verifier one person could build with Claude in a weekend.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyn121dz14");</script>
+<style>*{box-sizing:border-box}
+body{margin:0;background:#F7F9FC;color:#1A1A1A;font:17px/1.75 'Inter',sans-serif}
+a{color:#004AAD}
+.top{background:#fff;border-bottom:1px solid rgba(15,23,42,.08)}
+.top-in{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0B1B33;font:700 16px 'DM Sans',sans-serif}
+.mark{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#004AAD,#F5B301);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+.navl{display:flex;gap:18px;align-items:center;font-size:14px}.navl a{text-decoration:none;color:#333}
+.cta{background:#004AAD;color:#fff !important;padding:9px 16px;border-radius:999px;font-weight:600}
+.w{max-width:780px;margin:0 auto;padding:48px 20px 64px}
+.kick{font:700 12px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#004AAD}.kick a{text-decoration:none}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'DM Sans',sans-serif;color:#0B1B33;margin:10px 0 14px}
+.lead{font-size:19px;color:#2A2F38;margin:0 0 18px}
+.by{font-size:13.5px;color:#5B6472;margin:0 0 22px}.by a{text-decoration:none;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.chip{font-size:13px;font-weight:600;color:#004AAD;background:#EEF4FF;border-radius:999px;padding:6px 12px}
+.chip.score{background:#FFF4D6;color:#8A5A00}
+article h2{font:700 26px/1.25 'DM Sans',sans-serif;color:#0B1B33;margin:44px 0 12px}
+article h3{font:700 19px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin:26px 0 8px}
+article p,article li{color:#2A2F38}article li{margin:8px 0}
+.pitch{margin:16px 0;padding:16px 20px;background:#EEF4FF;border-left:4px solid #004AAD;border-radius:10px;font-size:18px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:14px 0}
+.tile{background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:14px;padding:16px}
+.tile b{display:block;font:700 16px 'DM Sans',sans-serif;color:#0B1B33;margin-bottom:4px}.tile span{font-size:15px;line-height:1.6;color:#4A4A4A}
+ol.plan{padding-left:20px}ol.plan b{color:#0B1B33}
+.pwrap{position:relative}
+pre{background:#0B1B33;color:#E8EEF8;border-radius:12px;padding:18px;overflow:auto;font:14px/1.6 ui-monospace,Menlo,monospace;white-space:pre-wrap}
+.copy{position:absolute;top:10px;right:10px;background:#fff;color:#004AAD;border:0;border-radius:8px;padding:6px 12px;font:600 13px 'Inter',sans-serif;cursor:pointer}
+.warn{background:#FFF8E6;border:1px solid #F5D78A;border-radius:12px;padding:14px 16px;font-size:15px}
+.src{font-size:15px}.note{font-size:13.5px;color:#5B6472}
+.list{display:grid;gap:16px}
+.card{display:block;background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:16px;padding:20px;text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:#004AAD;box-shadow:0 8px 24px rgba(0,74,173,.10)}
+.card b{display:block;font:700 20px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin-bottom:6px}
+.card span{color:#4A4A4A;font-size:15px;line-height:1.6}
+.card small{display:block;color:#6B6B6B;font-size:13px;margin-top:10px}
+.box{margin-top:44px;background:#0B1B33;color:#fff;border-radius:18px;padding:26px}
+.box h2{color:#fff;font:700 22px 'DM Sans',sans-serif;margin:0 0 8px}.box p{color:#C9D3E3;margin:0 0 16px;font-size:16px}
+.btn{display:inline-block;background:#fff;color:#004AAD;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:10px;margin:0 8px 8px 0}
+.btn.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.foot{text-align:center;color:#6B6B6B;font-size:13px;padding:24px}
+@media(max-width:640px){.navl a:not(.cta){display:none}}</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Why can't Indian job seekers tell a real job offer from a scam?", "description": "Almost every Indian job seeker now sees fake offers, and half can't tell a real recruiter from a scammer. Here's \"OfferCheck\", a job-offer verifier one person could build with Claude in a weekend.", "datePublished": "2026-11-11T09:00:00+05:30", "author": {"@type": "Person", "name": "Shantanu Anand", "jobTitle": "AI Trainer & Consultant", "url": "https://www.thinkwithclaude.com/", "sameAs": ["https://www.linkedin.com/in/claudewithshantanu/"]}, "publisher": {"@type": "Organization", "name": "ThinkwithClaude", "url": "https://www.thinkwithclaude.com/"}, "mainEntityOfPage": "https://www.thinkwithclaude.com/daily-problems/2026-11-11-fake-job-offers/", "about": "HR & Recruitment"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thinkwithclaude.com/"}, {"@type": "ListItem", "position": 2, "name": "Daily Problems", "item": "https://www.thinkwithclaude.com/daily-problems/"}, {"@type": "ListItem", "position": 3, "name": "Why can't Indian job seekers tell a real job offer from a scam?", "item": "https://www.thinkwithclaude.com/daily-problems/2026-11-11-fake-job-offers/"}]}</script>
+</head><body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/ai-questions/">AI Q&amp;A</a><a href="/trending-ai-tools/">AI Tools Today</a><a href="/daily-problems/">Daily Problems</a><a class="cta" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book free call</a></nav>
+</div></header>
+<main class="w">
+<div class="kick"><a href="/daily-problems/">Daily Problems</a> · 11 November 2026</div>
+<h1>Why can&#x27;t Indian job seekers tell a real job offer from a scam?</h1>
+<p class="lead">Almost every Indian job seeker now sees fake offers, and half can&#x27;t tell a real recruiter from a scammer. Here&#x27;s &quot;OfferCheck&quot;, a job-offer verifier one person could build with Claude in a weekend.</p>
+<p class="by">Written by <a href="https://www.linkedin.com/in/claudewithshantanu/" target="_blank" rel="noopener">Shantanu Anand</a>, AI Trainer &amp; Consultant · 11 November 2026</p>
+<div class="chips"><span class="chip">HR &amp; Recruitment</span><span class="chip score">Itch Score 78</span><span class="chip">Build time: a weekend</span></div>
+<article>
+<h2>The problem</h2>
+<p><b>Who feels it:</b> Freshers, Gen Z candidates and people switching jobs after layoffs, who get offers by WhatsApp, Telegram and email that ask for fees, bank details or ID documents. Genuine employers and HR teams also lose good candidates who now ignore real outreach out of fear.</p>
+<ul><li><b>Where this came from:</b> Recent Indian surveys by Indeed and LinkedIn, police and cyber-safety advisories covered by The Week and Free Press Journal, and many recurring job-seeker threads on Indian career subreddits such as r/developersIndia describing fee-based fake offers.</li><li><b>Exposure is near-universal.</b> 93% of Indian workers surveyed by Indeed (1,161 respondents) have met suspicious or fraudulent job opportunities, and 51% are not confident they can tell a genuine recruiter from a scammer (<a href="https://cxotoday.com/research/indeed-report-job-scams-erode-trust-as-50-of-indian-job-seekers-struggle-to-spot-real-recruiters/" target="_blank" rel="noopener nofollow">CXOToday</a>).</li><li><b>Fear also blocks real hiring.</b> At least 75% sometimes or often ignore opportunities they fear are fake, and 14% say they missed genuine opportunities because of that caution (<a href="https://www.businesstoday.in/jobs/story/more-than-9-in-10-job-seekers-encounter-fake-job-offers-542006-2026-07-09" target="_blank" rel="noopener nofollow">Business Today</a>).</li><li><b>Scammers follow one pattern.</b> LinkedIn says 90% of reported scam attempts try to move the chat to personal messaging apps, often in the first message, and 82% of Indian professionals now check for fraud before applying (<a href="https://www.peoplematters.in/news/talent-management/82percent-indian-professionals-now-check-if-jobs-are-scams-before-applying-linkedin-49585" target="_blank" rel="noopener nofollow">People Matters</a>).</li><li><b>The stakes go beyond lost fees.</b> A Patiala police case cited in an Asia Pacific money-laundering report found fake remote-job recruiters collecting bank accounts and SIM cards, with about Rs 2.99 crore moved through 18 mule accounts (<a href="https://www.theweek.in/news/sci-tech/2026/08/04/new-cyber-scam-warning-your-job-application-could-make-you-a-money-mule.html" target="_blank" rel="noopener nofollow">The Week</a>).</li></ul>
+<h3>Who's already working on it</h3>
+<p>Job platforms protect their own pages: LinkedIn has added recruiter, company and job-listing verification and ID checks for higher-risk posters (<a href="https://www.peoplematters.in/news/talent-management/82percent-indian-professionals-now-check-if-jobs-are-scams-before-applying-linkedin-49585" target="_blank" rel="noopener nofollow">People Matters</a>). The government&#x27;s CyberDost advisories and the 1930 helpline cover awareness and reporting (<a href="https://www.theweek.in/news/sci-tech/2026/08/04/new-cyber-scam-warning-your-job-application-could-make-you-a-money-mule.html" target="_blank" rel="noopener nofollow">The Week</a>). The gap is the offer that arrives off-platform, on WhatsApp or personal email, where nobody checks it before the candidate pays or shares documents.</p>
+<h2>The solution idea</h2>
+<p class="pitch">&quot;OfferCheck&quot; lets a candidate forward any job offer, message or PDF and get a clear verdict in a minute: likely genuine, needs checking, or likely scam, with the reasons and the safe next step.</p>
+<div class="grid"><div class="tile"><b>Forward and check</b><span>Paste text, forward a WhatsApp message or upload an offer letter PDF or screenshot.</span></div><div class="tile"><b>Red-flag analysis</b><span>Flags fees, deposits, requests for bank details or OTPs, moves to personal chat apps, and salary far above the market.</span></div><div class="tile"><b>Company and domain check</b><span>Compares the sender&#x27;s email domain and website with the company&#x27;s official domain, and checks domain age.</span></div><div class="tile"><b>Safe reply drafts</b><span>Writes a polite verification email to the company&#x27;s official HR address and a report text for the cyber crime portal.</span></div><div class="tile"><b>Employer verify page</b><span>Lets genuine companies list their real recruiter emails and domains, so candidates can confirm outreach in one click.</span></div></div>
+<h2>How Claude builds it</h2>
+<h3>Which Claude capabilities do the work</h3>
+<div class="grid"><div class="tile"><b>Claude Code</b><span>Builds the web app and WhatsApp bot, the domain-lookup service, tests and deployment.</span></div><div class="tile"><b>Claude API in the product</b><span>Reads the offer text or PDF, extracts company, sender, salary and asks, and explains the verdict in plain English or Hindi.</span></div><div class="tile"><b>Skills</b><span>A &quot;job-scam-red-flags&quot; skill holds the checklist from CyberDost advisories and known scam patterns, so every check is consistent.</span></div><div class="tile"><b>Artifacts</b><span>Quick clickable prototype of the check and verdict screens to show candidates and college placement cells.</span></div><div class="tile"><b>Connectors / MCP</b><span>Gmail connector during development to test against real forwarded offers (with consent).</span></div><div class="tile"><b>Scheduled tasks</b><span>A daily job that collects new scam patterns from news and police advisories and proposes updates to the red-flag skill.</span></div></div>
+<h3>Weekend build plan</h3>
+<ol class="plan"><li><b>Saturday morning — evidence:</b> Collect 30 real job messages (genuine and fake) from friends and placement cells, anonymised. Label each one.</li><li><b>Saturday midday — rules:</b> Write the red-flag checklist as a Claude skill and test it against the 30 labelled messages.</li><li><b>Saturday afternoon — prototype:</b> Ask Claude for an artifact of the paste-and-check screen and show it to five job seekers.</li><li><b>Saturday evening — build:</b> Use Claude Code to build the Next.js app with text, PDF and screenshot upload.</li><li><b>Sunday morning — domain checks:</b> Add email-domain versus official-domain matching and domain-age lookup.</li><li><b>Sunday midday — replies:</b> Add the verification email and cyber-crime report drafts.</li><li><b>Sunday afternoon — WhatsApp:</b> Add a WhatsApp number where candidates forward a message and get the verdict back.</li><li><b>Sunday evening — launch:</b> Share with two college placement cells and one job-seeker community, and measure accuracy on new messages.</li></ol>
+<h3>Starter prompt for Claude Code</h3>
+<div class="pwrap"><button class="copy" type="button">Copy</button><pre>Build a mobile-first Next.js + TypeScript web app called &quot;OfferCheck&quot; for Indian job seekers.
+
+Flow: the user pastes a job message, or uploads a PDF or screenshot -&gt; the server extracts text (OCR for images) -&gt; call the Claude API to extract company name, sender email/phone, role, salary, and any requests (fees, deposits, bank details, Aadhaar, OTP, moving to WhatsApp/Telegram) as JSON -&gt; run checks: sender email domain vs the company&#x27;s official website domain, domain age via WHOIS, salary vs a simple role-band table -&gt; combine into a verdict (Likely genuine / Needs checking / Likely scam) with a list of reasons -&gt; show the verdict, the reasons in plain English, and two drafted texts: a verification email to official HR and a cyber-crime report.
+
+Include: a red-flag rules file I can edit, 30 sample messages as test fixtures with expected verdicts, a test that reports accuracy, no storage of uploads beyond 24 hours, and a clear note that the result is guidance, not a guarantee.</pre></div>
+<h2>Monetisation</h2>
+<p class="note">Suggested pricing, not yet validated.</p>
+<ul><li>Free for job seekers: unlimited checks.</li><li>Rs 15,000 a year per college for a placement-cell dashboard and bulk checks.</li><li>Rs 4,999 a month for employers to publish a verified recruiter page.</li><li>Pricing is a suggestion and has not been validated.</li></ul>
+<h2>Riskiest assumption, and how to test it</h2>
+<p><b>Assumption:</b> Candidates may not bother checking an offer that looks exciting, which is exactly when they are most vulnerable.</p>
+<p><b>Test first:</b> Give a free WhatsApp check number to two college placement cells for two weeks and count how many students forward an offer without being reminded. A reasonable bar: 100 checks from about 500 students. If use is low, pivot to selling the check to placement cells and HR teams, who will run it for candidates.</p>
+<p class="warn">Do not call a named company a scam publicly; show reasons and confidence instead. Uploaded offers contain personal data, so get consent, keep them briefly and follow India&#x27;s Digital Personal Data Protection Act.</p>
+</article><h2 style="font:700 24px DM Sans,sans-serif;color:#0B1B33;margin:44px 0 10px">More daily problems</h2><ul><li><a href="/daily-problems/2026-11-10-rental-deposit-deductions/">Why do tenants in Indian cities lose large parts of their security deposit when they move out?</a></li><li><a href="/daily-problems/2026-11-09-gst-input-credit-leakage/">Why do small businesses lose GST input tax credit when their suppliers don&#x27;t file correctly?</a></li><li><a href="/daily-problems/2026-11-08-factory-repair-technicians/">Why do factory owners wait days for industrial repair technicians?</a></li><li><a href="/daily-problems/2026-11-07-outbound-pickup-reliability/">Why can&#x27;t manufacturers rely on guaranteed, accountable pickup logistics for outbound deliveries?</a></li><li><a href="/daily-problems/2026-11-06-sme-payment-terms/">Why can&#x27;t SMEs negotiate favorable payment terms with large buyers?</a></li></ul><p style="margin-top:22px"><a href="/daily-problems/">← All daily problems</a></p>
+<div class="box">
+  <h2>Want to build things like this with Claude?</h2>
+  <p>Hands-on Claude training for founders, professionals and teams, online or in person anywhere in India. Get the training details, or book a free 20-minute call.</p>
+  <a class="btn" href="/#inquiry">Get training details</a><a class="btn alt" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book a free call</a>
+</div>
+</main>
+<div class="foot">© 2026 ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
+<script>document.querySelectorAll('.copy').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.nextElementSibling.innerText).then(()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)})})</script>
+</body></html>
