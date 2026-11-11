@@ -13,8 +13,6 @@ Add items in either form:
 
 ## Up next
 
-- Topic: Turn Your Research into Slides and a Podcast with NotebookLM
-  Notes: A quick workflow for repurposing reports and notes. Check current features before writing.
 - Topic: Get Key Insights from Long Videos Without Watching Them All
   Notes: A way to review podcasts and industry talks faster, and to check summaries against the source.
 - Topic: How to Keep AI Output On-Brand
@@ -24,6 +22,7 @@ Add items in either form:
 
 ## Published
 
+- 2026-11-11: Turn Research into Slides and a Podcast with NotebookLM - https://www.thinkwithclaude.com/blog/notebooklm-research-to-slides-podcast/
 - 2026-11-10: What to Delegate to an AI Assistant, and What Not To - https://www.thinkwithclaude.com/blog/what-to-delegate-to-ai-assistant/
 - 2026-11-09: Can One AI Agent Handle Your Team's Marketing Work? - https://www.thinkwithclaude.com/blog/one-ai-agent-for-marketing/
 - 2026-11-08: How to Test a Business Idea with AI Before Spending Money - https://www.thinkwithclaude.com/blog/test-business-idea-with-ai/
