@@ -255,7 +255,7 @@ function renderQuestion(i, data) {
   const desc = plain(i.a).slice(0, 155).replace(/\s+\S*$/, '') + '…';
   const iso = i.date + 'T07:00:00+05:30';
   const schema = ld({
-    '@context': 'https://schema.org', '@type': 'QAPage',
+    '@context': 'https://schema.org', '@type': 'FAQPage',
     mainEntity: {
       '@type': 'Question', name: plain(i.q), text: plain(i.q), answerCount: 1, datePublished: iso, author: PERSON,
       acceptedAnswer: { '@type': 'Answer', text: plain(i.a), datePublished: iso, url, author: PERSON }
