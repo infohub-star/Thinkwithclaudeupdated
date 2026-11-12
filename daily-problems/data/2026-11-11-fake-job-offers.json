@@ -17,29 +17,86 @@
   "players": "Job platforms protect their own pages: LinkedIn has added recruiter, company and job-listing verification and ID checks for higher-risk posters ([People Matters](https://www.peoplematters.in/news/talent-management/82percent-indian-professionals-now-check-if-jobs-are-scams-before-applying-linkedin-49585)). The government's CyberDost advisories and the 1930 helpline cover awareness and reporting ([The Week](https://www.theweek.in/news/sci-tech/2026/08/04/new-cyber-scam-warning-your-job-application-could-make-you-a-money-mule.html)). The gap is the offer that arrives off-platform, on WhatsApp or personal email, where nobody checks it before the candidate pays or shares documents.",
   "pitch": "\"OfferCheck\" lets a candidate forward any job offer, message or PDF and get a clear verdict in a minute: likely genuine, needs checking, or likely scam, with the reasons and the safe next step.",
   "features": [
-    ["Forward and check", "Paste text, forward a WhatsApp message or upload an offer letter PDF or screenshot."],
-    ["Red-flag analysis", "Flags fees, deposits, requests for bank details or OTPs, moves to personal chat apps, and salary far above the market."],
-    ["Company and domain check", "Compares the sender's email domain and website with the company's official domain, and checks domain age."],
-    ["Safe reply drafts", "Writes a polite verification email to the company's official HR address and a report text for the cyber crime portal."],
-    ["Employer verify page", "Lets genuine companies list their real recruiter emails and domains, so candidates can confirm outreach in one click."]
+    [
+      "Forward and check",
+      "Paste text, forward a WhatsApp message or upload an offer letter PDF or screenshot."
+    ],
+    [
+      "Red-flag analysis",
+      "Flags fees, deposits, requests for bank details or OTPs, moves to personal chat apps, and salary far above the market."
+    ],
+    [
+      "Company and domain check",
+      "Compares the sender's email domain and website with the company's official domain, and checks domain age."
+    ],
+    [
+      "Safe reply drafts",
+      "Writes a polite verification email to the company's official HR address and a report text for the cyber crime portal."
+    ],
+    [
+      "Employer verify page",
+      "Lets genuine companies list their real recruiter emails and domains, so candidates can confirm outreach in one click."
+    ]
   ],
   "capabilities": [
-    ["Claude Code", "Builds the web app and WhatsApp bot, the domain-lookup service, tests and deployment."],
-    ["Claude API in the product", "Reads the offer text or PDF, extracts company, sender, salary and asks, and explains the verdict in plain English or Hindi."],
-    ["Skills", "A \"job-scam-red-flags\" skill holds the checklist from CyberDost advisories and known scam patterns, so every check is consistent."],
-    ["Artifacts", "Quick clickable prototype of the check and verdict screens to show candidates and college placement cells."],
-    ["Connectors / MCP", "Gmail connector during development to test against real forwarded offers (with consent)."],
-    ["Scheduled tasks", "A daily job that collects new scam patterns from news and police advisories and proposes updates to the red-flag skill."]
+    [
+      "Claude Code",
+      "Builds the web app and WhatsApp bot, the domain-lookup service, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Reads the offer text or PDF, extracts company, sender, salary and asks, and explains the verdict in plain English or Hindi."
+    ],
+    [
+      "Skills",
+      "A \"job-scam-red-flags\" skill holds the checklist from CyberDost advisories and known scam patterns, so every check is consistent."
+    ],
+    [
+      "Artifacts",
+      "Quick clickable prototype of the check and verdict screens to show candidates and college placement cells."
+    ],
+    [
+      "Connectors / MCP",
+      "Gmail connector during development to test against real forwarded offers (with consent)."
+    ],
+    [
+      "Scheduled tasks",
+      "A daily job that collects new scam patterns from news and police advisories and proposes updates to the red-flag skill."
+    ]
   ],
   "plan": [
-    ["Saturday morning — evidence", "Collect 30 real job messages (genuine and fake) from friends and placement cells, anonymised. Label each one."],
-    ["Saturday midday — rules", "Write the red-flag checklist as a Claude skill and test it against the 30 labelled messages."],
-    ["Saturday afternoon — prototype", "Ask Claude for an artifact of the paste-and-check screen and show it to five job seekers."],
-    ["Saturday evening — build", "Use Claude Code to build the Next.js app with text, PDF and screenshot upload."],
-    ["Sunday morning — domain checks", "Add email-domain versus official-domain matching and domain-age lookup."],
-    ["Sunday midday — replies", "Add the verification email and cyber-crime report drafts."],
-    ["Sunday afternoon — WhatsApp", "Add a WhatsApp number where candidates forward a message and get the verdict back."],
-    ["Sunday evening — launch", "Share with two college placement cells and one job-seeker community, and measure accuracy on new messages."]
+    [
+      "Saturday morning — evidence",
+      "Collect 30 real job messages (genuine and fake) from friends and placement cells, anonymised. Label each one."
+    ],
+    [
+      "Saturday midday — rules",
+      "Write the red-flag checklist as a Claude skill and test it against the 30 labelled messages."
+    ],
+    [
+      "Saturday afternoon — prototype",
+      "Ask Claude for an artifact of the paste-and-check screen and show it to five job seekers."
+    ],
+    [
+      "Saturday evening — build",
+      "Use Claude Code to build the Next.js app with text, PDF and screenshot upload."
+    ],
+    [
+      "Sunday morning — domain checks",
+      "Add email-domain versus official-domain matching and domain-age lookup."
+    ],
+    [
+      "Sunday midday — replies",
+      "Add the verification email and cyber-crime report drafts."
+    ],
+    [
+      "Sunday afternoon — WhatsApp",
+      "Add a WhatsApp number where candidates forward a message and get the verdict back."
+    ],
+    [
+      "Sunday evening — launch",
+      "Share with two college placement cells and one job-seeker community, and measure accuracy on new messages."
+    ]
   ],
   "prompt": "Build a mobile-first Next.js + TypeScript web app called \"OfferCheck\" for Indian job seekers.\n\nFlow: the user pastes a job message, or uploads a PDF or screenshot -> the server extracts text (OCR for images) -> call the Claude API to extract company name, sender email/phone, role, salary, and any requests (fees, deposits, bank details, Aadhaar, OTP, moving to WhatsApp/Telegram) as JSON -> run checks: sender email domain vs the company's official website domain, domain age via WHOIS, salary vs a simple role-band table -> combine into a verdict (Likely genuine / Needs checking / Likely scam) with a list of reasons -> show the verdict, the reasons in plain English, and two drafted texts: a verification email to official HR and a cyber-crime report.\n\nInclude: a red-flag rules file I can edit, 30 sample messages as test fixtures with expected verdicts, a test that reports accuracy, no storage of uploads beyond 24 hours, and a clear note that the result is guidance, not a guarantee.",
   "pricing": [
@@ -52,10 +109,26 @@
   "test": "Give a free WhatsApp check number to two college placement cells for two weeks and count how many students forward an offer without being reminded. A reasonable bar: 100 checks from about 500 students. If use is low, pivot to selling the check to placement cells and HR teams, who will run it for candidates.",
   "caution": "Do not call a named company a scam publicly; show reasons and confidence instead. Uploaded offers contain personal data, so get consent, keep them briefly and follow India's Digital Personal Data Protection Act.",
   "sources": [
-    ["CXOToday: Indeed report on job scams in India", "https://cxotoday.com/research/indeed-report-job-scams-erode-trust-as-50-of-indian-job-seekers-struggle-to-spot-real-recruiters/"],
-    ["Business Today: More than 9 in 10 job seekers encounter fake job offers", "https://www.businesstoday.in/jobs/story/more-than-9-in-10-job-seekers-encounter-fake-job-offers-542006-2026-07-09"],
-    ["People Matters: 82% of Indian professionals check jobs for scams (LinkedIn)", "https://www.peoplematters.in/news/talent-management/82percent-indian-professionals-now-check-if-jobs-are-scams-before-applying-linkedin-49585"],
-    ["The Week: Job applications used to recruit money mules", "https://www.theweek.in/news/sci-tech/2026/08/04/new-cyber-scam-warning-your-job-application-could-make-you-a-money-mule.html"],
-    ["Free Press Journal: Mumbai woman loses Rs 11.28 lakh to fake job offer", "https://www.freepressjournal.in/mumbai/mumbai-woman-loses-1128-lakh-to-fake-job-offer-scam-after-uploading-biodata-on-job-portals"]
-  ]
+    [
+      "CXOToday: Indeed report on job scams in India",
+      "https://cxotoday.com/research/indeed-report-job-scams-erode-trust-as-50-of-indian-job-seekers-struggle-to-spot-real-recruiters/"
+    ],
+    [
+      "Business Today: More than 9 in 10 job seekers encounter fake job offers",
+      "https://www.businesstoday.in/jobs/story/more-than-9-in-10-job-seekers-encounter-fake-job-offers-542006-2026-07-09"
+    ],
+    [
+      "People Matters: 82% of Indian professionals check jobs for scams (LinkedIn)",
+      "https://www.peoplematters.in/news/talent-management/82percent-indian-professionals-now-check-if-jobs-are-scams-before-applying-linkedin-49585"
+    ],
+    [
+      "The Week: Job applications used to recruit money mules",
+      "https://www.theweek.in/news/sci-tech/2026/08/04/new-cyber-scam-warning-your-job-application-could-make-you-a-money-mule.html"
+    ],
+    [
+      "Free Press Journal: Mumbai woman loses Rs 11.28 lakh to fake job offer",
+      "https://www.freepressjournal.in/mumbai/mumbai-woman-loses-1128-lakh-to-fake-job-offer-scam-after-uploading-biodata-on-job-portals"
+    ]
+  ],
+  "take": "I see fake offers shared in professional groups every week, and the people who fall for them are usually first-time job seekers in a hurry. Claude can explain why an offer looks suspicious in plain language, which matters more than a bare score. The hard part is reach: the tool has to be one forward away, inside the apps where these offers arrive."
 }

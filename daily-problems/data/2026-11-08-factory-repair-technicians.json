@@ -16,28 +16,82 @@
   "players": "Predictive maintenance startups such as [Presage Insights](https://www.industrialautomationindia.in/news/presage-insights-raises-5-6-crore-predictive-maintenance-india) (Rs 5.6 crore seed, 2025) use sensors to catch faults early, which suits larger plants. [EasyFix](https://www.devdiscourse.com/article/technology/3826972-easyfix-transforming-enterprise-maintenance-with-technology) runs managed repair for multi-location enterprises. IndiaMART lists local industrial repair shops. We didn't find a simple tool that helps a small factory diagnose the fault, reach the right technician fast and keep a record of who fixed what.",
   "pitch": "\"FixLine\" is a breakdown desk for small factories: describe or photograph the fault, get a likely diagnosis and parts list, and have the job sent to a ranked list of nearby verified technicians who must accept within minutes.",
   "features": [
-    ["Fault intake", "The operator sends a photo, the machine nameplate, the error code and a voice note on WhatsApp; the app turns it into a clear job card with make, model and symptoms."],
-    ["First-line diagnosis", "Suggests likely causes, safe checks the in-house team can try, and the spare parts to keep ready, with a clear note that it is guidance, not a certified repair."],
-    ["Technician dispatch", "Sends the job card to technicians filtered by machine type and distance, asks for acceptance and arrival time, and moves to the next name if nobody accepts."],
-    ["Technician record", "Tracks response time, first-time fix rate and repeat failures for each technician and dealer, so the owner knows whom to call next time."],
-    ["Machine history", "Keeps every breakdown, part and invoice per machine, and flags machines that fail repeatedly for planned maintenance or replacement."]
+    [
+      "Fault intake",
+      "The operator sends a photo, the machine nameplate, the error code and a voice note on WhatsApp; the app turns it into a clear job card with make, model and symptoms."
+    ],
+    [
+      "First-line diagnosis",
+      "Suggests likely causes, safe checks the in-house team can try, and the spare parts to keep ready, with a clear note that it is guidance, not a certified repair."
+    ],
+    [
+      "Technician dispatch",
+      "Sends the job card to technicians filtered by machine type and distance, asks for acceptance and arrival time, and moves to the next name if nobody accepts."
+    ],
+    [
+      "Technician record",
+      "Tracks response time, first-time fix rate and repeat failures for each technician and dealer, so the owner knows whom to call next time."
+    ],
+    [
+      "Machine history",
+      "Keeps every breakdown, part and invoice per machine, and flags machines that fail repeatedly for planned maintenance or replacement."
+    ]
   ],
   "capabilities": [
-    ["Claude Code", "Builds the web app, the WhatsApp intake, the dispatch logic, the database and the tests."],
-    ["Claude API in the product", "Reads nameplate photos and error screens, structures the job card, suggests causes from manuals and drafts messages to technicians."],
-    ["Skills", "A \"breakdown-playbook\" skill with safety rules, triage questions per machine type and message templates in English and Hindi."],
-    ["Artifacts", "A clickable job card and technician board mock-up to show factory owners before the build."],
-    ["Connectors (MCP)", "Google Drive for machine manuals and Google Sheets for pilots that already keep a maintenance register; Vercel to deploy."],
-    ["Scheduled tasks", "Acceptance timeouts that trigger the next technician, a daily open-jobs summary and a monthly machine reliability report."]
+    [
+      "Claude Code",
+      "Builds the web app, the WhatsApp intake, the dispatch logic, the database and the tests."
+    ],
+    [
+      "Claude API in the product",
+      "Reads nameplate photos and error screens, structures the job card, suggests causes from manuals and drafts messages to technicians."
+    ],
+    [
+      "Skills",
+      "A \"breakdown-playbook\" skill with safety rules, triage questions per machine type and message templates in English and Hindi."
+    ],
+    [
+      "Artifacts",
+      "A clickable job card and technician board mock-up to show factory owners before the build."
+    ],
+    [
+      "Connectors (MCP)",
+      "Google Drive for machine manuals and Google Sheets for pilots that already keep a maintenance register; Vercel to deploy."
+    ],
+    [
+      "Scheduled tasks",
+      "Acceptance timeouts that trigger the next technician, a daily open-jobs summary and a monthly machine reliability report."
+    ]
   ],
   "plan": [
-    ["Saturday morning — interviews and data", "Talk to three factory owners and two local technicians. Collect the last ten breakdowns from one factory: machine, fault, who fixed it and how long it took."],
-    ["Saturday midday — prototype", "Ask Claude for an artifact showing the job card, the dispatch screen and the technician record. Show it to the owners."],
-    ["Saturday afternoon — core app", "Use the starter prompt below in Claude Code to build machines, technicians, jobs and the status timeline."],
-    ["Saturday evening — intake", "Connect WhatsApp Business or email and have the Claude API turn photos and voice-note transcripts into structured job cards. Test on real samples."],
-    ["Sunday morning — dispatch", "Add the technician ladder with acceptance timeouts as scheduled jobs, plus messages to the owner at each step."],
-    ["Sunday afternoon — records", "Compute response time and first-time fix rate with plain code and unit tests. Add the machine history page."],
-    ["Sunday evening — ship and pilot", "Deploy to Vercel. Onboard two factories and ten technicians in one industrial area, and log every breakdown for a month."]
+    [
+      "Saturday morning — interviews and data",
+      "Talk to three factory owners and two local technicians. Collect the last ten breakdowns from one factory: machine, fault, who fixed it and how long it took."
+    ],
+    [
+      "Saturday midday — prototype",
+      "Ask Claude for an artifact showing the job card, the dispatch screen and the technician record. Show it to the owners."
+    ],
+    [
+      "Saturday afternoon — core app",
+      "Use the starter prompt below in Claude Code to build machines, technicians, jobs and the status timeline."
+    ],
+    [
+      "Saturday evening — intake",
+      "Connect WhatsApp Business or email and have the Claude API turn photos and voice-note transcripts into structured job cards. Test on real samples."
+    ],
+    [
+      "Sunday morning — dispatch",
+      "Add the technician ladder with acceptance timeouts as scheduled jobs, plus messages to the owner at each step."
+    ],
+    [
+      "Sunday afternoon — records",
+      "Compute response time and first-time fix rate with plain code and unit tests. Add the machine history page."
+    ],
+    [
+      "Sunday evening — ship and pilot",
+      "Deploy to Vercel. Onboard two factories and ten technicians in one industrial area, and log every breakdown for a month."
+    ]
   ],
   "prompt": "Build a Next.js + TypeScript + Postgres web app called \"FixLine\" for small Indian factories.\n\nEntities: Factory, Machine (make, model, serial, location), Technician (skills by machine type, area, phone, verified flag),\nJob (machine, symptoms, photos, status, accepted_by, eta, resolved_at, parts_used, cost), JobEvent.\n\nFlow: operator reports a fault (photo + text or voice transcript) -> Claude API returns JSON\n(make, model, error_code, symptoms, likely_causes[], safe_checks[], parts_to_check[], urgency)\n-> app offers the job to the top 3 matching technicians -> if none accepts within 15 minutes, a scheduled job offers it to the next 3\n-> owner sees a timeline from report to resolution.\n\nRules:\n- Diagnosis is shown as guidance only; never tell anyone to bypass guards, interlocks or lockout procedures.\n- Response time and first-time fix rate are deterministic code with unit tests, never model output.\n- Store every message and photo with a timestamp.\n- Templates in English and Hindi live in /skills/breakdown-playbook.md.\n\nStart by proposing the schema and file structure, then build job creation and the timeline first.\nAdd fixtures of 15 real-style fault reports and a test that checks the parser output.",
   "pricing": [
@@ -50,10 +104,26 @@
   "test": "Before building, run it by hand in one industrial estate for a month: a WhatsApp group of ten technicians, a shared sheet of jobs, and a phone call when a factory reports a breakdown. Measure time from report to technician arrival against the factories' usual experience. A reasonable bar: most jobs accepted within an hour and owners asking to keep using it.",
   "caution": "Repair advice on industrial machines carries safety risk; keep diagnosis as guidance, insist on lockout procedures, and avoid steps that could void warranties. Verify technician identity before listing them.",
   "sources": [
-    ["Razorpay Fix My Itch", "https://razorpay.com/m/fix-my-itch/"],
-    ["ABB: Survey reveals unplanned downtime costs INR 7 million per hour", "https://new.abb.com/news/detail/108271/abb-survey-reveals-unplanned-downtime-costs-inr-7-million-per-hour"],
-    ["Asianet Newsable / ANI: AI-based predictive maintenance can unlock 1% GDP growth for India", "https://newsable.asianetnews.com/business/ai-based-predictive-maintenance-can-unlock-1-gdp-growth-for-india-articleshow-to8uhq0"],
-    ["Industrial Automation India: Presage Insights raises Rs 5.6 crore", "https://www.industrialautomationindia.in/news/presage-insights-raises-5-6-crore-predictive-maintenance-india"],
-    ["Devdiscourse: EasyFix transforming enterprise maintenance", "https://www.devdiscourse.com/article/technology/3826972-easyfix-transforming-enterprise-maintenance-with-technology"]
-  ]
+    [
+      "Razorpay Fix My Itch",
+      "https://razorpay.com/m/fix-my-itch/"
+    ],
+    [
+      "ABB: Survey reveals unplanned downtime costs INR 7 million per hour",
+      "https://new.abb.com/news/detail/108271/abb-survey-reveals-unplanned-downtime-costs-inr-7-million-per-hour"
+    ],
+    [
+      "Asianet Newsable / ANI: AI-based predictive maintenance can unlock 1% GDP growth for India",
+      "https://newsable.asianetnews.com/business/ai-based-predictive-maintenance-can-unlock-1-gdp-growth-for-india-articleshow-to8uhq0"
+    ],
+    [
+      "Industrial Automation India: Presage Insights raises Rs 5.6 crore",
+      "https://www.industrialautomationindia.in/news/presage-insights-raises-5-6-crore-predictive-maintenance-india"
+    ],
+    [
+      "Devdiscourse: EasyFix transforming enterprise maintenance",
+      "https://www.devdiscourse.com/article/technology/3826972-easyfix-transforming-enterprise-maintenance-with-technology"
+    ]
+  ],
+  "take": "I like this one because Claude is genuinely good at the first step: reading a photo and a rough description and narrowing down what is likely wrong. The real business, though, is the technician network, so I would validate supply first by calling ten technicians in one industrial area before writing a line of code."
 }

@@ -16,28 +16,82 @@
   "players": "Existing players cover the money, not the negotiation. TReDS platforms (RXIL, Invoicemart, M1xchange) finance invoices, but under 1% of registered MSMEs are onboarded ([Whalesbook](https://www.whalesbook.com/news/English/bankingfinance/PSU-Mandate-to-Boost-MSME-Finance-TReDS-Volumes-Set-for-70percent-Surge/69dcf201e0ea10058dc02830)). Recordent handles buyer credit checks, reminders and legal notices ([BizzBuzz](https://bizzbuzz.news/bizz-talk/hyd-based-startup-recordent-helping-resolve-indias-rs-107l-cr-payment-dues-challenge-1271037)). We didn't find a tool focused on the moment before signing.",
   "pitch": "\"45 Days\" is a copilot that reads a buyer's PO or contract before you sign, shows what the payment terms cost you, and drafts a polite counter-offer backed by the law.",
   "features": [
-    ["Clause scan", "Upload a PO or MSA; it extracts credit period, start trigger, retention, set-off and acceptance clauses, and flags conflicts with the 45-day cap, with page references."],
-    ["Cost of terms", "Converts \"120 days\" into rupees at your borrowing rate, compared with 45 days and with TReDS discounting."],
-    ["Counter-offer drafter", "A relationship-safe email and replacement clause in English or Hindi, in firm, neutral or soft tone, framing 43B(h) as the buyer's own tax benefit."],
-    ["Buyer leverage card", "Checks whether the buyer likely falls under the TReDS mandate (turnover above Rs 250 crore, or a CPSE) and suggests TReDS settlement as an option."],
-    ["Overdue ladder", "If the invoice slips, calculates statutory interest and prepares a reminder, a notice draft and an ODR claim pack."]
+    [
+      "Clause scan",
+      "Upload a PO or MSA; it extracts credit period, start trigger, retention, set-off and acceptance clauses, and flags conflicts with the 45-day cap, with page references."
+    ],
+    [
+      "Cost of terms",
+      "Converts \"120 days\" into rupees at your borrowing rate, compared with 45 days and with TReDS discounting."
+    ],
+    [
+      "Counter-offer drafter",
+      "A relationship-safe email and replacement clause in English or Hindi, in firm, neutral or soft tone, framing 43B(h) as the buyer's own tax benefit."
+    ],
+    [
+      "Buyer leverage card",
+      "Checks whether the buyer likely falls under the TReDS mandate (turnover above Rs 250 crore, or a CPSE) and suggests TReDS settlement as an option."
+    ],
+    [
+      "Overdue ladder",
+      "If the invoice slips, calculates statutory interest and prepares a reminder, a notice draft and an ODR claim pack."
+    ]
   ],
   "capabilities": [
-    ["Claude Code", "Builds the web app, database, tests and deployment."],
-    ["Claude API in the product", "Reads scanned and digital contracts, returns clauses as structured JSON, and drafts counter-offers."],
-    ["Skills", "An \"msme-payment-terms\" skill holds the legal rules, clause library and tone guide, so every output follows the same checked source."],
-    ["Artifacts", "A landing page and clickable cost calculator to show SME owners before the app exists."],
-    ["Connectors (MCP)", "Gmail and Google Drive during pilots to pull POs and draft replies for review; Vercel to deploy."],
-    ["Scheduled tasks", "A weekly overdue-invoice sweep, and a watch on the amendment bill so the rules stay current."]
+    [
+      "Claude Code",
+      "Builds the web app, database, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Reads scanned and digital contracts, returns clauses as structured JSON, and drafts counter-offers."
+    ],
+    [
+      "Skills",
+      "An \"msme-payment-terms\" skill holds the legal rules, clause library and tone guide, so every output follows the same checked source."
+    ],
+    [
+      "Artifacts",
+      "A landing page and clickable cost calculator to show SME owners before the app exists."
+    ],
+    [
+      "Connectors (MCP)",
+      "Gmail and Google Drive during pilots to pull POs and draft replies for review; Vercel to deploy."
+    ],
+    [
+      "Scheduled tasks",
+      "A weekly overdue-invoice sweep, and a watch on the amendment bill so the rules stay current."
+    ]
   ],
   "plan": [
-    ["Saturday morning — rules and test set", "Collect 10 real or anonymised POs and MSAs. Write the skill with Sections 15, 16 and 43B(h) and have a CA or lawyer check it. Hand-label expected clauses as a test set."],
-    ["Saturday midday — prototype", "Ask Claude for an artifact with the landing page and calculator. Show it to three SME owners."],
-    ["Saturday afternoon — scan", "Use the starter prompt below in Claude Code to build upload, extraction and the results page. Run the test set and fix misses."],
-    ["Saturday evening — calculator", "Add cost of terms and statutory interest as plain code, with no model involved, and unit-test the arithmetic."],
-    ["Sunday morning — drafter", "Add the counter-offer drafter with three tones and two languages, plus the leverage card."],
-    ["Sunday afternoon — ship", "Deploy to Vercel, add login and auto-delete of uploads, and put an \"information only, not legal advice\" notice on each output."],
-    ["Sunday evening — pilot", "Onboard five suppliers through a CA or industry association. Set a scheduled task to review which counters were sent and answered."]
+    [
+      "Saturday morning — rules and test set",
+      "Collect 10 real or anonymised POs and MSAs. Write the skill with Sections 15, 16 and 43B(h) and have a CA or lawyer check it. Hand-label expected clauses as a test set."
+    ],
+    [
+      "Saturday midday — prototype",
+      "Ask Claude for an artifact with the landing page and calculator. Show it to three SME owners."
+    ],
+    [
+      "Saturday afternoon — scan",
+      "Use the starter prompt below in Claude Code to build upload, extraction and the results page. Run the test set and fix misses."
+    ],
+    [
+      "Saturday evening — calculator",
+      "Add cost of terms and statutory interest as plain code, with no model involved, and unit-test the arithmetic."
+    ],
+    [
+      "Sunday morning — drafter",
+      "Add the counter-offer drafter with three tones and two languages, plus the leverage card."
+    ],
+    [
+      "Sunday afternoon — ship",
+      "Deploy to Vercel, add login and auto-delete of uploads, and put an \"information only, not legal advice\" notice on each output."
+    ],
+    [
+      "Sunday evening — pilot",
+      "Onboard five suppliers through a CA or industry association. Set a scheduled task to review which counters were sent and answered."
+    ]
   ],
   "prompt": "Build a Next.js + TypeScript + Postgres web app called \"45 Days\" for Indian small suppliers.\n\nFlow: user uploads a PO or contract PDF -> Claude API extracts payment clauses as JSON\n(credit_days, start_trigger, retention, set_off, acceptance_period, page_reference, quote)\n-> app shows flagged issues -> user enters invoice value and annual borrowing rate\n-> app shows the rupee cost at the contract term, at 45 days, and at a user-entered TReDS discount rate\n-> user picks tone (firm/neutral/soft) and language (English/Hindi)\n-> Claude drafts a counter-offer email and replacement clause.\n\nRules:\n- Keep legal rules in /rules/msme.md (MSMED Act s.15 and s.16, Income Tax s.43B(h)), loaded into the prompt. Do not let the model cite anything outside that file.\n- Every flag must show the exact quote and page from the contract. If a clause is not found, say \"not found\"; never guess.\n- All money and interest calculations are deterministic code with unit tests, never model output.\n- Ask for Udyam category. If the supplier is not micro or small, warn that these protections may not apply.\n- Show \"Information only, not legal advice\" on every output. Delete uploads after 24 hours.\n\nStart by proposing the schema and file structure, then build the upload and extraction step first.\nAdd a test script that runs extraction over /fixtures and compares it with expected JSON.",
   "pricing": [
@@ -50,11 +104,30 @@
   "test": "Before building the full app, take 20 live or upcoming contracts through a manual version using Claude and the prompt above. Count how many owners send the counter and how many get better terms. A reasonable bar: at least 5 of 20 send and at least 2 improve. If owners won't send, pivot to the overdue ladder, where the relationship is already strained.",
   "caution": "Whether the 45-day protections cover a given supplier depends on registration and category. Medium enterprises and traders may fall outside them, and the amendment bill could change the details. Check with a lawyer.",
   "sources": [
-    ["Razorpay Fix My Itch", "https://razorpay.com/m/fix-my-itch/"],
-    ["BCR: Upper house clears delayed payment bill", "https://bcrpub.com/news/indias-upper-house-clears-delayed-payment-bill-to-unlock-msme-cash/"],
-    ["ICAI journal: From Delays to Discipline", "https://cajournal.icai.org/article-details/unlocking-msme-liquidity-through-reforms"],
-    ["Legal 500: Unfair payment terms and MSME survival", "https://www.legal500.com/intelligence/india/corporate-commercial-law/unfair-payment-terms-and-msme-survival-legal-approach-for-negotiating-unjust-contractual-obligations"],
-    ["Whalesbook: PSU mandate and TReDS volumes", "https://www.whalesbook.com/news/English/bankingfinance/PSU-Mandate-to-Boost-MSME-Finance-TReDS-Volumes-Set-for-70percent-Surge/69dcf201e0ea10058dc02830"],
-    ["BizzBuzz: Recordent", "https://bizzbuzz.news/bizz-talk/hyd-based-startup-recordent-helping-resolve-indias-rs-107l-cr-payment-dues-challenge-1271037"]
-  ]
+    [
+      "Razorpay Fix My Itch",
+      "https://razorpay.com/m/fix-my-itch/"
+    ],
+    [
+      "BCR: Upper house clears delayed payment bill",
+      "https://bcrpub.com/news/indias-upper-house-clears-delayed-payment-bill-to-unlock-msme-cash/"
+    ],
+    [
+      "ICAI journal: From Delays to Discipline",
+      "https://cajournal.icai.org/article-details/unlocking-msme-liquidity-through-reforms"
+    ],
+    [
+      "Legal 500: Unfair payment terms and MSME survival",
+      "https://www.legal500.com/intelligence/india/corporate-commercial-law/unfair-payment-terms-and-msme-survival-legal-approach-for-negotiating-unjust-contractual-obligations"
+    ],
+    [
+      "Whalesbook: PSU mandate and TReDS volumes",
+      "https://www.whalesbook.com/news/English/bankingfinance/PSU-Mandate-to-Boost-MSME-Finance-TReDS-Volumes-Set-for-70percent-Surge/69dcf201e0ea10058dc02830"
+    ],
+    [
+      "BizzBuzz: Recordent",
+      "https://bizzbuzz.news/bizz-talk/hyd-based-startup-recordent-helping-resolve-indias-rs-107l-cr-payment-dues-challenge-1271037"
+    ]
+  ],
+  "take": "When I train founders, payment terms come up more than almost any other money problem, and most owners have never read the clause that is costing them. The build itself is easy; the hard part is the counter-offer email, so I would spend most of the weekend getting Claude's tone right: firm, polite, and something a supplier can send without fearing they will lose the buyer."
 }
