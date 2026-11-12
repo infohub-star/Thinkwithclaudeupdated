@@ -30,4 +30,5 @@ Non-technical. Busy. Want practical results, not theory.
 - Title under 65 characters, includes the main keyword naturally.
 - Description 140-155 characters, a clear benefit.
 - Slug: 3-6 lowercase words with hyphens.
+- Keyword check before writing: web search the topic and note the exact phrases Google suggests (related searches, "People also ask", phrases repeated in top-ranking titles), with an India focus (e.g. "in India", "Bangalore"). Pick the most common phrasing as the main keyword and use it in the title, description, slug, first paragraph and one H2. Turn 2-3 "People also ask" questions into the FAQs. If a Search Console or keyword-volume connector is available, prefer its real data.
 - Add an "## FAQs" section with 3 short Q&As (helps AI search / AEO).
