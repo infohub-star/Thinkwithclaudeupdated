@@ -1,0 +1,61 @@
+{
+  "slug": "2026-11-12-society-maintenance-dues",
+  "date": "2026-11-12",
+  "short": "Society maintenance dues",
+  "title": "Why do housing societies in India struggle to recover unpaid maintenance dues?",
+  "industry": "Real Estate & Housing",
+  "score": 74,
+  "summary": "Volunteer committees sit on lakhs in unpaid maintenance because legal recovery is slow and costly. Here's \"DuesDesk\", a dues-recovery copilot one person could build with Claude in a weekend.",
+  "who": "Managing committees of cooperative housing societies and resident welfare associations, usually unpaid volunteers with day jobs. Paying residents feel it too: when a few flats default for months, repairs, security and sinking funds are squeezed for everyone.",
+  "facts": [
+    "**Where this came from:** Recent Indian news reports on society dues disputes in Gurugram, Pune and Mumbai ([Business Today](https://www.businesstoday.in/india/story/gurugram-society-puts-up-board-with-name-of-defaulters-for-non-payment-of-maintenance-dues-recovers-rs-15-lakh-524177-2026-04-06), [Punekar News](https://www.punekarnews.in/?p=212391), [Free Press Journal](https://www.freepressjournal.in/mumbai/mumbai-housing-society-dues-goregaon-chs-wins-2540-lakh-recovery-order-against-9-defaulters)) and recurring resident complaints about opaque society accounts ([Outlook Money](https://www.outlookmoney.com/magazine/how-rwas-are-failing-residents)).",
+    "**Defaults are common.** An estimated 8 in 10 cooperative societies in Pune have members who have not paid for over 12 months, with about Rs 250 crore pending across Pune and PCMC audit records ([Punekar News](https://www.punekarnews.in/?p=212391)).",
+    "**Few cases ever reach recovery.** Of more than 15,000 new defaulter cases a year in Pune, under 20% reach the Deputy Registrar and barely 10% of those end in recovery, because societies pay legal costs upfront and volunteers lack time ([Punekar News](https://www.punekarnews.in/?p=212391)).",
+    "**Pressure works, but it is crude.** A Gurugram township RWA facing Rs 45 lakh in dues put defaulters' names on a board at the gate and recovered Rs 15 lakh in about a month, which sparked public debate ([Business Today](https://www.businesstoday.in/india/story/gurugram-society-puts-up-board-with-name-of-defaulters-for-non-payment-of-maintenance-dues-recovers-rs-15-lakh-524177-2026-04-06)).",
+    "**Formal orders do come through.** A Goregaon society won a Rs 25.40 lakh recovery order against nine defaulters ([Free Press Journal](https://www.freepressjournal.in/mumbai/mumbai-housing-society-dues-goregaon-chs-wins-2540-lakh-recovery-order-against-9-defaulters))."
+  ],
+  "players": "Society apps such as MyGate, NoBrokerHood and ADDA handle billing, online payment and reminders, and ADDA claims 25,000+ communities ([Codingclave comparison](https://codingclave.com/blog/best-society-management-app-india-2026)). Pune's Finio offers legal recovery on a no-recovery, no-fee basis ([Punekar News](https://www.punekarnews.in/?p=212391)). We did not find a tool that takes a committee from a ledger to a ready-to-file recovery case without a lawyer doing the paperwork.",
+  "pitch": "\"DuesDesk\" reads a society's maintenance ledger, ranks defaulters, sends polite escalating reminders, and prepares the notices and recovery application the committee needs, so volunteers act in an evening instead of a year.",
+  "features": [
+    ["Ledger import", "Upload an Excel or app export of bills and payments; it builds each flat's dues, interest per bye-laws and months overdue."],
+    ["Defaulter ranking", "Sorts flats by amount and age so the committee focuses on the few cases that matter most."],
+    ["Escalation ladder", "Sends a friendly reminder, a formal reminder and a final notice on a schedule, by email and WhatsApp, with a log of every message."],
+    ["Recovery pack", "Drafts the statutory notice and the recovery application with a dues statement and evidence list, ready for review and filing."],
+    ["Member statement", "Gives every member a clear, itemised statement, which also answers the transparency complaints that cause many disputes."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, ledger parser, reminder scheduler, tests and deployment."],
+    ["Claude API in the product", "Cleans messy ledgers, explains each flat's dues in plain English, Hindi or Marathi, and drafts notices."],
+    ["Skills", "A \"society-dues-recovery\" skill holds the bye-law interest rules and notice templates for each state, so drafts stay consistent."],
+    ["Artifacts", "A quick clickable dashboard mock-up to show committee members before writing real code."],
+    ["Connectors / MCP", "Google Sheets or Drive to pull the ledger, and Gmail to send reminders from the society's address."],
+    ["Scheduled tasks", "A monthly run that recalculates dues and sends the next step of the reminder ladder."]
+  ],
+  "plan": [
+    ["Saturday morning — evidence", "Get anonymised ledgers from three societies and list how each committee chases dues today."],
+    ["Saturday midday — rules", "Write the interest and notice rules for Maharashtra as a Claude skill and test them on the sample ledgers."],
+    ["Saturday afternoon — prototype", "Ask Claude for an artifact of the defaulter dashboard and show it to two committee treasurers."],
+    ["Saturday evening — import", "Build the Excel import and dues calculation with Claude Code, checked against the treasurers' own numbers."],
+    ["Sunday morning — reminders", "Add the three-step reminder ladder by email, with a message log per flat."],
+    ["Sunday midday — recovery pack", "Generate the notice and recovery application as PDFs, with a clear \"review before filing\" step."],
+    ["Sunday afternoon — statements", "Add itemised member statements and a shareable summary for the general body meeting."],
+    ["Sunday evening — pilot", "Deploy and onboard one society for a free 30-day pilot."]
+  ],
+  "prompt": "Build a Next.js + TypeScript web app called \"DuesDesk\" for Indian housing society committees.\n\nFlow: the treasurer uploads an Excel/CSV of maintenance bills and payments -> parse and normalise flats, bill dates, amounts and receipts -> call the Claude API to map messy columns and flag anomalies as JSON -> compute each flat's outstanding dues, months overdue and interest using a configurable bye-law rate -> show a ranked defaulter dashboard -> for each defaulter, schedule a 3-step reminder ladder (friendly, formal, final notice) by email, logging every message -> generate a dues statement and a draft recovery notice as PDF for committee review.\n\nRequirements: role-based login for committee members; member-facing itemised statement page; all drafts marked \"review before sending\"; store data in Postgres; write unit tests for the dues and interest calculation; seed with a 40-flat sample ledger.",
+  "pricing": [
+    "Free for societies under 50 flats: dashboard and statements.",
+    "Rs 5 per flat a month for reminders and member statements.",
+    "Rs 2,999 per recovery pack, or a small share of amounts recovered, through a partner lawyer.",
+    "Pricing is a suggestion and has not been validated."
+  ],
+  "risk": "Committees may not want to escalate against neighbours, even with a ready-made pack, because the social cost feels higher than the money.",
+  "test": "Offer five societies a free ledger clean-up and defaulter report, then count how many send at least one formal reminder within 30 days. A reasonable bar: three of five. If they stall, sell the polite reminder and statement features first and keep recovery as an add-on.",
+  "caution": "Rules on interest, notices and recovery differ by state and by bye-laws, so every legal draft must be reviewed by the committee or a lawyer. Do not publicly name defaulters, and handle member data under India's Digital Personal Data Protection Act.",
+  "sources": [
+    ["Business Today: Gurugram society names defaulters, recovers Rs 15 lakh", "https://www.businesstoday.in/india/story/gurugram-society-puts-up-board-with-name-of-defaulters-for-non-payment-of-maintenance-dues-recovers-rs-15-lakh-524177-2026-04-06"],
+    ["Punekar News: Pune cooperative societies struggle with maintenance defaults", "https://www.punekarnews.in/?p=212391"],
+    ["Free Press Journal: Goregaon CHS wins Rs 25.40 lakh recovery order", "https://www.freepressjournal.in/mumbai/mumbai-housing-society-dues-goregaon-chs-wins-2540-lakh-recovery-order-against-9-defaulters"],
+    ["Outlook Money: How RWAs are failing residents", "https://www.outlookmoney.com/magazine/how-rwas-are-failing-residents"],
+    ["Codingclave: Society management apps in India compared, 2026", "https://codingclave.com/blog/best-society-management-app-india-2026"]
+  ]
+}
