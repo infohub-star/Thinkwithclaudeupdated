@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-12",
+  "id": "hn50438318",
+  "q": "How do I use AI to write code without ending up with a fragile, hard-to-maintain codebase?",
+  "a": "Treat AI output like a pull request from a fast but inexperienced junior developer. Keep changes small, ask for one thing at a time, and read every diff before accepting it. If you cannot explain a change, do not merge it.\n\nPut guardrails in place first: automated tests, a linter and type checks. Ask the AI to write tests along with the code, then confirm those tests actually fail when the code is wrong. Keep a short project notes file with your conventions so the AI reuses existing helpers instead of inventing duplicates. Every so often, ask it to find duplicated logic and dead code, and do that cleanup in separate commits. The danger is rarely one bad function. It is hundreds of unreviewed ones that nobody on the team understands.",
+  "sub": "Hacker News",
+  "comments": 607,
+  "url": "https://news.ycombinator.com/item?id=50438318",
+  "slug": "how-use-ai-write-code-without-ending-up"
+ },
+ {
+  "date": "2026-11-12",
+  "id": "hn50446520",
+  "q": "Is it worth running AI models locally on my own laptop instead of using a cloud chatbot?",
+  "a": "It depends on the task. Local models make sense when data is sensitive, you work offline, or you do repetitive jobs like summarising, classifying or rewriting text where a smaller model is good enough. Nothing leaves your machine, which can simplify client confidentiality conversations.\n\nThe trade-off is that smaller local models are usually weaker than the best cloud models at complex reasoning, long documents and coding. Speed and quality also depend heavily on your laptop's memory, so check that before downloading anything. A sensible approach is to install one easy local app with a small model, try it on a non-critical task, and compare the result with your usual cloud tool. Keep the cloud tool for hard work. Either way, check your company's policy before pasting confidential material anywhere.",
+  "sub": "Hacker News",
+  "comments": 525,
+  "url": "https://news.ycombinator.com/item?id=50446520",
+  "slug": "is-worth-running-ai-models-locally-own-laptop"
+ },
+ {
+  "date": "2026-11-12",
+  "id": "oai1415111",
+  "q": "How can I keep ChatGPT remembering my context across different chats and devices?",
+  "a": "Do not rely on one endless chat. Long threads get slow and the model can lose early details. Instead, keep a short context note that you own: your role, audience, tone, standing rules and key project facts, in a document of a few hundred words.\n\nThen use the built-in tools. Turn on memory and custom instructions in settings if your plan and company policy allow it, and use Projects to group related chats with shared files and instructions. At the end of a long session, ask the AI to summarise decisions, open questions and next steps, and paste that into the next chat as the starting point. Because the note lives in your own notes app, it works on any device and with any AI tool. Never store passwords or client secrets in memory.",
+  "sub": "OpenAI Community",
+  "comments": 4,
+  "url": "https://community.openai.com/t/secure-external-memory-integration-for-chatgpt-persistent-context-across-conversations-and-devices/1415111",
+  "slug": "how-keep-chatgpt-remembering-context-across-different-chats"
+ },
+ {
+  "date": "2026-11-12",
+  "id": "oai1415066",
+  "q": "I paid for AI credits but they did not show up in my account. What should I do?",
+  "a": "Start with quick checks. Refresh, log out and back in, and confirm you are in the right account, organisation or workspace, since credits are often added somewhere other than where you expect. Look at your billing page and payment email to see whether the charge is a completed payment or a pending authorisation, which can take time to settle.\n\nIf nothing changes after a reasonable wait, contact the provider through its official help centre. Include your account email, organisation name, transaction ID, date, amount, and screenshots of the receipt and the balance page. Clear details get resolved faster than a message marked urgent. Do not pay a second time. Only if support stays silent, raise a dispute with your bank or card issuer, and keep a record of every message you sent.",
+  "sub": "OpenAI Community",
+  "comments": 11,
+  "url": "https://community.openai.com/t/urgent-payment-successful-but-credits-not-added-to-account/1415066",
+  "slug": "paid-ai-credits-they-not-show-up-account"
+ },
+ {
+  "date": "2026-11-12",
+  "id": "se2993",
+  "q": "Why can an AI coding tool show context usage above 100 percent?",
+  "a": "Without the specific tool's documentation I cannot be certain, but there are a few common explanations. The meter may add up tokens across the whole session, including earlier turns, tool outputs and file reads, instead of showing what is in the window right now. It may also count what was sent before the tool trimmed or summarised the history to fit.\n\nAnother possibility is a display bug, or the percentage being measured against a different limit than the model's actual window. Practically, a number above 100 is a sign to start fresh: open a new session, give a short summary of the task, and attach only the files that matter. Smaller, focused sessions usually give better answers anyway. Check the tool's current docs or release notes for how it calculates the figure.",
+  "sub": "GenAI Stack Exchange",
+  "comments": null,
+  "url": "https://genai.stackexchange.com/questions/2993/github-copilot-app-shows-context-usage-at-521-how-can-it-go-over-100",
+  "slug": "why-ai-coding-tool-show-context-usage-above"
+ },
+ {
   "date": "2026-11-10",
   "id": "hn50431144",
   "q": "Should a top leaderboard score decide which AI model my team uses for daily work?",

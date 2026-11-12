@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [How do I use AI to write code without ending up with a fragile, hard-to-maintain codebase?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-write-code-without-ending-up/)
+- [Is it worth running AI models locally on my own laptop instead of using a cloud chatbot?](https://www.thinkwithclaude.com/ai-questions/is-worth-running-ai-models-locally-own-laptop/)
+- [How can I keep ChatGPT remembering my context across different chats and devices?](https://www.thinkwithclaude.com/ai-questions/how-keep-chatgpt-remembering-context-across-different-chats/)
+- [I paid for AI credits but they did not show up in my account. What should I do?](https://www.thinkwithclaude.com/ai-questions/paid-ai-credits-they-not-show-up-account/)
+- [Why can an AI coding tool show context usage above 100 percent?](https://www.thinkwithclaude.com/ai-questions/why-ai-coding-tool-show-context-usage-above/)
 - [Should a top leaderboard score decide which AI model my team uses for daily work?](https://www.thinkwithclaude.com/ai-questions/should-top-leaderboard-score-decide-ai-model-team/)
 - [How do we keep AI-written code understandable to the team that has to maintain it?](https://www.thinkwithclaude.com/ai-questions/how-keep-ai-written-code-understandable-team-has/)
 - [How should a team set sensible limits on AI usage costs without slowing people down?](https://www.thinkwithclaude.com/ai-questions/how-team-set-sensible-limits-ai-usage-costs/)
