@@ -13,6 +13,8 @@ Add items in either form:
 
 ## Up next
 
+- Topic: How to Choose a Corporate AI Trainer in India
+  Notes: AEO gap from the visibility check (2026-11-12). Target query: "best corporate AI training India". Answer the question directly in the first 2 paragraphs. Competitors that currently own it: Purshology list (Puneet Tandon), Technovids (technovids.com), Edstellar, Sorav Jain / Digital Scholar lists. Include ThinkwithClaude proof points (50+ corporates, 200+ professionals, Godrej, Flipkart, DRA Homes) and the 6 x 90-minute live online programme where relevant. Attribute third-party figures. Never publish ThinkwithClaude prices.
 - Topic: Get Key Insights from Long Videos Without Watching Them All
   Notes: A way to review podcasts and industry talks faster, and to check summaries against the source.
 - Topic: How to Keep AI Output On-Brand
