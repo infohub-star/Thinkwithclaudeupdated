@@ -115,6 +115,18 @@ def page(title, desc, url, body, ld, og_type="article"):
 """
 
 
+def faqs(b):
+    """FAQ built from the brief's own data (plus any custom b['faq'] pairs)."""
+    t = b.get("short") or b["title"]
+    out = [(f"Who faces the {t.lower()} problem?", b["who"]),
+           (f"How can Claude help solve {t.lower()}?", b["pitch"]),
+           ("How long does it take to build a first version?",
+            "About a weekend: " + " ".join(f"{w}: {x}" for w, x in b["plan"][:2]) + (" ..." if len(b["plan"]) > 2 else "")),
+           ("How could this make money?", " ".join(b["pricing"])),
+           ("What should you test before building?", b["test"])]
+    return [tuple(x) for x in b.get("faq", [])] + out
+
+
 def brief_page(b, others):
     url = f"{BASE}/daily-problems/{b['slug']}/"
     tiles = lambda rows: '<div class="grid">' + "".join(
@@ -147,6 +159,10 @@ def brief_page(b, others):
 <p><b>Assumption:</b> {md(b['risk'])}</p>
 <p><b>Test first:</b> {md(b['test'])}</p>
 {f'<p class="warn">{md(b["caution"])}</p>' if b.get('caution') else ''}
+{f'<h2>My take</h2><p>{md(b["take"])}</p>' if b.get('take') else ''}
+<h2>FAQ</h2>
+{''.join(f'<h3>{e(q)}</h3><p>{md(a)}</p>' for q, a in faqs(b))}
+{('<h2>Sources</h2><ul class="src">' + ''.join(f'<li><a href="{e(u)}" target="_blank" rel="noopener nofollow">{e(t)}</a></li>' for t, u in b['sources']) + '</ul>') if b.get('sources') else ''}
 </article>"""
     if others:
         body += '<h2 style="font:700 24px DM Sans,sans-serif;color:#0B1B33;margin:44px 0 10px">More daily problems</h2><ul>' + "".join(
@@ -159,7 +175,10 @@ def brief_page(b, others):
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"},
               {"@type": "ListItem", "position": 2, "name": SECTION, "item": BASE + "/daily-problems/"},
-              {"@type": "ListItem", "position": 3, "name": b["title"], "item": url}]}]
+              {"@type": "ListItem", "position": 3, "name": b["title"], "item": url}]},
+          {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+              {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\*\*|\[([^\]]+)\]\([^)]+\)", lambda m: m.group(1) or "", a)}}
+              for q, a in faqs(b)]}]
     return page(b["title"], b["summary"], url, body, ld)
 
 
@@ -171,11 +190,14 @@ def hub_page(briefs):
     body = f"""<div class="kick">{SECTION}</div>
 <h1>{SECTION}: build the fix with Claude</h1>
 <p class="lead">{TAGLINE}</p>
+<p>Every day I pick one real, painful problem that Indian founders, small businesses or everyday people are facing right now, backed by news reports and data. For each one you get who feels the pain, who is already trying to solve it, a product idea, the exact Claude capabilities that do the work, a weekend build plan, a copy-paste starter prompt for Claude Code, pricing ideas and the riskiest assumption to test first.</p>
+<p>Use these as practice briefs if you are learning to build with Claude, or as startup ideas worth validating. New problems go up daily, newest first. {len(briefs)} problems so far.</p>
+<h2 style="font:700 24px DM Sans,sans-serif;color:#0B1B33;margin:36px 0 14px">All daily problems</h2>
 <div class="list">{cards or '<p>The first problem is on its way.</p>'}</div>"""
     ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": SECTION, "description": TAGLINE, "url": url,
            "hasPart": [{"@type": "Article", "headline": b["title"][:110], "url": f"{BASE}/daily-problems/{b['slug']}/",
                         "datePublished": b["date"]} for b in briefs[:30]]}]
-    return page(SECTION + ": build the fix with Claude", TAGLINE, url, body, ld, og_type="website")
+    return page(SECTION + ": build the fix with Claude", TAGLINE + " Weekend build plans, starter prompts and pricing ideas for each.", url, body, ld, og_type="website")
 
 
 def update_sitemap(briefs):
