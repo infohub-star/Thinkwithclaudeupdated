@@ -1,0 +1,131 @@
+{
+  "slug": "2026-11-13-restaurant-delivery-commissions",
+  "date": "2026-11-13",
+  "short": "Restaurant delivery commissions",
+  "title": "Why do small restaurants in India keep so little of each food delivery order?",
+  "industry": "Food & Restaurants",
+  "score": 78,
+  "summary": "Commissions, unapproved discounts and ad fees can eat 40-60% of a delivery order, and most owners cannot see exactly where the money went. Here's \"PayoutLens\", a payout auditor one person could build with Claude in a weekend.",
+  "who": "Owners of small and mid-sized restaurants, cafes and cloud kitchens who depend on delivery apps for a large share of sales. They rarely have an accountant who reads every weekly payout statement, so deductions they never agreed to go unnoticed.",
+  "facts": [
+    "**Where this came from:** Indian news coverage of the 2026 Bengaluru restaurant protest against delivery platforms ([The Week](https://www.theweek.in/news/biz-tech/2026/07/30/wont-take-orders-anymore-why-bengaluru-restaurants-are-threatening-to-boycott-zomato-swiggy.amp.html), [The News Minute](https://www.thenewsminute.com/karnataka/when-discounts-cost-dearly-why-bengaluru-restaurants-are-upset-with-swiggy-zomato)), the long-running restaurant association competition case ([Business Standard](https://www.business-standard.com/industry/news/zomato-price-parity-cci-case-why-nrai-oppose-explained-126071500578_1.html)), and startup coverage of direct-ordering tools ([Inc42](https://inc42.com/?p=452135)).",
+    "**The cut is large.** Restaurant owners in Bengaluru report commissions of 20-30% per order, and an NRAI Bengaluru representative says commission plus discount contributions can take 40-60% ([The News Minute](https://www.thenewsminute.com/karnataka/when-discounts-cost-dearly-why-bengaluru-restaurants-are-upset-with-swiggy-zomato)).",
+    "**A Rs 1 lakh order month can pay out Rs 40,000-45,000** after ads, long-distance levies, collection charges and commission on GST, according to the Bangalore Hotels Association ([The News Minute](https://www.thenewsminute.com/karnataka/when-discounts-cost-dearly-why-bengaluru-restaurants-are-upset-with-swiggy-zomato)).",
+    "**Owners want transparency first.** In July 2026 the Bruhat Bengaluru Hotels Association demanded a detailed breakdown of commissions, charges and payouts, and consent before discounts and ad charges ([The Week](https://www.theweek.in/news/biz-tech/2026/07/30/wont-take-orders-anymore-why-bengaluru-restaurants-are-threatening-to-boycott-zomato-swiggy.amp.html)).",
+    "**Platforms conceded some of it.** Restaurant associations say Zomato agreed to make restaurant-funded promotions opt-in and review past wrongful deductions, and Swiggy agreed to refund campaigns run without approval ([The News Minute](https://www.thenewsminute.com/karnataka/when-discounts-cost-dearly-why-bengaluru-restaurants-are-upset-with-swiggy-zomato)).",
+    "**Delivery matters too much to quit.** Restaurants attribute about one-third of revenue to these platforms, per a JM Financial report cited by Inc42 ([Inc42](https://inc42.com/?p=452135))."
+  ],
+  "players": "Direct-ordering and zero-commission tools such as uEngage, Thrive, DotPe, Reelo and Bitsila help restaurants build their own ordering channel, and ONDC offers an open-network alternative ([Inc42](https://inc42.com/?p=452135), [YourStory](https://yourstory.com/2023/05/thrive-waayu-zomato-swiggy-food-delivery-saas-play)). These focus on new orders. Few tools sit on the restaurant's side and audit the payouts from existing platforms line by line.",
+  "pitch": "\"PayoutLens\" reads a restaurant's weekly delivery-app payout statements, shows the true take rate per order, flags promotions and charges the owner never approved, and drafts the refund claim.",
+  "features": [
+    [
+      "Statement import",
+      "Upload payout PDFs or Excel exports from each delivery app; it extracts every order, fee and deduction."
+    ],
+    [
+      "True take rate",
+      "Shows what share of each order the restaurant actually keeps, by week, by dish and by app."
+    ],
+    [
+      "Unapproved charge alerts",
+      "Flags discounts, ad fees and penalties that do not match a campaign the owner approved."
+    ],
+    [
+      "Refund claim drafts",
+      "Writes a clear, itemised dispute for each flagged charge, ready to paste into the partner portal."
+    ],
+    [
+      "Direct-order nudge",
+      "Identifies the dishes and customers where moving to direct ordering would save the most."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, statement parsers, take-rate calculations, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Reads messy PDF statements, matches deductions to approved campaigns, and drafts dispute text."
+    ],
+    [
+      "Skills",
+      "A \"delivery-payout-audit\" skill holds each platform's fee categories and the restaurant's approval rules."
+    ],
+    [
+      "Artifacts",
+      "Produces a weekly one-page payout report the owner can share with a partner or accountant."
+    ],
+    [
+      "Connectors / MCP",
+      "Pulls statements from Gmail or Google Drive and writes results to Google Sheets."
+    ],
+    [
+      "Scheduled tasks",
+      "Runs every Monday after payouts land and sends the owner a short summary."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning — evidence",
+      "Collect anonymised payout statements from three restaurants and list every fee type you see."
+    ],
+    [
+      "Saturday midday — parser",
+      "Use Claude Code to build parsers for the two most common statement formats."
+    ],
+    [
+      "Saturday afternoon — rules",
+      "Write the take-rate maths and the approved-campaign rules as a Claude skill and test them."
+    ],
+    [
+      "Saturday evening — alerts",
+      "Add the unapproved-charge check and the refund claim draft."
+    ],
+    [
+      "Sunday morning — report",
+      "Build the weekly report artifact and a simple dashboard."
+    ],
+    [
+      "Sunday midday — automation",
+      "Add a scheduled task that reads new statements from email every Monday."
+    ],
+    [
+      "Sunday afternoon — pilot",
+      "Run it on real statements from the three restaurants and compare with their own numbers."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript web app called \"PayoutLens\" for small Indian restaurants.\n\nFlow: the owner uploads weekly payout statements (PDF or Excel) from food delivery apps -> extract every order line, commission, GST, discount share, ad fee, penalty and net payout -> call the Claude API to map unfamiliar line items to standard fee categories -> compute the true take rate per order, per week and per app -> compare discount and ad deductions against a list of campaigns the owner approved, and flag mismatches -> draft an itemised refund claim for each flag.\n\nInclude: a dashboard with take rate over time, a flagged-charges table, a downloadable weekly PDF report, sample anonymised statements for tests, and unit tests for the fee maths. Keep all restaurant data private per account.",
+  "pricing": [
+    "Free: one app, last four weeks of statements.",
+    "Rs 999 a month per outlet for all apps, alerts and refund drafts.",
+    "Optional success fee of 10% of refunds recovered.",
+    "Pricing is a suggestion and has not been validated."
+  ],
+  "risk": "Platforms may already refund wrongly applied charges quickly enough that owners do not feel the need for an audit tool.",
+  "test": "Audit eight weeks of statements for five restaurants for free and count how much in disputable charges you find. If at least three restaurants have charges worth more than a month's subscription, the product has a case; if not, lead with the take-rate and direct-order insights instead.",
+  "caution": "Read each platform's partner agreement before automating anything inside their portals, and keep disputes factual. Handle restaurant and customer data under India's Digital Personal Data Protection Act.",
+  "take": "Most owners already know delivery apps are expensive; what they lack is a line-by-line view of where the money goes. Claude is good at turning messy statements into a clear, factual list, which is exactly what an owner needs before negotiating or disputing. Start with the audit and the true take rate, then add direct ordering advice.",
+  "sources": [
+    [
+      "The Week: Why Bengaluru restaurants are threatening to boycott Zomato, Swiggy",
+      "https://www.theweek.in/news/biz-tech/2026/07/30/wont-take-orders-anymore-why-bengaluru-restaurants-are-threatening-to-boycott-zomato-swiggy.amp.html"
+    ],
+    [
+      "The News Minute: When discounts cost dearly",
+      "https://www.thenewsminute.com/karnataka/when-discounts-cost-dearly-why-bengaluru-restaurants-are-upset-with-swiggy-zomato"
+    ],
+    [
+      "Inc42: How uEngage is liberating F&B sellers from the high commission trap",
+      "https://inc42.com/?p=452135"
+    ],
+    [
+      "Business Standard: Zomato price parity CCI case explained",
+      "https://www.business-standard.com/industry/news/zomato-price-parity-cci-case-why-nrai-oppose-explained-126071500578_1.html"
+    ],
+    [
+      "YourStory: Can Thrive and Waayu's SaaS play beat the duopoly?",
+      "https://yourstory.com/2023/05/thrive-waayu-zomato-swiggy-food-delivery-saas-play"
+    ]
+  ]
+}
