@@ -1,8 +1,5 @@
 <!doctype html>
 <html lang="en"><head>
-<!-- Google tag (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLT2NLZCZM"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZLT2NLZCZM');</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>How Forward Deployed Engineers Get Paid in the AI Era | ThinkwithClaude</title>
 <meta name="description" content="Why AI projects stall while developers struggle for work, and how a Forward Deployed Engineer earns by closing that gap with a platform and a vertical.">
@@ -201,25 +198,4 @@ An AI solution built for one industry or function, such as tax or sales, on top 
 <p style="margin-top:26px"><a href="/fde-essentials/">← All of FDE Essentials for Coders</a></p>
 </main>
 <div class="foot">© 2026 ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
-<!-- Calendly popup + GA4 booking tracking -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script>
-(function(){
-document.addEventListener('click',function(e){
-  var a=e.target.closest&&e.target.closest('a[href*="calendly.com/"]');
-  if(!a||!window.Calendly||e.metaKey||e.ctrlKey)return;
-  e.preventDefault();
-  var u=a.href+(a.href.indexOf('?')>-1?'&':'?')+'utm_source=thinkwithclaude&utm_medium=website&utm_content='+encodeURIComponent(location.pathname);
-  Calendly.initPopupWidget({url:u});
-  try{window.gtag&&gtag('event','booking_started',{page_path:location.pathname})}catch(_){}
-});
-window.addEventListener('message',function(e){
-  if(e.origin!=='https://calendly.com'||!e.data||e.data.event!=='calendly.event_scheduled')return;
-  try{window.gtag&&gtag('event','generate_lead',{lead_source:'calendly_booking',page_path:location.pathname})}catch(_){}
-  try{window.va&&window.va('event',{name:'calendly_booked'})}catch(_){}
-  try{window.clarity&&window.clarity('event','calendly_booked')}catch(_){}
-});
-})();
-</script>
 </body></html>
