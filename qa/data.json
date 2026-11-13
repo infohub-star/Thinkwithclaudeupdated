@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-13",
+  "id": "hn50458900",
+  "q": "Is it safe to let an AI agent book travel or make purchases for me?",
+  "a": "Treat it like delegating to a new assistant: fine for research and drafts, risky for final commitments. Let the agent compare options and build a shortlist, but keep the payment step and final confirmation with you. If a tool needs payment access, use a virtual or limited-balance card, and never hand over your main passwords.\n\nAlso read the terms of the airline or vendor site. Some businesses restrict automated booking, and breaking those terms can leave you without support if something goes wrong. Before confirming anything, check dates, names as they appear on the passport, airports and fare rules yourself. For work travel, check your company's policy on AI tools first.",
+  "sub": "Hacker News",
+  "comments": 688,
+  "url": "https://news.ycombinator.com/item?id=50458900",
+  "slug": "is-safe-let-ai-agent-book-travel-make"
+ },
+ {
+  "date": "2026-11-13",
+  "id": "hn50452455",
+  "q": "How do I check a surprising finding from an AI tool before I trust it?",
+  "a": "Ask what the claim rests on. Have the AI list the specific data, sources or steps behind it, then check them yourself rather than accepting its summary. Surprising results are the most likely to be artifacts: a misread file, a pattern in noise, or a confident invention.\n\nThen try to break it. Ask for the most boring, ordinary explanation and what evidence would separate it from the exciting one. Rerun the analysis with a different prompt or a different model and see whether the result holds. Finally, show it to a human expert in the field before you act on it or share it. Use AI to generate leads, and treat human verification as the step that turns a lead into a finding.",
+  "sub": "Hacker News",
+  "comments": 390,
+  "url": "https://news.ycombinator.com/item?id=50452455",
+  "slug": "how-check-surprising-finding-ai-tool-before-trust"
+ },
+ {
+  "date": "2026-11-13",
+  "id": "hn50456791",
+  "q": "How can I use AI to support a business decision without handing the decision over to it?",
+  "a": "Use it to structure the decision, not to make it. Give it the context, the options, your constraints and your criteria. Then ask it to list pros and cons, hidden assumptions, risks and missing information. Ask it to argue against your preferred option as well.\n\nKeep accountability with a person. Write down who decides, which criteria matter and what evidence would change your mind. Ask the AI to show its reasoning so you can check it, and verify any figures it cites against your own data. For decisions you make often, save a prompt template with the same criteria so results stay comparable. Do not paste confidential data into tools your company has not approved.",
+  "sub": "Hacker News",
+  "comments": 157,
+  "url": "https://news.ycombinator.com/item?id=50456791",
+  "slug": "how-use-ai-support-business-decision-without-handing"
+ },
+ {
+  "date": "2026-11-13",
+  "id": "oai1415608",
+  "q": "Which editors work well for an AI coding workflow built around Codex instead of Cursor?",
+  "a": "Codex-style agents mostly work through a command-line tool or an editor extension, so the editor matters less than you might expect. Popular options include VS Code, the JetBrains IDEs, Zed, or Neovim with the terminal agent running alongside. Check the current docs for which integrations are officially supported.\n\nPick the editor you already know, since the agent adds the AI layer. Then judge it on what you will do most: reviewing diffs, using git, and running tests quickly. Work in small branches so you can discard a bad change easily, and read every diff before you accept it. A good diff view is worth more than any built-in chat panel.",
+  "sub": "OpenAI Community",
+  "comments": 1,
+  "url": "https://community.openai.com/t/looking-at-non-cursor-editors-for-a-codex-heavy-workflow-which-ones-fit/1415608",
+  "slug": "which-editors-work-well-ai-coding-workflow-built"
+ },
+ {
+  "date": "2026-11-13",
+  "id": "se2996",
+  "q": "Can Microsoft Copilot work as one chat assistant for both general questions and company tasks?",
+  "a": "Generally yes, but it needs design rather than switching on. Start by listing the specific tasks you want it to do, such as checking a leave balance, raising a support ticket or answering policy questions. Then connect each task to the right system through the tools Microsoft provides for building custom Copilot agents. Check the current docs for which options your plan includes.\n\nGround policy answers in approved company documents so it does not guess. Respect existing permissions so people only see what they are allowed to see. Add a clear fallback to a human when it is unsure, and test with real questions from your staff before launch. Keep the first version narrow and expand once it works reliably.",
+  "sub": "GenAI Stack Exchange",
+  "comments": null,
+  "url": "https://genai.stackexchange.com/questions/2996/can-copilot-handle-multifunctional-role-in-a-genai-chat-experience-with-some-fun",
+  "slug": "can-microsoft-copilot-work-as-one-chat-assistant"
+ },
+ {
   "date": "2026-11-12",
   "id": "hn50438318",
   "q": "How do I use AI to write code without ending up with a fragile, hard-to-maintain codebase?",

@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [Is it safe to let an AI agent book travel or make purchases for me?](https://www.thinkwithclaude.com/ai-questions/is-safe-let-ai-agent-book-travel-make/)
+- [How do I check a surprising finding from an AI tool before I trust it?](https://www.thinkwithclaude.com/ai-questions/how-check-surprising-finding-ai-tool-before-trust/)
+- [How can I use AI to support a business decision without handing the decision over to it?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-support-business-decision-without-handing/)
+- [Which editors work well for an AI coding workflow built around Codex instead of Cursor?](https://www.thinkwithclaude.com/ai-questions/which-editors-work-well-ai-coding-workflow-built/)
+- [Can Microsoft Copilot work as one chat assistant for both general questions and company tasks?](https://www.thinkwithclaude.com/ai-questions/can-microsoft-copilot-work-as-one-chat-assistant/)
 - [How do I use AI to write code without ending up with a fragile, hard-to-maintain codebase?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-write-code-without-ending-up/)
 - [Is it worth running AI models locally on my own laptop instead of using a cloud chatbot?](https://www.thinkwithclaude.com/ai-questions/is-worth-running-ai-models-locally-own-laptop/)
 - [How can I keep ChatGPT remembering my context across different chats and devices?](https://www.thinkwithclaude.com/ai-questions/how-keep-chatgpt-remembering-context-across-different-chats/)
