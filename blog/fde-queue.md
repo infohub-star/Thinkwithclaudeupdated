@@ -18,7 +18,6 @@ Format: `- Part N | Level | Doc NN · <title> | <Drive file ID>`
 
 ## Up next
 
-- Part 5 | Basics | Doc 09 · FDE Course 6: ChatGPT-Style Streaming | 1EUf9TzLULkk6-gTWozi1qbYhgArtsuBSiG7wMJOIgLQ
 - Part 6 | Intermediate | Doc 16 · The FDE Workflow: BRD, SRD, Design and AI-Built Solutions | 1fRHQlkrIigZRuJFUOSL_1bBF_TWZWBDyxll0a76lY4c
 - Part 7 | Intermediate | Doc 10 · Sales AI Ep. 2: Requirements, Data and Architecture | 1W2IWI6CFZFbzNamsKh1V0wwkHYMzEaruKzT6i81h4uk
 - Part 8 | Intermediate | Doc 17 · Mastering Forward Deployed Engineering: Role, Skills, RAG and a Live Build | 1YhYCwfkhKDZOE_YxZFORs4oRFmNntsZy_BgQCSDV1Sk
@@ -33,6 +32,7 @@ Format: `- Part N | Level | Doc NN · <title> | <Drive file ID>`
 
 ## Published
 
+- 2026-11-13 | Part 5 | Basics | Doc 09 · FDE Course 6: ChatGPT-Style Streaming | 1EUf9TzLULkk6-gTWozi1qbYhgArtsuBSiG7wMJOIgLQ | https://www.thinkwithclaude.com/blog/fde-stream-llm-responses/
 - 2026-11-12 | Part 4 | Basics | Doc 08 · FDE Course 2: How LLMs Actually Work | 1uN1dlDmzM3t16N93Z1revDgjeWV9E-uHo5rExx87zoI | https://www.thinkwithclaude.com/blog/fde-how-llms-actually-work/
 - 2026-11-11 | Part 3 | Basics | Doc 14 · FDE-100 Class 1: Getting Paid in the AI Era | 1QgyfSDMvxn9xj5RJaJx7M2c6wYk1d14__mfg_1HSiDI | https://www.thinkwithclaude.com/blog/fde-getting-paid-ai-era/
 - 2026-11-10 | Part 2 | Basics | Doc 15 · Complete FDE Training Course for Beginners | 1PZ1KIdEvjOo0PSC8_W40e-dUMN75t1UjNZMK-dBeY6U | https://www.thinkwithclaude.com/blog/fde-beginner-skills-roadmap/

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en"><head>
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLT2NLZCZM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZLT2NLZCZM');</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Stream LLM Responses Like ChatGPT: An FDE Guide | ThinkwithClaude</title>
+<meta name="description" content="Learn how to stream LLM responses word by word, from SSE vs WebSockets to backend buffers and browser rendering, so your AI app feels fast to users.">
+<meta name="keywords" content="stream LLM responses, forward deployed engineer, server-sent events, SSE vs WebSockets, time to first token, ChatGPT-style streaming, AI chatbot frontend">
+<link rel="canonical" href="https://www.thinkwithclaude.com/blog/fde-stream-llm-responses/">
+<meta property="og:type" content="article"><meta property="og:title" content="How to Stream LLM Responses Like ChatGPT: An FDE Guide"><meta property="og:description" content="Learn how to stream LLM responses word by word, from SSE vs WebSockets to backend buffers and browser rendering, so your AI app feels fast to users."><meta property="og:url" content="https://www.thinkwithclaude.com/blog/fde-stream-llm-responses/">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyn121dz14");</script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F7F9FC;color:#1A1A1A;font:17px/1.75 'Inter',sans-serif}
+a{color:#004AAD}
+.top{background:#fff;border-bottom:1px solid rgba(15,23,42,.08)}
+.top-in{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0B1B33;font:700 16px 'DM Sans',sans-serif}
+.mark{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#004AAD,#F5B301);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+.navl{display:flex;gap:18px;align-items:center;font-size:14px}
+.navl a{text-decoration:none;color:#333}
+.cta{background:#004AAD;color:#fff !important;padding:9px 16px;border-radius:999px;font-weight:600}
+.w{max-width:760px;margin:0 auto;padding:48px 20px 64px}
+.kick{font:700 12px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#004AAD}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'DM Sans',sans-serif;color:#0B1B33;margin:10px 0 14px}
+.meta{color:#5B6472;font-size:14px;margin-bottom:30px}
+article h2{font:700 26px/1.25 'DM Sans',sans-serif;color:#0B1B33;margin:40px 0 12px}
+article h3{font:700 20px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin:28px 0 10px}
+article p,article li{color:#2A2F38}
+article blockquote{margin:20px 0;padding:14px 18px;background:#EEF4FF;border-left:4px solid #004AAD;border-radius:8px}
+article pre{background:#0B1B33;color:#E8EEF8;border-radius:12px;padding:16px;overflow:auto;font:14px/1.6 ui-monospace,Menlo,monospace;white-space:pre-wrap}
+article code{background:#EEF2F7;padding:2px 6px;border-radius:5px;font-size:.9em}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;width:100%;font-size:15px}
+article th,article td{border:1px solid rgba(15,23,42,.12);padding:8px 10px;text-align:left}
+.box{margin-top:44px;background:#0B1B33;color:#fff;border-radius:18px;padding:26px}
+.box h2{color:#fff;font:700 22px 'DM Sans',sans-serif;margin:0 0 8px}
+.box p{color:#C9D3E3;margin:0 0 16px;font-size:16px}
+.btn{display:inline-block;background:#fff;color:#004AAD;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:10px;margin:0 8px 8px 0}
+.btn.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.list{display:grid;gap:16px}
+.card{display:block;background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:16px;padding:20px;text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:#004AAD;box-shadow:0 8px 24px rgba(0,74,173,.10)}
+.card b{display:block;font:700 20px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin-bottom:6px}
+.card span{color:#4A4A4A;font-size:15px;line-height:1.6}
+.card small{display:block;color:#6B6B6B;font-size:13px;margin-top:10px}
+.foot{text-align:center;color:#6B6B6B;font-size:13px;padding:24px}
+@media(max-width:640px){.navl a:not(.cta){display:none}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How to Stream LLM Responses Like ChatGPT: An FDE Guide", "description": "Learn how to stream LLM responses word by word, from SSE vs WebSockets to backend buffers and browser rendering, so your AI app feels fast to users.", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "author": {"@type": "Person", "name": "Shantanu Anand", "url": "https://www.linkedin.com/in/claudewithshantanu/"}, "publisher": {"@type": "Organization", "name": "ThinkwithClaude", "url": "https://www.thinkwithclaude.com"}, "mainEntityOfPage": "https://www.thinkwithclaude.com/blog/fde-stream-llm-responses/"}</script>
+</head><body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/fde-essentials/">FDE for Coders</a><a href="/ai-questions/">AI Q&amp;A</a><a href="/trending-ai-tools/">AI Tools Today</a><a class="cta" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book free call</a></nav>
+</div></header>
+<main class="w">
+<div class="kick"><a href="/fde-essentials/" style="text-decoration:none">FDE Essentials for Coders · Part 5</a></div>
+<h1>How to Stream LLM Responses Like ChatGPT: An FDE Guide</h1>
+<div class="meta">By Shantanu Anand · 13 November 2026</div>
+<article>
+<p>A client demos their new AI chatbot to the leadership team. Someone types a question, and the screen just sits there for eight seconds with a "typing…" dot. Then a wall of text drops in at once. The feedback is instant: "It feels slow. Why is ChatGPT faster?"</p>
+<p>ChatGPT usually isn't faster at thinking. It simply shows you the answer as it is being written. This is Part 5 of FDE Essentials for Coders, and it explains how to stream LLM responses the same way, end to end. No prior knowledge is assumed, though Part 4, How LLMs Work: Tokens, Attention and Temperature, will help if you want to know where tokens come from.</p>
+<h2>In one minute</h2>
+<ul>
+<li>An LLM always <strong>generates</strong> its answer one token at a time. Whether you <strong>deliver</strong> it piece by piece or all at once is a separate choice you make.</li>
+<li>Streaming cuts the wait before users see something (time to first token). It does not make the full answer finish any sooner.</li>
+<li>For chat, use <strong>SSE (Server-Sent Events)</strong> over plain HTTP. WebSockets work but are more than you need.</li>
+<li>Both hops must stream: AI provider to your backend, and your backend to the browser. Buffer the chunks so you can still save complete chat history.</li>
+</ul>
+<h2>Generation vs. delivery</h2>
+<p>Think of a chef plating a thali. The dishes are cooked one by one either way. The question is whether the waiter brings each katori to your table as it is ready, or waits until the whole plate is done.</p>
+<p>An LLM (large language model, the AI behind tools like ChatGPT, Claude and Gemini) works the same way. It produces a <strong>token</strong> (a small chunk of text, often a word or part of one) at a time: "The capital of India is" → "New" → "Delhi" → ".". That is generation, and it never changes.</p>
+<p>Delivery is up to you:</p>
+<ul>
+<li><strong>Non-streamed</strong> is the default for most API calls (an API is how your code talks to the AI provider). The provider waits until the full answer is ready, say eight seconds, and sends it as one block.</li>
+<li><strong>Streamed</strong> means the provider forwards pieces as soon as they exist. This is why ChatGPT's own app feels quick.</li>
+</ul>
+<p>The usual path looks like this: <strong>browser (or a test tool like Postman) → your backend → AI provider → LLM</strong>. The provider sits in the middle handling login keys, usage limits and request checks.</p>
+<h2>Two numbers that explain "slow"</h2>
+<p>When a client says the bot is slow, find out which of these two they mean.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What it means</th>
+<th>Does streaming change it?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time to First Token (TTFT)</td>
+<td>How long until the first piece appears. Usually the longest single wait, because the model first has to read and process your whole input.</td>
+<td>Yes, in effect. Users start reading after TTFT instead of after the full answer.</td>
+</tr>
+<tr>
+<td>Total generation time</td>
+<td>How long the entire answer takes to produce</td>
+<td>No. It is the same either way.</td>
+</tr>
+</tbody>
+</table>
+<p>So streaming improves <strong>perceived</strong> speed, not real speed. That is worth saying plainly to a client, so nobody expects a cheaper or faster model as a side effect.</p>
+<h3>How does the model know when to stop?</h3>
+<p>Three things end an answer:</p>
+<ol>
+<li><strong>Your instructions</strong>, such as "answer in about 1,000 words".</li>
+<li><strong>End-of-sequence markers</strong> the model saw in training, which teach it how human writing naturally finishes.</li>
+<li><strong>Hard limits</strong>, such as a maximum token setting or a full context window (the most text the model can handle in one go).</li>
+</ol>
+<h3>Chunks, not tokens</h3>
+<p>You might expect to receive one token per message. In practice, providers send <strong>chunks</strong>: whatever tokens were ready in a small time window. One chunk might hold one token, the next might hold four. Your app should not depend on chunk size. All that matters is that the user stops staring at a blank screen.</p>
+<h2>SSE vs. WebSockets: pick the lighter tool</h2>
+<p>There are two common ways to push data from a server to a browser.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SSE (Server-Sent Events)</th>
+<th>WebSockets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direction</td>
+<td>Client sends one request; server replies with many small events over one open connection</td>
+<td>Two-way: either side can send at any time</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>Plain HTTP</td>
+<td>Starts as HTTP, then switches to its own protocol</td>
+</tr>
+<tr>
+<td>Weight</td>
+<td>Lightweight</td>
+<td>Heavier setup</td>
+</tr>
+<tr>
+<td>Fit for LLM chat</td>
+<td>Good: the user always speaks first, the server only replies</td>
+<td>Works, but unnecessary</td>
+</tr>
+</tbody>
+</table>
+<p>Chat is a request followed by a reply, so SSE is the natural fit. According to the source material, virtually all major model APIs use SSE for streaming.</p>
+<h3>The trap: there are two streams</h3>
+<p>This is where many first attempts fail. There are two hops:</p>
+<ol>
+<li><strong>AI provider → your backend</strong></li>
+<li><strong>Your backend → the browser</strong></li>
+</ol>
+<p>If your backend collects the whole stream into one string and only then replies, the user still waits the full time. Both hops have to stream.</p>
+<h2>Building it: backend first</h2>
+<p>Start from a normal chat endpoint, for example <code>POST /api/chat</code>, that sends a system prompt (standing instructions for the model) plus the user's message and returns the reply as text.</p>
+<p>To stream, you change one idea: instead of asking the AI library for "the full content", you ask it for "a stream of content". The catch is that a stream is not a normal string, so the return type of your service and your controller (the code that answers web requests) must change too.</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Stream type you return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java (Spring / Reactor)</td>
+<td><code>Flux&lt;String&gt;</code></td>
+</tr>
+<tr>
+<td>JavaScript / Node</td>
+<td><code>ReadableStream</code></td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Async iterator (<code>async for</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Test it in Postman with a long prompt, such as "Write a 1,000-word essay, one sentence per line". If streaming works, you will see the reply arrive bit by bit.</p>
+<h3>Keeping chat history</h3>
+<p>Streaming creates a new problem. Chat history (the record of earlier messages you send back to the model so it remembers the conversation) expects complete assistant replies. But you now only have pieces.</p>
+<p>The fix is a <strong>buffer</strong>: a running text holder. Append each chunk to it as it passes through to the user, and when the stream finishes, save the full text into history. The user gets speed, and your memory stays whole.</p>
+<h2>Then the frontend</h2>
+<p>In a typical chat page, the line that kills streaming is <code>await response.text()</code>. It waits for the entire reply before doing anything. Instead, read the response with a stream reader:</p>
+<pre><code class="language-javascript">const reader = res.body.getReader();
+const decoder = new TextDecoder();          // bytes to text
+while (true) {
+  const { value, done } = await reader.read();
+  if (done) break;                          // last chunk received
+  bubble.textContent += decoder.decode(value, { stream: true });
+  scrollToBottom();
+}
+</code></pre>
+<p>A few details make it feel polished:</p>
+<ul>
+<li>Data arrives as raw bytes, so decode it into text first.</li>
+<li>Hide the "typing…" indicator the moment the first chunk lands.</li>
+<li>Append every chunk into the <strong>same</strong> message bubble. A new bubble per chunk looks broken.</li>
+<li>Auto-scroll as the text grows.</li>
+</ul>
+<h2>What this teaches about the FDE role</h2>
+<ol>
+<li><strong>Separate real speed from felt speed.</strong> Many "it's slow" complaints are about TTFT, and the fix is delivery, not a new model.</li>
+<li><strong>Choose the simplest tool that fits.</strong> SSE beats WebSockets here because the conversation pattern is one-way after each question.</li>
+<li><strong>Trace the whole path.</strong> A feature can work at the provider and still fail in your backend or browser. Check every hop.</li>
+<li><strong>Protect the data while improving the experience.</strong> The buffer shows you can add streaming without breaking chat history.</li>
+<li><strong>Concepts travel across stacks.</strong> The example used Java, but you will often land in a client's unfamiliar language. Stream types, buffering and chunked rendering exist everywhere.</li>
+</ol>
+<h2>A prompt to plan streaming for a client</h2>
+<pre><code class="language-text">Role: You are a senior Forward Deployed Engineer reviewing an AI chat app.
+Ask: Create a step-by-step plan to add ChatGPT-style streaming. Cover the
+provider-to-backend hop, the backend-to-browser hop, how to keep complete
+chat history, and frontend changes. List what to test at each step.
+Context: Backend is [language/framework, e.g. Python FastAPI]. Frontend is
+[e.g. plain JavaScript]. Users complain the bot &quot;feels slow&quot; and replies
+take about [X] seconds to appear. Chat history is stored in [where].
+Tone: Practical and clear. Explain any technical term in one line.
+</code></pre>
+<p>This works in ChatGPT, Claude or Gemini.</p>
+<h2>FAQs</h2>
+<p><strong>Does streaming make an LLM answer faster?</strong>
+No. Total generation time stays the same. Streaming shows the first words sooner, so the app feels much faster to users.</p>
+<p><strong>Should I use SSE or WebSockets for an AI chatbot?</strong>
+SSE in most cases. Chat is one request followed by one reply, and SSE handles that over plain HTTP with less setup. WebSockets suit true two-way traffic.</p>
+<p><strong>Why does my chatbot still wait for the full answer after I enabled streaming?</strong>
+Usually one hop is not streaming. Either the backend gathers the whole reply before sending it, or the frontend uses <code>response.text()</code> instead of a stream reader.</p>
+<h2>Try this today</h2>
+<ol>
+<li>Open any AI chat tool you use and time how long it takes for the first word to appear, then for the full answer. That gap is what streaming hides.</li>
+<li>Find the chat code in a project you have access to and search for <code>response.text()</code> or a "get full content" call. Mark where each hop would need to change.</li>
+<li>Run the prompt above for that project and save the plan as your checklist.</li>
+</ol>
+<p>Next in FDE Essentials for Coders: Part 6, The FDE Workflow: BRD, SRD, Design and AI-Built Solutions.</p>
+</article>
+<div class="box">
+  <h2>Want your team to work like this?</h2>
+  <p>Hands-on AI training for professionals and teams, online or in person anywhere in India. Get the training details on WhatsApp, or book a free 20-minute call.</p>
+  <a class="btn" href="/#inquiry">Get training details</a><a class="btn alt" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book a free call</a>
+</div>
+<p style="margin-top:26px"><a href="/fde-essentials/">← All of FDE Essentials for Coders</a></p>
+</main>
+<div class="foot">© 2026 ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
+<!-- Calendly popup + GA4 booking tracking -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+(function(){
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href*="calendly.com/"]');
+  if(!a||!window.Calendly||e.metaKey||e.ctrlKey)return;
+  e.preventDefault();
+  var u=a.href+(a.href.indexOf('?')>-1?'&':'?')+'utm_source=thinkwithclaude&utm_medium=website&utm_content='+encodeURIComponent(location.pathname);
+  Calendly.initPopupWidget({url:u});
+  try{window.gtag&&gtag('event','booking_started',{page_path:location.pathname})}catch(_){}
+});
+window.addEventListener('message',function(e){
+  if(e.origin!=='https://calendly.com'||!e.data||e.data.event!=='calendly.event_scheduled')return;
+  try{window.gtag&&gtag('event','generate_lead',{lead_source:'calendly_booking',page_path:location.pathname})}catch(_){}
+  try{window.va&&window.va('event',{name:'calendly_booked'})}catch(_){}
+  try{window.clarity&&window.clarity('event','calendly_booked')}catch(_){}
+});
+})();
+</script>
+</body></html>
