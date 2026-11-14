@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-14",
+  "id": "hn50480659",
+  "q": "How much AI should I use in my daily work, and where should I draw the line?",
+  "a": "Sort your tasks by two questions: how costly is a mistake, and how easily can you check the output? AI earns its place where mistakes are cheap and checking is fast, such as first drafts, summaries of documents you already know, meeting notes, brainstorming and reformatting.\n\nBe more careful where errors are expensive or hard to spot, such as legal wording, financial figures, medical claims and anything sent to a client unreviewed. There, use AI as a second pair of eyes, not the author. Also keep doing the thinking that builds your judgment, like deciding what the message should be. A good check: if you could not explain or defend the result without the AI, you have handed over too much. Review the balance monthly and adjust.",
+  "sub": "Hacker News",
+  "comments": 62,
+  "url": "https://news.ycombinator.com/item?id=50480659",
+  "slug": "how-much-ai-use-daily-work-draw-line"
+ },
+ {
+  "date": "2026-11-14",
+  "id": "hn50484426",
+  "q": "Can AI come up with genuinely new ideas, or does it only remix existing material?",
+  "a": "For most professionals, the useful answer is that AI is a strong partner for novelty but rarely a solo originator. It is good at connecting ideas across fields, proposing options you had not considered and challenging your assumptions. The human still usually decides which ideas are worth pursuing and tests them against reality.\n\nTo get more from it, give it your real context and constraints, then ask for ten different approaches, including unusual ones. Ask it to argue against your current plan, or to apply a method from another industry to your problem. Treat the output as raw material. Verify any factual claims, because a surprising idea is also where made-up details tend to hide. Judge it by whether it helps you reach a better result than you would alone.",
+  "sub": "Hacker News",
+  "comments": 48,
+  "url": "https://news.ycombinator.com/item?id=50484426",
+  "slug": "can-ai-come-up-genuinely-new-ideas-only"
+ },
+ {
+  "date": "2026-11-14",
+  "id": "oai1415927",
+  "q": "What is the best way to extract structured data from invoices and PDFs using an AI model?",
+  "a": "Start by checking whether the PDF has real text or is a scanned image, since that decides whether you need OCR first. Then define the exact fields you want, such as invoice number, date, vendor, line items and totals, and use the API's structured output or JSON schema feature so the response always matches your format. Check the current docs for how to pass files or images.\n\nDo not trust the output blindly. Add validation in code: line items should sum to the total, dates should parse, and required fields should not be empty. Send failures to a human review queue. Test on a varied sample of 30 to 50 real invoices before going live, because layouts differ more than you expect. Keep the instructions short and put one example in the prompt.",
+  "sub": "OpenAI Community",
+  "comments": null,
+  "url": "https://community.openai.com/t/2026-whats-the-current-best-practice-for-extracting-structured-data-from-invoices-pdfs-using-openai/1415927",
+  "slug": "what-best-way-extract-structured-data-invoices-pdfs"
+ },
+ {
+  "date": "2026-11-14",
+  "id": "oai1415780",
+  "q": "How do I keep a long ChatGPT project going when a conversation gets too long?",
+  "a": "Long chats get slower and the model can lose track of early details, so plan a handoff before that happens. Near the end, ask the AI to write a project brief: the goal, decisions made, constraints, open questions, current status and next steps. Read it, correct anything wrong, and save it in a document you own.\n\nStart a new chat and paste that brief as the first message, along with any key files. If your plan offers Projects or custom instructions, store the stable background there so every new chat begins with it. Update the brief at the end of each work session rather than waiting for a crisis. This also protects you if a conversation is lost, and it keeps your project knowledge in your hands instead of locked in one chat.",
+  "sub": "OpenAI Community",
+  "comments": 2,
+  "url": "https://community.openai.com/t/preserving-project-continuity-before-chatgpt-conversations-hit-their-limits/1415780",
+  "slug": "how-keep-long-chatgpt-project-going-conversation-gets"
+ },
+ {
+  "date": "2026-11-14",
+  "id": "oai1415848",
+  "q": "Why does my AI chat tool seem to switch models on its own, and how do I get consistent results?",
+  "a": "Chat apps often change defaults, route simple requests to lighter models or update what sits behind a model name. The result is that the same prompt can behave differently from one week to the next. Check the model picker at the start of important work rather than assuming it is unchanged.\n\nFor consistency, write prompts that do not depend on a model's quirks: state the role, the format, the steps and one or two examples. Save prompts that work and re-test them when quality seems to shift. If you build on the API, choose a specific named model version where one is offered and run a small set of test cases whenever you upgrade. For work that must be repeatable, keep a human review step in the process.",
+  "sub": "OpenAI Community",
+  "comments": 2,
+  "url": "https://community.openai.com/t/model-automatic-change-with-no-conf-change/1415848",
+  "slug": "why-ai-chat-tool-seem-switch-models-own"
+ },
+ {
   "date": "2026-11-13",
   "id": "hn50458900",
   "q": "Is it safe to let an AI agent book travel or make purchases for me?",

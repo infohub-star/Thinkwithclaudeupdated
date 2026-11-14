@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [How much AI should I use in my daily work, and where should I draw the line?](https://www.thinkwithclaude.com/ai-questions/how-much-ai-use-daily-work-draw-line/)
+- [Can AI come up with genuinely new ideas, or does it only remix existing material?](https://www.thinkwithclaude.com/ai-questions/can-ai-come-up-genuinely-new-ideas-only/)
+- [What is the best way to extract structured data from invoices and PDFs using an AI model?](https://www.thinkwithclaude.com/ai-questions/what-best-way-extract-structured-data-invoices-pdfs/)
+- [How do I keep a long ChatGPT project going when a conversation gets too long?](https://www.thinkwithclaude.com/ai-questions/how-keep-long-chatgpt-project-going-conversation-gets/)
+- [Why does my AI chat tool seem to switch models on its own, and how do I get consistent results?](https://www.thinkwithclaude.com/ai-questions/why-ai-chat-tool-seem-switch-models-own/)
 - [Is it safe to let an AI agent book travel or make purchases for me?](https://www.thinkwithclaude.com/ai-questions/is-safe-let-ai-agent-book-travel-make/)
 - [How do I check a surprising finding from an AI tool before I trust it?](https://www.thinkwithclaude.com/ai-questions/how-check-surprising-finding-ai-tool-before-trust/)
 - [How can I use AI to support a business decision without handing the decision over to it?](https://www.thinkwithclaude.com/ai-questions/how-use-ai-support-business-decision-without-handing/)
