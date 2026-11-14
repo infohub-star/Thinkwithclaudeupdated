@@ -1,8 +1,5 @@
 <!doctype html>
 <html lang="en"><head>
-<!-- Google tag (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLT2NLZCZM"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZLT2NLZCZM');</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FDE Essentials for Coders: Forward Deployed Engineering | ThinkwithClaude</title>
 <meta name="description" content="A daily series for coders on Forward Deployed Engineering: real AI projects from discovery to production, by AI trainer Shantanu Anand.">
@@ -60,13 +57,14 @@ article th,article td{border:1px solid rgba(15,23,42,.12);padding:8px 10px;text-
 <article><p>Forward Deployed Engineers (FDEs) sit between an AI product and the business that uses it. They learn the client's problem, design the solution, build it and stay until it works in production.</p>
 <p>This series is for coders and engineers who want to learn the role. It turns real end-to-end FDE projects and courses into clear, practical articles: logistics, healthcare, HR, cloud operations, sales forecasting and e-commerce. One new part is published every day.</p>
 <p>It follows a learning path from <b>Basics</b> (what an FDE does, how LLMs work) to <b>Intermediate</b> (discovery, requirements, RAG and agents) to <b>Advanced</b> (security, ML pipelines, deployment and full end-to-end projects). Read the parts in order.</p></article>
-<h2 style="font:700 24px 'DM Sans',sans-serif;color:#0B1B33;margin:36px 0 14px">All parts (6)</h2>
+<h2 style="font:700 24px 'DM Sans',sans-serif;color:#0B1B33;margin:36px 0 14px">All parts (7)</h2>
 <div class="list">
 <a class="card" href="/blog/fde-what-forward-deployed-engineer-does/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part 1 · Basics</small><b>What a Forward Deployed Engineer Does, and How AI Got Here</b><span>New to FDE work? Learn what a Forward Deployed Engineer does, how to turn &quot;build us a chatbot&quot; into a real requirement, and how AI reached today&#x27;s LLMs.</span><small>6 November 2026</small></a>
 <a class="card" href="/blog/fde-beginner-skills-roadmap/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part 2 · Basics</small><b>Forward Deployed Engineer Skills: A Beginner&#x27;s Roadmap</b><span>Learn the three core skills of a Forward Deployed Engineer: translating business problems, building production AI and proving it works, plus a 90-day plan.</span><small>10 November 2026</small></a>
 <a class="card" href="/blog/fde-getting-paid-ai-era/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part 3 · Basics</small><b>How Forward Deployed Engineers Get Paid in the AI Era</b><span>Why AI projects stall while developers struggle for work, and how a Forward Deployed Engineer earns by closing that gap with a platform and a vertical.</span><small>11 November 2026</small></a>
 <a class="card" href="/blog/fde-how-llms-actually-work/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part 4 · Basics</small><b>How LLMs Work: Tokens, Attention and Temperature for FDEs</b><span>Learn how LLMs work, from tokens and embeddings to attention and temperature, in plain English, so you can explain and tune AI for clients as an FDE.</span><small>12 November 2026</small></a>
 <a class="card" href="/blog/fde-stream-llm-responses/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part 5 · Basics</small><b>How to Stream LLM Responses Like ChatGPT: An FDE Guide</b><span>Learn how to stream LLM responses word by word, from SSE vs WebSockets to backend buffers and browser rendering, so your AI app feels fast to users.</span><small>13 November 2026</small></a>
+<a class="card" href="/blog/fde-brd-srd-workflow/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part 6 · Intermediate</small><b>The FDE Workflow: From BRD and SRD to an AI-Built Solution</b><span>Learn the 11-step FDE workflow, from requirements, BRD and SRD to diagrams, prototypes and AI-built code, plus what an FDE owns when AI writes it.</span><small>14 November 2026</small></a>
 <a class="card" href="/blog/fde-cold-chain-logistics-ai-assistant/"><small style="margin:0 0 6px;color:#004AAD;font-weight:600">Part 17 · Advanced</small><b>How an FDE Builds a Cold-Chain Logistics AI Assistant</b><span>Follow a Forward Deployed Engineer from a vague client ask to a secure AI assistant for logistics data, SOPs and weather, built and shipped to production.</span><small>4 November 2026</small></a>
 </div>
 <div class="box">
@@ -76,25 +74,4 @@ article th,article td{border:1px solid rgba(15,23,42,.12);padding:8px 10px;text-
 </div>
 </main>
 <div class="foot">© 2026 ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
-<!-- Calendly popup + GA4 booking tracking -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script>
-(function(){
-document.addEventListener('click',function(e){
-  var a=e.target.closest&&e.target.closest('a[href*="calendly.com/"]');
-  if(!a||!window.Calendly||e.metaKey||e.ctrlKey)return;
-  e.preventDefault();
-  var u=a.href+(a.href.indexOf('?')>-1?'&':'?')+'utm_source=thinkwithclaude&utm_medium=website&utm_content='+encodeURIComponent(location.pathname);
-  Calendly.initPopupWidget({url:u});
-  try{window.gtag&&gtag('event','booking_started',{page_path:location.pathname})}catch(_){}
-});
-window.addEventListener('message',function(e){
-  if(e.origin!=='https://calendly.com'||!e.data||e.data.event!=='calendly.event_scheduled')return;
-  try{window.gtag&&gtag('event','generate_lead',{lead_source:'calendly_booking',page_path:location.pathname})}catch(_){}
-  try{window.va&&window.va('event',{name:'calendly_booked'})}catch(_){}
-  try{window.clarity&&window.clarity('event','calendly_booked')}catch(_){}
-});
-})();
-</script>
 </body></html>

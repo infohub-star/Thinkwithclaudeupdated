@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The FDE Workflow: From BRD and SRD to an AI-Built Solution | ThinkwithClaude</title>
+<meta name="description" content="Learn the 11-step FDE workflow, from requirements, BRD and SRD to diagrams, prototypes and AI-built code, plus what an FDE owns when AI writes it.">
+<meta name="keywords" content="FDE workflow, forward deployed engineer, BRD vs SRD, business requirements document, software requirements document, AI-built solutions, requirements gathering">
+<link rel="canonical" href="https://www.thinkwithclaude.com/blog/fde-brd-srd-workflow/">
+<meta property="og:type" content="article"><meta property="og:title" content="The FDE Workflow: From BRD and SRD to an AI-Built Solution"><meta property="og:description" content="Learn the 11-step FDE workflow, from requirements, BRD and SRD to diagrams, prototypes and AI-built code, plus what an FDE owns when AI writes it."><meta property="og:url" content="https://www.thinkwithclaude.com/blog/fde-brd-srd-workflow/">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyn121dz14");</script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F7F9FC;color:#1A1A1A;font:17px/1.75 'Inter',sans-serif}
+a{color:#004AAD}
+.top{background:#fff;border-bottom:1px solid rgba(15,23,42,.08)}
+.top-in{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0B1B33;font:700 16px 'DM Sans',sans-serif}
+.mark{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#004AAD,#F5B301);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+.navl{display:flex;gap:18px;align-items:center;font-size:14px}
+.navl a{text-decoration:none;color:#333}
+.cta{background:#004AAD;color:#fff !important;padding:9px 16px;border-radius:999px;font-weight:600}
+.w{max-width:760px;margin:0 auto;padding:48px 20px 64px}
+.kick{font:700 12px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#004AAD}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'DM Sans',sans-serif;color:#0B1B33;margin:10px 0 14px}
+.meta{color:#5B6472;font-size:14px;margin-bottom:30px}
+article h2{font:700 26px/1.25 'DM Sans',sans-serif;color:#0B1B33;margin:40px 0 12px}
+article h3{font:700 20px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin:28px 0 10px}
+article p,article li{color:#2A2F38}
+article blockquote{margin:20px 0;padding:14px 18px;background:#EEF4FF;border-left:4px solid #004AAD;border-radius:8px}
+article pre{background:#0B1B33;color:#E8EEF8;border-radius:12px;padding:16px;overflow:auto;font:14px/1.6 ui-monospace,Menlo,monospace;white-space:pre-wrap}
+article code{background:#EEF2F7;padding:2px 6px;border-radius:5px;font-size:.9em}
+article pre code{background:none;padding:0}
+article table{border-collapse:collapse;width:100%;font-size:15px}
+article th,article td{border:1px solid rgba(15,23,42,.12);padding:8px 10px;text-align:left}
+.box{margin-top:44px;background:#0B1B33;color:#fff;border-radius:18px;padding:26px}
+.box h2{color:#fff;font:700 22px 'DM Sans',sans-serif;margin:0 0 8px}
+.box p{color:#C9D3E3;margin:0 0 16px;font-size:16px}
+.btn{display:inline-block;background:#fff;color:#004AAD;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:10px;margin:0 8px 8px 0}
+.btn.alt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.list{display:grid;gap:16px}
+.card{display:block;background:#fff;border:1px solid rgba(15,23,42,.10);border-radius:16px;padding:20px;text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:#004AAD;box-shadow:0 8px 24px rgba(0,74,173,.10)}
+.card b{display:block;font:700 20px/1.3 'DM Sans',sans-serif;color:#0B1B33;margin-bottom:6px}
+.card span{color:#4A4A4A;font-size:15px;line-height:1.6}
+.card small{display:block;color:#6B6B6B;font-size:13px;margin-top:10px}
+.foot{text-align:center;color:#6B6B6B;font-size:13px;padding:24px}
+@media(max-width:640px){.navl a:not(.cta){display:none}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The FDE Workflow: From BRD and SRD to an AI-Built Solution", "description": "Learn the 11-step FDE workflow, from requirements, BRD and SRD to diagrams, prototypes and AI-built code, plus what an FDE owns when AI writes it.", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Shantanu Anand", "url": "https://www.linkedin.com/in/claudewithshantanu/"}, "publisher": {"@type": "Organization", "name": "ThinkwithClaude", "url": "https://www.thinkwithclaude.com"}, "mainEntityOfPage": "https://www.thinkwithclaude.com/blog/fde-brd-srd-workflow/"}</script>
+</head><body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="/"><span class="mark">SA</span>ThinkwithClaude</a>
+  <nav class="navl"><a href="/">Home</a><a href="/blog/">Articles</a><a href="/fde-essentials/">FDE for Coders</a><a href="/ai-questions/">AI Q&amp;A</a><a href="/trending-ai-tools/">AI Tools Today</a><a class="cta" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book free call</a></nav>
+</div></header>
+<main class="w">
+<div class="kick"><a href="/fde-essentials/" style="text-decoration:none">FDE Essentials for Coders · Part 6</a></div>
+<h1>The FDE Workflow: From BRD and SRD to an AI-Built Solution</h1>
+<div class="meta">By Shantanu Anand · 14 November 2026</div>
+<article>
+<p>A training institute in Pune has a simple complaint. Every week its staff answer the same calls, WhatsApp messages and emails: "When does the next AI batch start?" The website never shows upcoming batches, so people keep asking.</p>
+<p>Any AI coding assistant could produce a "batches" page in minutes. So what is left for a forward deployed engineer (FDE) to do? This is Part 6 of FDE Essentials for Coders and the first Intermediate part. It walks through the full FDE workflow, from the first customer conversation to a live, monitored solution, and shows where the real work sits. It assumes you have read the Basics parts, especially Part 1, What a Forward Deployed Engineer Does, and Part 2, Forward Deployed Engineer Skills: A Beginner's Roadmap.</p>
+<h2>In one minute</h2>
+<ul>
+<li>The FDE workflow has 11 steps: requirements, BRD, SRD, diagrams, prototype, tech stack, build, test, deploy, monitor and improve.</li>
+<li>A <strong>BRD</strong> says what the business needs. An <strong>SRD</strong> says what the software must do to meet that need.</li>
+<li>Get customer sign-off at each stage before moving to the next one.</li>
+<li>AI writes most of the code. The FDE owns understanding the customer, integrating safely and keeping quality high after launch.</li>
+</ul>
+<h2>The 11-step FDE workflow</h2>
+<p>Here is the full sequence. Think of it like building a house: you agree on what the family needs, draw plans, show a model, pick materials, and only then start construction. After move-in, you still fix leaks.</p>
+<ol>
+<li><strong>Requirements gathering</strong>: talk to the customer and understand the problem.</li>
+<li><strong>Business Requirements Document (BRD)</strong>: write down what the business needs. A Product Requirements Document (PRD) can also fill this slot.</li>
+<li><strong>Software Requirements Document (SRD)</strong>: translate the business need into software terms.</li>
+<li><strong>UML diagrams</strong>: draw use-case diagrams, flows and other pictures of the system. UML (Unified Modeling Language) is a standard set of diagram types for software.</li>
+<li><strong>UI design or prototype</strong>: show the customer what it will look like and get approval.</li>
+<li><strong>Tech stack decision</strong>: choose the languages, frameworks, database and cloud.</li>
+<li><strong>Build</strong>: use prompt engineering and AI tools to generate the solution.</li>
+<li><strong>Test</strong>: check it works, often with AI-written test scripts.</li>
+<li><strong>Deploy</strong>: ship it through CI/CD (continuous integration and delivery, an automated pipeline that tests and releases code) to a cloud such as AWS, Azure or GCP.</li>
+<li><strong>Monitor</strong>: watch the application's health in production.</li>
+<li><strong>Feedback and improvement</strong>: collect customer feedback and iterate.</li>
+</ol>
+<p>Notice that steps 1 to 6 happen before any code. That is deliberate.</p>
+<h2>Walking through the batch-page example</h2>
+<h3>Step 1: Requirements gathering</h3>
+<p>The FDE meets the institute and pins down three things:</p>
+<ul>
+<li><strong>Problem</strong>: the website hides upcoming batches, so staff field repeated queries.</li>
+<li><strong>Solution</strong>: a page listing upcoming courses with dates and details.</li>
+<li><strong>Target users</strong>: students, working professionals, freshers and the institute's training coordinators.</li>
+</ul>
+<p>This step needs clear, simple communication, not technical depth. Your job is to hear the real problem, not to propose a framework.</p>
+<h3>Step 2: The BRD</h3>
+<p>A BRD usually has six parts:</p>
+<ol>
+<li>Project objective</li>
+<li>Business requirements</li>
+<li>Detailed information to show (course name, start date, duration, timing, trainer)</li>
+<li>Visible output (what the user actually sees)</li>
+<li>Target users</li>
+<li>Expected outcome (fewer repeat queries, easier sign-ups)</li>
+</ol>
+<h3>Step 3: The SRD</h3>
+<p>The SRD answers "what software do we need?" It lists the technology stack, functional requirements (what the system does), expected output, any registration form, and non-functional requirements (how well it does it: speed, security, uptime). In most companies, architects guide these choices; the FDE drafts and coordinates.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>BRD</th>
+<th>SRD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Question it answers</td>
+<td>What does the business need?</td>
+<td>What must the software do?</td>
+</tr>
+<tr>
+<td>Main reader</td>
+<td>Customer and business stakeholders</td>
+<td>Architects and engineers</td>
+</tr>
+<tr>
+<td>Typical content</td>
+<td>Objective, users, data to show, expected outcome</td>
+<td>Stack, functional and non-functional requirements, forms, outputs</td>
+</tr>
+<tr>
+<td>Who shapes it</td>
+<td>FDE with the customer</td>
+<td>FDE with company architects</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 4: Flows and diagrams</h3>
+<p>Two diagrams do most of the work here:</p>
+<ul>
+<li><strong>System flow</strong>: how the components (website, backend, database) talk to each other.</li>
+<li><strong>User flow</strong>: a student opens the website → sees new batches → selects a course → views details → registers.</li>
+</ul>
+<p>The FDE shares these with the customer and collects feedback before going further. A wrong arrow on a diagram costs minutes to fix. The same mistake in code costs days.</p>
+<h3>Step 5: Prototype and tech stack</h3>
+<p>Next comes a UI design for approval. Once the customer says yes, the stack is confirmed: for example, a React frontend, a REST API backend (a standard way for the page to request data from the server), a MongoDB database and a chosen cloud. Stack choices usually follow company standards and management input. The FDE recommends; they rarely decide alone.</p>
+<h3>Step 6: Build with AI</h3>
+<p>Now the documents pay off. Everything from steps 1 to 5 is combined into one detailed build prompt. This prompt can run to hundreds of lines, and it is often drafted with an LLM itself. You paste it into an AI coding assistant inside your code editor, let it generate the project, then ask it to run the app and open the local URL so you can check it.</p>
+<p>The quality of what comes out depends almost entirely on how clear the BRD, SRD and diagrams were. Vague documents produce vague software.</p>
+<h3>Step 7: Test, deploy, monitor, improve</h3>
+<ul>
+<li><strong>Test</strong>: AI-generated Playwright scripts (Playwright is a tool that clicks through a website automatically, like a robot user).</li>
+<li><strong>Deploy</strong>: Git, Jenkins, Docker, Kubernetes and cloud virtual machines such as EC2, wired together through CI/CD.</li>
+<li><strong>Monitor</strong>: health checks, logs and dashboards, for example with Grafana or a log analytics service.</li>
+<li><strong>Improve</strong>: gather feedback from the institute and its students, then iterate.</li>
+</ul>
+<p>One practical note: in real projects, BRDs, SRDs and designs are not pictures in a slide deck. Generate them as Markdown (.md) files with AI tools, so they can be versioned, searched and fed straight into the build prompt.</p>
+<h2>"If AI writes the code, what does an FDE do?"</h2>
+<p>Generating code is the easy part. The hard parts are the ones AI cannot do on its own:</p>
+<ul>
+<li>Understanding the customer's <strong>existing, often messy</strong> system.</li>
+<li>Gathering and documenting the right requirements.</li>
+<li>Integrating the new piece <strong>without disturbing the existing architecture</strong>.</li>
+<li>Testing, deploying, monitoring and improving with the customer over time.</li>
+</ul>
+<p>Picture this: Company X built a retailer's website. Company Y is hired to add a chatbot. Y's FDE must first learn how X's system works, then add the bot without breaking anything. No prompt can skip that discovery.</p>
+<p>Agents also show up on the operations side. An agent (an AI that can take actions using tools, not just answer questions) can watch a production system, spot an issue, call the right tools to fix it and restart services. That automates routine incident response, but someone still has to design, permission and supervise it.</p>
+<h2>Skills this workflow asks for</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Expected depth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Communication and requirements</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Python (with libraries like NumPy and Pandas)</td>
+<td>Solid basics; it underpins most AI work</td>
+</tr>
+<tr>
+<td>Frontend, backend, databases, cloud, DevOps</td>
+<td>Awareness: know what each piece is and how it fits</td>
+</tr>
+<tr>
+<td>Prompt engineering</td>
+<td>Strong; it is how you direct AI to build</td>
+</tr>
+<tr>
+<td>Agents, testing, deployment</td>
+<td>Practical familiarity</td>
+</tr>
+</tbody>
+</table>
+<p>Interviews tend to test breadth and problem-solving. Can you document requirements? Can you diagnose an issue in any layer? Deep expertise in one framework matters less. Part 2 covers how to build this breadth step by step.</p>
+<h2>What this teaches about the FDE role</h2>
+<ol>
+<li><strong>Documents are the product before the product.</strong> The BRD, SRD and diagrams become the prompt that builds the software.</li>
+<li><strong>Sign-off at every stage saves rework.</strong> Change is cheap on paper and expensive in code.</li>
+<li><strong>The FDE recommends, the organisation decides.</strong> Stack and architecture follow company standards and architects.</li>
+<li><strong>Integration is the real skill.</strong> Fitting into someone else's messy system is where FDEs earn their place.</li>
+<li><strong>Launch is the middle, not the end.</strong> Monitoring and feedback are part of the job.</li>
+</ol>
+<h2>A prompt to draft your BRD and SRD</h2>
+<p>Use this with ChatGPT, Claude or Gemini to turn a client problem into first drafts.</p>
+<pre><code>Role: You are a senior forward deployed engineer who writes clear requirement documents.
+
+Ask: From the client notes below, draft (1) a BRD with six sections: project objective,
+business requirements, detailed information to show, visible output, target users and
+expected outcome; and (2) an SRD with tech stack options, functional requirements,
+non-functional requirements, forms and expected output. Then list a user flow as arrows
+and 5 open questions I must confirm with the client before building.
+
+Context: [Paste the client's problem, users, current system and any constraints.]
+
+Tone: Plain, precise English. Use Markdown headings. Mark every assumption clearly.
+</code></pre>
+<h2>FAQs</h2>
+<p><strong>What is the difference between a BRD and an SRD?</strong>
+A BRD describes what the business needs and why, in business language. An SRD turns that into software terms: the stack, functional and non-functional requirements, and outputs engineers will build.</p>
+<p><strong>Do forward deployed engineers still need to code if AI writes it?</strong>
+They need enough coding knowledge to direct AI, review its output and integrate it safely. Python basics and awareness across frontend, backend, databases and cloud are the usual bar.</p>
+<p><strong>Why get customer approval before building?</strong>
+Each approval (BRD, diagrams, prototype) catches misunderstandings while they are cheap to fix. Skipping sign-off means rebuilding later.</p>
+<h2>Try this today</h2>
+<ol>
+<li>Pick a small, real problem at work, like a page or report people keep asking about, and write its six-part BRD in a Markdown file.</li>
+<li>Run the prompt above on your notes and compare the AI's SRD and user flow with what you would have written.</li>
+<li>Note the five open questions it raises and decide which you would ask the customer first.</li>
+</ol>
+<p>Next in FDE Essentials for Coders: Part 7, Sales AI Ep. 2: Requirements, Data and Architecture.</p>
+</article>
+<div class="box">
+  <h2>Want your team to work like this?</h2>
+  <p>Hands-on AI training for professionals and teams, online or in person anywhere in India. Get the training details on WhatsApp, or book a free 20-minute call.</p>
+  <a class="btn" href="/#inquiry">Get training details</a><a class="btn alt" href="https://calendly.com/infohub-connectwithshantanu/claude-session" target="_blank" rel="noopener">Book a free call</a>
+</div>
+<p style="margin-top:26px"><a href="/fde-essentials/">← All of FDE Essentials for Coders</a></p>
+</main>
+<div class="foot">© 2026 ThinkwithClaude · Shantanu Anand, AI Trainer &amp; Consultant</div>
+</body></html>
