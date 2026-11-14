@@ -1,0 +1,133 @@
+{
+  "slug": "2026-11-14-health-insurance-claim-disputes",
+  "date": "2026-11-14",
+  "short": "Health insurance claim disputes",
+  "title": "Why do Indian families get health insurance claims rejected or only partly paid?",
+  "industry": "Insurance & Healthcare",
+  "score": 80,
+  "summary": "Health insurance complaints rose 41% in a year, mostly over refused, delayed or partly paid claims. Here's \"ClaimShield\", a claim-dispute copilot one person could build with Claude in a weekend.",
+  "who": "Policyholders and their families who receive a rejection or a short payout after a hospital stay, often with a one-line reason they cannot interpret. Hospital billing desks and small insurance advisors who help them face the same paperwork every week.",
+  "facts": [
+    "**Where this came from:** IRDAI grievance data reported in Indian financial news ([Angel One](https://www.angelone.in/news/personal-finance/irdai-data-reveals-41-spike-in-health-insurance-grievances-over-claim-settlements-in-fy25), [Coverfox](https://www.coverfox.com/news/irdai-says-insurance-ombudsmen-resolved-41055-grievances-in-fy26/)), coverage of regulator action on claim handling ([Outlook Money](https://www.outlookmoney.com/personal-finance/irdai-flags-major-lapses-in-health-insurance-claims-heres-what-you-can-do-if-your-claim-gets-rejected)), and personal-finance explainers on partial payouts and rejection reasons ([Money9](https://www.money9.com/news/insurance/partial-payment-of-insurance-claims-without-explanation-what-to-do-60310.html), [PrimeInvestor](https://primeinvestor.in/reports/claim-rejection-four-excuses-health-insurers/)), echoing frequent complaints in Indian personal-finance forums.",
+    "**Complaints are rising fast.** Health insurance complaints rose 41% to 1,37,361 in FY25, from 97,503 in FY24, according to IRDAI data ([Angel One](https://www.angelone.in/news/personal-finance/irdai-data-reveals-41-spike-in-health-insurance-grievances-over-claim-settlements-in-fy25)).",
+    "**Claims are the core issue.** Nearly 7 in 10 complaints in general and health insurance were linked to claim refusal, settlement delays, partial payments and documentation disputes ([Angel One](https://www.angelone.in/news/personal-finance/irdai-data-reveals-41-spike-in-health-insurance-grievances-over-claim-settlements-in-fy25)).",
+    "**Policyholders usually win when they escalate.** Insurance ombudsmen resolved 41,055 grievances in FY26, and nearly 79% of rulings favoured policyholders ([Coverfox](https://www.coverfox.com/news/irdai-says-insurance-ombudsmen-resolved-41055-grievances-in-fy26/)).",
+    "**The regulator has flagged lapses.** IRDAI issued show-cause notices to eight insurers over issues including complex customer information sheets and gaps in claim review committees ([Outlook Money](https://www.outlookmoney.com/personal-finance/irdai-flags-major-lapses-in-health-insurance-claims-heres-what-you-can-do-if-your-claim-gets-rejected))."
+  ],
+  "players": "ClaimBuddy helps patients and hospitals manage claims and says it has processed claims for over 35,000 patients worth more than Rs 500 crore with 250+ partner hospitals ([Indian Startup News](https://indianstartupnews.com/funding/claimbuddy-simplifying-the-health-insurance-claim-process-raises-usd-5m-in-funding-4480790)). Legal-help services and brokers also assist with disputes. Few self-serve tools read the policy wording and the rejection letter together and draft the escalation for the family.",
+  "pitch": "\"ClaimShield\" reads your policy and the insurer's rejection or settlement letter, explains each deduction in plain language, checks it against the policy wording, and drafts the grievance and ombudsman complaint.",
+  "features": [
+    [
+      "Letter decoder",
+      "Upload the rejection or settlement letter; it lists each deduction and the reason code in plain English or Hindi."
+    ],
+    [
+      "Policy check",
+      "Matches every deduction to the clause in your policy wording, such as room-rent caps, waiting periods or non-payable items, and flags those that look unsupported."
+    ],
+    [
+      "Escalation drafts",
+      "Writes the grievance to the insurer, then the Bima Bharosa complaint and the ombudsman application, with the right attachments listed."
+    ],
+    [
+      "Deadline tracker",
+      "Tracks response windows for each stage and reminds the family when to escalate."
+    ],
+    [
+      "Pre-claim checklist",
+      "Before discharge, lists the documents and bill items most likely to cause a dispute."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, document parsers, deadline logic, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Reads scanned letters, hospital bills and policy wordings, matches deductions to clauses, and drafts complaints."
+    ],
+    [
+      "Skills",
+      "A \"health-claim-dispute\" skill holds common deduction types, escalation steps and letter templates."
+    ],
+    [
+      "Artifacts",
+      "Produces a one-page claim summary the family can share with the hospital or an advisor."
+    ],
+    [
+      "Connectors / MCP",
+      "Pulls insurer emails and documents from Gmail or Google Drive."
+    ],
+    [
+      "Scheduled tasks",
+      "Checks deadlines daily and sends reminders before each escalation window closes."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning — evidence",
+      "Collect ten anonymised rejection or short-payout letters with their policy wordings and list every deduction type."
+    ],
+    [
+      "Saturday midday — parser",
+      "Use Claude Code to extract deductions from letters and bills into structured data."
+    ],
+    [
+      "Saturday afternoon — policy check",
+      "Write the clause-matching logic as a Claude skill and test it on your ten cases."
+    ],
+    [
+      "Saturday evening — drafts",
+      "Add the grievance, Bima Bharosa and ombudsman draft generators."
+    ],
+    [
+      "Sunday morning — tracker",
+      "Build the deadline tracker and reminder emails."
+    ],
+    [
+      "Sunday midday — summary",
+      "Create the shareable one-page claim summary."
+    ],
+    [
+      "Sunday afternoon — pilot",
+      "Run it with three families or one small insurance advisor and compare with their own reading of the case."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript web app called \"ClaimShield\" for Indian health insurance policyholders.\n\nFlow: the user uploads their policy wording PDF, the insurer's rejection or settlement letter, and the hospital bill -> extract every deduction with amount and stated reason -> call the Claude API to match each deduction to the relevant policy clause and mark it supported, unclear or unsupported, with the clause quoted -> explain the result in plain English or Hindi -> draft a grievance letter to the insurer, and later a Bima Bharosa complaint and an insurance ombudsman application -> track deadlines for each stage and send reminders.\n\nInclude: a case dashboard, a one-page shareable summary, sample anonymised documents for tests, and unit tests for the deduction maths. Never give legal guarantees; show a clear disclaimer. Keep all medical data encrypted and private per account.",
+  "pricing": [
+    "Free: decode one letter and see the policy check.",
+    "Rs 499 per case for full escalation drafts and deadline tracking.",
+    "Rs 2,999 a month for insurance advisors and hospital billing desks handling many cases.",
+    "Pricing is a suggestion and has not been validated."
+  ],
+  "risk": "Families may prefer a human expert to handle the dispute and may not trust software with a large medical bill.",
+  "test": "Offer free reviews of ten real disputed claims through an insurance advisor. If at least four cases show a deduction that looks unsupported and two families file the drafted grievance, the product has a case; if not, sell it to advisors as a back-office tool instead.",
+  "caution": "This is not legal or insurance advice; say so clearly. Health records are sensitive personal data, so handle them under India's Digital Personal Data Protection Act with consent and encryption.",
+  "sources": [
+    [
+      "Angel One: IRDAI data reveals 41% spike in health insurance grievances",
+      "https://www.angelone.in/news/personal-finance/irdai-data-reveals-41-spike-in-health-insurance-grievances-over-claim-settlements-in-fy25"
+    ],
+    [
+      "Coverfox: Insurance ombudsmen resolved 41,055 grievances in FY26",
+      "https://www.coverfox.com/news/irdai-says-insurance-ombudsmen-resolved-41055-grievances-in-fy26/"
+    ],
+    [
+      "Outlook Money: IRDAI flags major lapses in health insurance claims",
+      "https://www.outlookmoney.com/personal-finance/irdai-flags-major-lapses-in-health-insurance-claims-heres-what-you-can-do-if-your-claim-gets-rejected"
+    ],
+    [
+      "Money9: Partial payment of insurance claims without explanation",
+      "https://www.money9.com/news/insurance/partial-payment-of-insurance-claims-without-explanation-what-to-do-60310.html"
+    ],
+    [
+      "PrimeInvestor: Why your health insurance claim may be rejected",
+      "https://primeinvestor.in/reports/claim-rejection-four-excuses-health-insurers/"
+    ],
+    [
+      "Indian Startup News: ClaimBuddy raises USD 5M",
+      "https://indianstartupnews.com/funding/claimbuddy-simplifying-the-health-insurance-claim-process-raises-usd-5m-in-funding-4480790"
+    ]
+  ]
+}
