@@ -1,0 +1,133 @@
+{
+  "slug": "2026-11-15-hidden-subscription-autodebits",
+  "date": "2026-11-15",
+  "short": "Hidden subscription auto-debits",
+  "title": "Why do Indians keep paying for subscriptions they forgot about or could not cancel?",
+  "industry": "Fintech & Consumer Protection",
+  "score": 78,
+  "summary": "Two in three Indian payment users say they have hit a subscription trap, and a Rs 1 trial can quietly become a quarterly debit. Here's \"SubSense\", a subscription watchdog one person could build with Claude in a weekend.",
+  "who": "Smartphone users who start Rs 1 or Rs 2 trials for streaming, audio and learning apps and then find recurring debits on UPI, cards or app stores. Small business owners face the same leak on company cards, where software renewals pile up unnoticed.",
+  "facts": [
+    "**Where this came from:** A large LocalCircles survey on dark patterns in digital payments ([LocalCircles](https://www.localcircles.com/a/press/page/online-payment-dark-patterns)), its study of streaming platforms ([BestMediaInfo](https://bestmediainfo.com/insights/half-of-ott-users-in-india-face-difficulty-cancelling-subscriptions-9500703)), news coverage of complaints to the RBI about trial-to-autopay debits ([Outlook Money](https://www.outlookmoney.com/banking/upi-auto-debit-scam-kuku-fm-stage-paytm-google-pay-phonepe-how-cancel-auto-debit), [Moneylife](https://www.moneylife.in/article/fraud-alert-that-2-trial-could-quietly-turn-into-a-599-debit/81632.html)), and NPCI's new mandate portal ([CodeForBanks](https://www.codeforbanks.com/banks/blog/all-about-npcis-newly-launched-portal-upihelp/)). The same complaint recurs often in Indian consumer and personal-finance forums.",
+    "**Subscription traps are common.** 68% of over 141,000 respondents said they had faced a subscription trap, such as struggling to unlink a UPI bank account, and that share has not fallen in 24 months ([LocalCircles](https://www.localcircles.com/a/press/page/online-payment-dark-patterns)).",
+    "**Cancelling is hard by design.** 50% of streaming users said they frequently had trouble cancelling, and subscription traps were found on 75% of 245 platforms reviewed ([BestMediaInfo](https://bestmediainfo.com/insights/half-of-ott-users-in-india-face-difficulty-cancelling-subscriptions-9500703)).",
+    "**Small trials turn into real debits.** One app's model described in the press is a Rs 1 trial followed by a Rs 199 quarterly auto-debit after seven days, and uninstalling an app does not cancel the mandate ([Outlook Money](https://www.outlookmoney.com/banking/upi-auto-debit-scam-kuku-fm-stage-paytm-google-pay-phonepe-how-cancel-auto-debit)).",
+    "**Help is arriving, but only for UPI.** NPCI's UPI Help portal lets users see their UPI AutoPay mandates in one place ([CodeForBanks](https://www.codeforbanks.com/banks/blog/all-about-npcis-newly-launched-portal-upihelp/)), while card and app-store subscriptions still sit in separate places."
+  ],
+  "players": "NPCI's UPI Help portal and the mandate screens in Google Pay, PhonePe, Paytm and BHIM cover UPI AutoPay only. Card issuers and the Apple and Google app stores each have their own subscription pages. Global trackers such as Rocket Money are not built for UPI mandates or Indian bank SMS. Nobody gives an Indian user one view across UPI, cards and app stores with a warning before a trial converts.",
+  "pitch": "\"SubSense\" reads your bank statements and payment alerts, lists every recurring charge across UPI, cards and app stores, warns you before a trial converts, and walks you through cancelling each one.",
+  "features": [
+    [
+      "Recurring-charge finder",
+      "Upload bank or card statements (PDF or CSV); it finds repeat merchants, amounts and frequencies and builds one subscription list."
+    ],
+    [
+      "Trial alarm",
+      "Forward a trial confirmation SMS or email; it records the conversion date and reminds you two days before the first debit."
+    ],
+    [
+      "Cancel guide",
+      "For each charge it shows the exact steps for that rail: UPI app mandate screen, card issuer or app store, with a link to NPCI's UPI Help for mandates."
+    ],
+    [
+      "Refund and complaint drafts",
+      "If a debit was not clearly disclosed, it drafts a polite refund request to the merchant and a complaint to the bank, with the transaction details filled in."
+    ],
+    [
+      "Business mode",
+      "For small companies, it reads company card statements and flags software renewals with no owner or no recent use."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, statement parsers, database, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Reads messy bank statement PDFs and SMS text, groups merchants, and classifies charges as recurring, trial or one-off with a reason."
+    ],
+    [
+      "Skills",
+      "A cancellation skill that holds the current steps for each UPI app, card issuer and app store, so answers stay consistent and are easy to update."
+    ],
+    [
+      "Artifacts",
+      "A shareable monthly subscription summary page a user can send to family or their finance team."
+    ],
+    [
+      "Connectors / MCP",
+      "Gmail connector to pick up trial and renewal emails, and Google Sheets for business users who track spend there."
+    ],
+    [
+      "Scheduled tasks",
+      "A daily check that sends trial-conversion and renewal reminders before money leaves the account."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning: collect real data",
+      "Gather 10 anonymised bank and card statements and 30 trial or renewal SMS and emails. Mark the true subscriptions by hand as a test set."
+    ],
+    [
+      "Saturday morning: parsing",
+      "Use Claude Code to build statement upload for PDF and CSV, and have the Claude API return each transaction as structured fields."
+    ],
+    [
+      "Saturday afternoon: recurring detection",
+      "Group transactions by merchant, detect repeat amounts and intervals, and ask Claude to explain each match. Check accuracy against the test set."
+    ],
+    [
+      "Saturday afternoon: cancel guide skill",
+      "Write a skill with cancellation steps for Google Pay, PhonePe, Paytm, BHIM, major card issuers and both app stores."
+    ],
+    [
+      "Saturday evening: trial alarm",
+      "Add SMS and email paste-in, extract the conversion date and amount, and schedule reminders by WhatsApp or email."
+    ],
+    [
+      "Sunday morning: refund drafts",
+      "Generate merchant refund requests and bank complaint drafts from a selected transaction."
+    ],
+    [
+      "Sunday afternoon: dashboard",
+      "Build the subscription list with monthly total, next debit dates and a shareable summary page."
+    ],
+    [
+      "Sunday evening: test with users",
+      "Run 10 friends through it, count how many unwanted subscriptions they cancel, and fix the misses."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"SubSense\" for Indian consumers and small businesses.\n\nFlow: user uploads bank or card statements (PDF or CSV) and pastes trial or renewal SMS/emails -> Claude API extracts transactions as JSON (date, merchant, amount, rail: UPI/card/app store) -> group by normalised merchant and detect recurring charges by amount and interval -> show a subscription list with monthly total and next expected debit.\n\nAdd: (1) a trial alarm that stores conversion dates and sends a reminder 2 days before, (2) a cancel guide that loads steps per rail from a JSON file I will maintain, linking NPCI UPI Help for UPI mandates, (3) refund-request and bank-complaint drafts from a selected transaction.\n\nNever store full card or account numbers; keep only last 4 digits. Delete uploaded statements after parsing. Write tests using 5 sample statements in /fixtures. Start by proposing the data model and asking me questions.",
+  "pricing": [
+    "Free: one statement scan a month and the subscription list.",
+    "Rs 99 a month: unlimited scans, trial alarms and refund drafts.",
+    "Rs 999 a month for small businesses: company card scanning and renewal owners. (Pricing not validated.)"
+  ],
+  "risk": "Users will upload bank statements to a new app. Privacy worry may stop them even if the problem is real.",
+  "test": "Before building, offer 20 people a free manual check: they share one redacted statement and you run it through Claude with the prompt above. Count how many agree to share and how many cancel at least one charge. If fewer than half agree to share, design for SMS-only input first.",
+  "caution": "Bank statements are sensitive personal data under India's Digital Personal Data Protection Act. Collect only what is needed, get clear consent, and delete files after parsing. Refund and complaint drafts are templates, not legal advice.",
+  "take": "In almost every founder workshop I run, someone finds a subscription they forgot they were paying for. The fix is not a bank feature. It is one honest list, a reminder before the trial ends, and clear steps to cancel, and that is a weekend build with Claude.",
+  "sources": [
+    [
+      "LocalCircles: 8 in 10 users face dark patterns in digital payments",
+      "https://www.localcircles.com/a/press/page/online-payment-dark-patterns"
+    ],
+    [
+      "BestMediaInfo: Half of OTT users face difficulty cancelling subscriptions",
+      "https://bestmediainfo.com/insights/half-of-ott-users-in-india-face-difficulty-cancelling-subscriptions-9500703"
+    ],
+    [
+      "Outlook Money: UPI auto-debit complaints and how to cancel",
+      "https://www.outlookmoney.com/banking/upi-auto-debit-scam-kuku-fm-stage-paytm-google-pay-phonepe-how-cancel-auto-debit"
+    ],
+    [
+      "Moneylife: That Rs 2 trial could quietly turn into a Rs 599 debit",
+      "https://www.moneylife.in/article/fraud-alert-that-2-trial-could-quietly-turn-into-a-599-debit/81632.html"
+    ],
+    [
+      "CodeForBanks: About NPCI's UPI Help portal",
+      "https://www.codeforbanks.com/banks/blog/all-about-npcis-newly-launched-portal-upihelp/"
+    ]
+  ]
+}
