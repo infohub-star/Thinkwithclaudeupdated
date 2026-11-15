@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [If AI writes code faster, why doesn't the software my team ships get better?](https://www.thinkwithclaude.com/ai-questions/ai-writes-code-faster-doesn-t-software-team/)
+- [Which concrete AI skills are worth learning on my own to boost my career or income?](https://www.thinkwithclaude.com/ai-questions/which-concrete-ai-skills-worth-learning-own-boost/)
+- [Will readers value my hand-written book over an AI-written one, even if the AI version reads better?](https://www.thinkwithclaude.com/ai-questions/readers-value-hand-written-book-over-ai-written/)
+- [How can I keep LLM API costs predictable while testing a new app idea?](https://www.thinkwithclaude.com/ai-questions/how-keep-llm-api-costs-predictable-while-testing/)
+- [What should I check first when an LLM API call returns something unexpected?](https://www.thinkwithclaude.com/ai-questions/what-check-first-llm-api-call-returns-something/)
 - [How much AI should I use in my daily work, and where should I draw the line?](https://www.thinkwithclaude.com/ai-questions/how-much-ai-use-daily-work-draw-line/)
 - [Can AI come up with genuinely new ideas, or does it only remix existing material?](https://www.thinkwithclaude.com/ai-questions/can-ai-come-up-genuinely-new-ideas-only/)
 - [What is the best way to extract structured data from invoices and PDFs using an AI model?](https://www.thinkwithclaude.com/ai-questions/what-best-way-extract-structured-data-invoices-pdfs/)

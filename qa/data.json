@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-15",
+  "id": "hn50484658",
+  "q": "If AI writes code faster, why doesn't the software my team ships get better?",
+  "a": "Typing code was never the main bottleneck. Quality depends on knowing what to build, designing it sensibly, testing it and maintaining it, and AI helps least with those. Faster output without better judgment often just means more code to review and maintain.\n\nTo get real gains, point AI at the slow, boring work: writing tests, refactoring, documenting, migrating old code and explaining unfamiliar modules. Keep humans on requirements, architecture and review. Ask for small changes you can verify rather than big rewrites. Then measure outcomes such as bugs, time to fix and customer complaints, not lines or features shipped. If those numbers don't improve, the tool is probably not the problem. The process around it is.",
+  "sub": "Hacker News",
+  "comments": 670,
+  "url": "https://news.ycombinator.com/item?id=50484658",
+  "slug": "ai-writes-code-faster-doesn-t-software-team"
+ },
+ {
+  "date": "2026-11-15",
+  "id": "hn50494696",
+  "q": "Which concrete AI skills are worth learning on my own to boost my career or income?",
+  "a": "Start with five skills you can learn through practice alone. First, prompting with context: give the model your goal, audience, examples and constraints, then check its output critically. Second, small automations: connect a model API to a spreadsheet, inbox or document folder using Python or a no-code tool. Third, chat over your own documents (retrieval), which many businesses want.\n\nFourth, evaluation: build a list of 20 or so real test cases and compare outputs whenever you change a prompt or model. This separates professionals from hobbyists. Fifth, pick a domain you already know, such as finance, HR or logistics, and build one workflow end to end. A working example that saves a real team hours is a stronger credential than a certificate.",
+  "sub": "Hacker News",
+  "comments": 49,
+  "url": "https://news.ycombinator.com/item?id=50494696",
+  "slug": "which-concrete-ai-skills-worth-learning-own-boost"
+ },
+ {
+  "date": "2026-11-15",
+  "id": "hn50481227",
+  "q": "Will readers value my hand-written book over an AI-written one, even if the AI version reads better?",
+  "a": "Many readers do care, especially for memoir, opinion and expertise-based nonfiction, where the value is a real person's experience and judgment. Readers also notice generic writing. A year and a half of your own stories, specifics and accuracy is hard for an AI draft to match, even if its sentences are smoother.\n\nDon't assume the AI version is better because it sounds polished. Instead, use AI as an editor: ask it to point out unclear passages, repetition, weak structure and gaps, then fix them in your own words. Get a few human readers from your target audience to review it too. If you publish, check the platform's current rules on AI disclosure and be honest about how you used the tools.",
+  "sub": "Hacker News",
+  "comments": 19,
+  "url": "https://news.ycombinator.com/item?id=50481227",
+  "slug": "readers-value-hand-written-book-over-ai-written"
+ },
+ {
+  "date": "2026-11-15",
+  "id": "oai1416331",
+  "q": "How can I keep LLM API costs predictable while testing a new app idea?",
+  "a": "Set a monthly budget limit and usage alerts in the provider dashboard before writing any code. Use a separate project or API key for each experiment so you can see exactly where spending comes from.\n\nDuring development, use a smaller, cheaper model and switch to a stronger one only where quality demands it. Cap the maximum output length, keep prompts short, and cache responses to repeated test inputs. Log token counts for every request so you can estimate cost per user action, then multiply by your expected usage. Avoid loops or retries without a hard stop, since those cause most surprise bills. Check the provider's current pricing page before making projections.",
+  "sub": "OpenAI Community",
+  "comments": null,
+  "url": "https://community.openai.com/t/how-do-you-keep-api-costs-predictable-when-testing-a-new-app-idea/1416331",
+  "slug": "how-keep-llm-api-costs-predictable-while-testing"
+ },
+ {
+  "date": "2026-11-15",
+  "id": "oai1416342",
+  "q": "What should I check first when an LLM API call returns something unexpected?",
+  "a": "First, inspect what you actually sent: the model name, parameters, system prompt and the full message history. Bugs often come from a prompt built differently than you assumed.\n\nSecond, read the status code and the finish reason. A response cut off by the length limit or stopped by a safety filter looks like a bad answer but is really a settings issue. Third, check whether your code expects a specific format, and consider using structured output options if the provider offers them. Fourth, lower the temperature and rerun a minimal version of the prompt to see if the problem is repeatable. Save request IDs in your logs, and check the docs or changelog in case behavior changed.",
+  "sub": "OpenAI Community",
+  "comments": 1,
+  "url": "https://community.openai.com/t/what-do-you-check-first-when-an-api-call-returns-an-unexpected-response/1416342",
+  "slug": "what-check-first-llm-api-call-returns-something"
+ },
+ {
   "date": "2026-11-14",
   "id": "hn50480659",
   "q": "How much AI should I use in my daily work, and where should I draw the line?",
