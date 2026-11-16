@@ -1,0 +1,57 @@
+{
+  "slug": "2026-11-16-bounced-cheque-recovery",
+  "date": "2026-11-16",
+  "short": "Bounced cheque recovery",
+  "title": "Why do small businesses in India take years to recover money from a bounced cheque?",
+  "industry": "Legal & MSME Finance",
+  "score": 76,
+  "summary": "More than 43 lakh cheque-bounce cases are waiting in Indian courts, and many small suppliers miss the strict notice deadlines before they even start. Here's \"ChequeChase\", a bounced-cheque recovery assistant a small team could build with Claude in a weekend.",
+  "who": "Traders, distributors, landlords and small manufacturers who still accept post-dated or security cheques from buyers and tenants. When a cheque bounces, the owner has to act within tight legal timelines, find a lawyer, and then wait through hearings scheduled months apart, while the money stays stuck.",
+  "facts": [
+    "**Where this came from:** Court-pendency data reported by legal and news outlets ([SCC Online](https://www.scconline.com/blog/post/2026/10/13/section-138-cheque-bounce-case-backlog-india-judicial-reforms/), [The Hawk / IANS](https://thehawk.in/news/india/cheque-bounce-cases-surge-as-legal-backlogs-mount-madhya-pradesh-matters-omitted)), an analysis of why the process fails honest complainants ([Bar & Bench](https://www.barandbench.com/amp/story/columns/why-cheque-bounce-litigation-fails-honest-citizens)), and the many public legal guides and business-forum threads where owners ask what to do after a client's cheque bounces.",
+    "**The backlog is huge.** The government told Parliament in December 2024 that 43,05,932 cheque-bounce cases were awaiting disposal ([SCC Online](https://www.scconline.com/blog/post/2026/10/13/section-138-cheque-bounce-case-backlog-india-judicial-reforms/)).",
+    "**Cases drag for years.** National Judicial Data Grid figures tabled in the Lok Sabha showed about 44.7 lakh pending cases, of which more than 25.9 lakh had been unresolved for over two years ([The Hawk / IANS](https://thehawk.in/news/india/cheque-bounce-cases-surge-as-legal-backlogs-mount-madhya-pradesh-matters-omitted)).",
+    "**They clog the courts.** In Delhi, 6,50,283 pending Section 138 complaints in September 2025 were close to half of all criminal case pendency in the capital's trial courts ([SCC Online](https://www.scconline.com/blog/post/2026/10/13/section-138-cheque-bounce-case-backlog-india-judicial-reforms/)).",
+    "**The courts are pushing for digital processes.** Supreme Court guidelines from September 2025 call for electronic service of summons, live dashboards and QR-code or UPI payment links so accused parties can settle early ([SCC Online](https://www.scconline.com/blog/post/2025/09/27/supreme-court-guidelines-tackle-cheque-bouncing-case-backlog-district-courts/))."
+  ],
+  "players": "Legal marketplaces such as [LawRato](https://lawrato.com/legal-services/cheque-bounce-legal-notice), Rest The Case and Vidhikarya connect owners with lawyers and sell notice drafting. Online dispute resolution platforms offer mediation. Accounting tools track overdue invoices but do not track the legal clock on a bounced cheque. Nobody gives a small business one place that tracks every cheque, warns before each deadline, drafts the documents and pushes for early settlement.",
+  "pitch": "\"ChequeChase\" logs every cheque a business receives, catches a bounce the day the bank memo arrives, tracks each legal deadline, drafts the demand notice for a lawyer to review, and sends the payer a settle-now payment link.",
+  "features": [
+    ["Cheque register", "Snap a photo of each received cheque; it reads payer, amount, date and bank and keeps a register with due dates for deposit."],
+    ["Bounce capture", "Upload the bank return memo; it records the reason and the date and starts the statutory countdown automatically."],
+    ["Deadline tracker", "Shows the days left to send a demand notice and to file a complaint, with reminders on WhatsApp or email well before each date."],
+    ["Notice drafts", "Drafts the demand notice and a case summary with all cheque details filled in, ready for a lawyer to review and sign."],
+    ["Settle-early link", "Sends the payer a polite reminder with a UPI payment link, because many disputes settle once the notice arrives."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, cheque register, deadline engine, tests and deployment."],
+    ["Claude API in the product", "Reads cheque photos and bank return memos, extracts the fields, and drafts notices and reminders in English or Hindi."],
+    ["Skills", "A cheque-dishonour skill holding the current timelines, notice structure and court guidance, so drafts stay consistent and easy to update."],
+    ["Artifacts", "A shareable case file page a business owner can send to their lawyer with every date and document in one place."],
+    ["Connectors / MCP", "Gmail to pick up bank alerts and replies, and Google Sheets or accounting exports to match cheques to invoices."],
+    ["Scheduled tasks", "A daily run that checks every open case and sends deadline warnings before any window closes."]
+  ],
+  "plan": [
+    ["Saturday morning: gather real examples", "Collect 20 redacted cheque images and bank return memos, and two sample demand notices reviewed by a practising lawyer."],
+    ["Saturday morning: cheque register", "Use Claude Code to build upload and a register, with the Claude API reading cheque images into structured fields."],
+    ["Saturday afternoon: bounce capture", "Parse return memos into reason and date, and link each one to its cheque in the register."],
+    ["Saturday afternoon: deadline engine", "Encode the notice and filing windows from the skill and show a countdown for each open case."],
+    ["Sunday morning: notice drafts", "Generate the demand notice and a case summary from the lawyer-approved template, clearly marked as drafts for review."],
+    ["Sunday morning: settle-early reminders", "Add a polite payer reminder with a UPI payment link and log every message sent."],
+    ["Sunday afternoon: lawyer handoff", "Build the shareable case file page and a simple list of partner lawyers by city."],
+    ["Sunday evening: test with five owners", "Load their real past bounces and check whether every deadline and field came out right."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"ChequeChase\" for Indian small businesses.\n\nFlow: user uploads photos of cheques received -> Claude API extracts payer, bank, cheque number, amount and date as JSON -> cheque register. When a cheque bounces, the user uploads the bank return memo -> extract reason and memo date -> create a case and compute the demand-notice and complaint-filing deadlines from a config file (do not hard-code legal rules in logic). Show a dashboard of open cases with days remaining. Generate a demand notice draft from a template in /templates, filled with case data, watermarked DRAFT - FOR LAWYER REVIEW. Send payer reminders by email with a UPI payment link. Add a daily job that emails warnings 7, 3 and 1 days before each deadline. Store files encrypted, add auth, seed with 5 sample cases, and write tests for the deadline calculation.",
+  "pricing": ["Free: register up to 20 cheques a month.", "Rs 499 a month: unlimited cheques, bounce tracking, reminders and notice drafts.", "Pay per case: a flat fee for lawyer review through partner lawyers. (Pricing not validated.)"],
+  "risk": "Small business owners may prefer to call their usual lawyer or chase the payer informally, and may not pay for software for an event that happens only a few times a year.",
+  "test": "Before building, talk to 15 distributors or traders who accept cheques. Ask how many bounces they had last year and whether they ever missed a deadline. Offer five of them a free manual tracking service for their open bounces using a shared sheet and Claude drafts. If at least three use it and would pay, build the product.",
+  "caution": "Demand notices and complaints have legal consequences. The product must present drafts for review by a qualified lawyer and must not give legal advice. Keep timelines in an updatable config, and handle cheque images as sensitive financial data under India's Digital Personal Data Protection Act.",
+  "sources": [
+    ["SCC Online: Section 138 cheque bounce case backlog", "https://www.scconline.com/blog/post/2026/10/13/section-138-cheque-bounce-case-backlog-india-judicial-reforms/"],
+    ["SCC Online: Supreme Court guidelines tackle cheque bouncing backlog", "https://www.scconline.com/blog/post/2025/09/27/supreme-court-guidelines-tackle-cheque-bouncing-case-backlog-district-courts/"],
+    ["The Hawk (IANS): Cheque bounce cases surge as legal backlogs mount", "https://thehawk.in/news/india/cheque-bounce-cases-surge-as-legal-backlogs-mount-madhya-pradesh-matters-omitted"],
+    ["Bar & Bench: Why cheque bounce litigation fails honest citizens", "https://www.barandbench.com/amp/story/columns/why-cheque-bounce-litigation-fails-honest-citizens"],
+    ["LawRato: Cheque bounce legal notice", "https://lawrato.com/legal-services/cheque-bounce-legal-notice"],
+    ["Razorpay Fix My Itch (page could not be read this run; fallback sources used)", "https://razorpay.com/m/fix-my-itch/"]
+  ]
+}
