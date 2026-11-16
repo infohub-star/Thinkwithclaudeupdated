@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [Who owns code written by AI, and is it safe to use at work?](https://www.thinkwithclaude.com/ai-questions/owns-code-written-ai-safe-use-work/)
+- [How do I stop an AI tool from wrecking an important file while it edits it?](https://www.thinkwithclaude.com/ai-questions/how-stop-ai-tool-wrecking-important-file-while/)
+- [How can I tell whether an AI tutoring product really helps a child learn?](https://www.thinkwithclaude.com/ai-questions/how-tell-whether-ai-tutoring-product-really-helps/)
+- [Which open-source model should I run on my own computer, and what hardware do I need?](https://www.thinkwithclaude.com/ai-questions/which-open-source-model-run-own-computer-hardware/)
+- [How do I check whether an AI's reasoning is sound or only sounds convincing?](https://www.thinkwithclaude.com/ai-questions/how-check-whether-ai-s-reasoning-sound-only/)
 - [If AI writes code faster, why doesn't the software my team ships get better?](https://www.thinkwithclaude.com/ai-questions/ai-writes-code-faster-doesn-t-software-team/)
 - [Which concrete AI skills are worth learning on my own to boost my career or income?](https://www.thinkwithclaude.com/ai-questions/which-concrete-ai-skills-worth-learning-own-boost/)
 - [Will readers value my hand-written book over an AI-written one, even if the AI version reads better?](https://www.thinkwithclaude.com/ai-questions/readers-value-hand-written-book-over-ai-written/)

@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-16",
+  "id": "hn50507303",
+  "q": "Who owns code written by AI, and is it safe to use at work?",
+  "a": "The rules differ by country and are still changing, so treat ownership of purely AI-generated output as unsettled. Start with two documents: your employer's AI policy and the terms of the tool you use. Those usually say who may use the output and whether your inputs are stored or used for training.\n\nIn practice, reduce risk in four ways. Never paste confidential or client code into a consumer tool unless your company approves it. Review and meaningfully edit what the AI produces rather than shipping it untouched. Run a licence scanner on anything that looks copied from a library. Keep a note of which parts were AI-assisted. For a commercial product or a client contract, get a short legal opinion before you rely on any assumption.",
+  "sub": "Hacker News",
+  "comments": 590,
+  "url": "https://news.ycombinator.com/item?id=50507303",
+  "slug": "owns-code-written-ai-safe-use-work"
+ },
+ {
+  "date": "2026-11-16",
+  "id": "hn50499114",
+  "q": "How do I stop an AI tool from wrecking an important file while it edits it?",
+  "a": "Never let an AI tool work on your only copy. Duplicate the file or folder first, or confirm that version history is switched on, and point the tool at the duplicate.\n\nThen shrink the risk of each request. Ask the AI to describe what it plans to change before it does anything, and approve that plan. Request a new output file instead of an overwrite. Make one small change at a time, such as a single section, and compare the result with the original before moving on. If a tool can delete or move files, switch off that permission or require confirmation for each action. A backup takes seconds, and a lost year of notes cannot be recovered.",
+  "sub": "Hacker News",
+  "comments": 75,
+  "url": "https://news.ycombinator.com/item?id=50499114",
+  "slug": "how-stop-ai-tool-wrecking-important-file-while"
+ },
+ {
+  "date": "2026-11-16",
+  "id": "hn50509953",
+  "q": "How can I tell whether an AI tutoring product really helps a child learn?",
+  "a": "Ask the provider for evidence you can check. You want results measured against a baseline, a comparison group, and independent testing instead of the company's own marketing figures. Ask what share of students actually met their targets, not just the average.\n\nThen test it yourself. Have your child use it on a topic they find hard and see whether they can explain the idea afterwards without the tool. A good tutor asks questions and checks understanding. A weak one just hands over answers. Track progress with school exams or another outside measure, and look at how much a human teacher is involved. Use a trial period before committing, and judge the tool by what your child can do unaided.",
+  "sub": "Hacker News",
+  "comments": 60,
+  "url": "https://news.ycombinator.com/item?id=50509953",
+  "slug": "how-tell-whether-ai-tutoring-product-really-helps"
+ },
+ {
+  "date": "2026-11-16",
+  "id": "hn50508142",
+  "q": "Which open-source model should I run on my own computer, and what hardware do I need?",
+  "a": "Let memory decide first. A model must fit in your RAM, or in GPU memory if you have a graphics card. Compressed (quantized) models need roughly half a gigabyte or a little more per billion parameters, plus some headroom. A laptop with 16 GB can usually handle models in the 7 to 8 billion parameter range. Larger models need a strong GPU or a Mac with plenty of unified memory.\n\nTry tools like Ollama or LM Studio, which download and run models in a few clicks. Test two or three candidates on your real tasks, such as summarising emails or drafting replies, because small models vary a lot by task. Rankings change quickly, so check current leaderboards and each model's licence before using one for business.",
+  "sub": "Hacker News",
+  "comments": 18,
+  "url": "https://news.ycombinator.com/item?id=50508142",
+  "slug": "which-open-source-model-run-own-computer-hardware"
+ },
+ {
+  "date": "2026-11-16",
+  "id": "oai1416718",
+  "q": "How do I check whether an AI's reasoning is sound or only sounds convincing?",
+  "a": "Fluent writing is not proof of good thinking. Start by asking the AI to list its assumptions and the facts its conclusion depends on. Then verify the two or three that matter most against a source you trust.\n\nNext, probe the answer. Ask for the strongest argument against its conclusion, and rephrase the question to see if the answer holds. Test it on a case where you already know the right result. If the conclusion changes with small wording tweaks, do not rely on it. Also remember that a tidy explanation may not reflect how the model actually reached its answer. For decisions involving money, health, legal matters or people, keep a qualified human reviewer in the loop.",
+  "sub": "OpenAI Community",
+  "comments": 1,
+  "url": "https://community.openai.com/t/can-ai-agents-fall-into-bonhoefferian-stupidity-reasoning-vs-the-appearance-of-reasoning/1416718",
+  "slug": "how-check-whether-ai-s-reasoning-sound-only"
+ },
+ {
   "date": "2026-11-15",
   "id": "hn50484658",
   "q": "If AI writes code faster, why doesn't the software my team ships get better?",
