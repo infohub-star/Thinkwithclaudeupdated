@@ -13,8 +13,6 @@ Add items in either form:
 
 ## Up next
 
-- Topic: Get Key Insights from Long Videos Without Watching Them All
-  Notes: A way to review podcasts and industry talks faster, and to check summaries against the source.
 - Topic: How to Keep AI Output On-Brand
   Notes: How to give AI your logo, colours, tone and examples.
 - Topic: How Non-Editors Can Make Short Videos with AI
@@ -22,6 +20,7 @@ Add items in either form:
 
 ## Published
 
+- 2026-11-16: How to Summarize YouTube Videos with AI (and Check It) - https://www.thinkwithclaude.com/blog/summarize-youtube-videos-with-ai/
 - 2026-11-13: How to Choose a Corporate AI Trainer in India - https://www.thinkwithclaude.com/blog/choose-corporate-ai-trainer-india/
 - 2026-11-11: Turn Research into Slides and a Podcast with NotebookLM - https://www.thinkwithclaude.com/blog/notebooklm-research-to-slides-podcast/
 - 2026-11-10: What to Delegate to an AI Assistant, and What Not To - https://www.thinkwithclaude.com/blog/what-to-delegate-to-ai-assistant/
