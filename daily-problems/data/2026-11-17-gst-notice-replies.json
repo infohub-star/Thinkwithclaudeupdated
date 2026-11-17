@@ -1,0 +1,60 @@
+{
+  "slug": "2026-11-17-gst-notice-replies",
+  "date": "2026-11-17",
+  "short": "GST notice replies",
+  "title": "Why do small traders in India panic and miss deadlines when a GST notice arrives?",
+  "industry": "Tax & MSME Compliance",
+  "score": 74,
+  "summary": "Thousands of small traders have received GST notices built on UPI data or return mismatches, often with short and uneven reply deadlines. Here's \"Notice Saathi\", a notice-reply assistant a small team could build with Claude in a weekend.",
+  "who": "Shopkeepers, bakeries, small hotels, service providers and other small businesses (MSMEs), many of them unregistered or newly registered. A notice arrives in tax language with a deadline, the owner does not know whether it is a demand or a question, and the local accountant is busy. Missing the window can turn a simple query into a demand order with interest and penalty.",
+  "facts": [
+    "**Where this came from:** News reports on GST notices sent to small traders in Karnataka and Madhya Pradesh, plus public discussion among traders and tax professionals ([Business Today](https://www.businesstoday.in/india/story/show-us-your-exemptions-well-close-it-gst-official-breaks-down-upi-based-notices-in-karnataka-485920-2025-07-23), [Star of Mysore](https://starofmysore.com/1314-small-traders-get-gst-notices-in-mysuru-division/amp), [Free Press Journal](https://www.freepressjournal.in/indore/gst-asmt-10-notices-raise-concern-over-varying-response-deadlines)).",
+    "**The volume is real.** Nearly 6,000 GST notices were issued to Karnataka traders based on UPI transaction data, according to a Business Today report quoting a state tax official ([Business Today](https://www.businesstoday.in/india/story/show-us-your-exemptions-well-close-it-gst-official-breaks-down-upi-based-notices-in-karnataka-485920-2025-07-23)).",
+    "**Many notices can be closed with the right reply.** The official said the notices are proposals, not final demands, and that traders dealing in exempt goods can reply with proof to get a nil demand ([Business Today](https://www.businesstoday.in/india/story/show-us-your-exemptions-well-close-it-gst-official-breaks-down-upi-based-notices-in-karnataka-485920-2025-07-23)).",
+    "**Silence is costly.** In Mysuru Division, 1,314 traders got notices; those who neither reply nor register face suo motu proceedings, and a demand order with interest and penalty can follow within 15 days ([Star of Mysore](https://starofmysore.com/1314-small-traders-get-gst-notices-in-mysuru-division/amp)).",
+    "**Deadlines are inconsistent.** In Madhya Pradesh, practitioners reported ASMT-10 scrutiny notices with reply windows of 9 to 23 days, against the 30 days experts cite ([Free Press Journal](https://www.freepressjournal.in/indore/gst-asmt-10-notices-raise-concern-over-varying-response-deadlines))."
+  ],
+  "players": "Chartered accountant firms and online services such as [Kanakkupillai](https://www.kanakkupillai.com/gst-notice-reply-service-in-pune) and [LegalRaasta](https://www.legalraasta.com/blog/received-gst-notice-what-to-do-next/) draft replies for a fee. Practice tools like [Suvit](https://www.suvit.io/post/how-to-manage-gst-notice-and-order) help accountants track notices, and early AI tools such as [GST Reply AI](https://www.producthunt.com/p/gst-reply-ai/gst-reply-ai) draft responses. Most are built for accountants; few explain the notice to the owner in plain language and collect the evidence from them.",
+  "pitch": "\"Notice Saathi\" reads a GST notice photo or PDF, explains in plain English or Hindi what it asks and by when, collects the right proof from the owner, and prepares a reply draft for their accountant to approve.",
+  "features": [
+    ["Notice reader", "Upload a photo or PDF; it identifies the notice type, the section quoted, the amount proposed and the reply deadline."],
+    ["Plain-language explainer", "A short summary in English, Hindi or Kannada: is this a question or a demand, what happens if you ignore it, and what to do next."],
+    ["Evidence checklist", "A tailored list of documents to upload, such as sales registers, bank statements or proof that goods are exempt."],
+    ["Reply draft", "A structured reply draft with annexures, marked for review by a chartered accountant or tax practitioner before filing."],
+    ["Deadline alerts", "WhatsApp and email reminders before the reply window closes, with the accountant copied."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, upload flow, deadline engine, tests and deployment."],
+    ["Claude API in the product", "Reads notice images, extracts fields as JSON, writes the plain-language explainer and drafts the reply."],
+    ["Skills", "A GST notice skill holding notice types, common reply structures and the evidence each one needs, kept updatable."],
+    ["Artifacts", "A one-page case summary the owner can share with their accountant."],
+    ["Connectors / MCP", "Pull sales data from accounting tools and push drafts into the accountant's Google Drive."],
+    ["Scheduled tasks", "Daily deadline checks and reminder sends."]
+  ],
+  "plan": [
+    ["Saturday morning: gather real examples", "Collect 15 redacted GST notices of different types and two replies written by a practising chartered accountant."],
+    ["Saturday morning: upload and extraction", "Use Claude Code to build the upload screen and a Claude API call that returns notice type, section, amount and deadline as JSON."],
+    ["Saturday afternoon: explainer", "Generate the plain-language summary in three languages and test it on five shop owners."],
+    ["Saturday evening: evidence checklist", "Map each notice type to its document list in a skill file and render a checklist with uploads."],
+    ["Sunday morning: reply draft", "Draft the reply from the notice, the owner's answers and the uploaded proof, with a clear review-required banner."],
+    ["Sunday afternoon: accountant view", "Add a reviewer login where the accountant edits and approves the draft."],
+    ["Sunday evening: reminders and launch", "Add scheduled deadline reminders, deploy, and onboard three accountants with their small-business clients."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"Notice Saathi\" for Indian small businesses that receive GST notices.\n\nFlow: owner uploads a photo or PDF of a GST notice -> Claude API extracts notice type, GSTIN, section cited, tax period, amount proposed and reply deadline as JSON -> show a plain-language explainer in English, Hindi or Kannada -> show an evidence checklist based on notice type (load mappings from /skills/gst-notices.md) -> owner uploads documents and answers short questions -> Claude drafts a reply with annexure list -> accountant reviews, edits and approves.\n\nRequirements: every draft carries a banner saying it must be reviewed by a qualified tax professional; deadlines and notice rules live in a config file; daily cron sends reminders 7, 3 and 1 days before the deadline; store documents encrypted. Write tests for extraction on 5 sample notices.",
+  "pricing": [
+    "Free: understand one notice and get the checklist.",
+    "Rs 999 per notice: full reply draft and reminders.",
+    "Rs 2,999 a month for accountants: unlimited client notices in one dashboard. (Pricing not validated.)"
+  ],
+  "risk": "Owners may still hand the notice straight to their accountant, and accountants may see the tool as a threat rather than a time-saver.",
+  "test": "Before building, partner with two chartered accountant practices in Bengaluru. Process their next 10 small-client notices manually with Claude: explainer, checklist and first draft. Measure hours saved per notice and ask if they would pay for it. If both say yes and drafts need only light edits, build.",
+  "caution": "A GST reply has legal and financial consequences. The product must not give tax advice or file replies on its own; a qualified professional must review every draft. Keep rules in an updatable config, and treat notices and bank statements as sensitive data under India's Digital Personal Data Protection Act.",
+  "sources": [
+    ["Business Today: GST official breaks down UPI-based notices in Karnataka", "https://www.businesstoday.in/india/story/show-us-your-exemptions-well-close-it-gst-official-breaks-down-upi-based-notices-in-karnataka-485920-2025-07-23"],
+    ["Star of Mysore: 1,314 small traders get GST notices in Mysuru Division", "https://starofmysore.com/1314-small-traders-get-gst-notices-in-mysuru-division/amp"],
+    ["Free Press Journal: ASMT-10 notices raise concern over varying deadlines", "https://www.freepressjournal.in/indore/gst-asmt-10-notices-raise-concern-over-varying-response-deadlines"],
+    ["The South First: Karnataka vendors reject tax notices", "https://thesouthfirst.com/news/gst-bhagya-thanks-to-upi-karnataka-vendors-reject-tax-notices-that-defy-all-logic"],
+    ["GST Reply AI on Product Hunt", "https://www.producthunt.com/p/gst-reply-ai/gst-reply-ai"],
+    ["Suvit: How to manage GST notice and order", "https://www.suvit.io/post/how-to-manage-gst-notice-and-order"]
+  ]
+}
