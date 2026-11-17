@@ -9,6 +9,11 @@
 - [FDE for Coders](https://www.thinkwithclaude.com/fde-essentials/): a series on Forward Deployed Engineering
 
 ## Recent AI questions answered by Shantanu Anand
+- [Why doesn't AI coding help actually empty a team's bug backlog?](https://www.thinkwithclaude.com/ai-questions/why-doesn-t-ai-coding-help-actually-empty/)
+- [How can I stay employable as AI touches more and more of my job?](https://www.thinkwithclaude.com/ai-questions/how-stay-employable-as-ai-touches-more-more/)
+- [Where does generative AI fit safely in a creative production team's workflow?](https://www.thinkwithclaude.com/ai-questions/generative-ai-fit-safely-creative-production-team-s/)
+- [How can teachers fairly assess learning when students use AI for homework?](https://www.thinkwithclaude.com/ai-questions/how-teachers-fairly-assess-learning-students-use-ai/)
+- [How do I give AI coding agents safe copies of a database to work on?](https://www.thinkwithclaude.com/ai-questions/how-give-ai-coding-agents-safe-copies-database/)
 - [Who owns code written by AI, and is it safe to use at work?](https://www.thinkwithclaude.com/ai-questions/owns-code-written-ai-safe-use-work/)
 - [How do I stop an AI tool from wrecking an important file while it edits it?](https://www.thinkwithclaude.com/ai-questions/how-stop-ai-tool-wrecking-important-file-while/)
 - [How can I tell whether an AI tutoring product really helps a child learn?](https://www.thinkwithclaude.com/ai-questions/how-tell-whether-ai-tutoring-product-really-helps/)

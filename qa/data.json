@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-11-17",
+  "id": "hn50520076",
+  "q": "Why doesn't AI coding help actually empty a team's bug backlog?",
+  "a": "Writing code was never the only bottleneck. Much of a bug's life goes on reproducing it, clarifying vague requirements, reviewing changes, testing and deciding priority. AI speeds up the typing, but it can also increase the volume of new code and new feature requests, so the backlog refills as fast as it drains.\n\nTo get real value, point AI at the slow steps. Ask it to turn vague reports into reproduction steps, draft failing tests and summarise the code areas most likely involved. Keep humans on review and prioritisation. Measure cycle time from report to fix, not lines produced. Also remember that demand expands: faster teams get asked for more, so an empty backlog is rarely a realistic goal.",
+  "sub": "Hacker News",
+  "comments": 68,
+  "url": "https://news.ycombinator.com/item?id=50520076",
+  "slug": "why-doesn-t-ai-coding-help-actually-empty"
+ },
+ {
+  "date": "2026-11-17",
+  "id": "hn50512950",
+  "q": "How can I stay employable as AI touches more and more of my job?",
+  "a": "Most jobs now contain some tasks AI can help with, which is different from the whole job disappearing. List your weekly tasks and mark which ones AI can draft, summarise or check. Then practise those with a tool such as ChatGPT, Claude, Gemini or Copilot, and track the hours saved.\n\nIn applications and interviews, show specific results, for example: cut report prep from a day to two hours, with checks for errors. Employers want people who use AI and still own judgement, accuracy and client relationships. Spend the time you save on skills AI handles poorly, such as negotiation, deep domain knowledge and stakeholder trust. Treat hiring statistics as context, not a verdict on your own field.",
+  "sub": "Hacker News",
+  "comments": 85,
+  "url": "https://news.ycombinator.com/item?id=50512950",
+  "slug": "how-stay-employable-as-ai-touches-more-more"
+ },
+ {
+  "date": "2026-11-17",
+  "id": "hn50519043",
+  "q": "Where does generative AI fit safely in a creative production team's workflow?",
+  "a": "Start where the output is internal and easy to check: brainstorming, mood boards, placeholder text, naming ideas, coding help and documentation. These save time with low risk. Be more careful with anything customers or players see, such as final art, voice or written content, because of inconsistent quality, copyright uncertainty and possible audience backlash.\n\nSet a simple policy: which tasks are allowed, which tools are approved, what data must never be pasted in, and who signs off on final assets. Keep a record of where AI was used. Involve artists and writers early, since they know what good looks like and adoption stalls when they feel bypassed. Check each tool's current terms on commercial use of outputs.",
+  "sub": "Hacker News",
+  "comments": 92,
+  "url": "https://news.ycombinator.com/item?id=50519043",
+  "slug": "generative-ai-fit-safely-creative-production-team-s"
+ },
+ {
+  "date": "2026-11-17",
+  "id": "hn50523022",
+  "q": "How can teachers fairly assess learning when students use AI for homework?",
+  "a": "Take-home work alone no longer proves understanding. Many educators now treat homework as practice that is ungraded or lightly weighted, and move real assessment to settings where thinking is visible: in-class exercises, short oral explanations, handwritten problems, or live walk-throughs of a student's own work.\n\nAnother approach is to allow AI openly and grade the process. Ask students to submit their prompts, note what they changed, and explain why the final answer is correct. Questions that depend on personal context or class discussion are harder to outsource. The same logic works for corporate training: test people by having them do a task live, not by reviewing a file they submitted.",
+  "sub": "Hacker News",
+  "comments": 56,
+  "url": "https://news.ycombinator.com/item?id=50523022",
+  "slug": "how-teachers-fairly-assess-learning-students-use-ai"
+ },
+ {
+  "date": "2026-11-17",
+  "id": "hn50506940",
+  "q": "How do I give AI coding agents safe copies of a database to work on?",
+  "a": "Never let an agent experiment on production data. Give each agent run its own disposable copy of the database, so a bad migration or accidental delete only affects that copy. Options include snapshot or copy-on-write features in your database or filesystem, managed branching services, or a container started from a seed dataset.\n\nUse anonymised or synthetic data rather than real customer records. Give the agent credentials limited to its own copy, and delete the copy when the task ends. Run your test suite against it before any change is merged, and apply migrations to real systems only through your normal reviewed process. Fast cloning matters, because slow setup tempts teams to share one database across runs.",
+  "sub": "Hacker News",
+  "comments": 16,
+  "url": "https://news.ycombinator.com/item?id=50506940",
+  "slug": "how-give-ai-coding-agents-safe-copies-database"
+ },
+ {
   "date": "2026-11-16",
   "id": "hn50507303",
   "q": "Who owns code written by AI, and is it safe to use at work?",
