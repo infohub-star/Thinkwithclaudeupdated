@@ -1,0 +1,136 @@
+{
+  "slug": "2026-11-18-failed-upi-refunds",
+  "date": "2026-11-18",
+  "short": "Failed UPI refunds",
+  "title": "Why do Indians wait days to get their money back when a UPI payment fails but the account is debited?",
+  "industry": "Fintech & Consumer Banking",
+  "score": 77,
+  "summary": "A failed UPI payment that still debits the account is supposed to be reversed quickly, with daily compensation if the bank is late, yet most people never claim it. Here's \"RefundTrack\", a failed-payment tracker a small team could build with Claude in a weekend.",
+  "who": "Anyone who pays by UPI: shoppers, gig workers, students and small shopkeepers. The money leaves the account, the payment shows as failed or pending, and the customer is left chasing the app, the bank and the merchant. Few people know the reversal deadlines or that the bank owes them compensation for each day of delay.",
+  "facts": [
+    "**Where this came from:** Consumer guides from payment apps and banks, personal-finance news, and public complaint threads about failed UPI payments that still debited money ([Paytm](https://paytm.com/blog/payments/upi/upi-money-deducted-not-received-recovery-guide), [Outlook Money](https://www.outlookmoney.com/banking/upi-payment-failed-but-money-deducted-what-should-you-do), [Tech2](https://www.tech2.com/tech2/upi-transaction-failed-heres-how-to-seek-compensation-as-per-rbis-rule-text-ws-l-10225991.html)).",
+    "**There are firm deadlines.** For a failed person-to-person UPI transfer, the reversal is due by the next day (T+1); for a failed merchant payment, the bank has up to five days (T+5) ([NPCI circular](https://www.npci.org.in/PDF/npci/imps/circular/2019/IMPS-UPI-I-OC-93-I-FY-19-20-I-Harmonisation-of-Turn-Around-Time(TAT)-and-customer-compensation-for-failed-transaction.pdf), [Tech2](https://www.tech2.com/tech2/upi-transaction-failed-heres-how-to-seek-compensation-as-per-rbis-rule-text-ws-l-10225991.html)).",
+    "**Late banks owe money.** Customers are entitled to Rs 100 for each day the reversal is late beyond those deadlines, for technical failures ([Tech2](https://www.tech2.com/tech2/upi-transaction-failed-heres-how-to-seek-compensation-as-per-rbis-rule-text-ws-l-10225991.html)).",
+    "**Digital payments drive complaints.** In 2021-22, 42.12% of the 4.18 lakh complaints under the RBI ombudsman schemes were about digital payment modes, the largest category ([Orissa Post](https://www.orissapost.com/more-than-40-complaints-received-by-rbi-were-on-digital-payment-modes-report/amp/)).",
+    "**Complaint volumes keep rising.** The RBI ombudsman received 13.34 lakh complaints in 2024-25, up 13.55% from the year before ([Tribune](https://www.tribuneindia.com/news/business/rbi-ombudsman-sees-13-34-lakh-complaints-in-fy25-loans-credit-cards-dominate))."
+  ],
+  "players": "Payment apps and banks run their own dispute flows inside the app, and publish guides on how to raise a complaint ([Paytm](https://paytm.com/blog/payments/upi/upi-money-deducted-not-received-recovery-guide)). If the bank does not resolve a complaint within 30 days, customers can escalate to the RBI Integrated Ombudsman ([Tech2](https://www.tech2.com/tech2/upi-transaction-failed-heres-how-to-seek-compensation-as-per-rbis-rule-text-ws-l-10225991.html)). What is missing is one neutral tool that tracks every failed payment, counts the days owed and drafts each escalation step.",
+  "pitch": "\"RefundTrack\" reads a screenshot or bank SMS of a failed UPI payment, tells the user the exact reversal deadline and compensation owed, and drafts the complaint and escalation messages at each step.",
+  "features": [
+    [
+      "Screenshot and SMS reader",
+      "Upload a payment screenshot or paste a bank SMS; it pulls out amount, date, UPI reference number, bank and whether it was a person or merchant payment."
+    ],
+    [
+      "Deadline and compensation calculator",
+      "Shows the reversal due date and a running count of compensation owed at Rs 100 per late day."
+    ],
+    [
+      "Complaint drafter",
+      "Writes the in-app dispute text, a bank grievance email and, after 30 days, an ombudsman complaint summary."
+    ],
+    [
+      "Reminder timeline",
+      "Reminds the user when each deadline passes and what to do next."
+    ],
+    [
+      "Case file",
+      "Keeps every screenshot, reference number and reply in one place to attach to escalations."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, the upload flow, the deadline rules, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Reads screenshots and SMS text, extracts fields as JSON and drafts complaint messages in English or Hindi."
+    ],
+    [
+      "Skills",
+      "A UPI disputes skill holding reversal deadlines, compensation rules and escalation steps, kept in one updatable place."
+    ],
+    [
+      "Artifacts",
+      "A shareable one-page case summary the user can send to the bank or attach to an ombudsman complaint."
+    ],
+    [
+      "Scheduled tasks",
+      "Daily checks that move cases forward and send reminders when a deadline passes."
+    ],
+    [
+      "Connectors / MCP",
+      "Optional email connector so drafts go out from the user's own inbox and replies are filed into the case."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning: collect examples",
+      "Gather 20 redacted failed-payment screenshots and bank SMS messages from friends and colleagues across different apps and banks."
+    ],
+    [
+      "Saturday morning: extraction",
+      "Use Claude Code to build an upload screen and a Claude API call that returns amount, date, reference number, bank and payment type as JSON."
+    ],
+    [
+      "Saturday afternoon: rules engine",
+      "Encode the T+1 and T+5 deadlines and the Rs 100 per day compensation in a config file, with tests."
+    ],
+    [
+      "Saturday afternoon: drafts",
+      "Generate the in-app dispute text, a bank email and an ombudsman summary from each case."
+    ],
+    [
+      "Sunday morning: timeline and reminders",
+      "Add a case timeline and scheduled reminders when each deadline passes."
+    ],
+    [
+      "Sunday morning: case summary",
+      "Produce a one-page case summary the user can download or share."
+    ],
+    [
+      "Sunday afternoon: test with users",
+      "Run 10 real cases with friends, measure how many get reversed or compensated, and fix the drafts."
+    ],
+    [
+      "Sunday evening: launch",
+      "Deploy, add a simple landing page and share it in two consumer and fintech communities."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"RefundTrack\" that helps Indian users recover money from failed UPI payments.\n\nFlow: user uploads a payment screenshot or pastes a bank SMS -> Claude API extracts amount, date, UPI reference number, bank, app and payment type (person or merchant) as JSON -> a rules engine computes the reversal due date (T+1 for person-to-person, T+5 for merchant) and compensation owed (Rs 100 per late day), with rules in a config file -> show a case page with the deadline, a running compensation counter and next step -> generate three drafts: in-app dispute text, bank grievance email, and an RBI ombudsman complaint summary after 30 days -> daily scheduled job sends reminders when deadlines pass.\n\nAdd email login, a case list, file storage for screenshots, unit tests for the rules engine, and a short disclaimer that the app gives information, not legal advice. Start by proposing the data model and folder structure, then build step by step.",
+  "pricing": [
+    "Free: track one failed payment with deadline and drafts.",
+    "Rs 49 a month: unlimited cases, reminders and case summaries.",
+    "Rs 1,999 a month for small merchants: track failed customer payments across counters. (Pricing not validated.)"
+  ],
+  "risk": "Most failed payments may reverse on their own within a day, so users may not feel enough pain to install a tool.",
+  "test": "Before building, post a simple form in two consumer communities asking people to share their last failed UPI payment that was not reversed on time. Handle 15 cases by hand with Claude and track how many are still unresolved after the deadline and how many people come back for a second case. If at least a third are still open after the deadline, build.",
+  "caution": "The app must give information, not legal advice, and must never ask for UPI PINs, passwords or one-time passwords. Screenshots and bank SMS are personal financial data, so store them securely and follow India's Digital Personal Data Protection Act.",
+  "sources": [
+    [
+      "NPCI circular: Harmonisation of turnaround time and customer compensation for failed transactions",
+      "https://www.npci.org.in/PDF/npci/imps/circular/2019/IMPS-UPI-I-OC-93-I-FY-19-20-I-Harmonisation-of-Turn-Around-Time(TAT)-and-customer-compensation-for-failed-transaction.pdf"
+    ],
+    [
+      "Tech2: UPI transaction failed? How to seek compensation as per RBI rules",
+      "https://www.tech2.com/tech2/upi-transaction-failed-heres-how-to-seek-compensation-as-per-rbis-rule-text-ws-l-10225991.html"
+    ],
+    [
+      "Orissa Post: More than 40% of complaints received by RBI were on digital payment modes",
+      "https://www.orissapost.com/more-than-40-complaints-received-by-rbi-were-on-digital-payment-modes-report/amp/"
+    ],
+    [
+      "Tribune: RBI ombudsman sees 13.34 lakh complaints in FY25",
+      "https://www.tribuneindia.com/news/business/rbi-ombudsman-sees-13-34-lakh-complaints-in-fy25-loans-credit-cards-dominate"
+    ],
+    [
+      "Paytm: UPI money deducted but not received, recovery guide",
+      "https://paytm.com/blog/payments/upi/upi-money-deducted-not-received-recovery-guide"
+    ],
+    [
+      "Outlook Money: UPI payment failed but money deducted, what to do",
+      "https://www.outlookmoney.com/banking/upi-payment-failed-but-money-deducted-what-should-you-do"
+    ]
+  ]
+}
