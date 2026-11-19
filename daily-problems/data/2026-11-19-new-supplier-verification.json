@@ -1,0 +1,65 @@
+{
+  "slug": "2026-11-19-new-supplier-verification",
+  "date": "2026-11-19",
+  "short": "New supplier verification",
+  "title": "Why can't businesses verify new suppliers before purchasing?",
+  "industry": "B2B Services",
+  "score": 76,
+  "summary": "Small businesses pay advances to suppliers they found on a marketplace or WhatsApp, and only later learn the GST number was fake or the firm had stopped filing. Here's \"VendorCheck\", a supplier check report a small team could build with Claude in a weekend.",
+  "who": "Small manufacturers, traders, restaurants and retailers that buy from new suppliers found online, through brokers or on WhatsApp. They usually pay an advance before goods arrive. Large companies have procurement teams and paid verification tools; a small business owner has a GSTIN, a phone number and a feeling.",
+  "facts": [
+    "**Fake GST registrations are common.** A CBIC member said the second nationwide drive against fake registrations found about 10,700 bogus registrations and Rs 10,179 crore of tax evasion as of 22 September 2024. The first drive in 2023 found 21,791 non-existent entities ([Outlook Business](https://www.outlookbusiness.com/news/fake-registration-drive-gst-officers-detect-10700-bogus-firms-over-rs-10k-crore-evasion)).",
+    "**The problem continues.** The Minister of State for Finance told the Lok Sabha that 3,977 fraudulent GST registrations using forged PAN and Aadhaar were found in FY 2024-25, with estimated evasion of Rs 13,109 crore, and 489 more in FY 2025-26 up to October ([Free Press Journal / PTI](https://www.freepressjournal.in/business/489-fake-gst-registrations-detected-till-october-over-3000-crore-tax-evasion-government)).",
+    "**A bad supplier costs the buyer too.** Vendor compliance gaps under GST are described as the most common reason businesses lose input tax credit ([Binary Semantics](https://www.binarysemantics.com/blogs/vendor-compliance-gaps-under-gst-are-the-most-common-reason-for-itc-loss-here-is-how-indian-businesses-should-fix-them/)).",
+    "**The public data exists but is scattered.** GSTIN status, return filing and company registration can each be checked, but separately, and guides still walk owners through manual portal lookups ([Lendingkart](https://www.lendingkart.com/blog/how-to-check-for-fake-gst-invoices/), [ClearTax](https://cleartax.in/s/msme-verification-of-vendors))."
+  ],
+  "players": "Verification APIs exist for developers and enterprises. Masters India offers a vendor verification API covering GSTIN, company registration status, address and return filing ([Masters India](https://www.mastersindia.co/vendor-verification-api/)); HyperVerge, Signzy and AuthBridge sell vendor validation and know-your-business checks ([HyperVerge](https://hyperverge.co/blog/gst-verification-overview-benefits-verification-steps/), [AuthBridge](https://authbridge.com/blog/gst-verification-guide-india/)). We didn't find a simple, pay-per-check report built for a small business owner deciding whether to send an advance today.",
+  "pitch": "\"VendorCheck\" turns a supplier's GSTIN, name and quote into a one-page risk report in two minutes, with a clear \"safe to pay advance?\" answer and the reasons behind it.",
+  "features": [
+    ["One-input check", "Enter a GSTIN or upload the supplier's quote or invoice; it pulls GST status, registration date, filing history and company records through a verification API."],
+    ["Red-flag scan", "Flags a cancelled or very new GSTIN, missed returns, a name or address mismatch with the quote, and bank details that don't match the business name."],
+    ["Plain-language verdict", "A green, amber or red rating with three reasons in simple English or Hindi, and what to ask the supplier next."],
+    ["Safer payment terms", "Suggests a smaller first order, part payment on delivery or escrow when the risk is amber, with a ready message to send the supplier."],
+    ["Supplier watchlist", "Re-checks approved suppliers monthly and alerts the owner if a GSTIN is cancelled or filings stop."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, API integrations, tests and deployment."],
+    ["Claude API in the product", "Reads quotes and invoices, matches names and addresses against records, and writes the plain-language verdict."],
+    ["Skills", "A \"supplier-risk\" skill holds the red-flag rules and scoring, so every report uses the same checked logic."],
+    ["Artifacts", "A clickable sample report to show owners and channel partners before the app exists."],
+    ["Connectors (MCP)", "Gmail and Google Drive during pilots to pick up supplier quotes; Vercel to deploy."],
+    ["Scheduled tasks", "The monthly watchlist re-check and a weekly digest of status changes."]
+  ],
+  "plan": [
+    ["Saturday morning — rules", "List 10 red flags with a CA. Write the supplier-risk skill and collect 15 real GSTINs (good and known-bad) as a test set."],
+    ["Saturday midday — prototype", "Ask Claude for an artifact of the one-page report. Show it to three small business owners."],
+    ["Saturday afternoon — data", "Use the starter prompt in Claude Code to connect a GST verification API and build the lookup and storage."],
+    ["Saturday evening — scoring", "Write the red-flag rules as plain code with unit tests, and run the test set."],
+    ["Sunday morning — documents", "Add quote and invoice upload, with Claude extracting GSTIN, name, address and bank details for matching."],
+    ["Sunday midday — verdict", "Add the plain-language verdict and the safer-terms message in English and Hindi."],
+    ["Sunday afternoon — ship", "Deploy to Vercel with login, pay-per-check billing and a clear notice about data sources."],
+    ["Sunday evening — pilot", "Give 20 free checks to owners through a trade association, and set the scheduled watchlist task."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"VendorCheck\" for Indian small businesses.\n\nFlow: user enters a supplier GSTIN or uploads a quote/invoice PDF -> Claude API extracts GSTIN, legal name, address, bank account name and IFSC as JSON\n-> app calls a GST verification API (behind an interface in /lib/verify.ts so the provider can be swapped) for status, registration date, filing history and legal name\n-> deterministic rules in /lib/rules.ts produce flags and a green/amber/red rating\n-> Claude writes a 3-reason plain-language verdict and a message to the supplier (English or Hindi).\n\nRules:\n- Red-flag rules live in /rules/supplier-risk.md and /lib/rules.ts with unit tests. The model never decides the rating; it only explains it.\n- Every flag must show the data source and the date checked. If data is missing, say \"not available\"; never guess.\n- Store GSTIN checks with timestamps so a monthly re-check can detect changes.\n- Show \"Based on public records on <date>. Not a guarantee.\" on every report.\n\nStart by proposing the schema and file structure, then build the GSTIN lookup and rules with tests first.",
+  "pricing": [
+    "Not validated.",
+    "Free: three checks a month.",
+    "Rs 49 per check, or Rs 799 a month for unlimited checks and the watchlist.",
+    "Channel: white-label for CAs and B2B marketplaces."
+  ],
+  "risk": "Owners may trust a referral or a phone call more than a report, and may not pay for a check before a small order.",
+  "test": "Run 30 checks by hand for owners in one trade association using Claude and a verification API. Count how many change a payment decision because of the report and how many ask for a second check. A reasonable bar: at least 5 changed decisions and 10 repeat requests.",
+  "caution": "Use only licensed APIs and public records, follow data protection rules for stored details, and present ratings as information, not an accusation against any supplier.",
+  "sources": [
+    ["Razorpay Fix My Itch", "https://razorpay.com/m/fix-my-itch/"],
+    ["Outlook Business: GST officers detect 10,700 bogus firms", "https://www.outlookbusiness.com/news/fake-registration-drive-gst-officers-detect-10700-bogus-firms-over-rs-10k-crore-evasion"],
+    ["Free Press Journal: 489 fake GST registrations till October", "https://www.freepressjournal.in/business/489-fake-gst-registrations-detected-till-october-over-3000-crore-tax-evasion-government"],
+    ["Binary Semantics: Vendor compliance gaps and ITC loss", "https://www.binarysemantics.com/blogs/vendor-compliance-gaps-under-gst-are-the-most-common-reason-for-itc-loss-here-is-how-indian-businesses-should-fix-them/"],
+    ["Lendingkart: How to identify fake GST invoices", "https://www.lendingkart.com/blog/how-to-check-for-fake-gst-invoices/"],
+    ["ClearTax: MSME vendor verification", "https://cleartax.in/s/msme-verification-of-vendors"],
+    ["Masters India: Vendor verification API", "https://www.mastersindia.co/vendor-verification-api/"],
+    ["HyperVerge: GST verification", "https://hyperverge.co/blog/gst-verification-overview-benefits-verification-steps/"],
+    ["AuthBridge: GST verification guide", "https://authbridge.com/blog/gst-verification-guide-india/"]
+  ],
+  "take": "Owners I train rarely lack the data to check a supplier; they lack the ten minutes and the know-how to read it. The useful part of this build is not the lookup but the verdict: Claude turning five government records into one sentence an owner can act on before sending money."
+}
