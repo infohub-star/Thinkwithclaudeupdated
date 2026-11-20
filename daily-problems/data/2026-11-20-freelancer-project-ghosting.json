@@ -1,0 +1,60 @@
+{
+  "slug": "2026-11-20-freelancer-project-ghosting",
+  "date": "2026-11-20",
+  "short": "Freelancer project ghosting",
+  "title": "Why do freelancers ghost projects after partial payments without accountability systems?",
+  "industry": "B2B Services",
+  "score": 76,
+  "summary": "Small businesses pay a freelancer an advance and then the freelancer goes silent, with no record and no recourse. Here's \"Milestone Lock\", a deal-room that ties every payment to a delivered, checked milestone, buildable with Claude in a weekend.",
+  "who": "Founders, small agencies and small businesses (MSMEs) that hire freelance designers, developers and marketers through WhatsApp, LinkedIn or referrals. They pay 30 to 50 percent upfront on a chat message, have no written scope, and lose both the money and the weeks when the freelancer stops replying. Honest freelancers feel the other side of it: clients who hesitate to hire them at all.",
+  "facts": [
+    "**The talent pool is large and growing.** NITI Aayog estimated 7.7 million gig workers in India in 2020-21 and projected 23.5 million by 2029-30 ([NITI Aayog policy brief](https://www.niti.gov.in/sites/default/files/2022-06/Policy_Brief_India's_Booming_Gig_and_Platform_Economy_27062022.pdf)).",
+    "**Most deals happen off-platform.** A 2023 report found 68% of Indian freelancers rely on social media to find work ([Business Standard](https://business-standard.com/india-news/68-indian-freelancers-rely-on-social-media-to-find-work-says-report-123060100736_1.html)), which means no escrow, no contract and no dispute process by default.",
+    "**Trust is the stated barrier.** Indian writers on the freelance market describe client hesitation around reliability and accountability as a core reason businesses avoid freelancers ([YourStory](https://yourstory.com/mystory/7eefd48b8f-why-do-indian-clients-still-hesitate-to-engage-with-freelancers-in-india-)).",
+    "**Milestone payments are the known fix, but mostly inside marketplaces.** Guides for Indian freelancers explain milestone payments as releasing money per agreed deliverable ([Xflow](https://www.xflowpay.com/blog/milestone-payment)); global platforms offer this for off-platform clients too ([Upwork Direct Contracts](https://upwork.com/direct-contracts/cl))."
+  ],
+  "players": "Upwork, Fiverr and Freelancer.in protect payments inside their marketplaces, and Upwork Direct Contracts extends milestone protection to outside clients. Invoicing tools such as Refrens help freelancers chase payment, which is the opposite direction. We didn't find an India-first, rupee and UPI-native tool that gives a WhatsApp-hired freelancer and client a shared scope, milestone escrow and a delivery check.",
+  "pitch": "\"Milestone Lock\" turns a WhatsApp project chat into a signed scope with milestones, holds each payment in escrow, and releases it only when the client approves a checked deliverable.",
+  "features": [
+    ["Chat-to-scope", "Paste the WhatsApp or email thread; it drafts a one-page scope with deliverables, dates and acceptance criteria for both sides to e-sign."],
+    ["Milestone escrow", "The client funds each milestone through a licensed escrow or payment partner; money moves only on approval or after a fixed review window."],
+    ["Delivery check", "Each submission is compared with the acceptance criteria, and a plain checklist shows what is done and what is missing."],
+    ["Silence alarm", "If the freelancer misses a check-in, both sides get reminders, and after a set gap the unfunded milestones are cancelled and unused money refunded."],
+    ["Track record", "Completed milestones build a verified delivery history that freelancers can share with the next client."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, escrow partner integration, e-sign flow, tests and deployment."],
+    ["Claude API in the product", "Turns messy chat threads into structured scopes and checks deliverables against acceptance criteria."],
+    ["Skills", "A \"scope-writer\" skill holds the scope template, acceptance-criteria rules and tone guide, so every scope looks the same."],
+    ["Artifacts", "A clickable demo of the deal-room to show founders and freelancers before the app exists."],
+    ["Connectors (MCP)", "Gmail and Google Drive during pilots to import threads and store signed scopes; Vercel to deploy."],
+    ["Scheduled tasks", "Daily check-in sweeps that send reminders and trigger the silence alarm."]
+  ],
+  "plan": [
+    ["Saturday morning — scope test set", "Collect 10 real project chats from founders you know. Write the scope-writer skill and hand-write the ideal scope for each as a test set."],
+    ["Saturday midday — prototype", "Ask Claude for an artifact showing the deal-room flow. Show it to three founders and three freelancers."],
+    ["Saturday afternoon — chat-to-scope", "Use the starter prompt in Claude Code to build thread upload, scope extraction and the e-sign page. Run the test set."],
+    ["Saturday evening — milestones", "Add milestone creation, funding status and the review window as plain code with unit tests."],
+    ["Sunday morning — payments", "Integrate a licensed escrow or marketplace-payments partner in sandbox mode. Never hold funds yourself."],
+    ["Sunday afternoon — delivery check and alarms", "Add the deliverable checklist and a scheduled task for check-in reminders."],
+    ["Sunday evening — pilot", "Run five live projects between founders and freelancers you know, and record every dispute and how it ended."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"Milestone Lock\" for Indian clients and freelancers.\n\nFlow: client pastes a WhatsApp or email thread -> Claude API extracts a scope as JSON\n(deliverables, milestones with amount and due_date, acceptance_criteria, revision_limit)\n-> both parties edit and e-sign -> client funds milestone 1 via the payments partner's sandbox API\n-> freelancer submits a deliverable (file or link) -> Claude compares it with acceptance_criteria and returns a checklist\n-> client approves or requests changes within a 5-day review window; no response = auto-approve.\n\nRules:\n- Never invent scope items; every item must quote the source message it came from, or be marked \"added by user\".\n- All money states (funded, released, refunded) are deterministic code with unit tests, never model output.\n- Funds are held only by the licensed partner; the app stores status, not money.\n- Daily job: if a freelancer misses two check-ins, notify both sides; after 7 days, offer cancellation and refund of unreleased milestones.\n\nStart by proposing the schema and file structure, then build thread import and scope extraction first, with a test script over /fixtures.",
+  "pricing": [
+    "Free: one project with up to three milestones.",
+    "2% of milestone value, capped at Rs 1,500 per project (not validated).",
+    "Rs 1,999 a month for agencies running many freelancers.",
+    "Channel: co-working spaces, startup communities and design or developer collectives."
+  ],
+  "risk": "Clients and freelancers who already deal informally on WhatsApp may not accept the friction of signing a scope and funding escrow for small projects.",
+  "test": "Before building payments, run 10 real projects through a manual version: Claude drafts the scope, both sides sign a PDF, and the client pays milestones through an existing escrow service. Count how many pairs finish with the flow. A reasonable bar: at least 7 of 10 finish, and both sides say they would use it again.",
+  "caution": "Holding customer money in India is regulated, so use a licensed escrow or payment aggregator partner rather than holding funds yourself. Check with a lawyer before launch.",
+  "sources": [
+    ["Razorpay Fix My Itch", "https://razorpay.com/m/fix-my-itch/"],
+    ["NITI Aayog: India's Booming Gig and Platform Economy (policy brief)", "https://www.niti.gov.in/sites/default/files/2022-06/Policy_Brief_India's_Booming_Gig_and_Platform_Economy_27062022.pdf"],
+    ["Business Standard: 68% of Indian freelancers rely on social media to find work", "https://business-standard.com/india-news/68-indian-freelancers-rely-on-social-media-to-find-work-says-report-123060100736_1.html"],
+    ["YourStory: Why do Indian clients still hesitate to engage with freelancers?", "https://yourstory.com/mystory/7eefd48b8f-why-do-indian-clients-still-hesitate-to-engage-with-freelancers-in-india-"],
+    ["Xflow: Milestone payments for Indian freelancers", "https://www.xflowpay.com/blog/milestone-payment"],
+    ["Upwork Direct Contracts", "https://upwork.com/direct-contracts/cl"]
+  ]
+}
