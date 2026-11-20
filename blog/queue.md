@@ -13,6 +13,26 @@ Add items in either form:
 
 ## Up next
 
+- Topic: AI Can Now Sit in Your Meetings. Should You Let It?
+  Notes: Viral angle. AI assistants can now join video calls (e.g. Claude joining Google Meet, Nov 2026). Pros, risks, consent, and a simple rule for when to allow it. Verify current features.
+- Topic: 1 in 9 AI Search Answers Isn't Backed by Its Own Source
+  Notes: Viral angle. Based on the study finding 11% of factual claims in Google AI Overviews lacked support from cited sources (reported by MarketingProfs, Nov 2026). Verify and cite it. Show how to check AI answers.
+- Topic: Your AI Chats Aren't as Private as You Think
+  Notes: Viral angle. Recent changes to chat retention (e.g. Gemini history-off chats kept about two months) and a reported breach exposing stored AI chat data. Verify each fact. Practical privacy checklist for work.
+- Topic: Ads Are Coming to Your AI Chatbot. Here's What Changes.
+  Notes: Viral angle. Ads appearing in ChatGPT and Google AI Mode (Nov 2026). Verify. What it means for users and for marketers.
+- Topic: The New AI Job That Didn't Exist Last Year
+  Notes: Viral angle. Employers creating AI-supervision roles. Verify with sources. What the role involves and how to prepare.
+- Topic: Recruiters Are Now Asking "How Do You Use AI?" Here's the Best Answer
+  Notes: Viral angle. Employers increasingly ask candidates how they used AI (Business Today, Nov 2026). Give a simple answer framework with examples.
+- Topic: 97% of Indian Professionals Want AI Skills. Most Are Learning Them Wrong.
+  Notes: Viral angle. Use the 97% figure from the survey reported by Business Today (3 Nov 2026); verify. Contrarian but fair: common learning mistakes and a better way.
+- Topic: AI Agent Searches Are Soaring. Here's What Agents Actually Do.
+  Notes: Viral angle. Searches for "autonomous ai agents" grew sharply (about +770% in US data from Lilach Bullock's AI search demand report); verify and say it is US data. Plain-English explanation with work examples.
+- Topic: Stop Letting AI Make Your Decisions. Use It Like This Instead.
+  Notes: Viral angle. Strong opinion, backed by the survey finding 65% of Indian professionals worry AI could weaken human judgement. A simple decision framework.
+- Topic: 5 Work Tasks AI Can Do for You Tonight
+  Notes: Viral angle. Five quick, practical tasks with a copy-paste prompt each.
 - Topic: How Non-Editors Can Make Short Videos with AI
   Notes: A beginner's workflow for captions and simple graphics. Check current features before writing.
 
