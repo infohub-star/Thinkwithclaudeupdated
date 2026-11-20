@@ -1,0 +1,46 @@
+name: Daily Idea Forge
+
+on:
+  schedule:
+    - cron: "30 14 * * *"   # 8:00 PM IST every day
+  workflow_dispatch: {}      # run by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-idea
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install anthropic
+
+      - name: Publish today's idea
+        id: publish
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 idea-forge/publish.py
+
+      - name: Commit and push
+        run: |
+          if [ -z "$(git status --porcelain index.html idea-forge/queue.md)" ]; then
+            echo "Nothing to publish."
+            exit 0
+          fi
+          git config user.name "Shantanu Anand"
+          git config user.email "infohub@connectwithshantanu.com"
+          git add index.html idea-forge/queue.md
+          git commit -m "Idea Forge: ${{ steps.publish.outputs.title }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
