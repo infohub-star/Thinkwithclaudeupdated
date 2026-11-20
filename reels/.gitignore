@@ -1,0 +1,5 @@
+node_modules/
+template/public/reel.json
+template/public/timings.json
+template/public/voiceover.wav
+out/

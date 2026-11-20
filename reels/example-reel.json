@@ -1,0 +1,12 @@
+{
+ "slug": "keep-ai-content-on-brand",
+ "scenes": [
+  {"type":"hook","icon":"🤖","title":"Your AI content sounds like **everyone else's.**","stamp":"GENERIC","voice":"Your AI content sounds like everyone else's. Here's how to fix it."},
+  {"type":"point","icon":"🗂️","title":"Give AI a **brand pack**","voice":"AI sounds generic when it knows nothing about your brand. So give it a brand pack."},
+  {"type":"list","title":"One page:","items":["Who you speak to","Your voice in 3 words","Words you use","Words you never use"],"voice":"One page. Who you speak to. Your voice in three words. Words you use, and words you never use."},
+  {"type":"point","icon":"⭐","title":"Add 3–5 examples of your **best work**","sub":"Examples matter more than rules","voice":"Then add three to five examples of your best work. Examples matter more than rules."},
+  {"type":"point","icon":"💾","title":"Save it once. Every draft starts **on-brand.**","voice":"Save it once in your AI tool, so every draft starts on-brand."},
+  {"type":"list","title":"Before you publish:","items":["Does it sound like us?","Are the facts right?","Would we put our name on it?"],"voice":"Before you publish, check. Does it sound like us? Are the facts right? Would we put our name on it?"},
+  {"type":"cta","voice":"Visit us today at think with claude dot com, or call us at seven zero four two six, three three one zero seven."}
+ ]
+}
