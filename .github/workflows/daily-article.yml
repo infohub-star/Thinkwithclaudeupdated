@@ -1,0 +1,46 @@
+name: Daily article
+
+on:
+  schedule:
+    - cron: "10 13 * * *"   # 6:40 PM IST every day
+  workflow_dispatch: {}      # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-article
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install anthropic markdown
+
+      - name: Write and build today's article
+        id: write
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 blog/auto_publish.py
+
+      - name: Commit and push
+        run: |
+          if [ -z "$(git status --porcelain blog sitemap.xml)" ]; then
+            echo "Nothing to publish."
+            exit 0
+          fi
+          git config user.name "Shantanu Anand"
+          git config user.email "infohub@connectwithshantanu.com"
+          git add blog sitemap.xml
+          git commit -m "Publish article: ${{ steps.write.outputs.title }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
