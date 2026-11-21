@@ -1,0 +1,133 @@
+{
+  "slug": "2026-11-21-cod-order-returns",
+  "date": "2026-11-21",
+  "short": "COD order returns",
+  "title": "Why do small online sellers in India lose money on cash-on-delivery orders that come back undelivered?",
+  "industry": "E-commerce & D2C",
+  "score": 78,
+  "summary": "More than a third of cash-on-delivery orders for small online brands come back unopened, and the seller pays shipping both ways. Here's \"DoorCheck\", a WhatsApp order-confirmation and risk-scoring assistant buildable with Claude in a weekend.",
+  "who": "Small direct-to-consumer brands, Instagram and WhatsApp sellers, and small Shopify stores, especially those selling into Tier 2 and Tier 3 towns. They pay forward and return shipping, lose packaging and stock time, and often find out only days later that the buyer refused the parcel, gave a wrong address or never meant to buy.",
+  "facts": [
+    "**Where this came from:** No problem list was readable this run, so this was chosen from logistics industry reports and seller discussions, including [ClickPost](https://www.clickpost.ai/blog/ecommerce-rto-statistics-india), [Amazon Shipping](https://shipping.amazon.in/blog/what-is-rto-how-to-reduce-return-to-origin) and a [Shopify merchant thread](https://community.shopify.com/t/reducing-fake-cod-orders-on-shopify-looking-for-merchant-feedback/580137).",
+    "**Cash on delivery is still the default.** Roughly 60 to 65% of Indian e-commerce orders are placed as cash on delivery, per ET Prime Research cited by Amazon Shipping ([Amazon Shipping](https://shipping.amazon.in/blog/what-is-rto-how-to-reduce-return-to-origin)).",
+    "**Those orders fail far more often.** On ClickPost's FY2026 direct-to-consumer network, 37.51% of cash-on-delivery orders ended as return-to-origin, against 5.28% of prepaid orders ([ClickPost](https://www.clickpost.ai/blog/ecommerce-rto-statistics-india)).",
+    "**Each failed order costs real money.** Amazon Shipping gives an illustrative Rs 180 to 240 logistics cost per returned order; ClickPost estimates about Rs 350 on a Rs 1,200 order once acquisition and stock costs are included ([Amazon Shipping](https://shipping.amazon.in/blog/what-is-rto-how-to-reduce-return-to-origin), [ClickPost](https://www.clickpost.ai/blog/ecommerce-rto-statistics-india)).",
+    "**Speed and addresses matter.** Shipway FY25 data shows return rates rising from 22% when delivery is attempted within 1 to 2 days to 35% after 5 or more days, and address errors are estimated to cause 18 to 24% of returns ([Amazon Shipping](https://shipping.amazon.in/blog/what-is-rto-how-to-reduce-return-to-origin)).",
+    "**Smaller towns are harder.** Blended return rates were 12.0% in Tier 3 towns against 6.6% in metros in October to November 2025 ([ClickPost](https://www.clickpost.ai/blog/ecommerce-rto-statistics-india))."
+  ],
+  "players": "GoKwik offers return-risk prediction to larger brands and says it saved brands Rs 130 crore in such losses in 2023 ([CXOToday](https://cxotoday.com/media-coverage/gokwik-has-helped-ecommerce-brands-save-over-rs-130-cr-worth-of-rto-losses-in-2023/)). Shiprocket, ClickPost and Shipway bundle return-reduction tools into shipping and tracking software, and Amazon offers cash-on-delivery suppression to its own sellers. These mostly serve brands with checkout integrations and volume; we didn't find a simple, low-cost tool built for the small seller who takes orders over Instagram and WhatsApp.",
+  "pitch": "\"DoorCheck\" confirms every cash-on-delivery order over WhatsApp, fixes the address, scores the return risk, and nudges risky buyers to prepay before the parcel ships.",
+  "features": [
+    [
+      "WhatsApp confirmation",
+      "Sends each new cash-on-delivery order a short confirmation message with order details; unconfirmed orders are held, not shipped."
+    ],
+    [
+      "Address repair",
+      "Reads the free-text address, checks pincode and landmark, and asks the buyer one clear question when something is missing."
+    ],
+    [
+      "Risk score",
+      "Scores each order from past outcomes by pincode, order value, repeat buyer and response behaviour, with a plain-language reason."
+    ],
+    [
+      "Prepay nudge",
+      "Offers high-risk buyers a small discount or a partial advance by UPI link to convert to prepaid."
+    ],
+    [
+      "Weekly loss report",
+      "Shows returns avoided, shipping saved and which pincodes or products cause the most failures."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, Shopify and WhatsApp Business API integrations, the scoring service, tests and deployment."
+    ],
+    [
+      "Claude API in the product",
+      "Parses messy addresses, writes confirmation and nudge messages in English or Hindi, and explains each risk score in one line."
+    ],
+    [
+      "Skills",
+      "A \"cod-confirmation\" skill holds message templates, tone rules and escalation steps so every message stays consistent."
+    ],
+    [
+      "Artifacts",
+      "A clickable prototype of the seller dashboard to show five sellers before building."
+    ],
+    [
+      "Connectors / MCP",
+      "Reads orders from Shopify or a Google Sheet and logs outcomes back, so sellers keep their existing tools."
+    ],
+    [
+      "Scheduled tasks",
+      "A daily job pulls courier delivery outcomes and retrains the risk weights; a weekly job sends the loss report."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning — collect data",
+      "Get 3 to 6 months of order exports with delivery outcomes from two or three small sellers you know."
+    ],
+    [
+      "Saturday midday — baseline score",
+      "Ask Claude Code to compute return rates by pincode, order value and repeat buyer, and build a simple weighted score."
+    ],
+    [
+      "Saturday afternoon — address parser",
+      "Use the Claude API to clean 200 real addresses and measure how many need a follow-up question."
+    ],
+    [
+      "Saturday evening — prototype",
+      "Generate an artifact of the dashboard and confirmation flow and show it to two sellers."
+    ],
+    [
+      "Sunday morning — WhatsApp flow",
+      "Wire a WhatsApp Business API sandbox for confirmation, address question and UPI prepay link."
+    ],
+    [
+      "Sunday midday — order intake",
+      "Connect Shopify webhooks or a Google Sheet so new orders flow in automatically."
+    ],
+    [
+      "Sunday afternoon — report",
+      "Add the daily outcome sync and weekly loss report as scheduled jobs."
+    ],
+    [
+      "Sunday evening — pilot",
+      "Turn it on for one seller's live orders with manual approval before any message goes out."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"DoorCheck\" for small Indian online sellers.\n\nFlow: new cash-on-delivery order arrives (Shopify webhook or Google Sheet row)\n-> Claude API cleans the address into JSON (name, line1, landmark, city, pincode, missing_fields)\n-> risk score from historical outcomes (pincode return rate, order value band, repeat buyer, reply time)\n-> send WhatsApp confirmation via the WhatsApp Business API sandbox; if high risk, offer a UPI prepay link with a small discount\n-> hold unconfirmed orders; release confirmed ones to the shipping queue.\n\nInclude: seller dashboard (orders, risk reason, status), CSV import of past orders with outcomes, a nightly job that recomputes pincode return rates, a weekly loss report, seed data, and tests for the address parser and scorer. Keep all messages short, polite and available in English and Hindi.",
+  "pricing": [
+    "Free: up to 100 orders a month.",
+    "Rs 1 to 2 per confirmed order, or Rs 999 a month up to 1,500 orders (not validated).",
+    "Channel: Shopify app listing, seller WhatsApp groups and shipping aggregator partnerships."
+  ],
+  "risk": "Buyers may ignore or distrust confirmation messages from small sellers, so confirmation rates could be too low to cut returns meaningfully.",
+  "test": "Before building integrations, run the flow manually for one seller for two weeks: send confirmation and address messages by hand from a template, and compare the return rate of confirmed orders against the seller's last three months. A reasonable bar: at least 60% of buyers reply, and returns on confirmed orders fall by a quarter or more.",
+  "caution": "Use only official WhatsApp Business API templates with buyer consent, and follow the Digital Personal Data Protection Act when storing buyer phone numbers and addresses.",
+  "sources": [
+    [
+      "ClickPost: E-commerce RTO statistics India",
+      "https://www.clickpost.ai/blog/ecommerce-rto-statistics-india"
+    ],
+    [
+      "Amazon Shipping: What is RTO and how Indian SMBs can reduce it",
+      "https://shipping.amazon.in/blog/what-is-rto-how-to-reduce-return-to-origin"
+    ],
+    [
+      "CXOToday: GoKwik helped brands save Rs 130 Cr in RTO losses (2023)",
+      "https://cxotoday.com/media-coverage/gokwik-has-helped-ecommerce-brands-save-over-rs-130-cr-worth-of-rto-losses-in-2023/"
+    ],
+    [
+      "Shopify Community: Reducing fake COD orders (merchant discussion)",
+      "https://community.shopify.com/t/reducing-fake-cod-orders-on-shopify-looking-for-merchant-feedback/580137"
+    ],
+    [
+      "TechCrunch: GoKwik raises $13M (2025)",
+      "https://techcrunch.com/2025/06/24/indias-gokwik-raised-a-small-13m-round-for-a-hefty-leap-in-valuation"
+    ]
+  ]
+}
