@@ -1,0 +1,63 @@
+{
+  "slug": "2026-11-22-fake-review-attacks",
+  "date": "2026-11-22",
+  "short": "Fake review attacks",
+  "title": "Why do small businesses in India get hit by fake reviews they cannot get removed?",
+  "industry": "Local Business & Retail",
+  "score": 72,
+  "summary": "Restaurants, clinics and shops wake up to a wave of fake one-star reviews, sometimes with a demand for money, and have no clear way to fight back. Here's \"ReviewShield\", a review defence assistant a small team could build with Claude in a weekend.",
+  "who": "Owners of restaurants, clinics, salons, coaching centres and local shops whose customers choose them from Google Maps and listing apps. A sudden run of fake one-star reviews hits their rating and walk-ins, and most owners do not know how to document it, report it or reply to it.",
+  "facts": [
+    "**Where this came from:** Business news reports of a global scam in which small businesses receive a flood of fake one-star Google reviews followed by a demand for payment to stop ([Outlook Business](https://www.outlookbusiness.com/ampstories/news/fake-google-reviews-scam-targets-small-businesses-worldwide-heres-whats-behind-it), [ConsumerAffairs](https://www.consumeraffairs.com/news/small-businesses-hit-by-global-scam-of-fake-negative-google-reviews-091125.html)), together with India's own government action on fake reviews.",
+    "**The volume is huge.** Google reported blocking 240 million policy-violating reviews on Maps in 2024 ([Search Engine Roundtable](https://www.seroundtable.com/google-maps-spam-fighting-2024-39186.html)), and a later report put the figure at 292 million ([Search Engine Roundtable](https://www.seroundtable.com/google-maps-spam-fighting-2025-41176.html)).",
+    "**India treats fake reviews as a consumer problem.** The Department of Consumer Affairs announced a framework against fake online reviews in November 2022 ([PIB](https://pib.gov.in/PressReleasePage.aspx?PRID=1877733)), and the Bureau of Indian Standards published IS 19000:2022 for online consumer reviews ([MediaNama](https://www.medianama.com/2022/12/223-summary-bis-standard-online-reviews-e-commerce/)).",
+    "**Google has a dedicated extortion route.** Google Business Profile now has a help page for reporting review extortion ([Google support](https://support.google.com/business/answer/16404809?hl=en-GB)) and has said it is acting on one-star review blackmail ([Search Engine Roundtable](https://www.seroundtable.com/google-one-star-review-scams-blackmail-33764.html))."
+  ],
+  "players": "Platforms fight fake reviews at scale with their own AI ([Google blog](https://blog.google/products/maps/google-business-profiles-ai-fake-reviews/)), but that work is invisible to the owner. Review management tools mainly help businesses collect and reply to reviews. We did not find a simple tool for an Indian small business owner that spots an attack early, builds the evidence and walks them through reporting it.",
+  "pitch": "\"ReviewShield\" watches a business's reviews, flags suspicious bursts of fake ratings, prepares the evidence pack for reporting, and drafts calm public replies.",
+  "features": [
+    ["Attack alert", "Watches new reviews daily and alerts the owner on WhatsApp or email when ratings drop in an unusual burst."],
+    ["Suspicion score", "Explains why each review looks fake, for example no visit record, a new account, copied wording, or a cluster posted within hours."],
+    ["Evidence pack", "Builds a dated report with screenshots, review links and any extortion messages, ready for the platform's report form or a police cyber complaint."],
+    ["Reply drafter", "Drafts short, polite public replies in English or a regional language that do not accuse anyone and reassure real customers."],
+    ["Recovery plan", "Suggests honest ways to ask genuine customers for reviews, within platform rules and the review standard."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, review watcher, database and deployment."],
+    ["Claude API in the product", "Reads each review, scores how suspicious it is with a reason, and drafts replies and evidence summaries."],
+    ["Skills", "A \"review-defence\" skill holds platform policies, the reporting steps and the reply tone guide so outputs stay consistent."],
+    ["Artifacts", "A landing page and a sample evidence pack to show owners before the product exists."],
+    ["Connectors (MCP)", "Gmail and Google Drive during pilots to collect extortion messages and store evidence packs."],
+    ["Scheduled tasks", "A daily review sweep and a weekly rating report for each business."]
+  ],
+  "plan": [
+    ["Saturday morning — collect cases", "Gather 10 real review attacks from owners you know, with their permission. Label which reviews were fake."],
+    ["Saturday midday — prototype", "Ask Claude for an artifact showing the alert, suspicion score and evidence pack. Show it to three owners."],
+    ["Saturday afternoon — scoring", "Use the starter prompt below in Claude Code to build review import and suspicion scoring. Test against your labelled cases."],
+    ["Saturday evening — burst detection", "Add plain-code burst detection on rating changes, with unit tests, and no model involved."],
+    ["Sunday morning — evidence and replies", "Add the evidence pack PDF and the reply drafter in English and Hindi."],
+    ["Sunday afternoon — ship", "Deploy, add login and WhatsApp or email alerts, and a notice that the tool does not remove reviews itself."],
+    ["Sunday evening — pilot", "Onboard five local businesses and set a scheduled task to track how many reported reviews were taken down."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"ReviewShield\" for Indian small businesses.\n\nFlow: owner adds their business and imports reviews (CSV export or manual paste for the MVP)\n-> plain code detects unusual bursts of low ratings\n-> Claude API scores each review for suspicion (0-100) with a short reason, returned as JSON\n(review_id, score, reasons[], evidence_notes)\n-> owner sees flagged reviews -> app builds a dated evidence pack PDF with links, text and screenshots uploaded by the owner\n-> Claude drafts a calm public reply in English or Hindi.\n\nRules:\n- Never say a review is definitely fake; say \"looks suspicious because ...\".\n- Replies must not accuse or name the reviewer, and must not offer anything in exchange for changing a review.\n- Keep platform reporting steps in /rules/reporting.md and only cite that file.\n- Burst detection and all counts are deterministic code with unit tests.\n- If the owner reports a payment demand, show the steps to report extortion to the platform and to cyber police, and advise not to pay.\n\nStart by proposing the schema and file structure, then build review import and scoring first.\nAdd a test script that runs scoring over /fixtures and compares with labelled results.",
+  "pricing": [
+    "Free: one business, weekly review check.",
+    "Rs 499 a month: daily alerts, evidence packs and reply drafts.",
+    "Rs 1,999 a month: multi-location chains and agencies.",
+    "Prices are suggestions and have not been validated."
+  ],
+  "risk": "The riskiest assumption is that a better evidence pack actually gets more fake reviews removed. If platforms remove the same share either way, the value falls to alerts and replies.",
+  "test": "Before building, run a manual version for 10 businesses under attack: prepare evidence packs with Claude and report each review. Compare the removal rate with reviews the owners reported on their own. If removals do not improve, lead with early alerts and reply drafting instead.",
+  "caution": "Do not help businesses post or buy positive reviews, which breaks platform rules and the review standard. Treat any money demand as a possible crime and point owners to police cyber complaint channels.",
+  "sources": [
+    ["Outlook Business: Fake Google reviews scam targets small businesses", "https://www.outlookbusiness.com/ampstories/news/fake-google-reviews-scam-targets-small-businesses-worldwide-heres-whats-behind-it"],
+    ["ConsumerAffairs: Small businesses hit by fake negative reviews scam", "https://www.consumeraffairs.com/news/small-businesses-hit-by-global-scam-of-fake-negative-google-reviews-091125.html"],
+    ["Search Engine Roundtable: Google Maps blocked 240 million fake reviews in 2024", "https://www.seroundtable.com/google-maps-spam-fighting-2024-39186.html"],
+    ["Search Engine Roundtable: Google Maps blocked 292 million reviews", "https://www.seroundtable.com/google-maps-spam-fighting-2025-41176.html"],
+    ["PIB: Framework to curb fake online reviews", "https://pib.gov.in/PressReleasePage.aspx?PRID=1877733"],
+    ["MediaNama: BIS standard for online reviews", "https://www.medianama.com/2022/12/223-summary-bis-standard-online-reviews-e-commerce/"],
+    ["Google Business Profile help: review extortion", "https://support.google.com/business/answer/16404809?hl=en-GB"],
+    ["Search Engine Roundtable: Google acts on one-star review blackmail", "https://www.seroundtable.com/google-one-star-review-scams-blackmail-33764.html"],
+    ["Google blog: AI keeps business information trustworthy", "https://blog.google/products/maps/google-business-profiles-ai-fake-reviews/"]
+  ]
+}
