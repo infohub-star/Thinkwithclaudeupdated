@@ -1,5 +1,92 @@
 [
  {
+  "date": "2026-11-23",
+  "engine": "claude",
+  "score": 0,
+  "results": [
+   {
+    "question": "Who is the best corporate AI trainer in Bengaluru?",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9QjEKD1zPLE2d7FA\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "Recommend an AI trainer in India for a corporate team workshop",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9PUwUFppnUF6yMJ5\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "Who offers ChatGPT and Claude training for teams in India?",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9PF3buigEqUDpRbR\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "Best AI training for HR and L&D teams in India",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9RUS9TbdGZzmdgYG\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "Generative AI workshop for leadership teams in India, who should I hire?",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9SU1Sg3TgxruHz1G\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "Hands-on AI training for doctors and clinics in India",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9ka96Ft7DzmbS2bA\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "AI training for coaches and consultants in India",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9m56SPtsRU9xQzvB\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "Who can train my sales team to use AI tools in India?",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9mKGRwzfeMfv8sPc\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "Best Claude AI trainer in India",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9o47Snb593DtnLCU\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   },
+   {
+    "question": "One-on-one AI coaching for professionals in India",
+    "error": "Claude 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011ChKAo9qXLmqMqDETCz7ax\"}",
+    "named": false,
+    "rank": null,
+    "recommended": [],
+    "sources": []
+   }
+  ]
+ },
+ {
   "date": "2026-11-16",
   "engine": "claude",
   "score": 0,
