@@ -1,0 +1,134 @@
+{
+  "slug": "2026-11-23-small-batch-manufacturing",
+  "date": "2026-11-23",
+  "short": "Small-batch manufacturing",
+  "title": "Why do businesses struggle finding reliable contract manufacturers for small batches?",
+  "industry": "B2B Services",
+  "score": 75.2,
+  "summary": "New brands need 200 units to test a product, but factories quote minimums of thousands. Here's \"BatchMatch\", a small-batch sourcing assistant a small team could build with Claude in a weekend.",
+  "who": "Founders of new consumer brands (apparel, personal care, home goods, snacks) and small businesses that want a private-label or custom product made in a first run of a few hundred units. They do not know which factories take small orders, they get ignored when they ask, and a wrong pick costs them their launch capital.",
+  "facts": [
+    "**Legacy minimums are far above a test batch.** ZYOD's co-founder told Inc42 that most apparel manufacturers had set minimum orders at about 2,000 pieces per style, with traditional cycles of 120 to 180 days ([Inc42](https://inc42.com/?p=519053)).",
+    "**Packaging often sets the real minimum.** A D2C playbook notes that a factory able to run 200 units can be blocked by a 1,000-unit box minimum, and suggests generic packaging with a branded sticker for pilots ([eChai Ventures](https://echai.ventures/d2c/d2c-find-manufacturers-india/negotiate-moq-small-batch)).",
+    "**Smaller first orders cost more per unit.** The same playbook puts the premium for halving a first order at roughly 10 to 15% per unit, and calls it usually the right trade while validating ([eChai Ventures](https://echai.ventures/d2c/d2c-find-manufacturers-india/negotiate-moq-small-batch)).",
+    "**Small orders get deprioritised.** A sourcing platform's own blog says high minimums force brands to overproduce and that low-volume orders are frequently pushed back in the queue ([factori](https://blog.factori.com/2025/12/31/low-moq-manufacturing-factori-co)).",
+    "**The squeeze is getting tighter in 2026.** Inc42 reports manufacturers asking D2C brands for cash-and-carry terms instead of the earlier 45 to 60 day credit, with several citing a 15 to 20% rise in overall costs ([Inc42](https://inc42.com/features/why-indias-d2c-brigade-is-facing-its-toughest-test-yet/))."
+  ],
+  "players": "Managed manufacturing platforms are growing. ZYOD reports $21.5 million raised and says it serves 550+ D2C companies and can lower minimums on request ([Inc42](https://inc42.com/?p=519053)). Lal10 runs a \"cloud factory\" over 50+ partner factories with low minimums and a 35-day cycle ([YourStory](https://yourstory.com/2025/06/lal10-cloud-factory-indian-apparel-revolution)). factori aggregates demand across brands to make small runs viable ([factori](https://blog.factori.com/2025/12/31/low-moq-manufacturing-factori-co)). These mostly take on production themselves; we found little that helps a founder screen, compare and brief independent factories on their own.",
+  "pitch": "\"BatchMatch\" turns a product idea and a target quantity into a shortlist of factories likely to accept it, a clear request-for-quote, and a side-by-side comparison of the replies.",
+  "features": [
+    [
+      "Spec builder",
+      "A short guided chat turns a founder's idea into a factory-ready brief: materials, sizes, packaging, quantity, target price and deadline."
+    ],
+    [
+      "Factory shortlist",
+      "Matches the brief against a curated database of factories tagged by category, city, stated minimum order and past small-batch work."
+    ],
+    [
+      "Quote outreach",
+      "Sends the brief by email or WhatsApp in the factory's preferred language and tracks who replied."
+    ],
+    [
+      "Quote comparison",
+      "Reads replies, including PDFs and photos of handwritten quotes, and lines up unit price, minimum, packaging minimum, lead time and payment terms."
+    ],
+    [
+      "Pilot negotiator",
+      "Drafts a counter-offer using known levers: a paid sample run, generic packaging, a slightly higher unit price for a smaller first order."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, the factory database, outreach integrations and tests."
+    ],
+    [
+      "Claude API in the product",
+      "Writes the brief, translates outreach, extracts terms from messy quotes and drafts negotiations."
+    ],
+    [
+      "Skills",
+      "A \"small-batch sourcing\" skill holds category checklists and negotiation levers so every brief and counter-offer follows the same rules."
+    ],
+    [
+      "Artifacts",
+      "A clickable quote-comparison table to show founders before writing any backend."
+    ],
+    [
+      "Connectors / MCP",
+      "Gmail and Google Sheets connectors to send briefs and keep the shortlist in a sheet the founder already uses."
+    ],
+    [
+      "Scheduled tasks",
+      "A daily follow-up on factories that have not replied, and a weekly digest of new quotes."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning — pick a lane",
+      "Choose one category (for example apparel or cosmetics) and list 30 factories from trade directories and referrals, with stated minimums."
+    ],
+    [
+      "Saturday midday — prototype",
+      "Ask Claude for an artifact of the brief and the comparison table. Show it to three first-time founders."
+    ],
+    [
+      "Saturday afternoon — skill",
+      "Write the sourcing skill: checklist per category, red flags, and five negotiation levers."
+    ],
+    [
+      "Saturday evening — app",
+      "Use the starter prompt in Claude Code to build the brief flow, factory table and matching."
+    ],
+    [
+      "Sunday morning — quotes",
+      "Add quote upload and extraction; test on ten real quotes, including a photographed one."
+    ],
+    [
+      "Sunday midday — outreach",
+      "Connect email sending and a reply tracker; add the daily follow-up as a scheduled task."
+    ],
+    [
+      "Sunday afternoon — ship",
+      "Deploy, onboard two founders, and run one real request-for-quote end to end."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"BatchMatch\" for Indian founders sourcing small manufacturing runs (100-1,000 units).\n\nFlow: founder answers a guided chat -> Claude API produces a structured brief (category, materials, sizes, packaging, quantity, target unit price, deadline) as JSON\n-> app matches the brief against a factories table (category, city, stated MOQ, packaging MOQ, small-batch history, contact, language) and returns a ranked shortlist with reasons\n-> founder approves; app emails each factory a request for quote in their language and tracks replies\n-> founder uploads quotes (PDF or photo); Claude extracts unit price, MOQ, packaging MOQ, lead time, payment terms, sample cost into a comparison table\n-> 'Draft counter-offer' uses rules from /skills/small-batch-sourcing.md (paid sample run, generic packaging, smaller first order at higher unit price).\n\nInclude seed data for 20 sample factories, unit tests for matching and extraction, and a README. Keep the email provider behind an interface in /lib/outreach.ts.",
+  "pricing": [
+    "Not validated.",
+    "Free: one brief and a shortlist of five factories.",
+    "Rs 1,999 per sourcing project, or Rs 2,999 a month for unlimited briefs and quote comparison.",
+    "Later: a listing fee or success fee from factories that want small-batch leads."
+  ],
+  "risk": "Factories may not reply to an automated request from an unknown brand, so the shortlist is only as good as the factory data and relationships behind it.",
+  "test": "Before building, send 40 hand-written briefs (made with Claude) to factories in one category and city. Count replies and usable quotes within a week. A reasonable bar: at least 12 replies and 6 quotes at or under 500 units.",
+  "caution": "Present factory details as unverified until checked, get consent before storing contact data, and remind founders to sign a basic non-disclosure and quality agreement before sharing designs.",
+  "sources": [
+    [
+      "Razorpay Fix My Itch",
+      "https://razorpay.com/m/fix-my-itch/"
+    ],
+    [
+      "Inc42: How ZYOD is powering on-demand fashion manufacturing",
+      "https://inc42.com/?p=519053"
+    ],
+    [
+      "eChai Ventures: Negotiating MOQ for a small batch",
+      "https://echai.ventures/d2c/d2c-find-manufacturers-india/negotiate-moq-small-batch"
+    ],
+    [
+      "factori: Low-MOQ manufacturing",
+      "https://blog.factori.com/2025/12/31/low-moq-manufacturing-factori-co"
+    ],
+    [
+      "YourStory: Lal10's cloud factory",
+      "https://yourstory.com/2025/06/lal10-cloud-factory-indian-apparel-revolution"
+    ],
+    [
+      "Inc42: Why India's D2C brigade is facing its toughest test yet",
+      "https://inc42.com/features/why-indias-d2c-brigade-is-facing-its-toughest-test-yet/"
+    ]
+  ],
+  "take": "Founders I meet rarely fail for lack of a product idea; they stall at the first factory call. The useful part of this build is the brief and the comparison: AI turning a vague idea into something a factory owner takes seriously, and five messy quotes into one clear choice."
+}
