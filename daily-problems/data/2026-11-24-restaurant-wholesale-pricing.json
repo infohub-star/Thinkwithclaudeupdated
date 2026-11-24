@@ -1,0 +1,134 @@
+{
+  "slug": "2026-11-24-restaurant-wholesale-pricing",
+  "date": "2026-11-24",
+  "short": "Restaurant wholesale pricing",
+  "title": "Why can’t small restaurants access wholesale ingredient pricing without large minimum orders?",
+  "industry": "B2B Services",
+  "score": 71.5,
+  "summary": "A single-outlet restaurant can pay far more for the same onions and oil than a chain does, simply because it buys small. Here's \"KitchenPool\", a group-buying and price-comparison assistant for small kitchens that a small team could build with Claude in a weekend.",
+  "who": "Owners and chefs of single-outlet restaurants, dhabas, cafes, cloud kitchens and caterers. They buy in small quantities from many local vendors, cannot meet the volumes that unlock wholesale rates, and spend their mornings phoning suppliers to compare prices.",
+  "facts": [
+    "**Small outlets pay much more.** SupplyNote's co-founder told Inc42 a single-outlet restaurant may pay \"at least 10-15X costlier\" for raw materials than a large chain ([Inc42](https://inc42.com/startups/how-supplynote-is-fixing-supply-chain-menace-for-indian-restaurants)).",
+    "**Ingredients are the biggest cost.** Inc42 puts a restaurant's food cost at roughly 40% of revenue, while Petpooja cites 28% to 35% for most Indian kitchens ([Inc42](https://inc42.com/features/inside-zomatos-hyperpure-the-battle-to-control-indias-54-bn-restaurant-economy/), [Petpooja](https://blog.petpooja.com/operations-workflows/hyperpure-vs-dmart-vs-local-vendors-comparison/)).",
+    "**Buying is fragmented.** A midsize restaurant needs about 200 ingredients from 60-70 vendors, and unorganised traders and mandis handle about 91% of restaurant grocery procurement ([Inc42](https://inc42.com/features/inside-zomatos-hyperpure-the-battle-to-control-indias-54-bn-restaurant-economy/)).",
+    "**Comparing prices eats time.** Petpooja estimates that checking prices across channels takes 30-40 minutes every morning, and says large B2B platforms are prepaid only for small kitchens ([Petpooja](https://blog.petpooja.com/operations-workflows/hyperpure-vs-dmart-vs-local-vendors-comparison/)).",
+    "**Most of the market is unorganised.** NRAI puts the food services market at Rs 5.7 trillion, of which Rs 3.19 trillion is unorganised ([NRAI](https://nrai.org/food-services-market-to-touch-rs-7-76-trillion-by-2028))."
+  ],
+  "players": "Zomato's Hyperpure supplies 4,000+ products to 40,000+ partners on a cash-and-carry model, and Swiggy has reportedly piloted Assure in Bengaluru ([Inc42](https://inc42.com/features/can-swiggy-outserve-zomatos-hyperpure-with-assure/)). SupplyNote runs procurement software for chains and a small-restaurant marketplace in a few cities ([Inc42](https://inc42.com/startups/how-supplynote-is-fixing-supply-chain-menace-for-indian-restaurants)). DMart and local vendors remain the default for many small kitchens ([Petpooja](https://blog.petpooja.com/operations-workflows/hyperpure-vs-dmart-vs-local-vendors-comparison/)). We found little that pools orders from neighbouring small restaurants so they can buy together at wholesale rates.",
+  "pitch": "\"KitchenPool\" lets nearby small restaurants combine their daily orders into one wholesale purchase and shows each owner the best price for every ingredient before they buy.",
+  "features": [
+    [
+      "Order capture",
+      "Owners send their daily order as a WhatsApp text, voice note or photo of a handwritten list; it becomes a clean item list."
+    ],
+    [
+      "Price board",
+      "Compares each item across local vendors, wholesale markets and B2B platforms using quotes that vendors and owners submit."
+    ],
+    [
+      "Group order",
+      "Pools orders from restaurants in the same area until the combined quantity reaches a wholesaler's minimum, then places one order."
+    ],
+    [
+      "Split and settle",
+      "Splits the delivered order and the bill back to each restaurant, with a clear record of who owes what."
+    ],
+    [
+      "Monthly savings report",
+      "Shows each owner what they paid against the best available price, item by item."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, the WhatsApp integration, the pooling logic and tests."
+    ],
+    [
+      "Claude API in the product",
+      "Reads messy orders in Hindi, English or regional languages, normalises item names and units, and reads photographed vendor bills."
+    ],
+    [
+      "Skills",
+      "An \"ingredient catalogue\" skill holds standard item names, units and grades so a \"pyaz 5 kilo\" and \"onion 5kg\" match."
+    ],
+    [
+      "Artifacts",
+      "A clickable price board and group-order screen to show owners before writing any backend."
+    ],
+    [
+      "Connectors / MCP",
+      "Google Sheets to hold vendor price lists that wholesalers already keep."
+    ],
+    [
+      "Scheduled tasks",
+      "A nightly order cut-off that closes each pool and sends the combined order to the wholesaler."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning — pick a cluster",
+      "Choose one market area with 10-15 small restaurants and two wholesalers willing to quote."
+    ],
+    [
+      "Saturday midday — prototype",
+      "Ask Claude for an artifact of the price board and group order. Show it to three owners."
+    ],
+    [
+      "Saturday afternoon — skill",
+      "Write the ingredient catalogue skill with the 100 most common items, units and local names."
+    ],
+    [
+      "Saturday evening — app",
+      "Use the starter prompt in Claude Code to build order capture, price board and pooling."
+    ],
+    [
+      "Sunday morning — WhatsApp",
+      "Connect WhatsApp so owners can send orders as text, voice notes or photos."
+    ],
+    [
+      "Sunday midday — settle",
+      "Add the split bill and the nightly cut-off as a scheduled task."
+    ],
+    [
+      "Sunday afternoon — ship",
+      "Run one real pooled order for three restaurants and compare the bill with what they paid last week."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"KitchenPool\" for small Indian restaurants buying ingredients together.\n\nFlow: owner sends a daily order (text, voice transcript or photo) -> Claude API converts it to JSON items (name, grade, quantity, unit) using /skills/ingredient-catalogue.md\n-> app shows a price board per item from a vendor_prices table (vendor, item, unit price, minimum quantity, updated_at)\n-> orders from restaurants in the same area are pooled per vendor; when the pooled quantity meets the vendor minimum, the pool is marked ready\n-> at a nightly cut-off, the app sends one combined order to each vendor and generates a split bill per restaurant\n-> monthly report compares what each restaurant paid against the best price seen.\n\nInclude seed data for 10 restaurants, 3 vendors and 50 items, unit tests for item matching and pooling, and a README. Keep the messaging provider behind an interface in /lib/messaging.ts.",
+  "pricing": [
+    "Not validated.",
+    "Free for restaurants for the first month.",
+    "Rs 499 a month per restaurant, or a small margin of 1-2% on pooled orders.",
+    "Later: a listing fee from wholesalers who want access to pooled demand."
+  ],
+  "risk": "Wholesalers may not offer better rates for a pooled order delivered to several addresses, so the saving may be eaten by delivery and splitting costs.",
+  "test": "Before building, collect one week of orders from five restaurants in one area by hand, ask two wholesalers to quote the combined order, and compare. A reasonable bar: at least 8% saving after delivery costs.",
+  "caution": "Keep clear records of who owns each part of a pooled order and its payment, follow FSSAI rules if the service ever stores or handles food, and register for GST if you resell rather than just coordinate.",
+  "sources": [
+    [
+      "Razorpay Fix My Itch",
+      "https://razorpay.com/m/fix-my-itch/"
+    ],
+    [
+      "Inc42: Inside Zomato's Hyperpure",
+      "https://inc42.com/features/inside-zomatos-hyperpure-the-battle-to-control-indias-54-bn-restaurant-economy/"
+    ],
+    [
+      "Inc42: How SupplyNote is fixing supply chains for Indian restaurants",
+      "https://inc42.com/startups/how-supplynote-is-fixing-supply-chain-menace-for-indian-restaurants"
+    ],
+    [
+      "Inc42: Can Swiggy outserve Zomato's Hyperpure with Assure?",
+      "https://inc42.com/features/can-swiggy-outserve-zomatos-hyperpure-with-assure/"
+    ],
+    [
+      "Petpooja: Hyperpure vs DMart vs local vendors",
+      "https://blog.petpooja.com/operations-workflows/hyperpure-vs-dmart-vs-local-vendors-comparison/"
+    ],
+    [
+      "NRAI: Food services market to touch Rs 7.76 trillion by 2028",
+      "https://nrai.org/food-services-market-to-touch-rs-7-76-trillion-by-2028"
+    ]
+  ],
+  "take": "Small restaurant owners do not lack suppliers; they lack buying power and time. The useful part of this build is turning a voice note in Hindi into a clean order, and ten small orders into one purchase a wholesaler takes seriously."
+}
