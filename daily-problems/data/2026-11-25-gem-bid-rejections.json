@@ -1,0 +1,140 @@
+{
+  "slug": "2026-11-25-gem-bid-rejections",
+  "date": "2026-11-25",
+  "short": "Government bid rejections",
+  "title": "Why do small businesses in India lose government tenders on paperwork rather than price?",
+  "industry": "Government Procurement",
+  "score": 74,
+  "summary": "Small suppliers often lose government bids over a missing signature, an expired certificate or a price typed without GST. Here's \"BidReady\", a pre-submission checker for government tenders that a small team could build with Claude in a weekend.",
+  "who": "Micro and small manufacturers, traders and service firms that sell, or want to sell, to government buyers through the Government e-Marketplace (GeM) and state portals. Most have no tender desk, so the owner or an accountant reads long bid documents late at night before a hard deadline.",
+  "facts": [
+    "**Where this came from:** Small-supplier guides and seller-side commentary ([eChai Ventures](https://echai.ventures/startingup/selling-to-government/how-do-i-write-a-tender-bid-that-doesn-t-get-thrown-out-on-a-technicality), [TenderShark](https://www.tendershark.com/blogs/why-your-gem-bid-gets-rejected-reasons-of-disqualification-in-government-tenders), [TenderDekho](https://tenderdekho.com/blog/government-tender-rejection-reasons-india-fix-guide-2026)) and a SEWA submission on GeM ([SEWA](https://www.sewa.org/wp-content/uploads/2022/02/Note-for-GeM_-recommendations-from-SEWA.pdf)) all describe bids lost on paperwork.",
+    "**The market is large and open to small firms.** GeM procurement reached a record Rs 5.42 lakh crore in FY 2024-25, and micro and small enterprises accounted for 36.83% of cumulative GMV, above the 25% target ([Outlook Business](https://www.outlookbusiness.com/economy-and-policy/govt-e-marketplace-procurement-soars-to-record-542-lakh-crore-in-fy25-mse-share-hits-3683)).",
+    "**Lakhs of small sellers are already registered.** As of December 2025, more than 11.25 lakh micro and small enterprises had secured government orders worth Rs 7.44 lakh crore on GeM ([IANS](https://ianslive.in/gem-records-over-1125-lakh-mse-sellers-securing-rs-744-lakh-crore-in-govt-orders--20251221140302)).",
+    "**Bids fail on form, not merit.** A missing self-attested page, a wrong stamp, an unsigned annexure or an earnest money deposit in the wrong format can each disqualify a bid ([eChai Ventures](https://echai.ventures/startingup/selling-to-government/how-do-i-write-a-tender-bid-that-doesn-t-get-thrown-out-on-a-technicality)).",
+    "**Common errors are mechanical.** Prices entered without GST, prices that differ between the bill of quantities and uploaded documents, and expired Udyam certificates are listed among top rejection reasons, and the portal closes bids exactly at the deadline ([TenderShark](https://www.tendershark.com/blogs/why-your-gem-bid-gets-rejected-reasons-of-disqualification-in-government-tenders)).",
+    "**The smallest sellers face extra barriers.** SEWA reported that many informal enterprises lack documents such as GSTIN or PAN, and that sellers get no order notification and must keep checking the portal ([SEWA note](https://www.sewa.org/wp-content/uploads/2022/02/Note-for-GeM_-recommendations-from-SEWA.pdf)). Treat this note as older."
+  ],
+  "players": "Tender discovery and consulting are crowded. TenderShark offers free tender search and an AI tender summary, TenderDekho sells alerts, registration and bid-submission services, and GeMTech Paras publishes department tender listings and guidance. Most help firms find tenders or hire someone to file them. We did not find a low-cost tool that checks a small firm's own bid packet against the tender's document list before submission.",
+  "pitch": "\"BidReady\" reads a government tender document, builds a checklist of everything it demands, and checks your bid packet against it before you press submit.",
+  "features": [
+    [
+      "Tender reader",
+      "Upload the bid document and any corrigenda; it extracts eligibility rules, required documents, earnest money terms, deadlines and technical specifications, with page references."
+    ],
+    [
+      "Document vault",
+      "Stores PAN, GST, Udyam, ISO, experience and turnover certificates with expiry dates, and warns before any of them lapse."
+    ],
+    [
+      "Packet check",
+      "Compares the uploaded bid files against the checklist and flags missing pages, unsigned forms, expired certificates and price mismatches including GST."
+    ],
+    [
+      "Compliance matrix",
+      "Drafts a line-by-line yes-plus-proof table for every technical specification, linked to the supporting document."
+    ],
+    [
+      "Deadline and corrigendum alerts",
+      "Watches the tenders you are bidding on and sends a WhatsApp or email alert when a corrigendum or deadline change appears."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, document storage, the checker logic and tests."
+    ],
+    [
+      "Claude API in the product",
+      "Reads long scanned and digital tender PDFs, returns requirements as structured JSON, and compares them with the seller's files."
+    ],
+    [
+      "Skills",
+      "A \"gem-bid-checklist\" skill holding the standard document list, common rejection reasons and the compliance-matrix format."
+    ],
+    [
+      "Artifacts",
+      "A quick clickable prototype of the checklist and packet-check screen to show sellers before building."
+    ],
+    [
+      "Connectors / MCP",
+      "Google Drive or email connectors to pull certificates and bid files the seller already keeps."
+    ],
+    [
+      "Scheduled tasks",
+      "Daily checks for corrigenda on tracked tenders and certificate expiry reminders."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning: collect real tenders",
+      "Download ten recent tender documents in one category, plus two bids a friendly seller actually submitted."
+    ],
+    [
+      "Saturday midday: prototype",
+      "Ask Claude for an artifact of the checklist and packet-check screen. Show it to three small sellers."
+    ],
+    [
+      "Saturday afternoon: write the skill",
+      "Capture the standard document list, rejection reasons and matrix format in a skill file."
+    ],
+    [
+      "Saturday evening: tender reader",
+      "Use Claude Code to build PDF upload and requirement extraction to JSON, tested on the ten tenders."
+    ],
+    [
+      "Sunday morning: vault and check",
+      "Add certificate storage with expiry dates and the comparison that flags gaps."
+    ],
+    [
+      "Sunday midday: compliance matrix",
+      "Generate the yes-plus-proof table and export it as a PDF or Word file."
+    ],
+    [
+      "Sunday afternoon: alerts",
+      "Add a scheduled corrigendum and expiry check with email alerts."
+    ],
+    [
+      "Sunday evening: field test",
+      "Run two real upcoming bids through it with sellers and record every miss."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"BidReady\" for small Indian businesses bidding on government tenders (GeM and state portals).\n\nFlow: seller uploads a tender PDF and corrigenda -> Claude API extracts requirements as JSON (eligibility, required documents, EMD terms, deadlines, technical specs, each with page number) using /skills/gem-bid-checklist/SKILL.md -> seller uploads bid files and certificates (PAN, GST, Udyam, ISO, experience) with expiry dates -> app compares and flags missing documents, unsigned forms, expired certificates and price mismatches (with and without GST) -> generates a compliance matrix (spec, yes/no, proof file) as PDF.\n\nAlso: a document vault with expiry reminders, a daily scheduled job that re-checks tracked tenders for corrigenda, and email alerts. Write tests using three sample tenders in /fixtures. Never submit bids automatically; the seller always submits on the portal.",
+  "pricing": [
+    "Not validated.",
+    "Free for the first two tenders.",
+    "Rs 999 a month for unlimited checks for one business.",
+    "Rs 299 per tender for occasional bidders.",
+    "Later: a plan for chartered accountants and consultants who file bids for many clients."
+  ],
+  "risk": "Tender documents vary widely in format, and a checker that misses even one required item could give sellers false confidence and cost them a bid.",
+  "test": "Before building, take ten past bids that were rejected or nearly rejected, run them through Claude by hand with the checklist skill, and see whether it catches the real cause. A reasonable bar: it catches at least eight of ten.",
+  "caution": "Position the tool as a checker, not a guarantee, keep the seller responsible for final submission, store certificates and identity documents securely, and never automate logins or submissions on government portals.",
+  "sources": [
+    [
+      "Outlook Business: GeM procurement hits record Rs 5.42 lakh crore in FY25",
+      "https://www.outlookbusiness.com/economy-and-policy/govt-e-marketplace-procurement-soars-to-record-542-lakh-crore-in-fy25-mse-share-hits-3683"
+    ],
+    [
+      "IANS: GeM records over 11.25 lakh MSE sellers",
+      "https://ianslive.in/gem-records-over-1125-lakh-mse-sellers-securing-rs-744-lakh-crore-in-govt-orders--20251221140302"
+    ],
+    [
+      "eChai Ventures: Writing a tender bid that doesn't get thrown out",
+      "https://echai.ventures/startingup/selling-to-government/how-do-i-write-a-tender-bid-that-doesn-t-get-thrown-out-on-a-technicality"
+    ],
+    [
+      "TenderShark: Why your GeM bid gets rejected",
+      "https://www.tendershark.com/blogs/why-your-gem-bid-gets-rejected-reasons-of-disqualification-in-government-tenders"
+    ],
+    [
+      "TenderDekho: Government tender rejection reasons",
+      "https://tenderdekho.com/blog/government-tender-rejection-reasons-india-fix-guide-2026"
+    ],
+    [
+      "SEWA: Note for GeM recommendations",
+      "https://www.sewa.org/wp-content/uploads/2022/02/Note-for-GeM_-recommendations-from-SEWA.pdf"
+    ]
+  ],
+  "take": "Small suppliers do not lose government business because their price is wrong; they lose it because one page out of forty is missing. The useful part of this build is turning a 60-page tender into a checklist and checking the packet against it before the deadline."
+}
