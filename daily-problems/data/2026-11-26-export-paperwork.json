@@ -1,0 +1,66 @@
+{
+  "slug": "2026-11-26-export-paperwork",
+  "date": "2026-11-26",
+  "short": "Export paperwork",
+  "title": "Why do small exporters in India get buried in paperwork for every shipment?",
+  "industry": "Exports & Trade",
+  "score": 72,
+  "summary": "Small exporters juggle invoices, packing lists, shipping bills, bank forms and incentive claims for every consignment, and one mismatch causes delays or lost refunds. Here's \"ExportDesk\", a shipment paperwork assistant a small team could build with Claude in a weekend.",
+  "who": "Micro and small manufacturers, artisans, D2C brands and traders who export occasionally or in small consignments. Most have no export department, so the owner, an accountant or a freight agent prepares documents by hand and chases the bank and customs portals afterwards.",
+  "facts": [
+    "**Where this came from:** Business news coverage of exporters complaining about paperwork ([Business Today](https://www.businesstoday.in/latest/trends/story/exporters-are-buried-in-paperwork-factory-owner-urges-modi-govt-to-streamline-trade-process-489698-2025-08-16)), a widely shared Reddit post about red tape hurting a small export business, reported by [Free Press Journal](https://www.freepressjournal.in/amp/business/red-tape-killed-my-b2c-business-reddit-user-scrutinises-indias-export-policies), and seller threads on [Amazon Seller Central](https://sellercentral.amazon.in/seller-forums/discussions/t/4241d0d3-d3c8-49a9-85fb-134b2b9701f0).",
+    "**Very few small firms export at all.** Analyses of official data report that only about 1% of MSMEs export ([Forvis Mazars](https://www.forvismazars.com/in/en/insights/market-insights/why-99-of-msmes-don-t-export), [The Secretariat](https://thesecretariat.in/article/worrying-data-just-1-of-msmes-actually-export)).",
+    "**One container can need 18 documents.** Commentators quoted by [Business Today](https://www.businesstoday.in/india/story/business-strangled-by-bureaucracy-sushant-sareen-as-exporters-face-18-documents-for-a-single-container-489704-2025-08-17) pointed to exporters facing 18 documents for a single container.",
+    "**Compliance costs hit small invoices hardest.** Small sellers on [Amazon Seller Central](https://sellercentral.amazon.in/seller-forums/discussions/t/4241d0d3-d3c8-49a9-85fb-134b2b9701f0) describe high bank charges to close shipping bills on low-value export invoices, and a founder quoted by [Business Today](https://www.businesstoday.in/latest/trends/story/you-should-not-try-exporting-entrepreneur-calls-indias-export-system-a-nightmare-cites-crippling-rbi-compliance-costs-red-tapism-472557-2025-04-18) called RBI compliance costs crippling.",
+    "**Policy bodies see the same gap.** [NITI Aayog's report on boosting MSME exports](https://niti.gov.in/sites/default/files/2024-03/Boosting%20Exports%20from%20MSMEs_March%2020244_0.pdf) highlights the need for easier processes and information for small exporters."
+  ],
+  "players": "Freight and trade platforms such as Cogoport help with bookings and logistics, fintech lenders such as Credlix publish incentive guides and offer export finance, and customs brokers and chartered accountants prepare documents as a service. Government portals (ICEGATE, DGFT) handle filing itself. We did not find a low-cost tool that checks a small exporter's full document set for consistency before filing and then tracks bank realisation and incentive claims per shipment.",
+  "pitch": "\"ExportDesk\" turns one export order into a complete, consistent document set and then tracks every follow-up, from shipping bill to bank realisation and incentive claim.",
+  "features": [
+    ["Order to documents", "Enter or upload the purchase order once; it drafts the commercial invoice, packing list and a document checklist for the destination country."],
+    ["Consistency check", "Compares invoice, packing list, shipping bill and bank documents and flags mismatched values, weights, HS codes, currency or buyer details."],
+    ["Shipment tracker", "One timeline per consignment showing which filings, bank submissions and realisation steps are done or pending."],
+    ["Incentive and refund watch", "Lists which export incentives and GST refunds each shipment may qualify for and reminds the exporter before claim windows close."],
+    ["Explain in plain English", "Answers questions about any document or portal message in simple language, with a link to the official source."]
+  ],
+  "capabilities": [
+    ["Claude Code", "Builds the web app, the document templates, the comparison logic and tests."],
+    ["Claude API in the product", "Reads purchase orders and scanned documents, extracts fields as structured JSON, and explains mismatches in plain language."],
+    ["Skills", "An \"export-docs-checklist\" skill holding the standard document list, field rules and common mismatch patterns."],
+    ["Artifacts", "A clickable prototype of the shipment timeline to show exporters before building."],
+    ["Connectors / MCP", "Gmail and Google Drive connectors to pull buyer orders and documents the exporter already has."],
+    ["Scheduled tasks", "Daily checks for pending realisation and approaching incentive or refund deadlines."]
+  ],
+  "plan": [
+    ["Saturday morning: collect real files", "Get three complete past shipment files from a friendly exporter or customs broker, with sensitive details masked."],
+    ["Saturday midday: prototype", "Ask Claude for an artifact of the shipment timeline and checklist. Show it to three exporters."],
+    ["Saturday afternoon: write the skill", "Capture the document list, field rules and mismatch patterns in a skill file."],
+    ["Saturday evening: extraction", "Use Claude Code to build upload and field extraction to JSON, tested on the three files."],
+    ["Sunday morning: consistency check", "Add the cross-document comparison that flags mismatches with clear explanations."],
+    ["Sunday midday: document drafts", "Generate invoice and packing list drafts from a purchase order."],
+    ["Sunday afternoon: tracker and reminders", "Add the per-shipment timeline and a scheduled reminder job with email alerts."],
+    ["Sunday evening: field test", "Run one live shipment through it with an exporter and note every miss."]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"ExportDesk\" for small Indian exporters.\n\nFlow: exporter uploads a buyer purchase order -> Claude API extracts buyer, items, HS codes, quantities, weights, currency and terms as JSON using /skills/export-docs-checklist/SKILL.md -> app drafts a commercial invoice and packing list -> exporter uploads the shipping bill, bill of lading and bank documents -> app compares all documents field by field and flags mismatches with a plain-English explanation -> a per-shipment timeline tracks filing, bank submission, realisation and incentive or GST refund claims.\n\nAlso: a daily scheduled job that emails reminders for pending realisation and claim deadlines. Write tests using three masked sample shipments in /fixtures. Never file anything on government or bank portals automatically; the exporter always files.",
+  "pricing": [
+    "Not validated.",
+    "Free for the first two shipments.",
+    "Rs 1,499 a month for one exporter with unlimited shipments.",
+    "Rs 399 per shipment for occasional exporters.",
+    "Later: a plan for customs brokers and chartered accountants who handle many exporters."
+  ],
+  "risk": "Exporters and their brokers may trust their existing manual process, and a checker that misses one mismatch could cause a delay they blame on the tool.",
+  "test": "Before building, collect ten past shipments that had a document query or delay, run them through Claude by hand with the checklist skill, and see whether it catches the real cause. A reasonable bar: it catches at least eight of ten.",
+  "caution": "Export rules, incentive rates and foreign exchange rules change often, so link every rule to an official source, position the tool as a checker rather than advice, and keep buyer and bank documents stored securely.",
+  "sources": [
+    ["Business Today: Exporters are buried in paperwork", "https://www.businesstoday.in/latest/trends/story/exporters-are-buried-in-paperwork-factory-owner-urges-modi-govt-to-streamline-trade-process-489698-2025-08-16"],
+    ["Business Today: Exporters face 18 documents for a single container", "https://www.businesstoday.in/india/story/business-strangled-by-bureaucracy-sushant-sareen-as-exporters-face-18-documents-for-a-single-container-489704-2025-08-17"],
+    ["Business Today: Entrepreneur calls India's export system a nightmare", "https://www.businesstoday.in/latest/trends/story/you-should-not-try-exporting-entrepreneur-calls-indias-export-system-a-nightmare-cites-crippling-rbi-compliance-costs-red-tapism-472557-2025-04-18"],
+    ["Free Press Journal: Reddit user on red tape and exports", "https://www.freepressjournal.in/amp/business/red-tape-killed-my-b2c-business-reddit-user-scrutinises-indias-export-policies"],
+    ["Amazon Seller Central: Bank charges to close shipping bills", "https://sellercentral.amazon.in/seller-forums/discussions/t/4241d0d3-d3c8-49a9-85fb-134b2b9701f0"],
+    ["Forvis Mazars: Why ~99% of MSMEs don't export", "https://www.forvismazars.com/in/en/insights/market-insights/why-99-of-msmes-don-t-export"],
+    ["The Secretariat: Just 1% of MSMEs actually export", "https://thesecretariat.in/article/worrying-data-just-1-of-msmes-actually-export"],
+    ["NITI Aayog: Boosting Exports from MSMEs", "https://niti.gov.in/sites/default/files/2024-03/Boosting%20Exports%20from%20MSMEs_March%2020244_0.pdf"]
+  ],
+  "take": "Small exporters rarely lose because their product is wrong; they lose time and money because one number differs between two documents. The useful part of this build is checking the whole document set for consistency before anything is filed."
+}
