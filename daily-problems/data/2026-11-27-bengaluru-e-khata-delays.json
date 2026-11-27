@@ -1,0 +1,135 @@
+{
+  "slug": "2026-11-27-bengaluru-e-khata-delays",
+  "date": "2026-11-27",
+  "short": "Bengaluru e-khata delays",
+  "title": "Why do Bengaluru property owners wait months and make repeated office visits to get a correct e-khata?",
+  "industry": "Real Estate & Civic Services",
+  "score": 70,
+  "summary": "Bengaluru homeowners need an e-khata to sell, register or take a loan on property, yet many face rejections, data errors and office visits. Here's \"KhataReady\", a document check and application tracker a small team could build with Claude in a weekend.",
+  "who": "Apartment and plot owners in Bengaluru, buyers and sellers mid-transaction, families transferring inherited property, and the small builders, brokers and bank loan teams who depend on a valid e-khata before a deal or loan can close.",
+  "facts": [
+    "**Where this came from:** Repeated Bengaluru news coverage ([Outlook Money](https://www.outlookmoney.com/invest/e-khata-bottlenecks-continue-in-bengaluru-as-paperwork-and-delays-persist), [Deccan Herald](https://www.deccanherald.com/india/karnataka/bengaluru/final-e-khata-errors-trap-citizens-in-bbmp-red-tape-3623295), [The Hans India](https://www.thehansindia.com/news/national/e-khata-problem-persists-bbmp-struggles-to-resolve-issue-939198)) and long-running resident discussions on Bengaluru community forums and Reddit about rejected or stuck applications.",
+    "**The volume is large.** [Deccan Herald](https://www.deccanherald.com/india/karnataka/bengaluru/bbmp-to-introduce-fifo-to-clear-pending-e-khata-correction-applications-3505356) reported that nearly 3,000 property owners apply for an e-khata every day within city limits.",
+    "**Corrections drag on.** The same [Deccan Herald report](https://www.deccanherald.com/india/karnataka/bengaluru/bbmp-to-introduce-fifo-to-clear-pending-e-khata-correction-applications-3505356) said correction requests often remain unresolved for months, which led the civic body to announce first-in, first-out processing.",
+    "**Online still means offline visits.** [Outlook Money](https://www.outlookmoney.com/invest/e-khata-bottlenecks-continue-in-bengaluru-as-paperwork-and-delays-persist) reported that applicants are still pushed toward office visits and physical documents, and that a pending e-khata can stall bank loans.",
+    "**Most cases are simple, but the rest are painful.** [Citizen Matters](https://citizenmatters.in/bbmp-e-khata-answers-to-more-faq/) noted most applications are processed within two days, while some take 10 to 15 days and inheritance cases need extra documents and a notice period."
+  ],
+  "players": "The official e-khata portal and Bangalore One centres handle applications. Brokers, property consultants and lawyers offer paid help, and property platforms publish how-to guides. We did not find a low-cost tool that checks an owner's documents against the portal's requirements before submission, explains rejection reasons in plain language, and tracks the application to completion.",
+  "pitch": "\"KhataReady\" checks your property documents before you apply, explains what is missing or mismatched, and tracks your e-khata application until it is approved.",
+  "features": [
+    [
+      "Document readiness check",
+      "Upload the sale deed, tax receipts and encumbrance certificate; it lists what is missing for your case type (new, correction, inheritance)."
+    ],
+    [
+      "Mismatch finder",
+      "Compares owner names, property numbers and area figures across documents and flags differences that commonly cause rejection."
+    ],
+    [
+      "Rejection explainer",
+      "Paste a rejection or portal message and get a plain-English explanation and the next step, with a link to the official guidance."
+    ],
+    [
+      "Application tracker",
+      "One timeline per property with reminders to check status and escalate through official channels if it stalls."
+    ],
+    [
+      "Shareable status pack",
+      "A one-page summary for a buyer, broker or bank loan officer showing exactly where the application stands."
+    ]
+  ],
+  "capabilities": [
+    [
+      "Claude Code",
+      "Builds the web app, the upload flow, comparison logic and tests."
+    ],
+    [
+      "Claude API in the product",
+      "Reads scanned deeds and receipts, extracts names, numbers and areas as JSON, and explains mismatches and rejection notes in plain language, including Kannada."
+    ],
+    [
+      "Skills",
+      "An \"e-khata-requirements\" skill holding document lists per case type, common rejection reasons and official links."
+    ],
+    [
+      "Artifacts",
+      "A clickable prototype of the readiness checklist to test with homeowners before building."
+    ],
+    [
+      "Connectors / MCP",
+      "Google Drive and Gmail connectors to pull documents and portal emails the owner already has."
+    ],
+    [
+      "Scheduled tasks",
+      "Weekly reminders to check application status and flag cases that exceed normal processing times."
+    ]
+  ],
+  "plan": [
+    [
+      "Saturday morning: gather real cases",
+      "Collect five masked document sets from friends, a housing society or a broker, including two that were rejected."
+    ],
+    [
+      "Saturday midday: prototype",
+      "Ask Claude for an artifact of the readiness checklist and show it to three homeowners."
+    ],
+    [
+      "Saturday afternoon: write the skill",
+      "Capture document lists, case types and rejection reasons from official guidance in a skill file."
+    ],
+    [
+      "Saturday evening: extraction",
+      "Use Claude Code to build upload and field extraction to JSON, tested on the five sets."
+    ],
+    [
+      "Sunday morning: mismatch finder",
+      "Add the cross-document comparison with clear explanations."
+    ],
+    [
+      "Sunday midday: rejection explainer and tracker",
+      "Add the paste-a-message explainer and a simple per-property timeline."
+    ],
+    [
+      "Sunday afternoon: status pack",
+      "Generate the one-page summary for buyers and banks."
+    ],
+    [
+      "Sunday evening: pilot",
+      "Share with one housing society's WhatsApp group and collect feedback from the first ten users."
+    ]
+  ],
+  "prompt": "Build a Next.js + TypeScript + Postgres web app called \"KhataReady\" for Bengaluru property owners applying for an e-khata.\n\nFlow: owner picks case type (new, correction, inheritance) -> uploads sale deed, property tax receipts, encumbrance certificate and ID -> Claude API extracts owner names, property identifiers, area and dates as JSON using /skills/e-khata-requirements/SKILL.md -> app shows a readiness checklist (missing documents) and a mismatch list (names, numbers, areas that differ) -> owner can paste any rejection or portal message for a plain-English and Kannada explanation with next steps and official links -> each property gets a status timeline with reminders and a shareable one-page status summary.\n\nRequirements: never submit anything to government portals; mask ID numbers in storage; cite the official source for every rule; write tests for the mismatch logic using sample JSON fixtures.",
+  "pricing": [
+    "Not validated.",
+    "Free readiness check for one property.",
+    "Rs 499 per property for the full mismatch report, explainer and tracking.",
+    "Rs 2,999 a month for brokers and small builders handling many properties.",
+    "Later: a bulk plan for housing societies and bank loan teams."
+  ],
+  "risk": "Many rejections may come from issues inside the civic records themselves rather than the owner's documents, so a pre-check might not reduce delays enough for people to pay.",
+  "test": "Before building, take ten past rejected or delayed applications, run their documents and rejection notes through Claude by hand with the requirements skill, and ask the owners whether the explanation and fix were correct. A reasonable bar: useful for at least seven of ten.",
+  "caution": "Rules and portals change often, so link every requirement to official guidance, position the tool as a checker rather than legal advice, never promise faster approval, and store property and identity documents securely.",
+  "sources": [
+    [
+      "Outlook Money: e-khata bottlenecks continue in Bengaluru",
+      "https://www.outlookmoney.com/invest/e-khata-bottlenecks-continue-in-bengaluru-as-paperwork-and-delays-persist"
+    ],
+    [
+      "Deccan Herald: Final e-khata errors trap citizens in red tape",
+      "https://www.deccanherald.com/india/karnataka/bengaluru/final-e-khata-errors-trap-citizens-in-bbmp-red-tape-3623295"
+    ],
+    [
+      "Deccan Herald: FIFO to clear pending e-khata correction applications",
+      "https://www.deccanherald.com/india/karnataka/bengaluru/bbmp-to-introduce-fifo-to-clear-pending-e-khata-correction-applications-3505356"
+    ],
+    [
+      "Citizen Matters: BBMP e-khata FAQ",
+      "https://citizenmatters.in/bbmp-e-khata-answers-to-more-faq/"
+    ],
+    [
+      "The Hans India: E-Khata problem persists",
+      "https://www.thehansindia.com/news/national/e-khata-problem-persists-bbmp-struggles-to-resolve-issue-939198"
+    ]
+  ],
+  "take": "Most e-khata pain is not the application form; it is arriving with one document missing or one name spelled differently. A pre-check that catches that before submission saves the repeat visits."
+}
